@@ -60,31 +60,56 @@ public class DataTypeApp {
 		System.out.println("b1 = "+b1);
 		System.out.println("b2 = "+b2);
 		System.out.println("==============================================================");
-		//문자형(CharacterType) 리터럴 : 문자 하나를 ' ' 안에 표현
+		//문자형(CharacterType) 리터럴 : ' ' 안에 하나의 문자로 표현
 		// => Java에서 문자형 리터럴은 기본적으로 2Byte(Character)로 표현
 		// => 문자형 리터럴은 일반문자외에 회피문자(제어문자)가 존재
 		//회피문자(Escape Character) : 프로그램에 표현 불가능한 문자를 표현하기 위한 문자 - \ 기호 사용
 		// => '\n' : Enter, '\t' : Tab, '\'' : ' 문자, '\"' : " 문자, '\\' : \ 문자, '\0' : NULL 문자 
 		//문자형 리터럴은 내부적으로 약속된 정수값(0~65535)으로 표현 - 유니코드(Unicode)
 		// => 'A' : 65, 'a' : '97', '0' : 48, ' ' : 32, '\n' : 13, '가' : 44032 - 완성형
+		System.out.println("<<문자형(CharacterType)>>");
+		System.out.println("문자값(2Byte) = "+'A');
+		System.out.println("문자값(2Byte) = "+'가');
+		System.out.println("문자값(2Byte) = "+'\'');
+		System.out.println("문자값(2Byte) = "+'\\');
 
+		//문자값을 표현하기 위한 자료형 - char(2byte)
+		char c1='A';//문자형 변수에는 문자값에 대한 약속된 정수값이 저장
+		char c2=65;//문자형 변수에는 문자값 대신 약속된 정수값 저장 가능
+		char c3='a'-32;//문자값에 대한 연산 결과값 저장 가능
+		
+		System.out.println("c1 = "+c1);
+		System.out.println("c2 = "+c2);
+		System.out.println("c3 = "+c3);
+
+		char c4=45000;
+		System.out.println("c4 = "+c4);
+		System.out.println("==============================================================");
+		//논리형(BooleanType) 리터럴 : false(거짓), true(참)
+		// => Java에서 논리형 리터럴은 기본적으로 1Byte(BooleanType)로 표현
+		System.out.println("<<논리형(BooleanType)>>");
+		System.out.println("논리값(1Byte) = "+false);
+		System.out.println("논리값(1Byte) = "+true);
+		//관계 연산자(비교 연산자)를 이용한 연산식의 결과값으로 논리형 리터럴 제공
+		System.out.println("논리값(1Byte) = "+(20<10));
+		System.out.println("논리값(1Byte) = "+(20>10));
+		
+		//논리값을 표현하기 위한 자료형 - boolean(1byte)
+		boolean d1=false;
+		boolean d2=20>10;
+		
+		System.out.println("d1 = "+d1);
+		System.out.println("d2 = "+d2);
+		System.out.println("==============================================================");
+		//문자열(StringType) 리터럴 : " " 안에 0개 이상의 문자들로 표현 - String 객체
+		// => 문자열은 원시형(기본형)이 아닌 참조형으로 String 클래스로 표현
+		System.out.println("<<문자열(StringType)>>");
+		System.out.println("문자열 = "+"홍길동");
+		System.out.println("문자열 = "+"유관순 열사가 \"대한독립 만세\"를 외쳤습니다.");
+		
+		//문자열을 표현하기 위한 자료형 : String 클래스
+		String name="임꺽정";
+		System.out.println("이름 = "+name);
+		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
