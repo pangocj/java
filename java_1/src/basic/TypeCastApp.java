@@ -39,20 +39,24 @@ public class TypeCastApp {
 		//double num3=num1/num2;//연산결과 : 9.0
 		double num3=(double)num1/num2;//연산결과 : 9.5
 		System.out.println("num3 = "+num3);
+		
+		//큰 정수값은 _ 기호를 사용하여 표현 가능
+		int num4=100_000_000, num5=30;
+		//정수값에 대한 연산 결과값은 4Byte(-2148483648~2147483647)로만 표현 가능
+		//문제점)정수값에 대한 연산 결과값이 4Byte로 표현 가능한 범위를 벗어난 경우 쓰레기값 발생
+		// => 변수에 쓰레기값이 저장되어 잘못된 결과값 출력 - 실행 오류
+		//int num6=num4*num5;
+		//해결법)정수값에 대한 연산 결과값이 8Byte(LongType)로 표현될 수 있도록 강제 형변환
+		// => 8Byte의 연산 결과값을 저장하기 위해 변수를 long 자료형으로 선언
+		long num6=(long)num4*num5;
+		System.out.println("num6 = "+num6);
+		
+		double number=1.23456789;
+		System.out.println("number = "+number);
+		
+		//소숫점 2자리 위치까지만 출력되도록 명령 작성
+		System.out.println("number(내림) = "+(int)(number*100)/100.0);
+		System.out.println("number(반올림) = "+(int)(number*100+0.5)/100.0);
+		System.out.println("number(올림) = "+(int)(number*100+0.9)/100.0);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
