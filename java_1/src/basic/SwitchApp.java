@@ -68,6 +68,16 @@ public class SwitchApp {
 			System.out.println("화성으로 이동합니다."); break;
 		}
 		System.out.println("==============================================================");
+		int jumsu=85;
+		
+		//변수값이 0~100 범위의 유효값인지 아닌지를 구분하여 출력하는 프로그램 작성
+		if(jumsu >= 0 && jumsu <= 100) {
+			
+		} else {
+			
+		}
+		
+		
 	}
 }
 
