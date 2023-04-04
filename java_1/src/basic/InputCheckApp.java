@@ -63,13 +63,3 @@ public class InputCheckApp {
 		scanner.close();
 	}
 }
-
-
-
-
-
-
-
-
-
-
