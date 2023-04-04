@@ -46,7 +46,7 @@ public class ArrayApp {
 		// => 예외(Exception)이 발생된 경우 프로그램 강제 종료
 		//System.out.println("num[3] = "+num[3]);
 		System.out.println("==============================================================");
-		//참조변수.length : 배열 요소의 갯수을 제공하는 표현식
+		//참조변수.length : 배열 요소의 갯수를 제공하는 표현식
 		System.out.println("num.length = "+num.length);
 		System.out.println("==============================================================");
 		int index=0;
