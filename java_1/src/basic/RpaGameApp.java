@@ -48,6 +48,7 @@ public class RpaGameApp {
 			
 			//컴퓨터와 사용자의 가위바위보 대결의 승패를 판단하여 결과 출력
 			if(computer == user) {
+				System.out.println("[결과]사용자와 컴퓨터에게 서로 비겼습니다.");
 			} else if(computer==1 && user==2 || computer==2 && user==3 || computer==3 && user==1) {
 				System.out.println("[결과]사용자가 컴퓨터에게 이겼습니다.");
 				count++;//승리횟수 1 증가
