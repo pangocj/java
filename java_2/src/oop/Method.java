@@ -41,7 +41,7 @@ public class Method {
 	}
 	
 	void printOne() {
-		int tot=0;
+		int tot=0; 
 		for(int i=1;i<=100;i++) {
 			tot+=i;
 		}
