@@ -20,7 +20,8 @@ public class LottoApp {
 				//중복상태를 저장하기 위한 변수 - false : 미중복, true : 중복
 				boolean result=false;
 				
-				for(int j=0;j<i;j++) {//기존 난수값이 저장된 요소의 첨자를 표현하기 위한 반복문 
+				for(int j=0;j<i;j++) {//기존 난수값이 저장된 요소의 첨자를 표현하기 위한 반복문
+					//lotto[i] : 새로운 난수값이 저장된 배열 요소, lotto[j] : 기존 난수값이 저장된 배열 요소
 					if(lotto[i]==lotto[j]) {
 						result=true;
 						break;
