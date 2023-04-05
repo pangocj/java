@@ -32,8 +32,71 @@ package oop;
 
 //객체 생성(참조)이 목적인 클래스 - main 메소드 미작성
 public class Method {
+	void displayOne() {
+		System.out.println("Method 클래스의 displayOne() 메소드 호출");
+	}
 	
+	void displayTwo() {
+		System.out.println("Method 클래스의 displayTwo() 메소드 호출");
+	}
+	
+	void printOne() {
+		int tot=0;
+		for(int i=1;i<=100;i++) {
+			tot+=i;
+		}
+		System.out.println("1~100 범위의 정수들의 합계  = "+tot);
+	}
+	
+	void printTwo(int num) {
+		//매개변수에 저장된 값에 대한 검증
+		if(num<=0) {//비정상적인 값이 전달되어 저장된 경우
+			System.out.println("[에러]매개변수에는 0보다 큰 값이 저장되어야 됩니다.");
+			return;//메소드 종료
+		}
+				
+		int tot=0;
+		for(int i=1;i<=num;i++) {
+			tot+=i;
+		}
+		System.out.println("1~"+num+" 범위의 정수들의 합계  = "+tot);
+	}
+	
+	void printThree(int num1, int num2) {
+		/*
+		if(num1>num2) {//비정상적인 값이 전달되어 저장된 경우
+			System.out.println("[에러]첫번째 전달값이 두번째 전달값보다 작아야 됩니다.");
+			return;//메소드 종료
+		}
+		*/
+		
+		if(num1>num2) {
+			int temp=num1;
+			num1=num2;
+			num2=temp;
+		}
+		
+		int tot=0;
+		for(int i=num1;i<=num2;i++) {
+			tot+=i;
+		}
+		System.out.println(num1+"~"+num2+" 범위의 정수들의 합계  = "+tot);
+	}
+	
+	int returnTot(int num1, int num2) {
+		int tot=0;
+		for(int i=num1;i<=num2;i++) {
+			tot+=i;
+		}
+		
+		//변수에 저장된 값을 메소드를 종료하며 메소드를 호출하는 명령에게 반환
+		// => 반환되는 값의 자료형과 메소드의 반환형이 반드시 동일
+		return tot;
+	}
 }
+
+
+
 
 
 
