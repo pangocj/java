@@ -131,6 +131,7 @@ public class Car {
 	}
 
 	public void setCurrentSpeed(int currentSpeed) {
+		if(currentSpeed > 150) return;
 		this.currentSpeed = currentSpeed;
 	}	
 }
