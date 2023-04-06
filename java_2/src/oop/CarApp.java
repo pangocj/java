@@ -24,12 +24,20 @@ public class CarApp {
 		System.out.println("==============================================================");
 		//참조변수.필드명 : 참조변수에 저장된 객체가 . 연산자를 사용하여 필드에 접근
 		// => 객체의 필드에는 기본값이 초기값으로 자동 저장
-		carOne.modelName="싼타페";//객체의 필드값 변경
+		//문제점)객체를 사용하여 필드에 직접적인 접근을 허용하면 필드에 비정상적인 값 저장 가능
+		//해결법)클래스 작성시 필드를 은닉화 처리하여 선언 - 은닉화 선언된 필드에 접근할 경우 에러 발생
+		//carOne.modelName="싼타페";//객체의 필드값 변경 - 필드가 은닉화 처리되어 에러 발생
+		carOne.setModelName("싼타페");//필드값을 변경하는 Setter 메소드 호출
 		
-		System.out.println("첫번째 자동차 모델명 = "+carOne.modelName);//객체의 필드값 사용
-		System.out.println("첫번째 자동차 엔진상태 = "+carOne.engineStatus);
-		System.out.println("첫번째 자동차 현재속도 = "+carOne.currentSpeed);
+		//System.out.println("첫번째 자동차 모델명 = "+carOne.modelName);//객체의 필드값 사용
+		//System.out.println("첫번째 자동차 엔진상태 = "+carOne.engineStatus);
+		//System.out.println("첫번째 자동차 현재속도 = "+carOne.currentSpeed);
+		//객체의 필드값을 반환하는 Getter 메소드 호출 - 반환받은 필드값 사용(출력)
+		System.out.println("첫번째 자동차 모델명 = "+carOne.getModelName());
+		System.out.println("첫번째 자동차 엔진상태 = "+carOne.isEngineStatus());
+		System.out.println("첫번째 자동차 현재속도 = "+carOne.getCurrentSpeed());
 		System.out.println("==============================================================");
+		/*
 		carTwo.modelName="쏘나타";
 		carTwo.engineStatus=true;
 		carTwo.currentSpeed=80;
@@ -37,14 +45,22 @@ public class CarApp {
 		System.out.println("두번째 자동차 모델명 = "+carTwo.modelName);
 		System.out.println("두번째 자동차 엔진상태 = "+carTwo.engineStatus);
 		System.out.println("두번째 자동차 현재속도 = "+carTwo.currentSpeed);
+		*/
+		
+		carTwo.setModelName("쏘나타");
+		carTwo.setEngineStatus(true);
+		carTwo.setCurrentSpeed(80);
+		
+		System.out.println("두번째 자동차 모델명 = "+carTwo.getModelName());
+		System.out.println("두번째 자동차 엔진상태 = "+carTwo.isEngineStatus());
+		System.out.println("두번째 자동차 현재속도 = "+carTwo.getCurrentSpeed());
 		System.out.println("==============================================================");
 		//참조변수.메소드명(값,값...) : 참조변수에 저장된 객체가 . 연산자를 사용하여 메소드 호출
 		carOne.startEngine();
 		carOne.speedUp(50);
 		carOne.speedUp(30);
 		carOne.speedDown(40);
-		carOne.speedZero();
-		carOne.stopEngine();
+ 		carOne.stopEngine();
 		System.out.println("==============================================================");
 	}
 }
