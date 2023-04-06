@@ -34,17 +34,46 @@ public class Car {
 	}
 
 	void stopEngine() {//시동 오프(Off)
+		if(currentSpeed != 0) {//자동차가 멈췄있지 않은 상태인 경우 
+			/*
+			currentSpeed=0;
+			System.out.println(modelName+"의 자동차가 멈췄습니다.");
+			*/
+			
+			//클래스 내부에 선언된 메소드는 서로 호출 가능
+			// => 코드의 중복성을 최소화 하여 프로그램의 생산성 및 유지보수의 효율성 증가
+			speedZero();
+		}
+		
 		engineStatus=false;
 		System.out.println(modelName+"의 자동차 시동을 껐습니다.");
 	}
 	
 	void speedUp(int speed) {//속도 증가
+		if(!engineStatus) {//엔진이 꺼져 있는 경우
+			System.out.println(modelName+"의 자동차 시동이 꺼져 있습니다.");
+			return;//메소드 종료
+		}
+		
+		if(currentSpeed+speed > 150) {
+			speed = 150 - currentSpeed;
+		}
+		
 		currentSpeed+=speed;
 		System.out.println(modelName+"의 자동차 속도가 "+speed
 				+"Km/h 증가 되었습니다. 현재 속도는 "+currentSpeed+"Km/h 입니다.");
 	}
 	
 	void speedDown(int speed) {//속도 감소
+		if(!engineStatus) {//엔진이 꺼져 있는 경우
+			System.out.println(modelName+"의 자동차 시동이 꺼져 있습니다.");
+			return;//메소드 종료
+		}
+		
+		if(currentSpeed < speed) {
+			speed = currentSpeed;
+		}
+		
 		currentSpeed-=speed;
 		System.out.println(modelName+"의 자동차 속도가 "+speed
 				+"Km/h 감소 되었습니다. 현재 속도는 "+currentSpeed+"Km/h 입니다.");
@@ -55,19 +84,3 @@ public class Car {
 		System.out.println(modelName+"의 자동차가 멈췄습니다.");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
