@@ -31,13 +31,13 @@ public class MethodApp {
 		System.out.println("==============================================================");
 		//반환값이 존재하는 메소드 호출  
 		// => 메소드의 반환값을 지속적으로 사용하고자 할 경우 반환값을 변수에 저장
-		int result=method.returnTot(30, 70);
-		System.out.println("합계(메소드 호출의 반환값) = "+result);
+		int total=method.returnTot(30, 70);
+		System.out.println("합계(메소드 호출의 반환값) = "+total);
 		//메소드의 반환값을 일시적으로 사용할 경우 반환값을 변수에 미저장
 		System.out.println("합계(메소드 호출의 반환값) = "+method.returnTot(20, 80));
 		System.out.println("==============================================================");
-		boolean result1=method.isOddEven(10);
-		if(result1) {
+		boolean result=method.isOddEven(10);
+		if(result) {
 			System.out.println("매개변수로 전달된 값은 [짝수]입니다.");
 		} else {
 			System.out.println("매개변수로 전달된 값은 [홀수]입니다.");
