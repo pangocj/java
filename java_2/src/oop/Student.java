@@ -1,13 +1,25 @@
 package oop;
 
+//static 키워드 : 객체가 아닌 클래스로 접근하기 위한 기능을 제공하는 제한자
+// => 클래스(내부 클래스), 필드, 메소드 작성시 사용
+//제한자(Modifier) : 특별한 기능을 제공(제한)하기 위해 사용하는 키워드
+// => Access Modifier(private, package, protected, public), static, final, abstract  
+
 //학생정보(학번,이름,국어,영어,총점)를 저장하기 위한 클래스 - VO 클래스
 public class Student {
-	//필드(Field)
+	//인스턴스 필드(Instance Field) : 객체가 생성될 때 메모리(HeapArea)에 생성되는 필드
 	private int num;
 	private String name;
 	private int kor, eng, tot;
 	
-	//생성자(Constructor)
+	//정적 필드(Static Field) : 클래스를 읽어 메모리(MethodArae)에 저장될때 생성되는 필드
+	// => 객체가 생성되기 전에 메모리에 하나만 생성되는 필드
+	// => 생성자에 초기화 처리하지 않고 직접 초기값을 필드에 저장
+	// => 클래스로 생성된 모든 객체가 정적 필드 사용 가능 - 공유값 : 메모리 절약 및 필드값 변경 용이
+	// => 클래스 외부에서는 객체가 아닌 클래스를 사용하여 접근 가능
+	private static int total;//기본값을 초기값으로 사용할 경우 초기값 저장 생략 가능
+	
+	//생성자(Constructor) : 객체를 생성하면서 인스턴스 필드에 원하는 초기값을 저장하기 위해 작성
 	public Student() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,6 +37,9 @@ public class Student {
 		calcTot();
 	}
 
+	//인스턴스 메소드(Instance Method) : this 키워드가 제공되는 메소드
+	// => this 키워드를 이용하여 인스턴스 필드 및 메소드 접근 가능
+	// => 클래스를 사용하여 정적 필드 및 메소드 접근 가능 - 클래스 생략 가능
 	public int getNum() {
 		return num;
 	}
@@ -83,10 +98,15 @@ public class Student {
 		System.out.print("["+name+"]님의 성적 >> ");
 		System.out.println("국어 = "+kor+", 영어 = "+eng+", 총점 = "+tot);
 	}
+
+	//정적 메소드(Static Method) : this 키워드를 제공하지 않는 메소드
+	// => this 키워드가 없으므로 인스턴스 필드 및 메소드 접근 불가능
+	// => 클래스를 사용하여 정적 필드 및 메소드 접근 가능 - 클래스 생략 가능
+	public static int getTotal() {
+		return total;
+	}
+
+	public static void setTotal(int total) {
+		Student.total = total;
+	}
 }
-
-
-
-
-
-
