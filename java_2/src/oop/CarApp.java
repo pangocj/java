@@ -60,6 +60,7 @@ public class CarApp {
 		carOne.speedUp(50);
 		carOne.speedUp(30);
 		carOne.speedDown(40);
+		carOne.speedZero();
  		carOne.stopEngine();
 		System.out.println("==============================================================");
 	}
