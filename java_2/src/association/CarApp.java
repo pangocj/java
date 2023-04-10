@@ -16,12 +16,12 @@ public class CarApp {
 		carOne.setModelName("쏘렌토");
 		carOne.setProductionYear(2020);
 		//Setter 메소드를 호출하여 매개변수에 엔진정보(Engine 객체)를 전달받아 필드에 저장
-		// => 포함관계 성립
+		// => 인위적인 포함관계 성립
 		carOne.setCarEngine(engine);
 		
 		carOne.displayCar();
 		System.out.println("=============================================================");
-		//자동차 생성 >> 엔진을 생성하여 필드에 저장 - 포함관계 성립
+		//자동차 생성 >> 엔진을 생성하여 필드에 저장 - 인위적인 포함관계 성립
 		// => 생성자를 호출하여 매개변수에 엔진정보(Engine 객체)를 전달받아 필드에 저장
 		Car carTwo=new Car("싼타페", 2023, new Engine("휘발유", 3000));
 		
