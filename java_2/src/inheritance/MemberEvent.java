@@ -21,7 +21,7 @@ package inheritance;
 // => 회원정보를 저장하기 위한 Member 클래스를 상속받아 작성하는 것을 권장 - 재사용성 증가
 public class MemberEvent extends Member {
 	/*
-	//부모클래스(Member)에세 상속받은 필드 또는 메소드 미선언 
+	//부모클래스(Member)에서 상속받은 필드 또는 메소드 미선언 
 	private String id;
 	private String name;
 	*/
@@ -97,7 +97,7 @@ public class MemberEvent extends Member {
 	// => 부모클래스의 메소드를 자식클래스의 객체가 사용하기 부적절한 경우 부모클래스의
 	//메소드를 자식클래스에서 재선언하여 사용하는 방법
 	// => 부모클래스의 메소드(Hide Method)는 숨겨지고 자식클래스의 메소드만 접근 가능
-	//메소드 오버라이등의 작성 규칙 - 부모클래스의 메소드와 같은 접근제한자, 반환형
+	//메소드 오버라이드의 작성 규칙 - 부모클래스의 메소드와 같은 접근제한자, 반환형
 	//, 메소드명, 매개변수, 예외 전달을 사용하여 자식클래스의 메소드 작성
 	/*
 	public void display() {
