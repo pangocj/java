@@ -3,6 +3,9 @@ package inheritance;
 //사원 급여 관리 프로그램
 public class EmployeeApp {
 	public static void main(String[] args) {
+		//추상클래스로 객체를 생성할 경우 에러 발생
+		// => 추상클래스로 참조변수 생성 가능
+		//Employee employee=new Employee();
 		
 		/*
 		//부모클래스로 참조변수를 생성하여 자식클래스로 객체를 생성하여 저장 가능
@@ -23,6 +26,7 @@ public class EmployeeApp {
 			System.out.println("사원번호 = "+employee.getEmpNo());
 			System.out.println("사원이름 = "+employee.getEmpName());
 	
+			/*
 			//사원급여를 반환받아 출력
 			// => 참조변수는 부모클래스의 개겣만 참조 가능하므로 자식클래스의 메소드 호출 불가능
 			// => 명시적 객체 형변환을 이용하여 참조변수로 자식클래스의 객체를 참조하여 메소드 호출 가능
@@ -34,6 +38,11 @@ public class EmployeeApp {
 			} else if(employee instanceof EmployeeContract) {
 				System.out.println("사원급여 = "+((EmployeeContract)employee).computeContract());
 			}
+			*/
+
+			//자식클래스에서 부모클래스의 메소드를 오버라이드 선언하면 묵시적 객체 형변환에
+			//의해 자동으로 참조변수가 자식클래스로 형변환되어 자식클래스의 메소드 호출 가능
+			System.out.println("사원급여 = "+employee.computePay());
 			System.out.println("==========================================================");
 		}
 	}
