@@ -43,18 +43,10 @@ public class EmployeeApp {
 			//자식클래스에서 부모클래스의 메소드를 오버라이드 선언하면 묵시적 객체 형변환에
 			//의해 자동으로 참조변수가 자식클래스로 형변환되어 자식클래스의 메소드 호출 가능
 			System.out.println("사원급여 = "+employee.computePay());
+			
+			//사원의 인센티브를 반환받아 출력
+			System.out.println("인센티브 = "+employee.computeIncentive());
 			System.out.println("==========================================================");
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -61,4 +61,27 @@ public abstract class Employee {
 	// => 자식클래스에서 추상메소드를 오버라이드 선언하지 않으면 자식클래스도 추상클래스로 
 	//설정되어 객체를 생성할 경우 에러 발생
 	public abstract int computePay();
+	
+	//인센티브를 계산하여 반환하는 메소드
+	// => 모든 사원에게 급여의 150%를 인센티브로 제공되도록 계산
+	public int computeIncentive() {
+		//추상메소드를 호출한 경우 묵시적 객체 형변환에 의해 자식클래스의 메소드 호출
+		return (int)(computePay()*1.5);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
