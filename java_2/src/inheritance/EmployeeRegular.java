@@ -33,7 +33,7 @@ public class EmployeeRegular extends Employee {
 	}
 	
 	/*
-	//final 메소드를 오버라이드 선언하여 에러 발생
+	//부모클래스의 final 메소드를 오버라이드 선언하여 에러 발생
 	@Override
 	public int computeIncentive() {
 		return 100000000;
