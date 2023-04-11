@@ -31,4 +31,12 @@ public class EmployeeRegular extends Employee {
 	public int computePay() {
 		return anuualSalary/12;
 	}
+	
+	/*
+	//final 메소드를 오버라이드 선언하여 에러 발생
+	@Override
+	public int computeIncentive() {
+		return 100000000;
+	}
+	*/
 }
