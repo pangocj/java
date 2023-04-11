@@ -43,19 +43,3 @@ public class Car /* extends Object */ {
 		return "모델명 = "+modelName+", 소유자 = "+userName;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
