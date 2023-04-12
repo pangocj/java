@@ -31,22 +31,38 @@ package realization;
 // => 클래스간의 결합도를 낮추어 시스템 변경에 따른 유지보수의 효율성 증가
 
 public class WolfHumanApp {
-
+	public static void main(String[] args) {
+		WolfHuman wolfHuman=new WolfHuman();
+		
+		wolfHuman.speak();
+		wolfHuman.walk();
+		wolfHuman.smile();
+		wolfHuman.change();
+		wolfHuman.fastWalk();
+		wolfHuman.cryLoudly();
+		System.out.println("=============================================================");
+		//부모클래스로 참조변수를 생성하여 자식클래스의 객체 저장
+		// => 참조변수는 기본적으로 부모클래스의 메소드만 호출 가능
+		// => 객체 형변환을 이용하면 참조변수로 자식클래스의 메소드 호출 가능
+		Human human=new WolfHuman();
+		
+		human.speak();
+		human.walk();
+		human.smile();
+		System.out.println("=============================================================");
+		//명시적 객체 형변환을 사용하여 자식클래스의 메소드 호출
+		((WolfHuman)human).change();
+		System.out.println("=============================================================");
+		//인터페이스(부모)로 참조변수를 생성하여 자식클래스의 객체 저장 가능
+		//Wolf wolf=new WolfHuman();
+		
+		//자식클래스가 같은 클래스와 인터페이스는 명시적 객체 형변환을 이용하면 자식클래스의
+		//객체를 공유하여 사용 가능
+		Wolf wolf=(Wolf)human;
+		
+		//묵시적 객체 형변환에 의해 자동으로 자식클래스의 메소드가 호출
+		wolf.fastWalk();
+		wolf.cryLoudly();
+		System.out.println("=============================================================");
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
