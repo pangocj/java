@@ -19,7 +19,7 @@ package inheritance;
 // => 모든 사원 관련 클래스가 상속받아야 되는 부모클래스
 // => 객체 생성이 목적이 아닌 상속을 목적으로 작성된 클래스 - 추상클래스로 선언하는 것을 권장
 //추상클래스(Abstract Class) : abstract 제한자를 사용하여 선언된 클래스
-// => 객체 생성 불가능 - 상속 전용 클래스
+// => new 연산자로 객체를 생성할 수 없으며 자식클래스에 의해 객체 생성 가능 - 상속 전용 클래스
 //형식) public abstract class 클래스명 { }
 // => abstract 제한자 : 클래스, 메소드에 사용하는 제한자
 public abstract class Employee {

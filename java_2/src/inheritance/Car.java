@@ -41,5 +41,5 @@ public class Car /* extends Object */ {
 	@Override
 	public String toString() {
 		return "모델명 = "+modelName+", 소유자 = "+userName;
-	}
+	} 
 }
