@@ -37,7 +37,7 @@ public class OuterOne {
 		//innerOne.innerDisplay();
 	}
 	
-	//객체 내부클래스 - 컴파일 결과를 [외부클래스$내부클래스.class] 파일로 제공
+	//객체 내부클래스(Instance InnerClass) - 컴파일 결과를 [외부클래스$내부클래스.class] 파일로 제공
 	// => 객체 내부클래스에서는 static 제한자를 사용하여 필드 또는 메소드 선언 불가능
 	public class InnerOne {
 		private int innerNum;
