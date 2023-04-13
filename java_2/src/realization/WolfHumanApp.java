@@ -58,6 +58,7 @@ public class WolfHumanApp {
 		
 		//자식클래스가 같은 클래스와 인터페이스는 명시적 객체 형변환을 이용하여 자식클래스의
 		//객체를 공유하여 참조 가능
+		//Wolf wolf=(WolfHuman)human;
 		Wolf wolf=(Wolf)human;
 		
 		//묵시적 객체 형변환에 의해 자동으로 자식클래스의 메소드가 호출
