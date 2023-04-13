@@ -1,6 +1,6 @@
 package nested;
 
-//중첩 클래스(Nested Class) : 클래스(OuterClass) 내부에 클래스(InnerClass)를 선언
+//중첩 클래스(Nested Class) : 클래스(OuterClass) 내부에 선언된 클래스(InnerClass) 
 // => 두개의 클래스가 밀접한 관계에 있을 경우 사용 - 클래스의 캡슐화를 강화할 목적으로 선언
 
 public class OuterOne {
