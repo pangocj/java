@@ -1,6 +1,6 @@
 package nested;
 
-public class OurtThreeApp {
+public class OuterThreeApp {
 	public static void main(String[] args) {
 		OuterThree outerThree=new OuterThree(100);
 		
