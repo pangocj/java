@@ -4,7 +4,7 @@ package enumerate;
 // => 상수필드를 값을 대표하는 단어로 사용하기 부적절한 경우 발생
 // => 상수필드가 선언된 클래스 또는 인터페이스는 아무런 의미 없이 접근 용도로만 사용
 //Java에서는 클래스 또는 인터페이스에 상수필드를 선언해서 발생될 수 있는 문제점을 해결하기
-//위해 열거형(enum)이라는 자료형(참조형)을 제공
+//위해 열거형(EnumerateType)이라는 자료형(참조형)을 제공
 public class InterfaceApp {
 	public static void main(String[] args) {
 		//인터페이스에 선언된 상수필드값 출력 - 필드에 저장된 값을 제공받아 출력
