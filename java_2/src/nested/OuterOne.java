@@ -32,7 +32,7 @@ public class OuterOne {
 		
 		//외부클래스는 객체 내부클래스로 객체를 생성하여 접근제한자에 상관없이 객체 내부클래스의
 		//필드 또는 메소드 참조 가능
-		//InnerOne innerOne=new InnerOne();
+		//InnerOne innerOne=new InnerOne(200);
 		//System.out.println("innerNum = "+innerOne.innerNum);
 		//innerOne.innerDisplay();
 	}
