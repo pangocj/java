@@ -37,7 +37,7 @@ public class PersonNumberApp {
 		//생년월일을 저장하기 위한 변수 - 입력받은 주민번호를 분리하여 변수에 저장
 		String birthday="";
 		if(separation.equals("1") || separation.equals("2")) {//20세기(19XX)에 태어난 경우
-			birthday+="19";
+			birthday+="19";//문자열을 추가하여 저장
 		} else if(separation.equals("3") || separation.equals("4")) {//21세기(20XX)에 태어난 경우
 			birthday+="20";
 		} 
