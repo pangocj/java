@@ -34,7 +34,7 @@ public class OuterThree {
 		// => 비동기식 처리를 위한 스레드 객체를 생성하기 위해 사용
 		class InnerThree {
 			int innerNum;
-			
+						
 			void innerDisplay() {
 				System.out.println("innerNum = "+innerNum);
 			}

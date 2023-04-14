@@ -9,7 +9,7 @@ public class AnonymousApp {
 		// => 인터페이스를 상속받은 자식클래스로 객체를 생성하여 인터페이스로 생성된
 		//참조변수에 저장 가능
 		//Anonymous anonymous=new Anonymous();
-	
+
 		//인터페이스를 상속받은 이름이 없는 자식클래스를 선언하고 인터페이스의 메소드를
 		//오버라이드 선언하여 객체 생성 가능 - 익명의 내부클래스(지역클래스)
 		//익명의 내부클래스(Anonymous InnerClass) : 인터페이스 또는 추상클래스를 상속받은
@@ -26,12 +26,3 @@ public class AnonymousApp {
 		anonymous.display();
 	}
 }
-
-
-
-
-
-
-
-
-
