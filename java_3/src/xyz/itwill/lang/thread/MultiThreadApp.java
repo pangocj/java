@@ -5,13 +5,23 @@ package xyz.itwill.lang.thread;
 // => 프로그램의 모든 스레드가 소멸돼야만 프로그램 종료
 // => GUI 프로그램 및 Web 프로그램 등은 다중 스레드 프로그램으로 작성
 
-//프로그램 개발자가 스레드를 생성하여 명령을 실행하는 방법 - Thread 클래스 이용
+//프로그램 개발자가 스레드를 생성하여 명령을 실행하는 방법-1 : Thread 클래스 이용
 //1.Thread 클래스를 상속받은 자식클래스 작성
 //2.Thread 클래스를 상속받은 자식클래스에서 run() 메소드를 오버라이드 선언
 // => run() 메소드에는 프로그램 개발자에 의해 생성된 스레드가 실행하기 위한 명령 작성
 //3.Thread 클래스를 상속받은 자식클래스로 객체 생성 - Thread(부모클래스) 객체 생성
 //4.Thread 객체로 start() 메소드 호출 - Thread 객체를 이용하여 새로운 스레드 생성
 // => 생성된 스레드는 자동으로 Thread 객체의 run() 메소드를 호출하여 run() 메소드의 명령 실행
+
+//프로그램 개발자가 스레드를 생성하여 명령을 실행하는 방법-2 : Runnable 인터페이스 이용
+// => 클래스가 이미 다른 클래스를 상속받아 Thread 클래스를 상속받지 못하는 경우 
+//Runnable 인터페이스를 상속받아 새로운 스레드를 생성하기 위한 방법
+//1.Runnable 인터페이스를 상속받은 자식클래스 작성
+//2.Runnable 인터페이스를 상속받은 자식클래스에서 run() 메소드를 오버라이드 선언
+// => run() 메소드에는 프로그램 개발자에 의해 생성된 스레드가 실행하기 위한 명령 작성
+//3.Thread 클래스로 Thread 객체를 생성 - Thread 클래스의 생성자 중 매개변수에 Runnable 
+//인터페이스를 상속받은 자식클래스의 객체를 전달하여 Thread 객체를 생성하는 생성자 이용
+//4.Thread 객체로 start() 메소드 호출
 
 public class MultiThreadApp {
 	//JVM에 의해 main 스레드가 자동으로 생성되어 main() 메소드를 호출해 main() 메소드의 명령 실행
@@ -41,6 +51,8 @@ public class MultiThreadApp {
 		new MultiThreadOne().start();
 		new MultiThreadOne().start();
 		
+		new Thread(new MultiThreadTwo()).start();
+		
 		for(char i='A';i<='Z';i++) {
 			System.out.print(i);
 			//Thread.sleep(long ms) : 매개변수로 전달된 시간(ms)동안 스레드를 일시중지하는 메소드
@@ -49,12 +61,3 @@ public class MultiThreadApp {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
