@@ -18,17 +18,3 @@ public class RandomApp {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
