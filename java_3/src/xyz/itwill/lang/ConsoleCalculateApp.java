@@ -17,6 +17,8 @@ public class ConsoleCalculateApp {
 		String operation=scanner.nextLine().replace(" ", "");
 		//System.out.println("operation = "+operation);
 		
+		scanner.close();
+		
 		//연산식에서 검색할 연산자가 저장된 문자열 배열 선언
 		String[] operatorArray={"*", "/", "+", "-"};
 		
