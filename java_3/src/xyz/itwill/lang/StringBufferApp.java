@@ -7,10 +7,10 @@ package xyz.itwill.lang;
 // => String 클래스보다 StringBuffer 클래스의 메소드가 문자열 처리 속도가 우수
 public class StringBufferApp {
 	public static void main(String[] args) {
-		//StringBuffer 클래스는 new 연산자를 생성자를 호출하여 객체 생성
+		//StringBuffer 클래스는 new 연산자로 생성자를 호출하여 객체 생성
 		StringBuffer sb=new StringBuffer("ABC");
 		
-		//StringBuffer.toString() : StringBuffer 객체에 저장된 문자열을 반환하는 메소드
+		//StringBuffer.toString() : StringBuffer 객체에 저장된 문자열(String 객체)을 반환하는 메소드
 		System.out.println("sb.toString() = "+sb.toString());
 		//StringBuffer 객체가 저장된 참조변수를 출력할 경우 toString 메소드 자동 호출
 		System.out.println("sb = "+sb);//ABC
@@ -29,7 +29,7 @@ public class StringBufferApp {
 		System.out.println("str = "+str);
 		System.out.println("==============================================================");
 		//StringBuffer.insert(int index, Object o) : StringBuffer 객체에 저장된 문자열에 
-		//매개변수로 전달받은 문자열을 원하는 위치(첨자)에 삽입하는 메소드
+		//매개변수로 전달받은 값을 원하는 위치(첨자)에 삽입하는 메소드
 		sb.insert(4, "X");
 		System.out.println("sb = "+sb);//ABCDXEF
 		System.out.println("==============================================================");
@@ -50,17 +50,3 @@ public class StringBufferApp {
 		System.out.println("==============================================================");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

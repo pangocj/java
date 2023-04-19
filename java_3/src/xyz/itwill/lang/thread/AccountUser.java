@@ -42,14 +42,3 @@ public class AccountUser extends Thread {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

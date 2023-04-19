@@ -17,7 +17,7 @@ public class SingleThreadApp {
 		//반환하는 메소드
 		//Thread.getName() : Thread 객체에 저장된 스레드의 이름(고유값)을 반환하는 메소드
 		System.out.println("["+Thread.currentThread().getName()
-				+"] 스레드에 의해  SingleThreadApp 클래스의 main() 메소드 명령 실행");
+				+"] 스레드에 의해 SingleThreadApp 클래스의 main() 메소드 명령 실행");
 		
 		//객체를 생성하여 메소드를 호출한 경우 스레드가 메소드로 이동하여 메소드의 명령 실행
 		// => 메소드의 명령을 모두 실행한 후 다시 현재 위치로 되돌아와 나머지 명령 실행
