@@ -14,7 +14,7 @@ public class BaseballGameApp {
 	public static void main(String[] args) {
 		Random random=new Random();
 		
-		// 0~9 범위의 정수값 3개를 저장하기 위한 배열 선언 - 난수값을 저장하기 위한 배열
+		//0~9 범위의 정수값 3개를 저장하기 위한 배열 선언 - 난수값을 저장하기 위한 배열
 		int[] dap=new int[3];
 		
 		//규칙에 맞는 난수값을 배열 요소에 저장되도록 처리하기 위한 반복문
