@@ -42,7 +42,13 @@ public class StudentManager {
 	
 	//학번을 전달받아 저장매체에 저장된 학생정보를 삭제하고 삭제결과를 논리값으로 반환하는 메소드
 	public boolean deleteStudent(int num) {
+		int index=getStudentIndex(num);
+		if(index == -1) {//저장매체에 해당 학번의 학생정보가 없는 경우
+			return false;
+		}
 		
+		studentList.remove(index);
+		return true;
 	}
 	
 	//학생정보를 전달받아 저장매체에 저장된 학생정보를 변경하고 변경결과를 논리값으로 반환하는 메소드
@@ -56,17 +62,18 @@ public class StudentManager {
 		return true;
 	}
 	
+	//학번을 전달받아 저장매체에 저장된 학생정보를 검색하여 반환하는 메소드
+	public Student selectStudent(int num) {
+		int index=getStudentIndex(num);
+		if(index == -1) {
+			return null;
+		}
+		
+		return studentList.get(index);
+	}
 	
+	//저장매체에 저장된 모든 학생정보를 검색하여 반환하는 메소드
+	public List<Student> selectStudentList() {
+		return studentList;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
