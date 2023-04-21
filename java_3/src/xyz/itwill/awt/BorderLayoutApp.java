@@ -13,7 +13,7 @@ public class BorderLayoutApp extends Frame {
 		super(title);
 		
 		//프레임의 배치관리자를 [BorderLayout]으로 변경
-		// => Frame의 기본 배치관리자는 [BorderLayout]이므로 생략 가능
+		// => Frame의 기본 배치관리자는 [BorderLayout]이므로 배치관리자 변경 생략 가능
 		//setLayout(new BorderLayout());
 		
 		Button button1=new Button("Center");
