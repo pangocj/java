@@ -36,19 +36,4 @@ public class FrameOneApp {
 		//처리하는 메소드 - false : 보여지 않도록 처리, true : 보여지도록 처리 
 		frame.setVisible(true);
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
