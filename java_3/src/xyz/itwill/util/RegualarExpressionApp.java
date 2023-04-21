@@ -1,5 +1,7 @@
 package xyz.itwill.util;
 
+import java.util.Scanner;
+
 //정규표현식(RegualarExpression) : 메타문자(Meta Character), 회피문자(Escape Character)등을
 //사용하여 일정한 규칙의 문자열을 표현하는 방법 - 사용자 입력값에 대한 검증 
 /*
@@ -8,6 +10,7 @@ package xyz.itwill.util;
 . : 임의의 문자 하나를 의미(\ 문자는 표현 불가능)
 [문자1문자2문자3] : 나열된 문자 중 하나를 의미
 [^문자1문자2문자3] : 나열된 문자를 제외한 문자 중 하나를 의미
+[문자1-문자2] : [문자1]에서 [문자2] 범위의 문자 중 하나를 의미
 문자열1|문자열2|문자열3 : 나열된 문자열 중 하나를 의미
 문자열+ : 문자열이 1번이상 반복됨을 의미 
 문자열* : 문자열이 0번이상 반복됨을 의미 
@@ -29,9 +32,37 @@ package xyz.itwill.util;
 \메타문자 : 메타문자을 일반문자로 표현됨을 의미 -  ex) \. : 문자 .
 */
 
+//키보드로 사용자에게 값을 입력받아 형식에 맞는 값인지를 비교하여 출력하는 프로그램
+// => 형식에 맞지 않는 값이 입력될 경우 에러 메세지 출력 후 프로그램 종료
 public class RegualarExpressionApp {
-
+	public static void main(String[] args) {
+		Scanner scanner=new Scanner(System.in);
+		
+		//사용자에게 아이디를 입력받아 형식에 맞는 값인지를 비교
+		//아이디 형식(패턴) : 영문자로 시작되며 영문자,숫자,특수문자(_)의 조합으로 
+		//6~20 범위의 문자들로 구성된 문자열 
+		System.out.print("아이디 입력 >> ");
+		String id=scanner.nextLine();
+		
+		//아이디 패턴을 정규표현식으로 표현하여 저장
+		String idReg="";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
