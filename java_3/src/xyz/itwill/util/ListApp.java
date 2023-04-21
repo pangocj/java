@@ -81,7 +81,7 @@ public class ListApp {
 		
 		//List.isEmpty() : List 객체에 요소가 저장되어 있는 경우 [false]를 반환하고 List
 		//객체에 저장된 요소가 없는 경우 [true]를 반환하는 메소드
-		if(list.isEmpty()) {
+		if(list.isEmpty()) {//if(list.size() == 0) { }
 			System.out.println("List 객체에 저장된 요소가 하나도 없습니다.");
 		}
 		System.out.println("===============================================================");

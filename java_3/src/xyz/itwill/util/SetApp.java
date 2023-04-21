@@ -31,6 +31,7 @@ public class SetApp {
 		//Set.add(E element) : Set 객체에 요소를 추가하는 메소드 - 저장 순서 미제공
 		//요소(Element) : 콜렉션 클래스의 객체에 제네릭 타입으로 전달되어 저장된 객체
 		set.add("홍길동");
+		//set.add(12.34);//Set 객체에 String 객체를 제외한 객체를 요소를 추가할 경우 에러 발생
 		set.add("임꺽정");
 		set.add("전우치");
 		
@@ -45,12 +46,12 @@ public class SetApp {
 		//Set.size() : Set 객체에 저장된 요소의 객체를 반환하는 메소드
 		System.out.println("요소의 갯수 = "+set.size());
 		System.out.println("===============================================================");
-		//Set.remove() : 매개변수로 전달받은 객체와 동일한 요소를 Set 객체에서 삭제하는 메소드
+		//Set.remove(E element) : 매개변수로 전달받은 객체와 동일한 요소를 Set 객체에서 삭제하는 메소드
 		set.remove("임꺽정");
 		System.out.println("set = "+set);
 		System.out.println("===============================================================");
 		//Set.iterator() : Set 객체에 저장된 요소를 반복 처리할 수 있는 Iterator 객체를 반환하는 메소드
-		//Iterator 객체 : 콜렉션 클래스의 객체 요소를 반복 처리 위한 기능을 제공하는 객체
+		//Iterator 객체 : 콜렉션 클래스의 객체에 저장된 요소를 반복 처리 위한 기능을 제공하는 객체
 		// => 반복 지시자 : 커서(Cursor)를 사용하여 콜렉션 객체의 요소를 반복 처리
 		Iterator<String> iterator=set.iterator();
 		
