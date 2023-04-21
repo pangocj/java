@@ -1,6 +1,7 @@
 package xyz.itwill.util;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 //정규표현식(RegualarExpression) : 메타문자(Meta Character), 회피문자(Escape Character)등을
 //사용하여 일정한 규칙의 문자열을 표현하는 방법 - 사용자 입력값에 대한 검증 
@@ -44,8 +45,27 @@ public class RegualarExpressionApp {
 		System.out.print("아이디 입력 >> ");
 		String id=scanner.nextLine();
 		
+		if(id==null || id.equals("")) {//사용자 입력값이 없는 경우
+			System.out.println("[에러]아이디를 반드시 입력해 주세요.");
+			System.exit(0);
+		}
+		
 		//아이디 패턴을 정규표현식으로 표현하여 저장
-		String idReg="";
+		//String idReg="^[a-zA-Z][a-zA-Z0-9_]{5,19}$";
+		String idReg="^[a-zA-Z]\\w{5,19}$";
+		
+		//Pattern 클래스 : 정규표현식을 사용하기 위한 기능의 메소드를 제공하는 클래스
+		//Pattern.matches(String regEx, CharSequence input) : 정규표현식과 입력값을 비교하여
+		//정규표현식의 패턴과 입력값의 패턴이 다르면 [false]를 반환하고 같으면 [true]를 
+		//반환하는 메소드
+		if(!Pattern.matches(idReg, id)) {
+			System.out.println("[에러]아이디를 형식에 맞게 입력해 주세요.");
+			System.exit(0);
+		}
+		
+		System.out.println("[메세지]형식에 맞는 아이디를 입력 하였습니다.");
+		
+		scanner.close();
 	}
 }
 
