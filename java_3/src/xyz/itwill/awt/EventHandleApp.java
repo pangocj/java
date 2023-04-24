@@ -54,7 +54,6 @@ public class EventHandleApp extends Frame {
 	public static void main(String[] args) {
 		new EventHandleApp("이벤트처리");
 	}
-
 }
 
 //이벤트 처리 기능을 제공하기 위한 클래스 - Listener 인터페이스를 상속받아 작성
