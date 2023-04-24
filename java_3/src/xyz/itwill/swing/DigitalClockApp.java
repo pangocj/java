@@ -125,12 +125,3 @@ public class DigitalClockApp extends JFrame {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
