@@ -22,8 +22,14 @@ public class DigitalClockApp extends JFrame {
 	JLabel clockLabel;
 	JButton startButton, stopButton;
 	
+	//날짜와 시간을 변경하는 스레드의 실행상태를 저장하기 위한 필드
+	// => false : 스레드 중지 상태, true : 스레드 동작 상태
+	private boolean isRun;
+	
 	public DigitalClockApp(String title) {
 		super(title);
+		
+		isRun=true;
 		
 		/*
 		Date now=new Date();
@@ -75,15 +81,18 @@ public class DigitalClockApp extends JFrame {
 			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
 
 			while(true) {
-				/*
-				Date now=new Date();
-				String printDate=dateFormat.format(now);
-				
-				//JLabel.setText(String text) : JLabel 컴퍼넌트의 문자열을 변경하는 메소드
-				clockLabel.setText(printDate);
-				*/
-				
-				clockLabel.setText(dateFormat.format(new Date()));
+				if(isRun) {
+					/*
+					Date now=new Date();
+					String printDate=dateFormat.format(now);
+					
+					//JLabel.setText(String text) : JLabel 컴퍼넌트의 문자열을 변경하는 메소드
+					clockLabel.setText(printDate);
+					*/
+					
+					//시스템의 현재 날짜와 시간을 제공받아 JLabel 컴퍼넌트의 문자열 변경
+					clockLabel.setText(dateFormat.format(new Date()));
+				}
 				
 				try {
 					//스레드를 1초동안 일시중지
@@ -105,9 +114,13 @@ public class DigitalClockApp extends JFrame {
 			if(eventSource==startButton) {
 				startButton.setEnabled(false);
 				stopButton.setEnabled(true);
+				
+				isRun=true;
 			} else if(eventSource==stopButton) {
 				startButton.setEnabled(true);
 				stopButton.setEnabled(false);
+
+				isRun=false;
 			}
 		}
 	}
