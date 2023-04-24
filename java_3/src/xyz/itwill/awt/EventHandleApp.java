@@ -30,6 +30,7 @@ import java.awt.event.ActionListener;
 //이벤트 처리 메소드를 호출하여 이벤트 처리
 
 //[EXIT] 버튼을 누른 경우 프로그램을 종료하는 기능의 프로그램 작성
+// => 이벤트 처리 메소드에서 디자인 클래스의 컴퍼넌트 사용 불가능
 public class EventHandleApp extends Frame {
 	private static final long serialVersionUID = 1L;
 	
