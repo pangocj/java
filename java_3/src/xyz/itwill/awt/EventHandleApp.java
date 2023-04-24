@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
 // => 컴퍼넌트 또는 컨테이너에서 다양한 이벤트 발생 - 이벤트 소스(Event Source)
 // => 이벤트와 관련된 XXXEvent 클래스(이벤트 정보를 저장하기 위한 클래스)로 객체가 자동 생성
 // ex) Button 컴퍼넌트를 누른 경우 ActionEvent 클래스로 객체 생성 - ActionEvent 발생
-//[EXIT] 버튼을 누른 경우 프로그램을 종료하는 기능의 프로그램 작성
 //2.이벤트 소스에서 발생된 이벤트를 처리하기 위한 클래스 작성
 // => 이벤트를 처리하기 위한 XXXListener 인터페이스를 상속받아 이벤트 처리 클래스 작성
 // ex) ActionEvent >> ActionListener 인터페이스를 상속받아 이벤트 처리 클래스 작성
@@ -29,8 +28,7 @@ import java.awt.event.ActionListener;
 //객체를 등록하기 위한 메소드
 // => 이벤트 처리 객체를 제공받아 자동으로 이벤트 처리 메소드를 호출하여 이벤트 처리
 
-
-//[EXIT] 버튼을 누르면 프로그램을 종료하는 GUI 프로그램 작성
+//[EXIT] 버튼을 누른 경우 프로그램을 종료하는 기능의 프로그램 작성
 public class EventHandleApp extends Frame {
 	private static final long serialVersionUID = 1L;
 	

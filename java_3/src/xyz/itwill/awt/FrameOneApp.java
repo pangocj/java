@@ -2,8 +2,8 @@ package xyz.itwill.awt;
 
 import java.awt.Frame;
 
-//CUI(Character User Interface) 프로그램 : 문자 중심의 실행 환경에서 동작되는 프로그램
-//GUI(Graphic User Interface) 프로그램 : 그래픽 중심의 실행 환경에서 동작되는 프로그램
+//CUI(Character User Interface) 프로그램 : 문자 중심의 사용자 실행 환경에서 동작되는 프로그램
+//GUI(Graphic User Interface) 프로그램 : 그래픽 중심의 사용자 실행 환경에서 동작되는 프로그램
 // => 컴퍼넌트를 이용하여 작성된 프로그램
 
 //java.awt 패키지 : GUI 프로그램을 작성하기 위한 클래스가 선언된 패키지
