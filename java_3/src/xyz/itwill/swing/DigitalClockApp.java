@@ -53,11 +53,15 @@ public class DigitalClockApp extends JFrame {
 			SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
 
 			while(true) {
+				/*
 				Date now=new Date();
 				String printDate=dateFormat.format(now);
 				
 				//JLabel.setText(String text) : JLabel 컴퍼넌트의 문자열을 변경하는 메소드
 				clockLabel.setText(printDate);
+				*/
+				
+				clockLabel.setText(dateFormat.format(new Date()));
 				
 				try {
 					//스레드를 1초동안 일시중지
