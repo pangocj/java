@@ -1,4 +1,4 @@
-package site.itwill.swing;
+package xyz.itwill.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,21 +11,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-//»çÄ¢ ¿¬»ê½ÄÀ» ÀÔ·Â¹Ş¾Æ ¿¬»ê °á°ú¸¦ Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥
+//ì‚¬ì¹™ ì—°ì‚°ì‹ì„ ì…ë ¥ë°›ì•„ ì—°ì‚° ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” í”„ë¡œê·¸ë¨
 public class CalculatorFrameApp extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
-	//¿¬»ê½ÄÀ» ÀÔ·ÂÇÏ±â À§ÇÑ ÇÊµå(ÄÄÆÛ³ÍÆ®)
+	//ì—°ì‚°ì‹ì„ ì…ë ¥í•˜ê¸° ìœ„í•œ í•„ë“œ(ì»´í¼ë„ŒíŠ¸)
 	private JButton b_0, b_1, b_2, b_3, b_4, b_5, b_6, b_7, b_8, b_9, b_equals, b_plus,
 			b_minus, b_multi, b_div, b_C;
 
-	//¿¬»ê °á°ú¸¦ Ãâ·ÂÇÏ±â À§ÇÑ ÇÊµå(ÄÄÆÛ³ÍÆ®)
+	//ì—°ì‚° ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ê¸° ìœ„í•œ í•„ë“œ(ì»´í¼ë„ŒíŠ¸)
 	private JLabel label;
 
-	//¿¬»ê½ÄÀ» ÀúÀåÇÏ±â À§ÇÑ ÇÊµå
+	//ì—°ì‚°ì‹ì„ ì €ì¥í•˜ê¸° ìœ„í•œ í•„ë“œ
 	private String operation="";
 	
 	public CalculatorFrameApp(String title) {
@@ -145,7 +144,7 @@ public class CalculatorFrameApp extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new CalculatorFrameApp("°è»ê±â");
+		new CalculatorFrameApp("ê³„ì‚°ê¸°");
 	}
 
 	@Override
