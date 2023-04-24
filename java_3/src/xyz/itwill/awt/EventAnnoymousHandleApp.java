@@ -36,8 +36,3 @@ public class EventAnnoymousHandleApp extends Frame {
 		new EventAnnoymousHandleApp("이벤트처리");
 	}
 }
-
-
-
-
-
