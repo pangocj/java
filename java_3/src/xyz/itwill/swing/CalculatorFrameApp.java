@@ -217,17 +217,3 @@ public class CalculatorFrameApp extends JFrame implements ActionListener {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
