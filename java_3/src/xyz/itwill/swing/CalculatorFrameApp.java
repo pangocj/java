@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 //사칙 연산식을 입력받아 연산 결과를 출력하는 프로그램
@@ -149,7 +150,84 @@ public class CalculatorFrameApp extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		//이벤트가 발생된 JButton 컴퍼넌트를 반환받아 저장
+		// => 명시적 객체 형변환을 사용하여 Object 타입의 객체를 JButton 객체로 변환하여 저장
+		//Object eventSource=e.getSource();
+		JButton eventButton=(JButton)e.getSource();
+		
+		//이벤트가 발생된 JButton 컴퍼넌트를 비교하여 명령을 선택 실행
+		if(eventButton==b_C) {//이벤트가 발생된 Button 컴퍼넌트가 [C]인 경우
+			operation="";//연산식을 저장하기 위한 필드 초기화
+			label.setText("0");//JLabel 컴퍼넌트 초기화
+		} else if(eventButton==b_equals) {//이벤트가 발생된 Button 컴퍼넌트가 [=]인 경우
+			//연산식에서 검색하기 위한 연산자가 저장된 배열 선언
+			String[] operatorArray={"*","/","+","-"};			
+			
+			int index=-1;//연산자의 위치값(첨자)를 저장하기 위한 변수
+			//연산식에 연산자를 검색하기 위한 반복문
+			for(int i=0;i<operatorArray.length;i++) {
+				index=operation.lastIndexOf(operatorArray[i]);
+				if(index!=-1) break;
+			}
+			
+			//연산식에서 연산자를 찾을 수 없는 경우 이벤트 처리 메소드 종료
+			if(index<=0) return;
+			
+			try {
+				int num1=Integer.parseInt(operation.substring(0, index));
+				String operator=operation.substring(index, index+1);
+				int num2=Integer.parseInt(operation.substring(index+1));
+				
+				int result=0;
+				switch(operator) {
+				case "*": result=num1*num2; break;
+				case "/": result=num1/num2; break;
+				case "+": result=num1+num2; break;
+				case "-": result=num1-num2; break;
+				}
+				
+				//label.setText(result+"");
+				label.setText(String.valueOf(result));
+				
+				//operation="";
+				operation=String.valueOf(result);
+			} catch (ArithmeticException exception) {
+				operation="";
+				label.setText("0으로 나눌 수 없습니다.");
+			} catch (NumberFormatException exception) {
+				//JOptionPane 클래스 : 다이얼로그을 제공하기 위한 클래스
+				//JOptionPane.showMessageDialog(Component parent, String message) 
+				// => 메세지 다이얼로그를 출력하는 메소드
+				JOptionPane.showMessageDialog(this, "입력한 연산식이 형식에 맞지 않습니다.");
+				label.setText("0");
+				operation="";
+			} catch (Exception exception) {
+				JOptionPane.showMessageDialog(this, "프로그램에 예기치 못한 오류가 있습니다.");
+				System.exit(0);
+			}
+			
+		} else {
+			//버튼의 문자열을 반환받아 operation 필드에 추가하여 저장
+			//JButton.getText() : 버튼의 문자열(라벨명)을 반환하는 메소드
+			operation+=eventButton.getText();
+			
+			//operation 필드에 저장된 문자열을 사용하여 JLabel 컴퍼넌트의 문자열을 변경
+			label.setText(operation);
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
