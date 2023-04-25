@@ -18,6 +18,7 @@ public class FileInputStreamApp {
 			in=new FileInputStream("c:/data/byte.txt");
 		} catch (FileNotFoundException e) {
 			System.out.println("[에러]c:\\data\\byte.txt 파일을 찾을 수 없습니다.");
+			System.exit(0);
 		}
 		
 		System.out.println("[메세지]c:\\data\\byte.txt 파일에 저장된 내용입니다.");
