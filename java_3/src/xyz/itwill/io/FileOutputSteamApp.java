@@ -17,7 +17,12 @@ public class FileOutputSteamApp {
 		//자동으로 생성하여 출력스트림 제공
 		// => 매개변수로 전달받은 파일경로의 파일이 있는 경우 기존 파일의 내용 대신 새로운
 		//내용이 파일에 저장 - 덮어씌우기(OverWrite)
-		FileOutputStream out=new FileOutputStream("c:/data/byte.txt");
+		//FileOutputStream out=new FileOutputStream("c:/data/byte.txt");
+
+		//FileOutputStream 클래스의 FileOutputStream(String name, boolean append) 생성자를 
+		//이용하여 매개변수로 파일경로와 내용 추가에 대한 상태값을 전달받아 파일 출력스트림 생성
+		// => false : 파일 내용 덮어씌우기(기본), true : 파일 내용 이어쓰기 
+		FileOutputStream out=new FileOutputStream("c:/data/byte.txt",true);
 		
 		int readByte;
 		
