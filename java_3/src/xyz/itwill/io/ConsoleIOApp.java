@@ -32,12 +32,3 @@ public class ConsoleIOApp {
 		System.out.println("[결과]"+name+"님의 나이는 "+age+"살입니다.");
 	}
 }
-
-
-
-
-
-
-
-
-

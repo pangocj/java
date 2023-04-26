@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-//문자데이타 기반의 스트림(Character Stream) : 원시데이타를 가공처리한 문자데이타를 전달하기
+//문자데이타 기반의 스트림(Character Stream) : 원시데이타를 가공 처리한 문자데이타를 전달하기
 //위한 입출력스트림
 // => 원시데이타를 인코딩 처리하여 원하는 문자형태(캐릭터셋 - CharSet)의 문자데이타로 변환
 // => 값을 2Byte 단위로 입력 또는 출력하기 위한 스트림
@@ -40,7 +40,7 @@ public class CharacterStreamApp {
 			
 			//Writer.write(int b) : 매개변수로 제공받은 값을 문자데이타(2Byte)로 
 			//출력스트림에 전달하는 메소드
-			// => 문자데이타는 출력스트림에 존재하는 버퍼(Buffer : 임시 메모리)에 일정한  
+			// => 문자데이타는 출력스트림에 존재하는 버퍼(Buffer : 임시 메모리)에 일정한   
 			//크기만큼 저장하고 한번에 출력스트림으로 전달하여 출력 처리
 			out.write(readByte);
 			
