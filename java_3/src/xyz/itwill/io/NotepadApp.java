@@ -8,7 +8,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -105,8 +108,11 @@ public class NotepadApp extends JFrame {
 				
 				//FileDialog.getDirectory() : 선택된 파일의 디렉토리 경로를 반환하는 메소드
 				filepath=openDialog.getDirectory()+openDialog.getFile();//선택된 파일의 경로 저장
-				
+
+				setTitle(openDialog.getFile()+" - Java 메모장");
+
 				try {
+					//파일 경로를 제공받아 파일 입력스트림 생성
 					BufferedReader in=new BufferedReader(new FileReader(filepath));
 					
 					jTextArea.setText("");//JTextArea 컴퍼넌트 초기화
@@ -120,33 +126,40 @@ public class NotepadApp extends JFrame {
 					}
 					
 					in.close();
-					
-					setTitle(openDialog.getFile()+" - Java 메모장");
+				} catch (FileNotFoundException exception) {
+					JOptionPane.showMessageDialog(null, "파일을 찾을 수 없습니다.");
 				} catch (IOException exception) {
 					JOptionPane.showMessageDialog(null, "프로그램에 문제가 발생 하였습니다.");
 				}
 			} else if(eventSource==save) {
-				
+				if(filepath==null || filepath.equals("")) {
+					//저장 관련 파일 다이얼로그를 화면에 출력
+					saveDialog.setVisible(true);
+					
+					if(saveDialog.getFile()==null) return;//파일 선택을 취소한 경우 메소드 종료
+					
+					filepath=saveDialog.getDirectory()+saveDialog.getFile();//선택된 파일의 경로 저장
+					
+					setTitle(saveDialog.getFile()+" - Java 메모장");
+				}
+
+				try {
+					//파일 경로를 제공받아 파일 출력스트림 생성
+					BufferedWriter out=new BufferedWriter(new FileWriter(filepath));
+					
+					//JTextArea 컴퍼넌트의 모든 문자열을 반환받아 저장
+					String text=jTextArea.getText();
+					
+					//반환받은 문자열을 파일 출력스트림으로 전달하여 저장
+					out.write(text);
+					
+					out.close();
+				} catch (IOException exception) {
+					JOptionPane.showMessageDialog(null, "프로그램에 문제가 발생 하였습니다.");
+				}
 			} else if(eventSource==exit) {
 				System.exit(0);
 			}
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
