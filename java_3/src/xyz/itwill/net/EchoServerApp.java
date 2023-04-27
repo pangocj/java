@@ -18,10 +18,11 @@ public class EchoServerApp {
 			while(true) {
 				Socket socket=echoServer.accept();
 				
-				//소켓의 입력스트림을 제공받아 대략의 문자데이타를 얻어올 수 있는 입력스트림 확장
+				//소켓의 입력스트림을 제공받아 대량의 문자데이타를 입력받을 수 있는 입력스트림 확장
 				BufferedReader in=new BufferedReader
 						(new InputStreamReader(socket.getInputStream()));
 				
+				//클라이언트의 소켓과 연결된 입력스트림을 이용하여 문자열(메세지)를 반환받아 출력
 				System.out.println("["+socket.getInetAddress().getHostAddress()
 						+"]님이 보내온 메세지 = "+in.readLine());
 				
