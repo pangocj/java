@@ -22,20 +22,13 @@ public class EchoServerApp {
 				BufferedReader in=new BufferedReader
 						(new InputStreamReader(socket.getInputStream()));
 				
-			
+				System.out.println("["+socket.getInetAddress().getHostAddress()
+						+"]님이 보내온 메세지 = "+in.readLine());
+				
+				socket.close();
 			}
 		} catch (IOException e) {
 			System.out.println("[에러]서버 네트워크에 문제가 발생 되었습니다.");
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
