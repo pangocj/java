@@ -30,6 +30,7 @@ public class TimeClientApp {
 			ObjectInputStream in=new ObjectInputStream(stream);
 			
 			//입력스트림을 이용하여 서버에서 보내온 Date 객체를 반환받아 저장
+			// => 입력스트림으로 전달된 값이 없을 경우 스레드 일시 중지
 			Date date=(Date)in.readObject(); 
 			
 			//Date 객체에 저장된 날짜와 시간을 원하는 형식의 문자열로 변환하여 출력
