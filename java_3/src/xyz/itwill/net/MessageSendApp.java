@@ -19,6 +19,7 @@ public class MessageSendApp {
 		String message=in.readLine();
 		
 		//DatagramSocket 클래스 : 다른 컴퓨터와 연결하기 위한 정보를 저장하기 위한 클래스
+		// => 다른 컴퓨터로 데이타를 보내기 위해 DatagramSocket 클래스의 기본 생성자로 객체 생성
 		DatagramSocket socket=new DatagramSocket();
 		
 		//연결할 컴퓨터의 네트워크 식별자가 저장된 InetAddress 객체를 반환받아 저장
