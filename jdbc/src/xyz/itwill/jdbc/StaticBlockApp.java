@@ -22,17 +22,9 @@ public class StaticBlockApp {
 		//Class.forName(String className) : 문자열로 표현된 패키지가 포함된 클래스를
 		//전달받아 ClassLoader 프로그램을 사용하여 클래스를 읽어 메모리에 저장하는 메소드
 		// => 메모리에 저장된 클래스의 정보가 저장된 Class 객체(Clazz) 반환
-		// => ClassNotFoundException 발생 : 해당  패키지에 클래스가 없는 경우 발생 - 일반 예외
+		// => ClassNotFoundException 발생 : 해당 패키지의 클래스가 없는 경우 발생 - 일반 예외
 		Class.forName("xyz.itwill.jdbc.StaticBlock");//수동으로 클래스를 메모리에 저장
 		//StaticBlock sb=new StaticBlock();
 		//sb.display();
 	}
 }
-
-
-
-
-
-
-
-
