@@ -3,6 +3,7 @@ package xyz.itwill.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 //JDBC(Java DataBase Connectivity) : Java를 사용하여 DBMS 서버에 접속해 SQL 명령을 전달하여
 //실행하기 위한 기능을 제공하는 Java API(클래스 또는 인터페이스)
@@ -30,6 +31,10 @@ import java.sql.SQLException;
 //STUDENT 테이블에 학생정보를 삽입하는 JDBC 프로그램 작성
 public class InsertStudentApp {
 	public static void main(String[] args) {
+		//JDBC 관련 객체를 저장하기 위한 참조변수는 try 영역 외부에서 선언
+		// => try 영역을 포함한 모든 영역에서 참조변수를 이용하여 객체 사용 가능
+		Connection con=null;
+		Statement stmt=null;
 		try {
 			//1.OracleDriver 클래스로 객체를 생성하여 DriverManager 클래스의 JDBC Driver 객체로 등록
 			// => OracleDriver 클래스를 읽어 메모리에 저장하여 자동으로 OracleDriver 객체를 생성하여
@@ -49,7 +54,8 @@ public class InsertStudentApp {
 			//DriverManager 클래스의 JDBC Driver로 등록하는 메소드 호출
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			//2.DriverManager 클래스에 등록된 JDBC Driver 객체를 이용하여 DBMS 서버에 접속
+			//2.DriverManager 클래스에 등록된 JDBC Driver 객체를 이용하여 DBMS 서버에 접속해
+			//Connection 객체를 반환받아 저장
 			//DriverManager.getConnection(String url, String user, String password)
 			// => DriverManager 클래스에 등록된 JDBC Driver 객체를 이용하여 DBMS 서버에 접속하는 메소드
 			// => DBMS 서버에 접속된 정보가 저장된 Connection 객체를 반환
@@ -58,30 +64,45 @@ public class InsertStudentApp {
 			//형식)Protocol:ServerName:Port:Resource >> http://www.itwill.xyz:80/test/index.html
 			//Oracle DBMS 서버에 접속하여 데이타베이스에 접근하기 위한 URL 주소
 			//형식)jdbc:oracle:thin:@ServerName:Port:SID
-			// => 
+			//JDBC 관련 클래스의 메소드를 호출한 경우 반드시 SQLException 발생 - 일반예외
 			String url="jdbc:oracle:thin:@localhost:1521:xe";
 			String user="scott";
 			String password="tiger";
-			Connection con=DriverManager.getConnection(url, user, password);
+			con=DriverManager.getConnection(url, user, password);
 			
+			//3.Connection 객체로부터 SQL 명령을 전달할 수 있는 Statement 객체를 반환받아 저장
+			//Connection.createStatement() : SQL 명령을 전달할 수 있는 Statement 객체를
+			//생성하여 반환하는 메소드
+			//Statement 객체 : SQL 명령을 현재 접속중인 DBMS 서버에 전달하기 위한 기능을 제공하는 객체
+			stmt=con.createStatement();
 			
+			//4.Statement 객체를 사용하여 SQL 명령(INSERT,UPDATE,DELETE,SELECT)을 DBMS 서버에
+			//전달하여 실행하고 실행결과를 반환받아 저장
+			//Statement.executeUpdate(String sql) : DML 명령을 전달하여 실행하는 메소드
+			// => DML 명령의 실행결과로 조작행의 갯수가 저장된 정수값를 반환
+			//Statement.executeQuery(String sql) : SELECT 명령을 전달하여 실행하는 메소드
+			// => SELECT 명령의 실행결과로 검색행이 저장된 ResultSet 객체를 반환 
+			String sql="insert into student values(1000,'홍길동','010-1234-5678','서울시 강남구','00/01/01')";
+			int rows=stmt.executeUpdate(sql);
+			
+			//5.반환받은 SQL 명령의 실행 결과값을 사용자에게 제공
+			System.out.println("[메세지]"+rows+"명의 학생정보를 삽입 하였습니다.");
 		} catch (ClassNotFoundException e) {
-			System.out.println("OracleDriver 클래스를 찾을 수 없습니다.");
+			System.out.println("[에러]OracleDriver 클래스를 찾을 수 없습니다.");
 		} catch (SQLException e) {
-			// TODO: handle exception
+			System.out.println("[에러]JDBC 관련 오류 = "+e.getMessage());
+		} finally {//예외 발생과 상관없이 무조건 실행되는 명령을 작성하는 영역
+			try {
+				//6.JDBC 관련 객체를 모두 제거 - 객체가 생성된 순서의 반대로 제거
+				//Statement.close() : Statement 객체를 삭제하는 메소드
+				// => NullPointerException이 발생할 수 있으므로 예외 발생을 방지하기 위해 if 구문 사용
+				//NullPointerException : 참조변수에 NULL이 저장된 상태에서 메소드를 호출한 경우 발생되는 예외
+				if(stmt!=null) stmt.close();
+				//Connection.close() : Connection 객체를 삭제하는 메소드 - 접속 종료
+				if(con!=null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
