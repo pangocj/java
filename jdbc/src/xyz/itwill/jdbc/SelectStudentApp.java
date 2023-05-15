@@ -39,7 +39,7 @@ public class SelectStudentApp {
 				//System.out.println("[메세지]검색된 학생정보가 있습니다.");
 				
 				//검색된 다수의 학생정보가 저장된 ResultSet 객체의 처리하기 위한 반복문
-				// => ResultSet 객체에 저장된 검색행의 갯수가 불확실하로 while 구문 사용
+				// => ResultSet 객체에 저장된 검색행의 갯수가 불확실하므로 while 구문 사용
 				// => if 구문에서 ResultSet 커서를 다음행으로 이미 이동하여 do~while 구문 사용
 				do {
 					//ResultSet 커서가 위치한 처리행의 컬럼값을 하나씩 반환받아 저장

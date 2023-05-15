@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-//JDBC 프로그램은 기본적으로 AutoCommit 기능이 활성화 되어있어 SQL 명령(DML)이 전달되면
-//실행되어 자동으로 커밋 처리
+//JDBC 프로그램은 기본적으로 AutoCommit 기능이 활성화 되어있어 SQL 명령(DML)이 전달되어
+//실행되면 무조건 자동으로 커밋 처리
 // => 프로그램 실행시 예외가 발생된 경우 예외 발생전 전달되어 실행된 SQL 명령에 대한 롤백 처리 불가능
 //JDBC 프로그램에서 AutoCommit 기능을 비활성화 처리하고 예외 발생 없이 프로그램이 정상적으로
-//실행되면 커밋 처리하고 예외가 발생된 경우 롤백 처리하는 것을 권장
+//실행되면 커밋 처리하고 실행시 예외가 발생된 경우 롤백 처리하는 것을 권장
 
 //STUDENT 테이블에 저장된 학생정보 중 학번이 [2000]인 학생의 이름을 [임꺽정]으로 변경하는 JDBC 프로그램 작성
 public class TransactionControlApp {
