@@ -113,7 +113,7 @@ public class ResultSetCursorApp {
 		
 		//ResultSet.deleteRow() : ResultSet 객체에서 ResultSet 커서가 위치한 처리행을 삭제
 		//하고 실제 테이블에 적용하여 삭제 처리하는 메소드
-		rs.deleteRow();
+		//rs.deleteRow();
 		
 		rs.beforeFirst();
 		while(rs.next()) {
