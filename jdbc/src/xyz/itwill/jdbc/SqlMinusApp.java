@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 //키보드로 SQL 명령을 입력받아 DBMS 서버에 전달하여 실행하고 실행결과를 출력하는 JDBC 프로그램 작성
@@ -33,9 +35,50 @@ public class SqlMinusApp {
 			//키보드 입력값이 [exit]인 경우 반복문 종료 - 프로그램 종료
 			if(sql.equalsIgnoreCase("exit")) break;
 			
-			//입력받은 SQL 명령을 전달하여 실행하고 실행결과를 반환받아 출력
-			
-			
+			try {
+				//입력받은 SQL 명령을 전달하여 실행하고 실행결과를 반환받아 출력
+				if(stmt.execute(sql)) {//전달되어 실행된 SQL 명령이 SELECT 명령인 경우
+					rs=stmt.getResultSet();
+					
+					if(rs.next()) {//검색행이 있는 경우
+						ResultSetMetaData rsmd=rs.getMetaData();
+						
+						//검색행의 컬럼의 갯수를 반환받아 저장
+						int columnCount=rsmd.getColumnCount();
+						
+						System.out.println("===============================================");
+						//검색행의 컬럼명을 반환받아 출력
+						for(int i=1;i<=columnCount;i++) {
+							System.out.print(rsmd.getColumnLabel(i)+"\t");
+						}
+						System.out.println();
+						System.out.println("===============================================");
+						do {
+							for(int i=1;i<=columnCount;i++) {
+								String columnValue=rs.getString(i);
+								//컬럼의 자료형이 DATE인 경우
+								if(rsmd.getColumnTypeName(i).equals("DATE")) {
+									//[yyyy-MM-dd] 형식의 문자열로 분리하여 저장
+									columnValue=columnValue.substring(0, 10);
+								}
+								if(columnValue==null) {//컬럼값이 없는 경우
+									columnValue="";
+								}
+								System.out.print(columnValue+"\t");
+							}
+							System.out.println();
+						} while(rs.next());
+						
+					} else {//검색행이 없는 경우
+						System.out.println("검색된 결과가 없습니다.");
+					}
+				} else {//전달되어 실행된 SQL 명령이 INSERT,UPDATE,DELETE 명령인 경우
+					int rows=stmt.getUpdateCount();
+					System.out.println(rows+"개의 행을 "+sql.substring(0,6).toUpperCase()+" 하였습니다.");
+				}
+			} catch (SQLException e) {//전달되어 실행된 SQL 명령이 잘못된 경우 SQLException 발생
+				System.out.println("SQL 오류 = "+e.getMessage());
+			}	
 		}
 		
 		ConnectionFactory.close(con, stmt, rs);
