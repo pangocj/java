@@ -181,23 +181,33 @@ public class StudentDAOImpl extends JdbcDAO implements StudentDAO {
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 메소드
 	@Override
 	public List<StudentDTO> selectAllStudentList() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<StudentDTO> studentList=new ArrayList<>();
+		try {
+			con=getConnection();
+			
+			String sql="select * from student order by no";
+			pstmt=con.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				StudentDTO student=new StudentDTO();
+				student.setNo(rs.getInt("no"));
+				student.setName(rs.getString("name"));
+				student.setPhone(rs.getString("phone"));
+				student.setAddress(rs.getString("address"));
+				student.setBirthday(rs.getString("birthday").substring(0, 10));
+				
+				studentList.add(student);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectAllStudentList() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return studentList;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
