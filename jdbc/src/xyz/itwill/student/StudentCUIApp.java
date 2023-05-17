@@ -2,6 +2,7 @@ package xyz.itwill.student;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.regex.Pattern;
 
 //학생정보를 관리하는 프로그램 작성
@@ -48,7 +49,7 @@ public class StudentCUIApp {
 			case 2: break;
 			case 3: break;
 			case 4: break;
-			case 5: break;
+			case 5: displayAllStudent(); break;
 			}
 			System.out.println();
 		}
@@ -196,6 +197,33 @@ public class StudentCUIApp {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	
+	
+	//[5.학생목록 출력] 메뉴를 선택한 경우 호출되는 메소드
+	// => STUDENT 테이블에 저장된 모든 학생정보를 검색하여 출력하는 메소드
+	public void displayAllStudent() {
+		System.out.println("### 학생목록 출력 ###");
+
+		//STUDENT 테이블에 저장된 모든 학생정보를 검색하는 반환하는 DAO 클래스의 메소드 호출
+		List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectAllStudentList();
+		
+		if(studentList.isEmpty()) {//검색된 학생정보가 없는 경우
+			System.out.println("[처리결과]저장된 학생정보가 없습니다.");
+			return;
+		}
+		
+		System.out.println("==============================================================");
+		System.out.println("학번\t이름\t전화번호\t주소\t\t생년월일");
+		System.out.println("==============================================================");
+		//List 객체의 요소를 제공받아 반복 처리
+		for(StudentDTO student : studentList) {
+			//StudentDTO 클래스의 toString() 메소드 자동 호출 - StudentDTO 객체의 필드값 반환
+			System.out.println(student);
+		}
+		System.out.println("==============================================================");
 	}
 }
 
