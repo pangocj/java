@@ -48,7 +48,7 @@ public class StudentCUIApp {
 			case 1: addStudent(); break;
 			case 2: modifyStudent(); break;
 			case 3: removeStudent(); break;
-			case 4: break;
+			case 4: searchStudent(); break;
 			case 5: displayAllStudent(); break;
 			}
 			System.out.println();
@@ -347,6 +347,54 @@ public class StudentCUIApp {
 			} else {//삭제행이 없는 경우 - 입력받은 학번의 학생정보가 없는 경우
 				System.out.println("[처리결과]삭제할 학번의 학생정보가 없습니다.");
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//[4.학생정보 검색] 메뉴를 선택한 경우 호출되는 메소드
+	// => 키보드로 이름을 입력받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하여 
+	//출력하는 메소드
+	public void searchStudent() {
+		System.out.println("### 학생정보 검색 ###");
+
+		try {
+			String name;
+			while(true) {
+				System.out.print("이름 입력 >> ");
+				name=in.readLine();
+				
+				if(name == null || name.equals("")) {
+					System.out.println("[입력오류]이름을 반드시 입력해 주세요.");
+					continue;
+				}
+				
+				String nameReg="^[가-힣]{2,5}$";
+				if(!Pattern.matches(nameReg, name)) {
+					System.out.println("[입력오류]이름은 2~5 범위의 한글로만 입력해 주세요.");
+					continue;	
+				}
+				
+				break;
+			}
+			
+			//이름을 전달받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하여 반환
+			//하는 DAO 클래스의 메소드 호출
+			List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectNameStudentList(name);
+			
+			
+			if(studentList.isEmpty()) {
+				System.out.println("[처리결과]검색된 학생정보가 없습니다.");
+				return;
+			}
+			
+			System.out.println("==============================================================");
+			System.out.println("학번\t이름\t전화번호\t주소\t\t생년월일");
+			System.out.println("==============================================================");
+			for(StudentDTO student : studentList) {
+				System.out.println(student);
+			}
+			System.out.println("==============================================================");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
