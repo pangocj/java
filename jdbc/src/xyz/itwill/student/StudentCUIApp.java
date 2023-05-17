@@ -143,6 +143,41 @@ public class StudentCUIApp {
 				break;
 			}
 			
+			String address;//주소를 저장하기 위한 변수
+			while(true) {
+				System.out.print("주소 입력 >> ");
+				address=in.readLine();
+				
+				if(address == null || address.equals("")) {
+					System.out.println("[입력오류]주소를 반드시 입력해 주세요.");
+					continue;
+				}
+				
+				break;
+			}
+			
+			String birthday;//생년월일을 저장하기 위한 변수
+			while(true) {
+				System.out.print("생년월일 입력 >> ");
+				birthday=in.readLine();
+				
+				if(birthday == null || birthday.equals("")) {
+					System.out.println("[입력오류]생년월일을 반드시 입력해 주세요.");
+					continue;
+				}
+				
+				//생년월일에 대한 입력패턴의 정규표현식을 작성하여 변수에 저장
+				String birthdayReg="(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+				if(!Pattern.matches(birthdayReg, birthday)) {
+					System.out.println("[입력오류]생년월일을 형식에 맞게 입력해 주세요.");
+					continue;	
+				}
+				
+				break;
+			}
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
