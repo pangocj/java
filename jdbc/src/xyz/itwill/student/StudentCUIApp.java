@@ -47,7 +47,7 @@ public class StudentCUIApp {
 			switch(choice) {
 			case 1: addStudent(); break;
 			case 2: modifyStudent(); break;
-			case 3: break;
+			case 3: removeStudent(); break;
 			case 4: break;
 			case 5: displayAllStudent(); break;
 			}
@@ -304,6 +304,49 @@ public class StudentCUIApp {
 			int rows=StudentDAOImpl.getDAO().updateStudent(student);
 			
 			System.out.println("[처리결과]"+rows+"명의 학생정보를 변경 하였습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//[3.학생정보 삭제] 메뉴를 선택한 경우 호출되는 메소드
+	// => 키보드로 학번을 입력받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 삭제하고
+	//처리결과를 출력하는 메소드
+	public void removeStudent() {
+		System.out.println("### 학생정보 삭제 ###");
+		
+		try {
+			//키보드로 학번을 입력받아 저장 - 입력값 검증
+			int no;
+			while(true) {
+				System.out.print("학번 입력 >> ");
+				String noTemp=in.readLine();
+				
+				if(noTemp == null || noTemp.equals("")) {//입력값이 없는 경우
+					System.out.println("[입력오류]학번을 반드시 입력해 주세요.");
+					continue;
+				}
+				
+				String noReg="^[1-9][0-9]{3}$";
+				if(!Pattern.matches(noReg, noTemp)) {
+					System.out.println("[입력오류]학번은 4자리 숫자로만 입력해 주세요.");
+					continue;	
+				}
+				
+				no=Integer.parseInt(noTemp);//문자열을 정수값으로 변환하여 변수에 저장
+				
+				break;
+			}
+			
+			//학번을 전달받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 삭제하는
+			//DAO 클래스의 메소드 호출
+			int rows=StudentDAOImpl.getDAO().deleteStudent(no);
+			
+			if(rows > 0) {//삭제행이 있는 경우
+				System.out.println("[처리결과]"+rows+"명의 학생정보를 삭제 하였습니다.");
+			} else {//삭제행이 없는 경우 - 입력받은 학번의 학생정보가 없는 경우
+				System.out.println("[처리결과]삭제할 학번의 학생정보가 없습니다.");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
