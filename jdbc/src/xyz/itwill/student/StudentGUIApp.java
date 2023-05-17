@@ -521,17 +521,79 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	//JTextField 컴퍼넌트로 입력된 학번을 제공받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 
 	//삭제하고 STUDENT 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
 	public void removeStudent() {
-
+		String noTemp=noTF.getText();
+		if(noTemp.equals("")) {
+			JOptionPane.showMessageDialog(this, "학번을 반드시 입력해 주세요.");
+			noTF.requestFocus();
+			return;
+		}
+		
+		String noReg="^[1-9][0-9]{3}$";
+		if(!Pattern.matches(noReg, noTemp)) {
+			JOptionPane.showMessageDialog(this, "학번은 4자리 숫자로만 입력해 주세요.");
+			noTF.requestFocus();
+			return;	
+		}
+		
+		int no=Integer.parseInt(noTemp);
+		
+		//학번을 전달받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 삭제하는
+		//DAO 클래스의 메소드 호출
+		int rows=StudentDAOImpl.getDAO().deleteStudent(no);
+		
+		if(rows > 0) {
+			JOptionPane.showMessageDialog(this, rows+"명의 학생정보를 삭제 하였습니다.");
+			displayAllStudent();
+		} else {
+			JOptionPane.showMessageDialog(this, "삭제할 학번의 학생정보가 없습니다.");
+		}
+		
+		initDisplay();
 	}
 	
 	//JTextField 컴퍼넌트로 입력된 이름을 제공받아 STUDENT 테이블에 저장된 해당 이름이 포함된  
 	//학생정보를 검색하고 JTable 컴퍼넌트에 출력하는 메소드	
 	public void searchNameStudent() {
+		String name=nameTF.getText();
+		
+		if(name.equals("")) {
+			JOptionPane.showMessageDialog(this, "이름을 반드시 입력해 주세요.");
+			nameTF.requestFocus();
+			return;	
+		}
+		
+		String nameReg="^[가-힣]{2,5}$";
+		if(!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "이름은 2~5 범위의 한글로만 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		//이름을 전달받아 STUDENT 테이블에 저장된 해당 이름의 학생정보를 검색하여 반환
+		//하는 DAO 클래스의 메소드 호출
+		List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectNameStudentList(name);
+		
+		if(studentList.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "검색된 학생정보가 없습니다.");
+			return;
+		}
+		DefaultTableModel model=(DefaultTableModel)table.getModel();
+		
+		//JTable 컴퍼넌트 초기화 - 기존 출력행 삭제 처리
+		for(int i=model.getRowCount();i>0;i--) {
+			model.removeRow(0);
+		}
 
+		for(StudentDTO student : studentList) {
+			Vector<Object> rowData=new Vector<>();
+
+			rowData.add(student.getNo());
+			rowData.add(student.getName());
+			rowData.add(student.getPhone());
+			rowData.add(student.getAddress());
+			rowData.add(student.getBirthday());
+		
+			model.addRow(rowData);
+		}
 	}
 }
-
-
-
-
-
