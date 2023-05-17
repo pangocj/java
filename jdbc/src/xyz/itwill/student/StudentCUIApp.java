@@ -93,6 +93,7 @@ public class StudentCUIApp {
 				//학번을 전달받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 검색하여
 				//반환하는 DAO 클래스의 메소드 호출
 				// => null 반환 : 학생정보 미검색 , StudentDTO 객체 반환 : 학생정보 검색
+				//싱글톤 클래스는 객체를 반환받아 직접 메소드 호출 - 참조변수 불필요
 				StudentDTO student=StudentDAOImpl.getDAO().selectStudent(no);
 				
 				if(student != null) {//키보드로 입력된 학번의 학생정보가 검색된 경우 - 학번 중복
@@ -175,9 +176,23 @@ public class StudentCUIApp {
 				
 				break;
 			}
+		
+			//키보드로 입력받은 학생정보를 STUDENT 테이블의 행으로 삽입 처리
+			// => DAO 클래스의 메소드 호출
 			
+			//학생정보를 저장하기 위한 StudentDTO 객체 생성
+			StudentDTO student=new StudentDTO();
+			//키보드로 입력받은 값으로 StudentDTO 객체의 필드값 변경
+			student.setNo(no);
+			student.setName(name);
+			student.setPhone(phone);
+			student.setAddress(address);
+			student.setBirthday(birthday);
 			
+			//학생정보(StudentDTO 객체)를 전달받아 STUDENT 테이블에 삽입하는 DAO 클래스의 메소드 호출
+			int rows=StudentDAOImpl.getDAO().insertStudent(student);
 			
+			System.out.println("[처리결과]"+rows+"명의 학생정보를 삽입 하였습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
