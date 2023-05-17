@@ -78,4 +78,9 @@ public class StudentDTO {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
+	
+	@Override
+	public String toString() {
+		return no+"\t"+name+"\t"+phone+"\t"+address+"\t"+birthday;
+	}
 }
