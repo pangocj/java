@@ -46,7 +46,7 @@ public class StudentCUIApp {
 			//메뉴 선택에 따른 기능 구현 - 메소드 호출
 			switch(choice) {
 			case 1: addStudent(); break;
-			case 2: break;
+			case 2: modifyStudent(); break;
 			case 3: break;
 			case 4: break;
 			case 5: displayAllStudent(); break;
@@ -199,8 +199,115 @@ public class StudentCUIApp {
 		}
 	}
 	
-	
-	
+	//[2.학생정보 변경] 메뉴를 선택한 경우 호출되는 메소드
+	// => 키보드로 학번을 입력받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 검색하여 출력
+	// => 키보드로 학번을 제외한 나머지 값을 입력받아 STUDENT 테이블에 저장된 학생정보를 
+	//변경하고 처리결과를 출력하는 메소드 
+	public void modifyStudent() {
+		System.out.println("### 학생정보 변경 ###");
+		
+		try {
+			//키보드로 학번을 입력받아 저장 - 입력값 검증
+			int no;
+			while(true) {
+				System.out.print("학번 입력 >> ");
+				String noTemp=in.readLine();
+				
+				if(noTemp == null || noTemp.equals("")) {//입력값이 없는 경우
+					System.out.println("[입력오류]학번을 반드시 입력해 주세요.");
+					continue;
+				}
+				
+				String noReg="^[1-9][0-9]{3}$";
+				if(!Pattern.matches(noReg, noTemp)) {
+					System.out.println("[입력오류]학번은 4자리 숫자로만 입력해 주세요.");
+					continue;	
+				}
+				
+				no=Integer.parseInt(noTemp);//문자열을 정수값으로 변환하여 변수에 저장
+				
+				break;
+			}
+			
+			//학번을 전달받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 검색하여 
+			//반환하는 DAO 클래스의 메소드 호출
+			StudentDTO student=StudentDAOImpl.getDAO().selectStudent(no);
+			
+			if(student == null) {//검색된 학생정보가 없는 경우
+				System.out.println("[처리결과]변경할 학번의 학생정보가 없습니다.");
+				return;
+			}
+			
+			//검색된 학생정보 출력
+			System.out.println("==============================================================");
+			System.out.println("학번\t이름\t전화번호\t주소\t\t생년월일");
+			System.out.println("==============================================================");
+			System.out.println(student);
+			System.out.println("==============================================================");
+			
+			//키보드로 학번를 제외한 값을 입력받아 저장 - 입력값 검증
+			System.out.println("[메세지]변경값 입력 >> 변경하지 않을 경우 엔터만 입력해 주세요.");
+
+			String name;
+			while(true) {
+				System.out.print("이름 입력 >> ");
+				name=in.readLine();
+				
+				String nameReg="^[가-힣]{2,5}$";
+				if(name != null && !name.equals("") && !Pattern.matches(nameReg, name)) {
+					System.out.println("[입력오류]이름은 2~5 범위의 한글로만 입력해 주세요.");
+					continue;	
+				}
+				
+				break;
+			}
+			
+			String phone;
+			while(true) {
+				System.out.print("전화번호 입력 >> ");
+				phone=in.readLine();
+				
+				String phoneReg="(01[016789])-\\d{3,4}-\\d{4}";
+				if(phone != null && !phone.equals("") && !Pattern.matches(phoneReg, phone)) {
+					System.out.println("[입력오류]전화번호를 형식에 맞게 입력해 주세요.");
+					continue;	
+				}
+				
+				break;
+			}
+			
+			System.out.print("주소 입력 >> ");
+			String address=in.readLine();
+			
+			String birthday;
+			while(true) {
+				System.out.print("생년월일 입력 >> ");
+				birthday=in.readLine();
+
+				String birthdayReg="(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+				if(birthday != null && !birthday.equals("") && !Pattern.matches(birthdayReg, birthday)) {
+					System.out.println("[입력오류]생년월일을 형식에 맞게 입력해 주세요.");
+					continue;	
+				}
+				
+				break;
+			}
+			
+			//입력받은 변경값을 이용하여 학번으로 검색되어 반환받은 StudentDTO 객체의 필드값 변경
+			// => 변경값이 있는 경우에만 필드값 변경
+			if(name != null && !name.equals("")) student.setName(name);
+			if(phone != null && !phone.equals("")) student.setPhone(phone);
+			if(address != null && !address.equals("")) student.setAddress(address);
+			if(birthday != null && !birthday.equals("")) student.setBirthday(birthday);
+			
+			//학생정보를 전달받아 STUDENT 테이블에 저장된 학생정보를 변경하는 DAO 클래스의 메소드 호출
+			int rows=StudentDAOImpl.getDAO().updateStudent(student);
+			
+			System.out.println("[처리결과]"+rows+"명의 학생정보를 변경 하였습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//[5.학생목록 출력] 메뉴를 선택한 경우 호출되는 메소드
 	// => STUDENT 테이블에 저장된 모든 학생정보를 검색하여 출력하는 메소드
