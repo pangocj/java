@@ -9,10 +9,14 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -117,7 +121,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 	
-	//모든 텍스트 필드 컴퍼넌트를 비활성화 처리하는 메소드
+	//모든 JTextField 컴퍼넌트를 비활성화 처리하는 메소드
 	public void initialize() {
 		noTF.setEditable(false);
 		nameTF.setEditable(false);
@@ -126,7 +130,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		birthdayTF.setEditable(false);
 	}
 
-	//이벤트에 따른 텍스트 필드의 활성화 상태 변경
+	//이벤트에 따른 JTextField 컴퍼넌트의 활성화 상태 변경
 	public void setEditable(int n) {
 		switch (n) {
 		case ADD:
@@ -161,7 +165,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		}
 	}
 
-	//이벤트에 따른 컴퍼넌트의 활성화 상태 변경
+	//이벤트에 따른 JTextField 컴퍼넌트와 JButton 컴퍼넌트의 활성화 상태 변경
 	public void setEnable(int n) {
 		addB.setEnabled(false);
 		deleteB.setEnabled(false);
@@ -202,6 +206,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		}
 	}
 
+	//JTextField 컴퍼넌트의 입력값 초기화
 	public void clear() {
 		noTF.setText("");
 		nameTF.setText("");
@@ -210,6 +215,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 		birthdayTF.setText("");
 	}
 
+	//모든 컴퍼넌트의 상태 초기화
 	public void initDisplay() {
 		setEnable(NONE);
 		clear();
@@ -228,7 +234,7 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 				if (cmd != ADD) {//첫번째 [삽입] 버튼을 누른 경우 - NONE 상태
 					setEnable(ADD);//컴퍼넌트의 활성화 상태 변경 - ADD 상태 변경					
 				} else {//두번째 [삽입] 버튼을 누른 경우 - ADD 상태
-					//학생정보를 입력받아 STUDENT 테이블에 삽입하여 저장하는 메소드 호출
+					//학생정보를 입력받아 STUDENT 테이블에 삽입하는 메소드 호출
 					addStudent();
 				}
 			} else if (c == updateB) {
@@ -267,14 +273,133 @@ public class StudentGUIApp extends JFrame implements ActionListener {
 	
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
 	public void displayAllStudent() {
+		//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO 클래스의 메소드
+		List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectAllStudentList();
 
+		if(studentList.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "저장된 학생정보가 없습니다.");
+			return;
+		}
+		
+		//JTable.getModel() : JTable 컴퍼넌트의 행정보가 저장된 TableModel 객체를 반환하는 메소드
+		// => DefaultTableModel 클래스로 명시적 객체 형변환 
+		//DefaultTableModel 객체 : JTable 컴퍼넌트의 행과 열을 조작할 수 있는 메소드를 제공하는 객체 
+		DefaultTableModel model=(DefaultTableModel)table.getModel();
+		
+		//JTable 컴퍼넌트 초기화 - 기존 출력행 삭제 처리
+		for(int i=model.getRowCount();i>0;i--) {
+			model.removeRow(0);//JTable 컴퍼넌트의 첫번째 행을 제거
+		}
+		
+		//List 객체의 요소(StudentDTO 객체)를 하나씩 제공받아 처리하는 반복문
+		for(StudentDTO student : studentList) {
+			//Vector 객체 생성 - JTable 컴퍼넌트에 추가될 하나의 행을 저장하기 위한 객체
+			Vector<Object> rowData=new Vector<>();
+			//StudentDTO 객체의 필드값을 Vector 객체의 요소로 추가
+			rowData.add(student.getNo());
+			rowData.add(student.getName());
+			rowData.add(student.getPhone());
+			rowData.add(student.getAddress());
+			rowData.add(student.getBirthday());
+		
+			//JTable 컴퍼넌트에 행을 추가하여 출력
+			model.addRow(rowData);
+		}
 	}
 	
-	//JTextField 컴퍼넌트로 입력된 학생정보를 제공받아 STUDENT 테이블에 삽입하여 저장하고 
+	//JTextField 컴퍼넌트로 입력된 학생정보를 제공받아 STUDENT 테이블에 삽입하고 
 	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 JTable 컴퍼넌트에 출력하는 메소드
 	// => 컴퍼넌트 초기화 및 NONE 상태 변경
 	public void addStudent() {
+		String noTemp=noTF.getText();//JTextField 컴퍼넌트의 입력값을 반환받아 저장
+		if(noTemp.equals("")) {
+			JOptionPane.showMessageDialog(this, "학번을 반드시 입력해 주세요.");
+			noTF.requestFocus();//JTextField 컴퍼넌트에 입력촛점을 제공하는 메소드
+			return;
+		}
+		
+		String noReg="^[1-9][0-9]{3}$";
+		if(!Pattern.matches(noReg, noTemp)) {//정규표현식과 입력값의 입력패턴이 다른 경우
+			JOptionPane.showMessageDialog(this, "학번은 4자리 숫자로만 입력해 주세요.");
+			noTF.requestFocus();
+			return;	
+		}
+		
+		int no=Integer.parseInt(noTemp);//문자열을 정수값으로 변환하여 변수에 저장
+		
+		if(StudentDAOImpl.getDAO().selectStudent(no) != null) {
+			JOptionPane.showMessageDialog(this, "이미 사용중인 학번을 입력 하였습니다.");
+			noTF.requestFocus();
+			return;	
+		}
+		
+		String name=nameTF.getText();
+		
+		if(name.equals("")) {
+			JOptionPane.showMessageDialog(this, "이름을 반드시 입력해 주세요.");
+			nameTF.requestFocus();
+			return;	
+		}
+		
+		String nameReg="^[가-힣]{2,5}$";
+		if(!Pattern.matches(nameReg, name)) {
+			JOptionPane.showMessageDialog(this, "이름은 2~5 범위의 한글로만 입력해 주세요.");
+			nameTF.requestFocus();
+			return;
+		}
+		
+		String phone=phoneTF.getText();
+		
+		if(phone.equals("")) {
+			JOptionPane.showMessageDialog(this, "전화번호를 반드시 입력해 주세요.");
+			phoneTF.requestFocus();
+			return;
+		}
+		
+		String phoneReg="(01[016789])-\\d{3,4}-\\d{4}";
+		if(!Pattern.matches(phoneReg, phone)) {
+			JOptionPane.showMessageDialog(this, "전화번호를 형식에 맞게 입력해 주세요.");
+			phoneTF.requestFocus();
+			return;
+		}
+		
+		String address=addressTF.getText();
+		
+		if(address.equals("")) {
+			JOptionPane.showMessageDialog(this, "주소를 반드시 입력해 주세요.");
+			addressTF.requestFocus();
+			return;
+		}
+		
+		String birthday=birthdayTF.getText();
 
+		
+		if(birthday.equals("")) {
+			JOptionPane.showMessageDialog(this, "생년월일을 반드시 입력해 주세요.");
+			birthdayTF.requestFocus();
+			return;
+		}
+		
+		String birthdayReg="(19|20)\\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
+		if(!Pattern.matches(birthdayReg, birthday)) {
+			JOptionPane.showMessageDialog(this, "생년월일을 형식에 맞게 입력해 주세요.");
+			birthdayTF.requestFocus();
+			return;
+		}
+		
+		StudentDTO student=new StudentDTO();
+		student.setNo(no);
+		student.setName(name);
+		student.setPhone(phone);
+		student.setAddress(address);
+		student.setBirthday(birthday);
+		
+		int rows=StudentDAOImpl.getDAO().insertStudent(student);
+		
+		JOptionPane.showMessageDialog(this, rows+"명의 학생정보를 삽입 하였습니다.");
+
+		displayAllStudent();//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 출력
+		initDisplay();//모든 컴퍼넌트 초기화
 	}
 	
 	//JTextField 컴퍼넌트로 입력된 학번을 제공받아 STUDENT 테이블에 저장된 해당 학번의 학생정보를 

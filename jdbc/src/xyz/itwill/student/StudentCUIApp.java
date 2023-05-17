@@ -405,7 +405,7 @@ public class StudentCUIApp {
 	public void displayAllStudent() {
 		System.out.println("### 학생목록 출력 ###");
 
-		//STUDENT 테이블에 저장된 모든 학생정보를 검색하는 반환하는 DAO 클래스의 메소드 호출
+		//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 DAO 클래스의 메소드 호출
 		List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectAllStudentList();
 		
 		if(studentList.isEmpty()) {//검색된 학생정보가 없는 경우
