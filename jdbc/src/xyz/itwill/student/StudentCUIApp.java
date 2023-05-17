@@ -382,7 +382,6 @@ public class StudentCUIApp {
 			//하는 DAO 클래스의 메소드 호출
 			List<StudentDTO> studentList=StudentDAOImpl.getDAO().selectNameStudentList(name);
 			
-			
 			if(studentList.isEmpty()) {
 				System.out.println("[처리결과]검색된 학생정보가 없습니다.");
 				return;
