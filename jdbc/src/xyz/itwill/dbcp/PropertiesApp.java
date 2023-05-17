@@ -48,15 +48,3 @@ public class PropertiesApp {
 		new PropertiesApp();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
