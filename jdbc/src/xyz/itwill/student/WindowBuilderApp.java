@@ -120,6 +120,11 @@ public class WindowBuilderApp extends JFrame {
 					JButton cancelButton = new JButton("Cancel");
 					cancelButton.setActionCommand("Cancel");
 					buttonPane.add(cancelButton);
+					cancelButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							dialog.setVisible(false);
+						}
+					});
 				}
 			}
 		}
