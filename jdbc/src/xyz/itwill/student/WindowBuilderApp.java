@@ -9,8 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class WindowBuilderApp extends JFrame {
@@ -20,8 +18,6 @@ public class WindowBuilderApp extends JFrame {
 	private JButton red;
 	private JButton green;
 	private JButton blue;
-	private JTextArea textArea;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -72,15 +68,6 @@ public class WindowBuilderApp extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
-		
-		textArea = new JTextArea();
-		textArea.setFont(new Font("굴림체", Font.PLAIN, 20));
-		scrollPane.setViewportView(textArea);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("새굴림", Font.PLAIN, 20));
-		contentPane.add(textField, BorderLayout.SOUTH);
-		textField.setColumns(10);
 		
 	}
 
