@@ -9,9 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 
 public class WindowBuilderApp extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -81,5 +81,4 @@ public class WindowBuilderApp extends JFrame {
 		textField.setColumns(10);
 		
 	}
-
 }
