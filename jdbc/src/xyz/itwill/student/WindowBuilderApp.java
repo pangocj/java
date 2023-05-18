@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextPane;
+import javax.swing.JTextField;
 
 public class WindowBuilderApp extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +20,8 @@ public class WindowBuilderApp extends JFrame {
 	private JButton red;
 	private JButton green;
 	private JButton blue;
+	private JTextPane textPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -68,6 +72,13 @@ public class WindowBuilderApp extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane, BorderLayout.CENTER);
+		
+		textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
+		
+		textField = new JTextField();
+		contentPane.add(textField, BorderLayout.SOUTH);
+		textField.setColumns(10);
 		
 	}
 
