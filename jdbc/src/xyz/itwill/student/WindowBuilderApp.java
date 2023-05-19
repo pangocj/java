@@ -26,9 +26,7 @@ public class WindowBuilderApp extends JFrame {
 	private JTextField textField;
 
 	JDialogApp dialog = new JDialogApp(this);
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
