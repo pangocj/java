@@ -36,30 +36,31 @@ caption {
 				<th>건물명</th><th>방이름</th><th>크기</th><th>가격</th>
 			</tr>
 		</thead>
-		<tbody>
-			<tr>
-				<td>요안도라</td><td>유채방</td><td>4인실</td><td>20,000원</td>
-			</tr>
-			<tr>
-				<td>요안도라</td><td>동백방</td><td>2인실</td><td>20,000원</td>
-			</tr>
-			<tr>
-				<td>요안도라</td><td>가족실</td><td></td><td>60,000원(최대 4인)</td>
-			</tr>		
-		</tbody>
-		<!-- 
 		<tfoot>
 			<tr>
-				<td>바깥채 전체를 독채로 대여합니다.</td>
+				<td colspan="4">바깥채 전체를 독채로 대여합니다.</td>
 			</tr>
 		</tfoot>
-		 -->
+		<tbody>
+			<tr>
+				<!-- rowspan 속성 : 병합할 행의 갯수를 속성값으로 설정 -->
+				<td rowspan="3">요안도라</td><td>유채방</td><td>4인실</td><td rowspan="2">20,000원</td>
+			</tr>
+			<tr>
+				<td>동백방</td><td>2인실</td>
+			</tr>
+			<tr>
+				<!-- colspan 속성 : 병합할 열의 갯수를 속성값으로 설정 -->
+				<td>가족실</td><td colspan="2">60,000원(최대 4인)</td>
+			</tr>		
+		</tbody>
+		<!--  
+		<tfoot>
+			<tr>
+				<td colspan="4">바깥채 전체를 독채로 대여합니다.</td>
+			</tr>
+		</tfoot>
+		-->
 	</table>
 </body>
 </html>
-
-
-
-
-
-
