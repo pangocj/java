@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+<style type="text/css">
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid black;
+	width: 100px;
+	padding: 20px;
+	text-align: center;
+}
+
+caption {
+	font-size: 24px;
+	line-height: 40px;
+	letter-spacing: 15px;
+}
+</style>
+</head>
+<body>
+	<h1>tbody 태그</h1>
+	<hr>
+	<!-- HTML5에서는 표를 구조적으로 표현하기 위한 thead 태그, tbody 태그, tfoot 태그 사용 -->
+	<!-- summary 속성 : 표에 대한 설명을 속성값으로 설정 -->
+	<table summary="객실 안내">
+		<!-- caption 태그 : 표 제목을 출력하기 위한 태그 -->
+		<caption>객실표</caption>
+		<thead>
+			<tr>
+				<th>건물명</th><th>방이름</th><th>크기</th><th>가격</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>요안도라</td><td>유채방</td><td>4인실</td><td>20,000원</td>
+			</tr>
+			<tr>
+				<td>요안도라</td><td>동백방</td><td>2인실</td><td>20,000원</td>
+			</tr>
+			<tr>
+				<td>요안도라</td><td>가족실</td><td></td><td>60,000원(최대 4인)</td>
+			</tr>		
+		</tbody>
+		<!-- 
+		<tfoot>
+			<tr>
+				<td>바깥채 전체를 독채로 대여합니다.</td>
+			</tr>
+		</tfoot>
+		 -->
+	</table>
+</body>
+</html>
+
+
+
+
+
+
