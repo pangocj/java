@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>input 태그</h1>
+	<hr>
+	<!-- input 태그 : 사용지로부터 값을 입력받기 위한 태그 - 입력태그 -->
+	<!-- type 속성 : 값을 입력받기 위한 형태를 속성값으로 설정 -->
+	<!-- name 속성 : 태그의 이름을 속성값으로 설정 - 전달값을 구분하기 위한 식별자 -->
+	<!-- value 속성 : 입력태그의 초기값을 속성값으로 설정 -->
+	<!-- size 속성 : 입력태그의 크기를 속성값으로 설정 -->
+	<!-- maxlength 속성 : 최대 입력 가능한 문자의 갯수를 속성값으로 설정 -->
+	<!-- autofocus 속성(HTML5) : 입력태그에 입력촛점(Focus)을 제공하는 속성 - 속성값 생략 가능 -->
+	<!-- required 속성(HTML5) : 필수 입력값을 설정하기 위한 속성 - 속성값 생략 가능 -->
+	<!-- => required 속성이 구현된 입력태그에 입력값이 없는 경우 form 태그 미동작 -->
+	<!-- placeholder 속성(HTML5) : 입력태그의 입력값에 대한 설명을 속성값으로 설정 -->
+	<!-- => placeholder 속성이 구현된 입력태그에 입력값이 입력되면 설명문 자동 소멸 -->
+	<!-- readonly 속성 : 입력태그를 읽기 전용으로 사용하기 위한 속성 - 속성값 생략 가능 -->
+	<!-- disabled 속성 : 입력태그를 비활성화 처리하기 위한 속성 - 속성값 생략 가능 -->
+	
+	<!-- type 속성값 -->
+	<!-- => hidden : 입력태그를 숨겨 사용자로부터 값을 입력받지 않고 요청 웹프로그램에게 필요한 값 전달 -->	
+	<!-- => text : 문자값을 입력받아 전달 -->	
+	<!-- => password : 문자값을 입력받아 전달 - 입력값이 특정문자로 변환되어 표시 -->	
+	<form action="#" method="post">
+		<input type="hidden" name="num" value="1000">
+		<p>아이디 : <input type="text" name="id" size="10" maxlength="20" autofocus="autofocus" required="required"></p>
+		<p>비밀번호 : <input type="password" name="passwd" placeholder="형식에 맞는 비밀번호 입력"></p>
+		<p>이름 : <input type="text" name="name" value="홍길동" readonly="readonly"></p>
+		<button type="submit">회원가입</button>		
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
