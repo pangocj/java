@@ -20,29 +20,53 @@
 	<!-- => placeholder 속성이 구현된 입력태그에 입력값이 입력되면 설명문 자동 소멸 -->
 	<!-- readonly 속성 : 입력태그를 읽기 전용으로 사용하기 위한 속성 - 속성값 생략 가능 -->
 	<!-- disabled 속성 : 입력태그를 비활성화 처리하기 위한 속성 - 속성값 생략 가능 -->
+	<!-- checked 속성 : 우선 선택을 제공하기 위한 속성 - 속성값 생략 가능 -->
+	<!-- min 속성 : 입력 가능한 최소값을 속성값으로 설정 -->
+	<!-- max 속성 : 입력 가능한 최대값을 속성값으로 설정 -->
 	
 	<!-- type 속성값 -->
 	<!-- => hidden : 입력태그를 숨겨 사용자로부터 값을 입력받지 않고 요청 웹프로그램에게 필요한 값 전달 -->	
 	<!-- => text : 문자값을 입력받아 전달 -->	
 	<!-- => password : 문자값을 입력받아 전달 - 입력값이 특정문자로 변환되어 표시 -->	
+	<!-- => radio : name 속성값이 같은 입력태그 중 하나를 선택하여 전달 -->	
+	<!-- => checkbox : name 속성값이 같은 입력태그 중 한개 이상을 선택하여 전달 -->	
+	<!-- => file : 파일을 입력받아 전달 -->	
+	<!-- => email(HTML5) : 이메일을 입력받아 전달 - 이메일 형식에 검증 처리 -->	
+	<!-- => number(HTML5) : 숫자 형식의 문자값을 입력받아 전달(증가 또는 감소 버튼 제공) 
+		- 숫자 형식의 문자값만 입력 가능하여 최소값 및 최대값 검증 가능 -->	
+	<!-- => tel(HTML5) : 전화번호 형식의 문자값을 입력받아 전달 - 스마트기기의 입력패드로 변경 -->	
+	<!-- => url(HTML5) : URL 형식의 문자값을 입력받아 전달 - 스마트기기의 입력패드로 변경 -->	
+	<!-- => search(HTML5) : 검색 관련 문자값을 입력받아 전달 - 스마트기기의 자동 완성기능 시용 -->	
+	<!-- => color(HTML5) : 색을 선택하여 색상값(#RRGGBB)을 전달 -->	
+	<!-- => range(HTML5) : 등급을 선택하여 등급값 전달 - min 속성과 max 속성으로 등급의 범위 설정 -->
+	<!-- => date(HTML5) : 날짜 형식의 문자값을 입력받아 전달 - 날짜를 선택할 수 있는 박스모델 제공 -->
+	<!-- => time(HTML5) : 시간 형식의 문자값을 입력받아 전달 - 시간를 선택할 수 있는 박스모델 제공 -->
+	<!-- => datetime-local(HTML5) : 날짜와 시간 형식의 문자값을 입력받아 전달 - 날짜와 시간를 선택할 수 있는 박스모델 제공 -->
+		
 	<form action="#" method="post">
 		<input type="hidden" name="num" value="1000">
 		<p>아이디 : <input type="text" name="id" size="10" maxlength="20" autofocus="autofocus" required="required"></p>
 		<p>비밀번호 : <input type="password" name="passwd" placeholder="형식에 맞는 비밀번호 입력"></p>
 		<p>이름 : <input type="text" name="name" value="홍길동" readonly="readonly"></p>
+		<p>성별 : <input type="radio" name="gender" value="M">남자
+			<input type="radio" name="gender" value="W" checked="checked">여자</p>
+		<p>취미 : <input type="checkbox" name="hobby" value="독서">독서
+			<input type="checkbox" name="hobby" value="게임">게임
+			<input type="checkbox" name="hobby" value="등산">등산
+			<input type="checkbox" name="hobby" value="낚시">낚시</p>
+		<p>사진 : <input type="file" name="profile"></p>	
+		<p>이메일 : <input type="email" name="email"></p>
+		<p>나이 : <input type="number" name="age" min="1" max="100"></p>			
+		<p>전화번호 : <input type="tel" name="phone"></p>
+		<p>SNS : <input type="url" name="sns"></p>			
+		<p>검색 : <input type="search" name="keyword"></p>
+		<p>좋아하는 색 : <input type="color" name="color"></p>
+		<p>실력 : 하<input type="range" name="grade" min="1" max="3">상</p>
+		<p>생년월일 : <input type="date" name="birthday"></p>
+		<p>기상시간 : <input type="time" name="uptime"></p>
+		<p>알람 : <input type="datetime-local" name="alram"></p>
+			
 		<button type="submit">회원가입</button>		
 	</form>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
