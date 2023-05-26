@@ -7,5 +7,18 @@
 <body>
 	<h1>datalist 태그</h1>
 	<hr>
+	<!-- datalist 태그 : input 태그에 입력 가능한 값을 제공하기 위한 태그 -->
+	<!-- => 하위태그 : option -->
+	<form method="post">
+		<label for="subject">좋아하는 과목 : </label>
+		<!-- list 속성 : datalist 태그의 식별자를 속성값으로 설정 -->
+		<input type="text" name="subject" id="subject" list="subjectlist">
+		<datalist id="subjectlist">
+			<option>JAVA</option>
+			<option>JSP</option>
+			<option>SPRING</option>
+		</datalist>
+		<button type="submit">제출</button>
+	</form>
 </body>
 </html>
