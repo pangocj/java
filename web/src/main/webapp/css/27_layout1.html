@@ -2,9 +2,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><h1></h1></title>
+<title>CSS</title>
+<style type="text/css">
+/* 블럭 레벨의 박스모델과 인라인 레벨의 박스모델로 구분하여 브라우저에 자동 배치 */
+/* 블럭 레벨의 박스모델 : 하나의 라인을 모두 사용하는 박스모델 */
+/* => div, h1~h6, ul, ol, li, p, table, tr, form 등 */
+/* 인라인 레벨의 박스모델 : 하나의 라인을 같이 사용하는 박스모델 */
+/* => span, img, a, input, select, textarea, label, button 등 */
+/* 블럭 레벨의 박스모델의 후손으로 모든 박스모델 배치 가능 */
+/* => 인라인 레벨의 박스모델의 후손으로 블럭 레벨의 박스모델 배치 불가능 */
+p {
+	width: 500px;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+.acc {
+	color: red;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
-
+	<h1>박스모델 배치 관련 스타일 속성</h1>
+	<hr>
+	<h3>예약방법</h3>
+	<p>펜션 예약의 가장 빠른 방법은 호스트(<span class="acc">010-1234-5678</span>)와 
+	직접 연락하거나 <span class="acc">문자</span>를 남기는 것입니다. 
+	전화와 문자는 개인부입니다.
+	<img alt="펜션이미지" src="images/1.jpg"></p>
 </body>
 </html>
