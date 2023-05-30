@@ -11,11 +11,18 @@ ul li {
 	/* 속성값(순서값) : decimal(기본), lower-alpha, upper-alpha, lower-roman, upper-roman 등 */
 	list-style-type: square;
 	
+	/* list-style-image : 블릿 대신 사용될 이미지를 제공하기 위한 스타일 속성 */
+	/* 속성값 : url 함수를 사용하여 이미지 파일의 URL 주소를 설정 */
+	list-style-image: url("/web/css/images/bullet.png");
 	
+	/* list-style-position : 목록 출력 위치 관련 스타일 속성 */
+	/* 속성값 : inside(들여쓰기), outside(밀어쓰기) */
+	list-style-position: inside;
 }
 
 ol li {
-	list-style-type: upper-roman;
+	/* list-style : 목록 관련 모든 스타일 속성값 설정 */
+	list-style: upper-roman inside;
 }
 </style>
 </head>
