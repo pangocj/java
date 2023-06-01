@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+/* 다른 박스모델을 출력하기 위한 영역 제공하는 컨테이너 역활의 박스모델 */
+#container {
+	width: 800px;
+	min-height: 600px;
+	border: 1px solid red;
+	/* 컨테이너 역활의 박스모델에 display 속성값을 [flex]로 설정하는 경우 Flex Containter로
+	처리되어 아이템 역활의 박스모델을 한쪽 방향의 일정하는 간격으로 자동 배치 */
+	display: flex;
+	
+	/* flex-direction : Flex Containter에서 Flex Item를 배치하는 방향을 설정하는 스타일 속성 */
+	/* 속성값 : row(기본), column, row-reverse, column-reverse  */
+	/* flex-direction: row; */
+	
+	/* flex-wrap : Flex Containter에서 Flex Item를 배치에 대한 줄바꿈 처리에 대한 스타일 속성  */
+	/* 속성값 : nowrap(기본), wrap(아래 줄바꿈 처리), wrap-reverse(위 줄바꿈 처리) */
+	/* flex-wrap: wrap; */
+	
+	/* flex-flow : flex-direction과 flex-wrap을 동시에 설정하는 스타일 속성 */
+	flex-flow: row wrap;
+	
+	/* justify-content : Flex Containter에서 Flex Item을 정렬하기 위한 스타일 속성 */
+	/* 속성값 : flex-start(기본), flex-end, center, space-between, space-around, space-evenly */
+	justify-content: space-evenly;
+}
+
+/* 컨테이너 영역에 출력될 아이템 역활의 박스모델 */
+.box {
+	width: 200px;
+	height: 200px;
+	margin: 20px;
+	border: 1px solid green;
+}
+</style>
+</head>
+<body>
+	<h1>박스모델 배치 관련 스타일 속성</h1>
+	<hr>
+	<div id="container">
+		<div class="box">A</div>
+		<div class="box">B</div>
+		<div class="box">C</div>
+		<div class="box">D</div>
+		<div class="box">E</div>
+		<div class="box">F</div>
+	</div>
+</body>
+</html>
