@@ -10,7 +10,7 @@
 	<p>변수(Variable) : 리터럴(값)을 저장하기 위한 저장공간(메모리)의 식별자(이름)</p>
 	<p>자바스크립트는 변수를 선언하지 않아도 값을 저장하여 사용 가능하지만 변수를 선언하는 것을 권장</p>
 	<p>형식)var 변수명 = 초기값</p>
-	<p>자바스크립트 변수에 저장되는 값에 따라 변수의 자료형이 자동으로 변환</p>
+	<p>자바스크립트 변수는 저장되는 값에 따라 변수의 자료형이 자동으로 변환</p>
 	<p>자바스트립트 자료형 - 숫자형(number), 문자형(string), 논리형(boolean)
 	, 함수형(function), 객체형(object)</p>
 	
@@ -19,14 +19,14 @@
 	//var num;
 	//alert(num);//undefined
 	
-	//변수 선언 및 초기값 저장 - 변수에 숫자값이 저장된 경우 [number] 자료형으로 표현
-	//var num=10;
+	//변수 선언 및 초기값 저장
+	//var num=10;//변수에 숫자값을 저장 - 변수의 자료형 : number
 	//alert(num);
 	
 	/*
-	//변수 선언 및 초기값 저장 - 변수에 문자값이 저장된 경우 [string] 자료형으로 표현
+	//변수 선언 및 초기값 저장
 	// => 자바스크립트에서 문자형 리터럴(문자값)은 ' ' 또는 " " 기호를 사용하여 표현
-	var num="10";
+	var num="10";//변수에 문자값을 저장 - 변수의 자료형 : string
 	//alert(num);
 	alert("num = "+num);//+ 연산자를 사용하여 문자값 결합
 	*/
@@ -39,20 +39,6 @@
 	alert(typeof(num));//string - 문자형 변수
 	*/
 	
-	//변수에 논리값(false 또는 true)이 저장된 경우 [boolean] 자료형으로 표현
-	//var num=false;
-	//alert(typeof(num));//boolean - 논리형 변수
-	
-	/*
-	var num=10;
-	var num=20;//var 키워드로 변수 선언시 동일한 이름의 변수 선언 가능 - 기존 변수 사용
-	alert("num = "+num);
-	*/
-	
-	//var 키워드로 변수를 선언하지 않아도 값을 저장하여 변수 사용 가능 
-	//num=10;
-	//alert("num = "+num);
-	
 	//자바스트립트 변수에는 함수 저장 가능 - 자료형 : function
 	/*
 	var fun=function() {
@@ -64,6 +50,20 @@
 	//자바스트립트 변수에는 객체 저장 가능 - 자료형 : object
 	//var obj=new Object();
 	//alert(typeof(obj));//object - 객체형 변수
+	
+	//var num=false;//변수에 논리값(false 또는 true)을 저장 - 변수의 자료형 : boolean
+	//alert(num);//false
+	//alert(typeof(num));//boolean - 논리형 변수
+	
+	/*
+	var num=10;
+	var num=20;//var 키워드로 변수 선언시 동일한 이름의 변수 선언 가능 - 기존 변수 사용
+	alert("num = "+num);
+	*/
+	
+	//var 키워드로 변수를 선언하지 않아도 값을 저장하면 변수로 사용 가능 
+	//num=10;
+	//alert("num = "+num);
 	</script>
 </body>
 </html>
