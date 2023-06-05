@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>자바스크립트 객체</h1>
+	<hr>
+	<p>자바스크립트는 객체 지향 프로그래밍 언어로 객체를 이용하여 프로그램을 작성하는 언어</p>
+	<p>자바스크립트는 모든 값을 객체로 표현하여 처리</p>
+	<p>객체(Object) : 현실 세계에 존재하는 특정 대상을 프로그램에서 사용하기 위해 
+	프로퍼티(Property : 표현대상의 속성)와 메소드(Method : 표현대상의 행위)로 표현</p>
+	<p>자바스트립트는 클래스 대신 함수(클래스 함수)를 사용하여 객체를 생성
+	- 클래스 함수를 선언하고 new 연산자로 클래스 함수를 호출하여 객체 생성</p>
+	<p>ES6에서는 클래스를 선언하여 객체 생성 가능 - 클래스를 선언하고 new 연산자로
+	클래스의 생성자(Constructor)를 호출하여 객체 생성</p>
+	<p>클래스 함수(클래스)로 객체를 생성하는 이유는 동일한 프로퍼티와 메소드가 포함된 
+	다수의 객체를 쉽게 생성하기 위해 사용 - 생산성 및 유지보수의 효율성 증가</p> 
+
+	<script type="text/javascript">
+	/*
+	//클래스 함수 선언 - 객체를 생성하기 위한 함수
+	// => 일반함수와 구분하기 위해 함수명의 첫문자를 대문자로 작성 - 파스칼 표기법
+	// => 클래스 함수의 매개변수로 값을 전달받아 프로퍼티의 초기값으로 저장 
+	function Student(num, name, address) {
+		//this 키워드를 사용하여 프로퍼티와 메소드 표현
+		// => this : 클래스 함수 내부에서 객체를 표현하기 위해 사용하는 키워드
+		
+		//this 키워드로 객체의 요소를 표현하여 값 저장 - 프로퍼티
+		//프로퍼티(Property) : 객체의 속성값을 저장하기 위한 변수 - 멤버변수
+		this.num = num;
+		this.name = name;
+		this.address = address;
+		
+		//this 키워드로 객체의 요소를 표현하여 함수 저장 - 메소드
+		// => 메소드는 this 키워드를 이용하여 프로퍼티 사용 가능
+		//메소드(Method) : 객체의 행위(기능)을 함수로 표현하여 저장한 변수 - 멤버함수
+		this.display = function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		}
+	}
+	
+	//클래스 함수를 사용하여 객체를 생성하는 방법
+	// => new 연산자로 클래스 함수를 호출하여 객체 생성하고 생성된 객체를 변수에 저장 - 객체변수
+	//형식)var 변수명 = new 클래스함수(값, 값, ...)
+	var student=new Student(1000, "홍길동", "서울시 강남구");
+	//alert("변수의 자료형 = "+typeof(student));//변수의 자료형 = object
+	
+	//객체는 . 연산자를 사용하여 객체 요소(프로퍼터 또는 메소드)에 접근하여 사용 가능
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	//student.display();//메소드 호출
+	
+	//. 연산자 대신 [] 연산자를 이용하여 객체에 접근 가능
+	//alert("학번 = "+student["num"]+", 이름 = "+student["name"]+", 주소 = "+student["address"]);
+	//student["display"]();
+	
+	//자바스트립트는 객체에 요소(프로퍼터 또는 메소드)에 대한 추가, 변경, 삭제 가능
+	student.phone="010-1234-5678";//객체에 프로퍼티 추가
+	//alert("전화번호 = "+student.phone);
+	
+	//객체 메소드에 저장된 함수 변경
+	student.display = function() {
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address+", 전화번호 = "+ this.phone);
+	}
+	
+	//student.display();
+	
+	//delete(객체요소) : 객체에서 요소를 삭제하는 함수
+	delete(student.phone);//프로퍼티 삭제
+	//객체의 요소가 아닌 경우 [undefined] 자료형으로 처리
+	alert("전화번호 = "+student.phone);//전화번호 = undefined
+	*/
+	
+	//ES6에서는 class 키워드로 클래스를 선언하여 객체 생성 가능
+	class Human {
+		constructor(num) { //constructor 키워드로 생성자 선언
+			//this 키워드로 객체 요소를 표현하여 값 저장 - 프로퍼티
+			this.num = num;
+		}
+	}
+	
+	//extends 키워드로 부모클래스를 상속받아 클래스 작성 가능
+	class Student extends Human {
+		constructor(num, name, address) {
+			super(num);//부모클래스의 생성자를 호출하여 객체 초기화
+			this.name = name;
+			this.address = address;
+		}
+		
+		//메소드 선언 - function 키워드 없이 함수 선언 
+		display() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		}
+	}
+	
+	let student=new Student(1000, "홍길동", "서울시 강남구");
+	//alert("클래스의 자료형 = "+typeof(Student));//클래스의 자료형 = function
+	//alert("변수의 자료형 = "+typeof(student));//변수의 자료형 = object
+	
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	student.display();
+	</script>	
+</body>
+</html>
