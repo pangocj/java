@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>콜백함수(Callback Function)</h1>
+	<hr>
+	<p>콜백함수 : 매개변수로 함수를 전달받아 함수 내부에서 매개변수로 호출되는 함수</p>
+	
+	<script type="text/javascript">
+	//함수명을 사용하여 함수 선언 - 선언함수
+	function display1() {
+		alert("display1 함수의 명령 실행");
+	}
+	
+	//함수명은 함수를 구분하기 위한 식별자로 내부적으로 함수변수처럼 함수를 저장하여 사용
+	//alert(display1);//변수에 저장된 값 출력 >> 선언함수 출력
+	//display1();//함수명을 이용하여 함수 호출
+	
+	//함수명 없이 함수 선언 - 익명함수 : 익명함수를 변수에 저장
+	var display2=function() {
+		alert("display2 함수의 명령 실행");
+	}
+	
+	//변수에 함수를 저장하여 사용 가능 - 함수변수
+	//alert(display2);//변수에 저장된 값 출력 >> 익명함수 출력
+	//display2();//함수변수를 이용하여 함수 호출
+	
+	function display(callback) {
+		//alert(callback);//매개변수에 저장된 값 출력
+		
+		callback();//매개변수에 저장된 함수를 이용하여 함수 호출 - 콜백함수
+	}
+	
+	//display(display1);//함수명을 전달하여 함수 호출 - 매개변수는 함수를 전달받아 저장
+	display(display2);//함수변수에 저장된 함수를 전달하여 함수 호출 - 매개변수는 함수를 전달받아 저장
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
