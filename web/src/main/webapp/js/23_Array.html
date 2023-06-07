@@ -37,19 +37,77 @@
 	//가진 Array 객체 생성 - Array 객체의 요소값으로 전달값이 차례대로 저장 
 	var array=new Array(10,20,30);
 	//alert(array.length);
-	alert(array);
+	//alert(array);
+	
+	//Array 객체의 요소는 첨자(0부터 1씩 증가되는 숫자값)를 사용하여 구분
+	// => Array 객체의 요소는 [] 연산자에 첨자를 사용하여 표현
+	//alert("array[0] = "+array[0]+", array[1] = "+array[1]+", array[2] = "+array[2]);
+	
+	//Array 객체의 요소를 표현하는 첨자가 범위를 벗어난 경우 [undefined] 자료형으로 표현
+	//alert("array[3] = "+array[3]);
+	
+	/*
+	//JSON를 이용하여 Array 객체 생성
+	var array=[];//Empty Array
+	alert(array.length);
+	*/
+	
+	//JSON를 이용하여 Array 객체를 생성하고 Array 객체의 요소에 초기값 저장
+	var array=[10, 20, 30];
+	
+	/*
+	//for 구문을 이용하여 Array 객체에 저장된 요소에 대한 일괄 처리 가능
+	for(i=0;i<array.length;i++) {
+		alert("array["+i+"] = "+array[i]);
+	}
+	*/
+	
+	/*
+	//in 연산자를 사용한 for 구문을 이용하여 Array 객체의 첨자를 제공받아 일괄 처리 가능
+	for(index in array) {
+		alert("array["+index+"] = "+array[index]);	
+	}
+	*/
+	
+	/*
+	//of 연산자를 사용한 for 구문을 이용하여 Array 객체의 요소값을 제공받아 일괄 처리 가능
+	for(value of array) {
+		alert(value);	
+	}
+	*/
+	
+	/*
+	//Array.forEach(callback(element[, index][, array])) : Array 객체의 요소를 일괄 처리
+	//하기 위한 기능을 제공하는 메소드
+	// => 메소드 매개변수에 콜백함수를 전달하면 Array 객체에 저장된 요소의 갯수만큼 반복
+	//호출되며 콜백함수의 매개변수로 전달받은 값을 이용하여 Array 객체를 콜백함수에서 처리 
+	// => 콜백함수의 매개변수에는 요소값, 첨자, Array 객체가 저장되어 콜백함수에서 사용
+	array.forEach(function(elt, i) {
+		alert("array["+i+"] = "+elt);	
+	});
+	*/
+	
+	//alert(array);//10,20,30
+	
+	//Array.push(value) : Array 객체의 마지막 위치에 요소를 추가를 매개변수로 전달받은 값을
+	//요소값으로 저장하는 메소드
+	array.push(40);
+	//alert(array);//10,20,30,40
+	
+	//Array.pop() : Array 객체의 마지막 위치에 요소를 삭제하고 삭제된 요소의 값을 반환하는 메소드
+	var value=array.pop();
+	//alert(array);//10,20,30
+	//alert(value);//40
+	
+	//Array.unshift(value) : Array 객체의 첫번째 위치에 요소를 추가를 매개변수로 전달받은 값을
+	//요소값으로 저장하는 메소드
+	array.unshift(value);
+	//alert(array);//40,10,20,30
+	
+	//Array.shift() : Array 객체의 첫번째 위치에 요소를 삭제하고 삭제된 요소의 값을 반환하는 메소드
+	var value=array.shift();
+	//alert(array);//10,20,30
+	alert(value);//40
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

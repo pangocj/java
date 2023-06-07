@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>구조분해할당(Destructuring Assignment)</h1>
+	<hr>
+	<p>구조분해할당 : Object 객체 또는 Array 객체의 요소를 해체하여 요소값을 개별적인 변수에
+	저장하여 제공하기 위한 기능</p>
+	
+	<script type="text/javascript">
+	/*
+	var array=["홍길동","임꺽정","전우치"];
+	
+	//var one=array[0];
+	//var two=array[1];
+	//var three=array[2];
+	
+	//구조분해할당을 사용하여 Array 객체의 요소값을 차례대로 제공받아 변수에 저장
+	//형식)var [변수명,변수명,...] = Array객체
+	var [one, two, three] = array;
+	
+	alert("one = "+one+", two = "+two+", three = "+three);
+	*/
+	
+	/*
+	var [one, two, three] = ["홍길동","임꺽정","전우치"];
+	alert("one = "+one+", two = "+two+", three = "+three);
+	*/
+	
+	/*
+	//Array 객체를 분리 할당할 경우 할당 받을 값이 없을 때 변수에 저장될 기본값 설정 가능
+	//var [one, two, three="일지매"] = ["홍길동","임꺽정","전우치"];
+	var [one, two, three="일지매"] = ["홍길동","임꺽정"];
+	
+	alert("one = "+one+", two = "+two+", three = "+three);
+	*/
+	
+	/*
+	//함수 선언시 매개변수에 전달된 값이 없는 경우 매개변수에 저장된 기본값 설정 가능
+	function sum(num1=10, num2=20) {
+		return num1+num2;
+	}
+	
+	//alert("합계 = "+sum());
+	//alert("합계 = "+sum(100));
+	alert("합계 = "+sum(100,200));
+	*/
+	
+	/*
+	var [num1, num2] = [10, 20];
+	//alert("num1 = "+num1+", num2 = "+num2);//num1 = 10, num2 = 20
+	
+	//두 변수에 저장된 값을 바꾸어 저장
+	[num1, num2] = [num2, num1];
+	alert("num1 = "+num1+", num2 = "+num2);////num1 = 20, num2 = 10
+	*/
+	
+	/*
+	function returnArray() {
+		return [10, 20, 30];//Array 객체 반환
+	}
+	
+	//Array 객체를 반환받아 변수에 저장
+	//var array=returnArray();
+	//alert(array[0]+", "+array[1]+", "+array[2]);//10, 20, 30
+	
+	//Array 객체를 반환받아 Array 객체의 요소값을 변수에 저장
+	//var [num1, num2, num3] = returnArray();
+	//alert(num1+", "+num2+", "+num3);//10, 20, 30
+	
+	//Array 객체를 반환받아 Array 객체의 요소값 중 필요한 요소값만 변수에 저장 가능
+	//var [num1, , num2] = returnArray();
+	//alert(num1+", "+", "+num2);//10, 30
+	
+	//... 연산자(전개 연산자)를 사용하여 할당된 나머지 요소값들을 Array 객체로 전달받아 저장 
+	var [num1, ...num2] = returnArray();
+	alert("num1 = "+num1);//10
+	alert("num2 = "+num2);//20,30
+	*/
+	
+	/*
+	//Object 객체를 생성하여 변수에 저장
+	var student={num:1000, name:"홍길동"};
+	//alert("학번 = "+student.num+", 이름 = "+student.name);
+	
+	//Object 객체의 요소값을 구조 분해하여 개별적인 변수에 저장
+	// => 변수의 이름이 반드시 요소명과 동일하게 생성되도록 작성
+	//var [num, name] = student;
+	//alert("학번 = "+num+", 이름 = "+name);
+	
+	//변수의 이름의 요소명이 다르게 설정된 경우 에러 발생
+	//var [number, name] = student;//에러 발생
+	//alert("학번 = "+number+", 이름 = "+name);
+	
+	//변수의 이름를 요소명과 다르게 설정하여 사용 가능
+	var {num:number, name:irum} = student;
+	alert("학번 = "+number+", 이름 = "+irum);
+	*/
+	
+	/*
+	var {num:number, name:irum} = {num:1000, name:"홍길동"};
+	alert("학번 = "+number+", 이름 = "+irum);
+	*/
+	
+	var people=[{"name":"홍길동", "subject":"JAVA", "grade":"초급"}
+		,{"name":"임꺽정", "subject":"JSP", "grade":"중급"}
+		,{"name":"전우치", "subject":"SPRING", "grade":"고급"}];
+	
+	/*
+	for(i=0;i<people.length;i++) {
+		//alert(people[i]);//[object Object]
+		alert("이름 = "+people[i].name+", 과목명 = "+people[i].subject+", 등급 = "+people[i].grade);
+	}
+	*/
+		
+	/*
+	//for 구분에서 of 연산자를 사용하여 Array 객체의 요소값(Object 객체)를 하나씩 제공받아 반복 처리
+	for(object of people) {
+		alert("이름 = "+object.name+", 과목명 = "+object.subject+", 등급 = "+object.grade);
+	}
+	*/
+	
+	/*
+	//Array 객체의 요소값(Object 객체)를 구조 분해하여 변수에 저장
+	// => Object 객체의 요소명과 변수명을 동일하게 작성
+	for([name, subject, grade] of people) {
+		alert("이름 = "+name+", 과목명 = "+subject+", 등급 = "+grade);
+	}
+	*/
+	
+	/*
+	for({name:irum, subject:name, grade} of people) {
+		alert("이름 = "+irum+", 과목명 = "+name+", 등급 = "+grade);
+	}
+	*/
+	
+	//매개변수로 Object 객체를 전달받아 요소값을 구조 분해하여 변수에 저장
+	function display({num, name}) {
+		alert("학번 = "+num+", 이름 = "+name);
+	}
+	
+	//var student={"num":1000, "name":"홍길동"};
+	//display(student);
+	
+	display({"num":1000, "name":"홍길동"});
+	</script>
+</body>
+</html>
