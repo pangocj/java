@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>프로토타입 메소드(Prototype Method)</h1>
+	<hr>
+	<p>클래스 함수를 사용하여 객체를 생성할 경우 클래스 함수에 선언된 프로퍼티와 메소드가
+	객체의 요소로 생성</p>
+	<p>프로퍼티는 객체의 속성값을 저장하기 위해 객체마다 따로 생성되어 사용하는 것이 맞지만
+	메소드는 동일한 명령의 함수가 객체마다 따로 생성되어 저장되는 것은 비효율적인 사용 방법</p>
+	<p>객체의 메소드를 프로토타입 메소드로 선언하면 객체의 갯수에 상관없이 메소드가 하나만
+	생성되어 모든 객체가 공유하여 사용 가능</p>
+	
+	<script type="text/javascript">
+	/*
+	function Student(num, name, address) {
+		this.num=num;
+		this.name=name;
+		this.address=address;
+		
+		this.display=function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		}
+		
+		this.setValue=function(num, name, address) {
+			this.num=num;
+			this.name=name;
+			this.address=address;
+		}	
+	}
+	
+	//생성된 객체마다 프로퍼티와 메소드를 따로 저장 
+	var student1=new Student(1000, "홍길동", "서울시 강남구");
+	var student2=new Student(2000, "임꺽정", "서울시 종로구");
+	var student3=new Student(3000, "전우치", "서울시 동작구");
+	
+	//student1.display();
+	//student2.display();
+	student3.display();
+	*/
+	
+	//클래스 함수 선언할 때 프로퍼티만 생성
+	function Student(num, name, address) {
+		this.num=num;
+		this.name=name;
+		this.address=address;
+	}
+	
+	/*
+	//클래스 함수에 프로토타입 메소드 추가
+	Student.prototype.display=function() {
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+	}
+	
+	Student.prototype.setValue=function(num, name, address) {
+		this.num=num;
+		this.name=name;
+		this.address=address;
+	}
+	*/
+	
+	Student.prototype={
+		"display" : function() {
+			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+		},
+		"setValue" : function(num, name, address) {
+			this.num=num;
+			this.name=name;
+			this.address=address;
+		}
+	}
+	
+	/*
+	//생성된 객체에는 프로퍼티만 따로 저장되고 메소드는 하나만 생성되어 모든 객체가 공유하여 사용
+	var student1=new Student(1000, "홍길동", "서울시 강남구");
+	var student2=new Student(2000, "임꺽정", "서울시 종로구");
+	var student3=new Student(3000, "전우치", "서울시 동작구");
+	
+	//student1.display();
+	//student2.display();
+	student3.display();
+	*/
+	
+	var student=new Student(1000, "홍길동", "서울시 강남구");
+	//student.display();
+	//student.setValue(2000, "임꺽정", "서울시 종로구");
+	//student.display();
+	
+	//instanceof 연산자 : ES6에서 추가된 연산자로 변수에 저장된 객체가 클래스 함수(클래스)에
+	//접근하지 못할 경우 [false]를 제공하고 접근 가능한 경우 [true]를 제공하는 연산자
+	//형식)객체변수 instanceof 클래스
+	//alert(student instanceof Student);//true
+	
+	//in 연산자 : 객체의 요소가 아닌 경우 [false]를 제공하고 객체의 요소인 경우 [true]를 제공하는 연산자
+	//형식)"요소명" in 객체변수
+	//alert("num" in student);//true
+	//alert("display" in student);//true
+	//alert("phone" in student);//false
+	
+	/*
+	//for 구문을 사용하여 객체 요소에 대한 일괄처리 가능
+	//형식)for(변수명 in 객체변수) { 명령; 명령; ... }
+	// => 객체 요소의 이름을 하나씩 제공받아 변수에 저장하여 반복 처리
+	for(variable in student) {
+		//alert(variable);
+		
+		//객체의 요소는 . 연산자가 아닌 [] 연산자를 사용하여 접근 가능
+		if(typeof(student[variable]) != "function") {//객체의 요소가 메소드가 아닌 경우
+			alert(variable+" = "+student[variable]);
+		}
+	}
+	*/
+	
+	//with 구문을 사용하여 블럭 내부에서 객체 요소를 변수처럼 사용하는 기능 제공
+	//형식)with(객체변수) { 명령; 명령; ... }
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	with(student) {
+		alert("학번 = "+num+", 이름 = "+name+", 주소 = "+address);
+	}
+	</script>
+</body>
+</html>
