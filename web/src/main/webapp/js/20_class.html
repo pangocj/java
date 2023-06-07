@@ -45,6 +45,7 @@
 	// => new 연산자로 클래스 함수를 호출하여 객체 생성하고 생성된 객체를 변수에 저장 - 객체변수
 	//형식)var 변수명 = new 클래스함수(값, 값, ...)
 	var student=new Student(1000, "홍길동", "서울시 강남구");
+	alert("student = "+student);//student = [object Object]
 	//alert("변수의 자료형 = "+typeof(student));//변수의 자료형 = object
 	
 	//객체는 . 연산자를 사용하여 객체 요소(프로퍼터 또는 메소드)에 접근하여 사용 가능
@@ -72,7 +73,7 @@
 	alert("전화번호 = "+student.phone);//전화번호 = undefined
 	*/
 	
-	//ES6에서는 class 키워드로 클래스를 선언하여 객체 생성 가능
+	//ES6에서는 class 키워드로 클래스를 선언하여 객체 생성 가능 - 내부적으로 클래스 함수로 처리
 	class Human {
 		constructor(num) { //constructor 키워드로 생성자 선언
 			//this 키워드로 객체 요소를 표현하여 값 저장 - 프로퍼티
