@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>String 클래스 함수</h1>
+	<hr>
+	<p>문자값이 저장된 객체를 생성하기 위한 클래스 함수 - String 클래스 함수의 프로퍼티와 메소드 제공</p>
+	
+	<script type="text/javascript">
+	//매개변수에 전달된 문자값이 저장된 String 객체를 생성하여 변수에 저장
+	var str=new String("Hello, Javascript!!!");
+	//alert("변수의 자료형 = "+typeof(str));//변수의 자료형 = object
+	
+	//String.toString() : String 객체에 저장된 문자값을 반환하는 메소드
+	//alert("str.toString() = "+str.toString());//str.toString() = Hello, Javascript!!!
+	//String 객체가 저장된 변수를 출력하면 toString() 메소드 자동 호출
+	//alert("str = "+str);//str = Hello, Javascript!!!
+	
+	//String.length() : String 객체에 저장된 문자값의 문자 갯수를 저장한 프로퍼티
+	//alert("str.length = "+str.length);//str.length = 20
+	
+	//String.charAt(index) : String 객체에 저장된 문자값에서 매개변수로 전달받은 첨자 위치의
+	//문자를 반환하는 메소드
+	//alert("str.charAt(7) = "+str.charAt(7));//str.charAt(7) = J
+	
+	//문자값은 내부적으로 배열처럼 처리되므로 [] 연산자로 첨자를 사용하여 요소값(문자) 사용 가능
+	//alert("str[7] = "+str[7]);//str[7] = J
+	
+	//String.indexOf(string) : String 객체에 저장된 문자값에서 매개변수로 전달받은 문자값을
+	//검색하여 시작첨자를 반환하는 메소드 - 검색 문자값이 없는 경우 -1 반환
+	//alert("str.indexOf('script') = "+str.indexOf('script'));//str.indexOf('script') = 11
+	//alert("str.indexOf('Script') = "+str.indexOf('Script'));//str.indexOf('Script') = -1
+	
+	//String.replace(search, replace) : String 객체에 저장된 문자값에서 매개변수로 전달받은 
+	//첫번째 문자값을 검색하여 두번째 문자값으로 변경하여 반환하는 메소드
+	//alert("str.replace('Hello','Hi') = "+str.replace('Hello','Hi'));//str.replace('Hello','Hi') = Hi, Javascript!!!
+	
+	//String.toUpperCase() : String 객체에 저장된 문자값을 대문자로 변환하여 반환하는 메소드
+	//String.toLowerCase() : String 객체에 저장된 문자값을 소문자로 변환하여 반환하는 메소드
+	//alert("str.toUpperCase() = "+str.toUpperCase());//str.toUpperCase() = HELLO, JAVASCRIPT!!!
+	//alert("str.toLowerCase() = "+str.toLowerCase());//str.toLowerCase() = hello, javascript!!!
+	
+	//String.substring(from, to) : String 객체에 저장된 문자값을 매개변수로 전달받은 시작첨자
+	//(from - 포함)부터 종료첨자(to - 미포함)까지의 문자값을 잘라내어 반환하는 메소드
+	//alert("str.substring(7,11) = "+str.substring(7,11));//str.substring(7,11) = Java
+	
+	//String.substr(from, length) : String 객체에 저장된 문자값을 매개변수로 전달받은 시작첨자
+	//(from - 포함)부터 길이(length)만큼  문자값을 잘라내어 반환하는 메소드
+	//alert("str.substr(7,4) = "+str.substr(7,4));//str.substr(7,4) = Java
+	
+	//String.split(pattern) : String 객체에 저장된 문자값을 매개변수로 전달받은 문자값으로
+	//구분 분리하여 Array 객체로 반환하는 메소드
+	//var [str1, str2] = str.split(" ");//구조분해할당를 사용하여 Array 객체의 요소값을 변수에 저장
+	//alert("str1 = "+str1+" >> str2 = "+str2);//str1 = Hello, >> str2 = Javascript!!!
+	
+	var str="ABCDEFG";
+	//alert("변수의 자료형 = "+typeof(str));//변수의 자료형 = string
+	//string 변수에 저장된 문자값은 내부적으로 String 객체로 처리되므로 프로퍼티 및 메소드 사용 가능
+	alert("str.length = "+str.length);//str.length = 7
+	</script>
+</body>
+</html>
