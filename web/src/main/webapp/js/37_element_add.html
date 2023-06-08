@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - Element 객체 생성 및 DOM Tree 추가</h1>
+	<hr>
+	<div id="imageDiv"></div>
+	
+	<script type="text/javascript">
+	//document.createElement(tagName) : 매개변수로 전달받은 태그명의 Element 객체를 생성하여 반환하는 메소드
+	var h2E=document.createElement("h2");//<h2></h2>
+	//alert(h2E);//[object HTMLHeadingElement]
+	
+	//document.createTextNode(content) : 매개변수로 전달받은 태그내용이 저장된 Text 객체를 생성하여 반환하는 메소드
+	var h2T=document.createTextNode("h2 태그에 의해 출력되는 내용");
+	//alert(h2T);//[object Text]
+	
+	//Node.appendChild(newNode) : 매개변수로 전달받은 Node(Element) 객체를 Node(Element) 
+	//객체의 자식으로 추가하는 메소드
+	h2E.appendChild(h2T);//<h2>h2 태그에 의해 출력되는 내용</h2>
+	
+	//document.body : document 객체에서 body 태그를 자바스트립트 객체로 표현
+	// => DOM Tree에 새로운 태그를 추가하여 저장 >> 출력
+	document.body.appendChild(h2E);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
