@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<script type="text/javascript">
+function load() {//이벤트 처리 함수
+	alert("동적인 페이지를 구현하기 위해 HTML 태그 조작하는 명령 실행");
+}
+
+/*
+//자바스트립트 객체에 이벤트 리스너 속성을 요소로 하여 이벤트 처리 함수 저장
+// => 자바스트립트 객체에서 해당 이벤트가 발생될 경우 이벤트 처리 함수 호출
+window.onload=function() {
+	alert("동적인 페이지를 구현하기 위해 HTML 태그 조작하는 명령 실행");
+}
+*/
+</script>
+</head>
+<!-- onload 이벤트 리스너 속성 : 태그가 메모리에 저장된 경우 실행될 이벤트 처리 명령
+(자바스트립트)을 속성값으로 설정 -->
+<!-- body 태그가 메모리에 저장되며 자바스크립트의 load() 함수 호출 -->
+<!-- <body onload="load();"> -->
+<body>
+	<h1>DOM(Document Object Model) - onload Event Listener</h1>
+	<hr>
+	<p>요청 웹프로그램의 실행결과를 웹문서로 전달받아 브라우저의 응답영역에 출력</p>
+	<p>브라우저는 DOM Parser를 사용하여 웹문서의 HTML 태그를 DOM Tree로 생성
+	- 자바스트립트는 DOM Tree의 HTML 태그를 객체로 제공받아 사용 가능</p>
+	<p>DOM : document 객체를 기반으로 제공되는 HTML 태그의 Element 객체</p>
+	<p>자바스트립트를 사용하여 태그에서 이벤트가 발생될 경우 이벤트 처리 함수를 사용하여
+	태그를 Element 객체로 제공받아 조작 가능 - 동적인 페이지 구현(DHTML : DynamicHTML)</p>
+	<p>반드시 DOM Tree가 완성된 후 동적인 페이지 구현 가능</p>
+	
+	  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
