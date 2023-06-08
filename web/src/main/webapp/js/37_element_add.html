@@ -28,22 +28,23 @@
 	
 	var imgE=document.createElement("img");//<img>
 	
+	//Element.attributeName : Element 객체에 프로퍼티를 추가하면 태그에 속성과 속성값을 
+	//추가하는 것과 동일한 기능 수행
+	imgE.src="images/Koala.jpg";//<img src="images/Koala.jpg">
 	
+	//Node.setAttribute(name, value) : Node(Element) 객체의 태그 속성값을 변경하는 메소드
+	// => 매개변수로 전달받은 속성이 없는 경우 속성 추가
+	//Node.setAttribute(name) : Node(Element) 객체의 태그 속성값을 반환하는 메소드
+	//Node.removeAttribute(name) : Node(Element) 객체의 태그 속성을 삭제하는 메소드
+	imgE.setAttribute("width", "300");//<img src="images/Koala.jpg" width="300">
+	
+	var divE=document.getElementById("imageDiv");//<div id="imageDiv"></div>
+	divE.appendChild(imgE);//<div id="imageDiv"><img src="images/Koala.jpg" width="300"></div>
+	
+	var hrE=document.createElement("hr");//<hr>
+	//Node.insertBefore(newElement, before) : 기존 Node(Element) 객체 전에 새로운 Node(Element)
+	//객체를 삽입하는 메소드
+	document.body.insertBefore(hrE, h2E);
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
