@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style type="text/css">
+#displayDiv {
+	width: 600px;
+	margin: 0 auto;
+	padding: 30px 0;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	border: 2px solid black;
+}
+</style>
+</head>
+<body>
+	<h1>DOM(Document Object Model) - 시계</h1>
+	<hr>
+	<div id="displayDiv">2023년 06월 08일 17시 03분 35초</div>
+	
+	<script type="text/javascript">
+	var displayDiv=document.getElementById("displayDiv");
+	
+	var displayClock=function() {
+		//클라이언트의 현재 날짜와 시간이 저장된 Date 객체를 생성하여 변수에 저장
+		var now=new Date();
+		
+		//Date 객체를 이용하여 태그내용으로 출력될 값을 변수에 저장
+		var printNow=now.getFullYear()+"년 "+(now.getMonth()+1)+"월 "+now.getDate()+"일 "
+			+now.getHours()+"시 "+now.getMinutes()+"분 "+now.getSeconds()+"초";
+		
+		//div 태그에 태그내용을 변경하여 출력
+		displayDiv.innerHTML=printNow;
+	}
+	
+	displayClock();//함수 호출 - 현재 날짜와 시간이 태그에 출력
+	setInterval(displayClock, 1000);//1초마다 함수 호출
+	</script>
+</body>
+</html>
+
+
+
+
