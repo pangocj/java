@@ -19,7 +19,7 @@
 	//var three=array[2];
 	
 	//구조분해할당을 사용하여 Array 객체의 요소값을 차례대로 제공받아 변수에 저장
-	//형식)var [변수명,변수명,...] = Array객체
+	//형식)var [변수명, 변수명, ...] = Array객체
 	var [one, two, three] = array;
 	
 	alert("one = "+one+", two = "+two+", three = "+three);
@@ -86,13 +86,14 @@
 	var student={num:1000, name:"홍길동"};
 	//alert("학번 = "+student.num+", 이름 = "+student.name);
 	
-	//Object 객체의 요소값을 구조 분해하여 개별적인 변수에 저장
+	//구조분해할당을 사용하여 Object 객체의 요소값을 차례대로 제공받아 변수에 저장
+	//형식)var {변수명, 변수명, ...} = Object객체
 	// => 변수의 이름이 반드시 요소명과 동일하게 생성되도록 작성
 	//var [num, name] = student;
 	//alert("학번 = "+num+", 이름 = "+name);
 	
 	//변수의 이름의 요소명이 다르게 설정된 경우 에러 발생
-	//var [number, name] = student;//에러 발생
+	//var [number, irum] = student;//에러 발생
 	//alert("학번 = "+number+", 이름 = "+name);
 	
 	//변수의 이름를 요소명과 다르게 설정하여 사용 가능
@@ -126,7 +127,7 @@
 	/*
 	//Array 객체의 요소값(Object 객체)를 구조 분해하여 변수에 저장
 	// => Object 객체의 요소명과 변수명을 동일하게 작성
-	for([name, subject, grade] of people) {
+	for({name, subject, grade} of people) {
 		alert("이름 = "+name+", 과목명 = "+subject+", 등급 = "+grade);
 	}
 	*/

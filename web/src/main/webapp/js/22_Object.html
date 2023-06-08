@@ -16,14 +16,14 @@
 	//alert(student);//[object Object]
 	
 	//Object 객체에 요소 추가
-	student.num=1000;//객체 요소에 값을 저장 - 프로퍼티 추가
+	student.num=1000;//객체 요소를 생성하여 값을 저장 - 프로퍼티 추가
 	student.name="홍길동";
 	student.address="서울시 강남구";
 	
 	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
 
 	//Object 객체에 요소 추가
-	student.display=function() {//객체 요소에 함수를 저장 - 메소드 추가
+	student.display=function() {//객체 요소를 생성하여 함수를 저장 - 메소드 추가
 		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
 	}
 	
@@ -60,7 +60,7 @@
 	
 	/* ES6에서는 Object 객체에 메소드를 간결하게 표현하여 저장 가능 */
 	var student={"num":1000, "name":"홍길동", "address":"서울시 강남구"
-		, display(){
+		, display() {
 			alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
 		}
 	};
