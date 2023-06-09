@@ -45,20 +45,30 @@ div {
 	document.getElementById("btn3").addEventListener("click", eventHandleOne);
 	document.getElementById("btn3").addEventListener("click", eventHandleTwo);
 	
+	//Node.addEventListener(eventName, callback[, useCapture])를 이용하여 이벤트 처리 함수 등록
+	// => addEventListener() 메소드를 호출할 때 useCapture 매개변수를 이용하면 캐쳐링 또는
+	//버블링 단계에서 콜백함수를 호출하여 이벤트 처리 명령 실행 가능
+	// => useCapture 매개변수에 [false]를 전달하면 버블링 단계에서 콜백함수를 호출하여 이벤트 처리
+	//명령을 실행하고 [true]를 전달하면 캐쳐링 단계에서 콜백함수를 호출하여 이벤트 처리
 	document.getElementById("red").addEventListener("click", function() {
 		//event.currentTarget : 이벤트가 발생된 태그에 대한 Element 객체를 저장한 프로퍼티
-		var ele=event.currentTarget; 
-		alert("캡쳐링 단계 = "+ele.tagName+" 태그("+ele.getAttribute("id")+")에서 "+event.type+" 이벤트 발생");
+		var tag=event.currentTarget.tagName; 
+		var id=event.currentTarget.getAttribute("id"); 
+		//event.type : 태그에서 발생된 이벤트를 저장한 프로퍼티
+		alert("캡쳐링 단계 = "+tag+" 태그("+id+")에서 "+event.type+" 이벤트 발생");
 	}, true);
 	
 	document.getElementById("green").addEventListener("click", function() {
-		var ele=event.currentTarget; 
-		alert("버블링 단계 = "+ele.tagName+" 태그("+ele.getAttribute("id")+")에서 "+event.type+" 이벤트 발생");
+		var tag=event.currentTarget.tagName; 
+		var id=event.currentTarget.getAttribute("id"); 
+		alert("버블링 단계 = "+tag+" 태그("+id+")에서 "+event.type+" 이벤트 발생");
+		//event.stopPropagation();
 	}, false);
 	
 	document.getElementById("red").addEventListener("click", function() {
-		var ele=event.currentTarget; 
-		alert("버블링 단계 = "+ele.tagName+" 태그("+ele.getAttribute("id")+")에서 "+event.type+" 이벤트 발생");
+		var tag=event.currentTarget.tagName; 
+		var id=event.currentTarget.getAttribute("id"); 
+		alert("버블링 단계 = "+tag+" 태그("+id+")에서 "+event.type+" 이벤트 발생");
 	}, false);
 	</script>
 </body>
