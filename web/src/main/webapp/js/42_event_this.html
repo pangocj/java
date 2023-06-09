@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style type="text/css">
+#displayDiv {
+	width: 600px;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid red;
+}
+
+ul li {
+	width: 400px;
+	margin: 10px;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bold;
+	border: 1px solid blue;
+	list-style-type: none;
+}
+</style>
+</head>
+<body>
+	<h1>이벤트(Event) - this</h1>
+	<hr>
+	<p>이벤트 처리 함수에서 이벤트가 발생된 태그(Element 객체)를 표현하기 위해 this 키워드 사용</p>
+	<hr>
+	<div id="displayDiv">이벤트 처리</div>
+	<hr>
+	<ul>
+		<li>메뉴-1</li>
+		<li>메뉴-2</li>
+		<li>메뉴-3</li>
+	</ul>
+	
+	<script type="text/javascript">
+	document.getElementById("displayDiv").onclick=function() {
+		//alert("태그에서 클릭 이벤트가 발생 되었습니다.");
+		
+		//Node(Element) 객체의 프로퍼티로 태그의 속성을 표현 가능
+		//document.getElementById("displayDiv").style="color: green;";//div 태그의 style 속성값 변경
+		
+		//this 키워드에는 이벤트가 발생된 태그의 Node(Element) 객체가 자동 저장
+		this.style="color: green;";//div 태그의 style 속성값 변경
+	}
+	
+	var liList=document.getElementsByTagName("li");
+	
+	/*
+	liList.item(0).onclick=function() {
+		//liList.item(0).style="color: orange;";
+		this.style="color: orange;";
+	}
+	
+	liList.item(1).onclick=function() {
+		//liList.item(1).style="color: orange;";
+		this.style="color: orange;";
+	}
+	
+	liList.item(2).onclick=function() {
+		//liList.item(2).style="color: orange;";
+		this.style="color: orange;";
+	}
+	*/
+	
+	for(i=0;i<liList.length;i++) {//i 변수에 3이 저장되면 반복문 종료
+		//NodeList 객체에 저장된 모든 Node(Element) 객체의 이벤트 리스너 속성에 이벤트 처리 함수 등록
+		// => 이벤트 처리 함수는 Node(Element) 객체에서 이벤트가 발생되면 호출되어 실행
+		liList.item(i).onclick=function() {
+			//반복문이 종료된 후 이벤트가 발생될 경우에 실행되는 명령
+			//liList.item(i).style="color: orange;";//liList.item(3) >> null
+			
+			this.style="color: orange;";
+		}
+	}
+	</script>	
+</body>
+</html>
