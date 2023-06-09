@@ -22,5 +22,44 @@
 		</tr>
 	</table>		
 	</form>
+	<hr>
+	<!-- 
+	<a href="https://www.daum.net" onclick="event.preventDefault();">다음(Daum)으로 이동</a>
+	<a href="https://www.daum.net" onclick="return false;">다음(Daum)으로 이동</a>
+	-->
+	 
+	<script type="text/javascript">
+	loginForm.id.focus();
+
+	//form 태그에서 제출 이벤트가 발생될 경우 호출될 이벤트 처리 함수 등록
+	// => 비정상적인 입력값이 있는 경우 제출 이벤트 취소 - form 태그 미실행
+	loginForm.onsubmit=function() {
+		if(loginForm.id.value=="") {
+			alert("아이디를 입력해 주세요.");
+			loginForm.id.focus();
+			//태그에서 발생되는 이벤트에 대한 기본 명령을 삭제
+			// => form 태그를 이용하여 웹프로그램을 요청하는 명령 취소 - form 태그 미실행
+			//event.preventDefault(); 
+			//return;
+			
+			//이벤트 처리 함수에서 return 명령으로 [false]를 반환하면 이벤트 처리 함수를 
+			//종료하면서 태그의 기본 명령 제거 및 이벤트 전달 중지
+			return false;//form 태그 미실행
+		}
+	
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(!idReg.test(loginForm.id.value)) {
+			alert("아이디를 형식에 맞게 입력해 주세요.");
+			loginForm.id.focus();
+			return false;
+		}
+		
+		if(loginForm.passwd.value=="") {
+			alert("비밀번호를 입력해 주세요.");
+			loginForm.passwd.focus();
+			return false;
+		}
+	}
+	</script>
 </body>
 </html>
