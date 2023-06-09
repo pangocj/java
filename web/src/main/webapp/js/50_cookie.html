@@ -41,7 +41,7 @@
 		date.setDate(date.getDate()+expires);
 		
 		//쿠키변수에 expires 이름으로 쿠키의 지속시간을 묶어서 저장
-		//date.toUTCString() : Date 객체에 저장된 날짜와 시간을 세계표준시(UTC)의 문자값을 
+		//date.toUTCString() : Date 객체에 저장된 날짜와 시간을 협정 세계시(UTC)의 문자값을 
 		//변환하여 반환하는 메소드
 		sc+="expires="+date.toUTCString()+";";
 	
