@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<style type="text/css">
+#itemListDiv div {
+	margin: 5px;
+}
+</style>
+</head>
+<body>
+	<h1>이벤트(Event) - DHTML</h1>
+	<hr>
+	<p>DHTML(Dynamic HTML) : 브라우저에서 이벤트가 발생될 경우 브라우저에 출력된 태그를
+	변경하여 동적인 페이지 제공하는 기능</p>
+	<hr>
+	<button type="button" id="addBtn">아이템 추가</button>
+	<div id="itemListDiv"></div>
+	
+	<script type="text/javascript">
+	//태그를 구분하기 위한 값이 저장되는 변수
+	var count=0;
+	
+	document.getElementById("addBtn").onclick=function() {
+		count++;
+		
+		var newItem=document.createElement("div");//<div></div>
+		newItem.setAttribute("id", "item_"+count);//<div id="item_XXX"></div>
+	
+		var html="아이템["+count+"]&nbsp;&nbsp;<button type='btn' onclick='removeItem("+count+");'>삭제</button>";
+	
+		newItem.innerHTML=html;//<div id="item_XXX">아이템[XXX][삭제]</div>
+		
+		//div 태그(itemListDiv)의 마지막 자식태그로 생성된 태그를 배치 - 출력
+		document.getElementById("itemListDiv").appendChild(newItem);
+	}
+	
+	//태그를 삭제하는 함수 - 매개변수로 태그를 구분할 수 있는 값을 전달받아 저장
+	function removeItem(cnt) {
+		//alert(cnt);
+		
+		var removeE=document.getElementById("item_"+cnt);
+		document.getElementById("itemListDiv").removeChild(removeE);
+	}
+	</script> 
+</body>
+</html>
