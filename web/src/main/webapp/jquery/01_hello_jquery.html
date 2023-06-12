@@ -6,15 +6,72 @@
 <!-- script 태그를 사용하여 jQuery 라이브러리 파일을 웹문서에 포함해야만 jQuery 기능 사용 가능 -->
 <!-- => https://www.jquery.com 사이트 참조 -->
 
+<!-- jQuery 라이브러리 파일을 다운로드 받아 현재 서버의 자원으로 저장하여 웹문서 포함 -->
+<!-- => 1.X : IE9 이하, 2.X 또는 3.X : IE10 이상 -->
+<!-- => 미압축파일(uncompressed) : 라이브러리 파일 변경 가능, 압축파일(compressed) : 라이브러리 파일 변경 불가능 -->
+<!-- <script type="text/javascript" src="jquery-3.7.0.min.js"></script> -->
 
+<!-- CDN 서버에 저장된 jQuery 라이브러리 파일을 제공받아 웹문서에 포함 -->
+<!-- CDN(Contents Delivery Network) Server : 대량의 콘텐츠를 빠르고 안정적으로 제공하는 서버 -->
+<!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+//jQuery 라이브러리를 이용하는 방법 - CSS 선택자로 태그(엘리먼트)를 검색하여 jQuery 객체로
+//생성하여 jQuery 객체의 메소드를 호출하고 필요한 기능 구현 
+// => 모든 태그가 DOM Tree에 저장되야만 jQuery 라이브러리 사용 가능
+
+/*
+//window 객체가 메모리에 모두 저장된 후 실행될 이벤트 처리 함수 등록 - DOM Tree 완성
+window.onload=function() {
+	alert("window.onload 이벤트에 의해 실행되는 명령-1");	
+}
+
+window.onload=function() {
+	alert("window.onload 이벤트에 의해 실행되는 명령-2");	
+}
+*/
+
+//jQuery 객체를 생성하여 메소드를 호출하는 방법
+//형식)jQuery(Selector|JavaScriptObject).method(value, value, ...);
+
+/*
+//jQuery(document).ready(callback) : document 객체가 준비(완성)되면 콜백함수를 호출하는 메소드
+// => document 객체가 준비된 상태는 DOM Tree가 완성된 상태로 콜백함수에서 jQuery 라이브러리 사용 가능
+// => window.onload 이벤트 리스너 속성을 사용하는 방법보다 가독성이 좋으면 객체의 메소드이므로
+//여러번 호출도 가능
+jQuery(document).ready(function() {
+	alert("document 객체가 준비된 상태인 경우 실행될 명령-1");	
+});
+
+jQuery(document).ready(function() {
+	alert("document 객체가 준비된 상태인 경우 실행될 명령-2");	
+});
+*/
+
+/*
+jQuery(document).ready(function() {
+	jQuery("div").css("color", "red");
+});
+*/
+</script>
 </head>
 <body>
 	<h1>jQuery 사용</h1>
 	<hr>
 	<p>jQuery : 이벤트 처리 및 태그 조작 기능을 제공하는 자바스크립트 라이브러리</p>
 	<hr>
-	<p>Hello, jQuery!!!</p>
-	<p>Hello, jQuery!!!</p>
-	<p>Hello, jQuery!!!</p>
+	<div>Hello, jQuery!!!</div>
+	<div>Hello, jQuery!!!</div>
+	<div>Hello, jQuery!!!</div>
+	
+	<script type="text/javascript">
+	//script 태그를 body 태그의 마지막 자식태그로 선언하면 document 객체가 준비된 상태와 동일하므로
+	//jQuery(document).ready() 메소드의 콜백함수를 이용하지 않아도 jQuery 라이브러리 사용 가능
+	//jQuery("div").css("color", "red");
+	
+	//jQuery 함수명 대신 $ 기호 사용하여 jQuery 객체 생성 가능
+	$("div").css("color", "red");
+	</script>
 </body>
 </html>
