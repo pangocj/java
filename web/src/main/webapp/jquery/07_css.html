@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<style type="text/css">
+#displayDiv {
+	margin: 20px;
+	padding: 10px;
+	color: red;
+	border: 1px solid blue;
+	font-size: 1.5em;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<h1>css 메소드</h1>
+	<hr>
+	<div id="displayDiv">CSS 관련 메소드</div>
+	
+	<script type="text/javascript">
+	//$(selector).css(name) : 선택자로 검색된 태그의 CSS 스타일 속성값을 반환하는 메소드
+	//alert("결과 = "+$("#displayDiv").css("margin"));//결과 = 20px
+	//alert("결과 = "+$("#displayDiv").css("padding"));//결과 = 10px
+	//alert("결과 = "+$("#displayDiv").css("color"));//결과 = rgb(255, 0, 0)
+	//alert("결과 = "+$("#displayDiv").css("border"));//결과 = 1px solid rgb(0, 0, 255)
+	//alert("결과 = "+$("#displayDiv").css("font-size"));//결과 = 24px
+	//CSS 스타일 속성을 자바스크립트의 카멜표기법으로 표현하여 사용 가능
+	//alert("결과 = "+$("#displayDiv").css("fontSize"));//결과 = 24px
+	//alert("결과 = "+$("#displayDiv").css("text-align"));//결과 = center
+	//alert("결과 = "+$("#displayDiv").css("textAlign"));//결과 = center
+
+	/*
+	//$(selector).css(name, value) : 선택자로 검색된 태그의 CSS 스타일 속성값을 변경하는 메소드
+	$("#displayDiv").css("width", "50%")
+	$("#displayDiv").css("position", "absolute");
+	$("#displayDiv").css("top", "200px");
+	$("#displayDiv").css("left", "100px");
+	*/
+	
+	//검색된 태그의 CSS 스타일 속성값을 여러개 변경할 경우 css 메소드의 매개변수에 JSON 형식으로
+	//표현된 Object 객체를 전달하여 Object 객체의 속성값으로 CSS 스타일의 속성값 변경 가능
+	$("#displayDiv").css({"width":"50%", "position":"absolute","top":"200px", "left":"100px"});
+	</script>
+</body>
+</html>
