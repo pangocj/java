@@ -14,8 +14,57 @@
 	<hr>
 	<div id="imageList3">
 		<img alt="숫자이미지" src="images/1.png" width="200" id="img1">		
-		<img alt="숫자이미지" src="images/2.png" width="200" id="img1">		
-		<img alt="숫자이미지" src="images/3.png" width="200" id="img1">		
+		<img alt="숫자이미지" src="images/2.png" width="200" id="img2">		
+		<img alt="숫자이미지" src="images/3.png" width="200" id="img3">		
 	</div>
+	
+	<script type="text/javascript">
+	//$(tag) : jQyery 함수의 매개변수로 HTML 태그를 전달받으면 자바스크립트의 Node(Element) 
+	//객체를 생성하여 제공받아 jQuery 객체로 반환 - 태그 생성
+	//$(selector).appendTo(targetSelector) : 선택자로 태그를 검색하여 타겟 선택자로 검색된
+	//태그의 마지막 자식 태그로 이동하는 메소드 
+	// => 기존 태그를 검색하여 이동하는 메소드지만 태그를 생성하여 이동 처리 가능
+	$("<img src='images/1.png' width='200'>").appendTo("#imageList1");
+	$("<img src='images/2.png' width='200'>").appendTo("#imageList1");
+	
+	//$(selector).prependTo(targetSelector) : 선택자로 태그를 검색하여 타겟 선택자로 검색된
+	//태그의 첫번째 자식 태그로 이동하는 메소드 
+	// => 기존 태그를 검색하여 이동하는 메소드지만 태그를 생성하여 이동 처리 가능
+	$("<img src='images/3.png' width='200'>").prependTo("#imageList1");
+	$("<img src='images/4.png' width='200'>").prependTo("#imageList1");
+	
+	//$(selector).insertBefore(targetSelector) : 선택자로 태그를 검색하여 타겟 선택자로 검색된
+	//태그의 이전 태그로 이동하는 메소드 
+	// => 기존 태그를 검색하여 이동하는 메소드지만 태그를 생성하여 이동 처리 가능
+	$("<img src='images/5.png' width='200'>").insertBefore("#imageList1 img[src='images/1.png']");
+	
+	//$(selector).insertAfter(targetSelector) : 선택자로 태그를 검색하여 타겟 선택자로 검색된
+	//태그의 다음 태그로 이동하는 메소드 
+	// => 기존 태그를 검색하여 이동하는 메소드지만 태그를 생성하여 이동 처리 가능
+	$("<img src='images/6.png' width='200'>").insertAfter("#imageList1 img[src='images/1.png']");
+	
+	//$(selector).append(newItem) : 선택자로 검색된 태그의 마지막 자식태그로 새로운 태그를 추가(삽입)하는 메소드
+	$("#imageList2").append("<img src='images/1.png' width='200'>");
+	$("#imageList2").append("<img src='images/2.png' width='200'>");
+	
+	//$(selector).prepend(newItem) : 선택자로 검색된 태그의 첫번째 자식태그로 새로운 태그를 추가(삽입)하는 메소드
+	$("#imageList2").prepend("<img src='images/3.png' width='200'>");
+	$("#imageList2").prepend("<img src='images/4.png' width='200'>");
+		
+	//$(selector).before(newItem) : 선택자로 검색된 태그의 이전 태그로 새로운 태그를 추가(삽입)하는 메소드
+	$("#imageList2 img[src='images/1.png']").before("<img src='images/5.png' width='200'>");
+
+	//$(selector).after(newItem) : 선택자로 검색된 태그의 다음 태그로 새로운 태그를 추가(삽입)하는 메소드
+	$("#imageList2").find("img[src='images/1.png']").after("<img src='images/6.png' width='200'>");
+	
+	//$(selector).remove([selector]) : 선택자로 검색된 태그를 삭제하는 메소드
+	// => remove() 메소드의 매개변수에 선택자를 전달하여 특정 태그만을 선택하여 삭제 가능
+	//$("#imageList3").remove();//부모 태그를 삭제하면 자식태그도 삭제
+	
+	//$("#imageList3").children(":eq(1)").remove();//두번째 이미지 삭제
+	//$("#imageList3").children().eq(1).remove();
+	//$("#imageList3").children().remove(":eq(1)");
+	$("#img2").remove();	
+	</script>
 </body>
 </html>
