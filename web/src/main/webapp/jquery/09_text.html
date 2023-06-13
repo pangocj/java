@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
 <body>
-	<h1>text 메소드</h1>
+	<h1>text 메소드와 html 메소드</h1>
 	<hr>
 	<div id="displayDiv"><p>text 메소드와 html 메소드 활용</p></div>
 	<hr>
@@ -24,7 +24,6 @@
 	//$(selector).html() : 선택자로 검색된 태그의 내용을 반환하는 메소드
 	// => HTML 태그를 포함한 태그 내용 반환
 	//alert("결과 = "+$("#displayDiv").html());//결과 = <p>text 메소드와 html 메소드 활용</p>
-	
 	
 	//$(selector).text(value) : 선택자로 검색된 태그의 내용을 변경하는 메소드
 	// => 매개변수로 전달된 변경값에 포함된 HTML 태그가 문자값으로 처리되어 태그 내용 변경 
@@ -46,7 +45,7 @@
 	
 	//text() 메소드 또는 html() 메소드의 매개변수에 문자값을 반환하는 콜백함수를 전달하여 호출 가능
 	// => 콜백함수는 검색된 태그의 갯수만큼 반복 호출 - 명시적 반복
-	// => 콜백함수는 반드시 문자값 반환해야 하면 반환되는 문자값으로 검색된 태그의 내용 변경 
+	// => 콜백함수는 반드시 문자값을 반환해야 하며 반환되는 문자값으로 검색된 태그의 내용 변경 
 	// => 콜백함수의 매개변수에는 검색 태그의 첨자와 태그 내용을 전달받아 콜백함수에서 사용 가능
 	$("h3").text(function(index, content) {
 		//return "jQuery 메소드 연습 - 변경";
