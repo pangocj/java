@@ -70,20 +70,120 @@ legend {
 		<button type="button" id="resetBtn">다시작성</button>
 	</fieldset>
 	</form>
+	
+	<script type="text/javascript">
+	$("#id").focus();
+	
+	//[회원가입] 버튼을 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 이벤트 처리 함수에서는 사용자 입력값을 검증하고 모든 입력값의 검증이 성공한 경우 
+	//제출 이벤트(Submit Event)를 발생시켜 form 태그가 실행되도록 명령 작성
+	/*
+	$("#submitBtn").click(function() {
+		//에러 메세지를 출력하는 모든 태그의 태그내용을 초기화 처리
+		$(".error").text("");
+		
+		if($("#id").val()=="") {
+			$("#idMsg").text("아이디를 반드시 입력해 주세요.");
+			$("#id").focus();
+			return;
+		}
+		
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(!idReg.test($("#id").val())) {
+			$("#idMsg").text("6~20자의 영문자, 숫자와 특수기호(_)만 사용 가능합니다.");
+			$("#id").focus();
+			return;
+		}
+		
+		if($("#passwd").val()=="") {
+			$("#passwdMsg").text("비밀번호를 반드시 입력해 주세요.");
+			$("#passwd").focus();
+			return;
+		}
+		
+		if($("#name").val()=="") {
+			$("#nameMsg").text("이름을 반드시 입력해 주세요.");
+			$("#name").focus();
+			return;
+		}
+		
+		if($("#email").val()=="") {
+			$("#emailMsg").text("이메일을 반드시 입력해 주세요.");
+			$("#email").focus();
+			return;
+		}
+		
+		$("#joinForm").attr("action", "20_form_event.html");
+		$("#joinForm").attr("method", "post");
+		
+		$("#joinForm").submit();
+	});
+	*/
+	
+	$("#submitBtn").click(function() {
+		//입력값 검증 결과를 저장하기 위한 변수
+		// => false : 검증 실패, true : 검증 성공
+		var result=true;
+		
+		//에러 메세지를 출력하는 모든 태그의 태그내용을 초기화 처리
+		$(".error").text("");
+		
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if($("#id").val()=="") {
+			$("#idMsg").text("아이디를 반드시 입력해 주세요.");
+			result=false;
+		} else if(!idReg.test($("#id").val())) {
+			$("#idMsg").text("6~20자의 영문자, 숫자와 특수기호(_)만 사용 가능합니다.");
+			result=false;
+		}
+		
+		if($("#passwd").val()=="") {
+			$("#passwdMsg").text("비밀번호를 반드시 입력해 주세요.");
+			result=false;
+		}
+		
+		if($("#name").val()=="") {
+			$("#nameMsg").text("이름을 반드시 입력해 주세요.");
+			result=false;
+		}
+		
+		if($("#email").val()=="") {
+			$("#emailMsg").text("이메일을 반드시 입력해 주세요.");
+			result=false;
+		}
+		
+		if(!result) return;//입력값 검증이 실패한 경우 이벤트 처리 함수 종료
+		
+		$("#joinForm").attr("action", "20_form_event.html");
+		$("#joinForm").attr("method", "post");
+		
+		$("#joinForm").submit();
+	});
+	
+	//$(selector).blur(callback) : 선택자로 검색된 태그(입력태그)에서 입력촛점이 다른
+	//태그로 이동하는 이벤트가 발생된 경우 콜백함수(이벤트 처리 함수)를 호출하는 메소드
+	// => $(selector).focusout(callback) 메소드와 동일
+	$("#id").blur(function() {
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if($("#id").val()=="") {
+			$("#idMsg").text("아이디를 반드시 입력해 주세요.");
+			return;
+		} else if(!idReg.test($("#id").val())) {
+			$("#idMsg").text("6~20자의 영문자, 숫자와 특수기호(_)만 사용 가능합니다.");
+			return;
+		}
+		$("#idMsg").text("");
+	});
+	
+	//[다시작성] 버튼을 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 이벤트 처리 함수에서는 입력태그의 모든 입력값을 초기화 처리되도록 명령 작성
+	$("#resetBtn").click(function() {
+		//$(selector).reset() : 선택자로 검색된 태그(form 태그)의 모든 입력태그의 입력값을
+		//초기화 처리하는 메소드 - 첫번째 form 태그를 제공받아 초기화 처리 
+		$("#joinForm")[0].reset();
+		$("#id").focus();
+		$(".error").text("");
+	});
+	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
