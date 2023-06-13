@@ -85,7 +85,13 @@
 			$("#loginForm").submit();
 		}
 	});
-	</script>	
 	
+	$("#content").keyup(function() {
+		//입력태그의 입력된 문자 갯수를 제공받아 변수에 저장
+		var count=$(this).val().length;		
+		
+		$("#count").text(count);
+	});
+	</script>	
 </body>
 </html>
