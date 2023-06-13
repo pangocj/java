@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<style type="text/css">
+div {
+	font-size: 1.5em;
+	margin: 10px;
+	width: 200px;
+	text-align: center;
+}
+
+.mystyle {
+	border: 2px solid red;
+	background: yellow;
+}
+</style>
+</head>
+<body>
+	<h1>Mouse Event</h1>
+	<hr>
+	<p>click : 태그에서 마우스 버튼을 누른 경우 발생되는 이벤트</p>
+	<p>dblclick : 태그에서 마우스 버튼을 두번 연속 누른 경우 발생되는 이벤트</p>
+	<p>mousedown : 태그에서 마우스 버튼을 누르는 순간 발생되는 이벤트</p>
+	<p>mouseup : 태그에서 눌려진 마우스 버튼을 놓는 순간 발생되는 이벤트</p>
+	<p>mouseover : 태그에 마우스 커서가 진입하는 순간 발생되는 이벤트 - 버블링 단계 포함</p>
+	<p>mouseout : 태그에서 마우스 커서가 벗어나는 순간 발생되는 이벤트 - 버블링 단계 포함</p>
+	<p>mouseenter : 태그에 마우스 커서가 진입하는 순간 발생되는 이벤트 - 버블링 단계 미포함</p>
+	<p>mouseleave : 태그에서 마우스 커서가 벗어나는 순간 발생되는 이벤트 - 버블링 단계 미포함</p>
+	<p>hover : 태그에 마우스 커서가 진입하거나 벗어나는 순간 발생되는 이벤트</p>
+	<p>mousewheel : 태그에서 마우스 휠이 움직이는 동안 발생되는 이벤트</p>
+	<hr>
+	<!-- <div class="mystyle">마우스 이벤트-1</div> -->
+	<div>마우스 이벤트-1</div>
+	<div>마우스 이벤트-2</div>
+	<div>마우스 이벤트-3</div>
+	<div>마우스 이벤트-4</div>
+	<div>마우스 이벤트-5</div>
+	
+	<script type="text/javascript">
+	/*
+	$("div").click(function() {
+		if($(this).attr("class")!="mystyle") {
+			//$(selector).addClass(name) : 선택자로 검색된 태그에 class 속성값을 추가하는 메소드
+			$(this).addClass("mystyle");
+		} else {
+			//$(selector).removeClass(name) : 선택자로 검색된 태그의 class 속성값을 삭제하는 메소드
+			$(this).removeClass("mystyle");
+		}
+	
+		
+		//$(selector).toggleClass(name) : 선택자로 검색된 태그에 class 속성값을 추가 또는 삭제하는 메소드
+		$(this).toggleClass("mystyle");
+	});
+	*/
+	
+	/*
+	$("div").dblclick(function() {
+		$(this).toggleClass("mystyle");
+	});
+	*/
+	
+	/*
+	$("div").mouseover(function() {
+		$(this).addClass("mystyle");
+	});
+	
+	$("div").mouseout(function() {
+		$(this).removeClass("mystyle");
+	});
+	*/
+	
+	$("div").hover(function() {//mouseover 이벤트가 발생된 경우 처리될 명령 작성
+		$(this).addClass("mystyle");
+	}, function() {//mouseout 이벤트가 발생된 경우 처리될 명령 작성
+		$(this).removeClass("mystyle");
+	});
+	
+	//브라우저에서 마우스 오른쪽 버튼을 누른 경우 호출될 이벤트 처리 함수 등록
+	document.oncontextmenu=function() {
+		alert("마우스 오른쪽 버튼 사용 금지");
+		return false;
+	}
+	</script>
+</body>
+</html>
