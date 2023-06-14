@@ -36,19 +36,19 @@ public class HelloServlet extends HttpServlet {
 		//HttpServletRequest 객체 : 리퀘스트 메세지(요청 관련 정보)를 표현한 객체
 		//HttpServletResponse 객체 : 리스폰즈 메세지(응답 관련 정보)를 표현한 객체
 		
-		//3.클라이언트 요청에 대한 실행결과를 응답하기 위한 파일형태(MimeType)를 변경
+		//3.클라이언트 요청에 대한 실행결과를 저장하여 응답하기 위한 파일형태(MimeType)를 변경
 		// => 리스폰즈 메세지의 몸체부에 저장될 파일형태 설정
 		//HttpServletResponse.setContentType(String mimeType[;charset=encoding]) 메소드 호출
-		// => 리스폰즈 메세지의 몸체부에 저장될 파일형태을 변경하는 메소드
+		// => 리스폰즈 메세지의 몸체부에 저장될 파일형태를 변경하는 메소드
 		// => 응답 파일이 문서파일인 경우 문자형태(CharacterSet - Encoding) 설정
 		//기본 응답 파일 형식 : text/html;charset=iso-8859-1 >> 서유럽어로 만들어진 HTML 문서로 응답
 		response.setContentType("text/html;charset=utf-8");//한글로 만들어진 HTML 문서로 응답
 		
 		//4.응답파일을 생성하기 위한 출력스트림을 반환받아 저장
-		//HttpServletResponse.getOutputStream() : 응답파일을 생성하기 위한 출력스트림(OutputStream 객체)을 반환하는 메소드
+		//HttpServletResponse.getOutputStream() : 응답파일을 생성하기 위한 출력스트림(ServletOutputStream 객체)을 반환하는 메소드
 		// => 원시데이타(1Byte)를 전달해 그림,소리,동영상 파일등과 같은 이진파일을 생성하기 위한 출력스트림
 		//HttpServletResponse.getWriter() : 응답파일을 생성하기 위한 출력스트림(PrintWriter 객체)을 반환하는 메소드
-		// => 문자데이타(2Byte)를 전달해 HTML, XML 파일등과 같은 문서파일을 생성하기 위한 출력스트림
+		// => 문자데이타(2Byte)를 전달해 HTML,XML 파일등과 같은 문서파일을 생성하기 위한 출력스트림
 		PrintWriter out=response.getWriter();
 		
 		//5.클라이언트 요청에 대한 처리 명령 작성 및 출력스트림을 이용한 응답파일 생성
@@ -66,5 +66,13 @@ public class HelloServlet extends HttpServlet {
 		out.println("<p>Hello, Servlet!!!</p>");
 		out.println("</body>");
 		out.println("</html>");
+		
+		//6.서블릿 클래스를 서블릿(웹프로그램)으로 실행되도록 설정
+		// => [web.xml] 파일에서 서블릿 클래스를 서블릿으로 등록하고 서블릿을 요청할 수 있는
+		//URL 주소를 매핑 설정
+		//클라이언트가 매핑된 URL 주소의 서블릿을 요청하면 WAS 프로그램은 서블릿에 대한 클래스를
+		//객체로 생성하여 요청 처리 메소드를 호출하고 처리결과를 클라이언트에게 전달하여 응답
+		// => 클라이언트가 요청한 서블릿에 대한 클래스가 이미 객체로 생성된 경우 요청 처리
+		//메소드만 호출하여 실행
 	}
 }
