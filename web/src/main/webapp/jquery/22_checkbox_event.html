@@ -66,9 +66,8 @@ h3 {
 		// => 0 : 약관 미동의, 1 : 약관 동의
 		var check=0;
 		
-		//$(selector).is(status) : 선택자로 검색된 태그(입력태그)의 상태를 비교하여
-		//[false] 또는 [true]를 반환하는 메소드
-		// => input 태그(type 속성값 - checkbox 또는 radio)와 select 태그(option 태그)에서만 사용 가능
+		//$(selector).is(status) : 선택자로 검색된 태그(입력태그)의 상태를 비교하여 [false] 또는 [true]를 반환하는 메소드
+		// => 입력태그는 input 태그(type 속성값 - checkbox 또는 radio)와 select 태그(option 태그)에서만 사용 가능
 		if($(this).is(":checked")) {//이벤트가 발생된 태그(checkbox 또는 radio)가 선택상태(checked)인 경우
 			check=1;
 			//$(selector).removeAttr(name) : 선택자로 검색된 태그의 속성을 삭제하는 메소드

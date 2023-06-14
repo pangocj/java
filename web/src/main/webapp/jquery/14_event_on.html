@@ -18,7 +18,7 @@ div {
 <body>
 	<h1>jQuery Event Handle</h1>
 	<hr>
-	<div>마우스를 클릭하거나 이동해 보세요.</div>
+	<div onmo>마우스를 클릭하거나 이동해 보세요.</div>
 	
 	<script type="text/javascript">
 	/*
@@ -50,7 +50,7 @@ div {
 	
 	//선택자로 검색된 태그에서 발생되는 다수의 이벤트에 대한 이벤트 처리 함수를 등록할 경우
 	//on() 메소드를 이용하는 것을 권장
-	// => on() 메소드 매개변수에 JSON 형식으로 표현된 Object 객체를 전달하여 속성명으로
+	// => on() 메소드의 매개변수에 JSON 형식으로 표현된 Object 객체를 전달하여 속성명으로
 	//이벤트명을 전달하고 속성값으로 이벤트 처리 함수 등록
 	$("div").on({
 		"click":function() {
