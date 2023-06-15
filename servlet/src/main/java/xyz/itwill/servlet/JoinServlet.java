@@ -105,9 +105,17 @@ public class JoinServlet extends HttpServlet {
 		out.println("<p>이름 = "+name+"</p>");
 		out.println("<p>이메일 = "+email+"</p>");
 		out.println("<p>성별 = "+gender+"</p>");
-		out.println("<p>취미 = "+hobby+"</p>");
+		out.println("<p>취미 = ");
+		for(int i=0;i<hobby.length;i++) {
+			out.println(hobby[i]);//배열의 요소값을 HTML 문서에 포함하여 응답
+			if(i < hobby.length-1) {
+				out.println(",");
+			}
+		}
+		out.println("</p>");
 		out.println("<p>직업 = "+job+"</p>");
-		out.println("<p>자기소개 = "+profile+"</p>");
+		//전달값의 엔터(Enter)를 <br> 태그로 변환해야만 줄바꿈 처리 가능
+		out.println("<p>자기소개 = <br>"+profile.replace("\n", "<br>")+"</p>");
 		out.println("</body>");
 		out.println("</html>");
 	}
