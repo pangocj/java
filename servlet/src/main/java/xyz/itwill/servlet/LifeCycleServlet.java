@@ -80,14 +80,3 @@ public class LifeCycleServlet extends HttpServlet {
 		out.println("</html>");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
