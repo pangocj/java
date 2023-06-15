@@ -5,12 +5,26 @@
 	<!-- display-name : 프로젝트 이름을 설정하기 위한 엘리먼트 -->
 	<display-name>servlet</display-name>
 	
+	<!-- context-param : 프로젝트에 작성된 모든 웹프로그램에게 필요한 값을 제공하기 위한 엘리먼트 -->
+	<context-param>
+		<!-- param-name : 값을 제공하기 위한 이름을 설정하는 엘리먼트 -->
+		<param-name>name</param-name>
+		<!-- param-value : 제공될 값을 설정하는 엘리먼트 -->
+		<param-value>임꺽정</param-value>
+	</context-param>
+	
 	<!-- servlet : 서블릿 클래스를 서블릿으로 등록하기 위한 엘리먼트 -->
 	<servlet>
 		<!-- servlet-name : 서블릿을 구분하기 위한 이름(고유값)를 설정하기 위한 엘리먼트 -->
 		<servlet-name>hello</servlet-name>
 		<!-- servlet-class : 서블릿으로 등록될 서블릿 클래스를 설정하기 위한 엘리먼트 -->
 		<servlet-class>xyz.itwill.servlet.HelloServlet</servlet-class>
+		
+		<!-- init-param : servlet 엘리먼트의 웹프로그램에게 필요한 값을 제공하기 위한 엘리먼트 -->
+		<init-param>
+			<param-name>title</param-name>
+			<param-value>서블릿</param-value>
+		</init-param>
 	</servlet>
 	
 	<!-- servlet-mapping : 클라이언트가 요청하여 실행하기 위한 서블릿의 요청 URL 패턴을 
