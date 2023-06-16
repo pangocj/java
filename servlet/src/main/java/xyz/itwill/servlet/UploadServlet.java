@@ -81,10 +81,16 @@ public class UploadServlet extends HttpServlet {
 		
 		//MultipartRequest 객체를 이용하여 전달파일명을 반환받아 저장
 		//MultipartRequest.getOriginalFileName(String name) : 매개변수로 전달된 이름의 파일명
-		//(입력파일명)을 반환하는 메소드
-		String fileone=mr.getOriginalFileName("fileone");
-		String filetwo=mr.getOriginalFileName("filetwo");
-
+		//(입력된 원본파일명)을 반환하는 메소드
+		//String fileone=mr.getOriginalFileName("fileone");
+		//String filetwo=mr.getOriginalFileName("filetwo");
+		
+		//MultipartRequest.getFilesystemName(String name) : 매개변수로 전달된 이름의 파일명
+		//(업로드된 처리된 파일명)을 반환하는 메소드
+		// => FileRenamePolicy 객체를 사용한 경우 호출하는 메소드
+		String fileone=mr.getFilesystemName("fileone");
+		String filetwo=mr.getFilesystemName("filetwo");
+  
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
