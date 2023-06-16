@@ -156,7 +156,10 @@ legend {
 			result=false;
 		}
 		
-		if($("#passwd").val()!=$("#repasswd").val()) {
+		if($("#passwd").val()=="") {
+			$("#repasswdMsg").text("비밀번호 확인를 반드시 입력해 주세요.");
+			result=false;
+		} else if($("#passwd").val()!=$("#repasswd").val()) {
 			$("#repasswdMsg").text("비밀번호가 맞지 않습니다.다시 입력해 주세요.");
 			result=false;
 		}

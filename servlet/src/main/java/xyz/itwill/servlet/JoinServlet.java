@@ -23,7 +23,7 @@ public class JoinServlet extends HttpServlet {
 		//서블릿을 GET 방식으로 요청한 경우 비정상적인 요청으로 클라이언트에게 에러코드를
 		//전달하거나 에러페이지로 이동되도록 처리
 		//HttpServletRequest.getMethod() : 서블릿을 요청한 요청방식(GET or POST)을 반환하는 메소드
-		if(request.getMethod().equals("GET")) {//서블릿을 비정상적으로 요청한 경우
+		if(request.getMethod().equals("GET")) {//서블릿을 GET 방식으로 요청한 경우 - 비정상적인 요청
 			/*
 			//HttpServletResponse.sendError(int sc) : 클라이언트에게 에러코드(4XX or 5XX)를
 			//전달하여 응답하는 메소드
@@ -39,13 +39,13 @@ public class JoinServlet extends HttpServlet {
 			//HttpServletResponse.sendRedirect(String url) : 클라이언트에게 301 상태코드와
 			//URL 주소를 전달하여 응답
 			// => 클라이언트는 전달받은 URL 주소로 브라우저의 요청 URL를 변경하여 웹프로그램을
-			//요청하여 실행결과를 응답받아 출력 - 페이지 이동(리다이렉트 이동) 
-			//response.sendRedirect("error.html");//에러페이지로 이동
-			response.sendRedirect("form.html");//입력페이지로 이동
+			//요청하고 실행결과를 응답받아 출력 - 페이지 이동(리다이렉트 이동) 
+			response.sendRedirect("error.html");//에러페이지로 이동
 			return;
 			*/
 			
 			//클라이언트에서 자바스트립트 전달하여 응답
+			// => 경고창을 이용하여 메세지 출력 후 입력페이지로 이동 처리 
 			out.println("<script type='text/javascript'>");
 			out.println("alert('비정상적으로 페이지를 요청 하였습니다.');");
 			out.println("location.href='form.html';");
@@ -54,8 +54,8 @@ public class JoinServlet extends HttpServlet {
 		}
 		
 		//서블릿을 POST 방식으로 요청한 경우 사용자 입력값을 리퀘스트 메세지 몸체부에 저장하여 전달
-		// => 리퀘스트 메세지 몸체부에 저장되어 전달되는 값은 기본적으로 문자형태를 서유럽어
-		//(ISO-8859-1)의 반환받아 사용
+		// => 리퀘스트 메세지 몸체부에 저장되어 전달되는 값은 기본적인 문자형태가 서유럽어
+		//(ISO-8859-1)로 설정되어 제공
 		// => 리퀘스트 메세지 몸체부에 저장되어 전달되는 값에 대한 캐릭터셋 변경
 		//HttpServletRequest.setCharacterEncoding(String encoding) : 리퀘스트 메세지 몸체부에
 		//저장되어 전달되는 값에 대한 문자형태를 변경하는 메소드
@@ -73,8 +73,8 @@ public class JoinServlet extends HttpServlet {
 		String gender=request.getParameter("gender");
 		//동일한 이름으로 전달되는 값이 여러개 있는 경우 getParameterValues() 메소드 호출 
 		//String hobby=request.getParameter("hobby");//첫번째 전달값만 반환받아 저장
-		//HttpServletRequest.getParameter(String name) : 매개변수로 전달받은 이름의 모든
-		//전달값을 문자열 배열(String[])로 반환하는 메소드
+		//HttpServletRequest.getParameterValues(String name) : 매개변수로 전달받은 이름의 
+		//모든 전달값을 문자열 배열(String[])로 반환하는 메소드
 		String[] hobby=request.getParameterValues("hobby");
 		String job=request.getParameter("job");
 		String profile=request.getParameter("profile");
