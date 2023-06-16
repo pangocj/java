@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 //클라이언트에게 쿠키를 전달하고 처리결과를 웹문서로 응답하는 서블릿 
 // => 서블릿에 의해 전달된 쿠키는 클라이언트에 저장
 //쿠키(Cookie) : 서버(웹프로그램)와 클라이언트(브라우저)의 연결 지속성을 제공하기 위한 정보를
