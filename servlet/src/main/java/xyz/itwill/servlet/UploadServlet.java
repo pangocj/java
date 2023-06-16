@@ -94,21 +94,11 @@ public class UploadServlet extends HttpServlet {
 		out.println("<body>");
 		out.println("<h1>파일업로드</h1>");
 		out.println("<hr>");
-		//out.println("<p>올린이 = "+uploader+"</p>");
+		out.println("<p>올린이 = "+uploader+"</p>");
+		out.println("<p>파일-1 = "+fileone+"</p>");
+		out.println("<p>파일-2 = "+filetwo+"</p>");
 		out.println("</body>");
 		out.println("</html>");
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
