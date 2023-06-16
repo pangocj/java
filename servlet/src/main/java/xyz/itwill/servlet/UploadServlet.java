@@ -106,5 +106,4 @@ public class UploadServlet extends HttpServlet {
 		out.println("</body>");
 		out.println("</html>");
 	}
-
 }
