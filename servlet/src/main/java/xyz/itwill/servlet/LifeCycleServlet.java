@@ -25,14 +25,14 @@ public class LifeCycleServlet extends HttpServlet {
 	private String name;
 	
 	//서블릿 클래스로 객체를 생성하기 위한 생성자 
-	// => 객체를 생성하면서 실행될 명령 작성 - 초기화 처리
+	// => 객체를 생성하면서 실행될 초기화 명령 작성
 	public LifeCycleServlet() {
 		//name="홍길동";
 		System.out.println("### LifeCycleServlet 클래스의 생성자 호출 - 객체 생성 ###");
 	}
 	 
 	//서블릿 객체가 생성된 후 WAS 프로그램에 의해 자동으로 1번만 호출되는 메소드
-	// => 객체를 생성한 후 실행될 명령 작성 - 초기화 처리
+	// => 객체를 생성한 후 실행될 초기화 명령 작성
 	//생성자 대신 init 메소드를 이용하여 초기화 처리 명령을 작성하는 이유
 	// => init() 메소드는 매개변수로 ServletConfig 객체를 제공받아 사용 가능
 	//ServletConfig 객체 : 웹자원을 생성하기 위한 환경 설정 관련 정보를 저장한 객체
@@ -53,7 +53,7 @@ public class LifeCycleServlet extends HttpServlet {
 	}
 	
 	//서블릿 객체가 소멸되기 전에 WAS 프로그램에 의해 자동으로 1번만 호출되는 메소드
-	// => 객체 소멸 전 실행될 명령 작성 - 마무리 처리
+	// => 객체 소멸 전 실행될 마무리 명령 작성
 	@Override
 	public void destroy() {
 		System.out.println("### LifeCycleServlet 클래스의 destroy() 메소드 호출 ###");
