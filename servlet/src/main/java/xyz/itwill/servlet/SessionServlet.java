@@ -2,6 +2,7 @@ package xyz.itwill.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -62,22 +63,30 @@ public class SessionServlet extends HttpServlet {
 		// => 세션 유지시간 : 세션을 사용하지 않을 경우 소멸되도록 설정하는 시간
 		out.println("<p>세션 유지시간 = "+session.getMaxInactiveInterval()+"</p>");
 		
-		
+		//HttpSession.setAttribute(String attributeName, Object attributeValue)
+		// => HttpSession 객체에 연결 지속성을 제공하기 위한 값(객체)를 저장하는 메소드
+		// => 매개변수에 값을 구분하기 위한 속성명과 연결 지속성을 제공하기 위한 속성값을 전달
+		// => 매개변수로 전달받은 속성명과 같은 이름의 속성값이 존재할 경우 덮어씌우기 - 속성값 변경
+		//동일한 세션을 바인딩한 모든 웹프로그램에게 속성명으로 속성값을 제공하여 사용 가능
+		// => 하나의 클라이언트는 세션을 사용하여 모든 웹프로그램에게 객체를 공유하여 제공
+		session.setAttribute("now", new Date());
+
+		//HttpSession.getAttribute(String attributeName) : HttpSession 객체에 저장된 속성값을
+		//반환하는 메소드 - 매개변수에 속성값을 구분하기 위한 속성명 전달
+		// => HttpSession 객체에 저장된 속성값을 Object 객체로 반환하므로 반드시 명시적 객체 형변환 이용
+		// => 매개변수로 전달받은 속성명의 속성값이 없는 경우 [null] 반환
+		Date now=(Date)session.getAttribute("now");
+		out.println("<p>세션에 저장된 속성값(객체) = "+now+"</p>");
+
+		//HttpSession.removeAttribute(String attributeName) : HttpSession 객체에 저장된 
+		//속성값을 삭제하는 메소드 - 매개변수에 속성값을 구분하기 위한 속성명 전달
+		session.removeAttribute("now");
+
+		//HttpSession.invalidate() : 바인된 세션을 언바인딩하여 무효화 처리하는 메소드
+		// => 바인딩된 HttpSession 객체 제거
+		session.invalidate();
 		
 		out.println("</body>");
 		out.println("</html>");
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
