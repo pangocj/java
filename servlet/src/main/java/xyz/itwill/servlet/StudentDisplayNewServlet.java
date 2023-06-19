@@ -58,13 +58,3 @@ public class StudentDisplayNewServlet extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
