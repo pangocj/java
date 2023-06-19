@@ -38,7 +38,7 @@ public class GuestSelectServlet extends HttpServlet {
 		out.println("<table width='1000'>");
 		out.println("<tr>");
 		out.println("<td align='right'>");
-		out.println("<button type='button' onclick='location.href=\"insertForm.itwill\";'>글쓰기</button>");
+		out.println("<button type='button' onclick='location.href=\"writeForm.itwill\";'>글쓰기</button>");
 		out.println("</td>");
 		out.println("</tr>");
 		if(guestList.isEmpty()) {
