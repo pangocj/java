@@ -20,10 +20,12 @@ public class StudentDTO {
 	private String address;
 	private String birthday;
 	
+	//Default Constructor : [Ctrl]+[Spapce] >> Constructor 선택
 	public StudentDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
+	//Constructor : [Alt]+[Shift]+[S] >> [O] >> 필드 선택 > Generate
 	public StudentDTO(int no, String name, String phone, String address, String birthday) {
 		super();
 		this.no = no;
@@ -33,6 +35,7 @@ public class StudentDTO {
 		this.birthday = birthday;
 	}
 
+	//Getter & Setter : [Alt]+[Shift]+[S] >> [R] >> 필드 선택 > Generate
 	public int getNo() {
 		return no;
 	}
