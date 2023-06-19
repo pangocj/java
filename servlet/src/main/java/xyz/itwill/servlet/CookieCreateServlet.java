@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//클라이언트로 쿠키를 전달하고 처리결과를 전달하여 응답하는 서블릿 
+//클라이언트에게 쿠키를 제공하고 처리결과를 전달하여 응답하는 서블릿 
 // => 서블릿에 의해 전달된 쿠키는 클라이언트에 저장
 //쿠키(Cookie) : 서버(웹프로그램)와 클라이언트(브라우저)의 연결 지속성을 제공하기 위한 정보를
 //클라이언트에 저장하는 문자값
@@ -38,9 +38,9 @@ public class CookieCreateServlet extends HttpServlet {
 		// => 유지시간이 [-1]로 설정된 쿠키는 브라우저 종료시 자동 소멸 
 		countCookie.setMaxAge(24*60*60);//쿠키의 유지시간을 1일로 변경
 		
-		//클라이언트에게 Cookie 객체 전달 - 클라이언트에 쿠키 저장
-		// => Cookie 객체의 유지시간이 [-1]인 쿠키는 클라이언트 브라우저 메모리에 저장 - 브라우저 종료시 소멸
-		// => Cookie 객체의 유지시간이 [-1]이 아닌 쿠키는 클라이언트에 쿠키파일로 저장 - 유지시간 경과후 소멸
+		//클라이언트에게 Cookie  객체 전달 - 클라이언트에 쿠키 저장
+		// => Cookie 객체의 유지시간이 [-1]이면 클라이언트 브라우저 메모리에 쿠키 저장 - 브라우저 종료시 소멸
+		// => Cookie 객체의 유지시간이 [-1]이 아니면 클라이언트 파일에 쿠키 저장 - 유지시간 경과후 소멸
 		//HttpServletResponse.addCookie(Cookie cookie) : 클라이언트에게 Cookie 객체를 전달하는 메소드
 		response.addCookie(idCookie);
 		response.addCookie(countCookie);

@@ -14,13 +14,13 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 //[multipart/form-data]로 전달된 경우 request 객체로부터 입력스트림(ServletInputStream 객체)을
 //제공받아 임시파일에 저장한 후 전달값과 전달파일을 구분하여 처리
-// => [multipart/form-data]를 처리하는 클래스를 이용하여 처리하는 것을 권장
+// => [multipart/form-data]를 처리하는 클래스를 이용하는 것을 권장
 
-//[multipart/form-data]를 처리하는 클래스가 포함된 라이브러리를 다운로드 받아 프로젝트에 빌드 처리
+//[multipart/form-data]를 처리하는 클래스가 포함된 라이브러리 파일을 다운로드 받아 프로젝트에 빌드 처리
 //1.Apache 그룹에서 배포한 commons-fileupload 라이브러리의 클래스 사용 - 선택적 파일 업로드 
 //2.Oreilly 그룹에서 배포한 cos 라이브러리의 클래스 사용 - 무조건 파일 업로드
 
-//Oreilly 그룹에서 배포한 cos 라이브러리를 다운로드 프로젝트 빌드 처리
+//Oreilly 그룹에서 배포한 cos 라이브러리를 다운로드 받아 프로젝트에 빌드 처리하는 방법
 //1.http://www.servlets.com 사이트 접속 >> COS File Upload Library 메뉴 클릭 >> cos-22.05.zip 다운로드
 //2.cos-22.05.zip 파일 압축 풀기 >> cos-22.05 폴더 이동 >> lib 폴더 이동 >> cos.jar 복사
 //3.프로젝트 >> src/main/webapp >> WEB-INF >> lib >> cos.jar 붙여넣기
@@ -59,13 +59,13 @@ public class UploadServlet extends HttpServlet {
 		//System.out.println("saveDirectory = "+saveDirectory);
 		
 		//cos 라이브러리의 MultipartRequest 클래스로 객체 생성 
-		// => 모든 전달파일을 제공받아 서버 디렉토리에 저장 - 자동 업로드 처리
+		// => MultipartRequest 객체를 생성하면 모든 전달파일을 제공받아 서버 디렉토리에 저장 - 업로드 처리
 		//MultipartRequest 객체 : [multipart/form-data]로 전달받은 값과 파일을 처리하기 위한 객체
 		// => MultipartRequest(HttpServletRequest request, String saveDirectory[, int maxPostSize]
 		//[, String encoding][, FileRenamePolicy policy]) 생성자를 이용하여 객체 생성
-		// => request : 요청정보가 저장된 HttpServletRequest 객체 전달
+		// => request : 요청정보가 저장된 HttpServletRequest(ServletRequest) 객체 전달
 		// => saveDirectory : 전달파일이 저장될 서버 디렉토리의 파일 시스템 경로 전달
-		// => maxPostSize : 전달파일의 용량을 제한하기 위한 크기(Byte) 전달 - 생략시 무제한 기본값으로 사용 
+		// => maxPostSize : 전달파일의 용량을 제한하기 위한 크기(Byte) 전달 - 생략시 무제한을 기본값으로 사용 
 		// => encoding : 전달값에 제공받기 위한 문자형태 전달 - 생략시 서유럽을 기본값으로 사용
 		// => policy : FileRenamePolicy 객체 전달 - 생략시 전달파일로 기존파일 덮어씌우기
 		//FileRenamePolicy 객체 : 업로드될 파일의 이름과 같은 이름의 파일이 서버 디렉토리에
