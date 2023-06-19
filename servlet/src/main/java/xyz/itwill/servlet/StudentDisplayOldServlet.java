@@ -75,6 +75,7 @@ public class StudentDisplayOldServlet extends HttpServlet {
 				out.println("<td align='center'>"+rs.getString("birthday").substring(0, 10)+"</td>");
 				out.println("</tr>");
 			}
+			out.println("</table>");
 			out.println("</body>");
 			out.println("</html>");
 		} catch (ClassNotFoundException e) {
