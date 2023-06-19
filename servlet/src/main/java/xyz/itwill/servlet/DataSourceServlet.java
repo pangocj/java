@@ -65,6 +65,8 @@ public class DataSourceServlet extends HttpServlet {
 			out.println("<h3>Connection 객체 제거 후</h3>");
 			out.println("<p>Idle Connection Number = "+dataSource.getNumIdle()+"</p>");
 			out.println("<p>Active Connection Number = "+dataSource.getNumActive()+"</p>");
+			
+			dataSource.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
