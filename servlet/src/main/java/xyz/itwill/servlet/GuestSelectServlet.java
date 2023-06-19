@@ -69,6 +69,9 @@ public class GuestSelectServlet extends HttpServlet {
 				out.println("<tr>");
 				out.println("<th width='150'>내용</th>");
 				out.println("<td width='650' colspan='3'>"+guest.getContent().replace("\n", "<br>")+"</td>");
+				out.println("<br>");
+				out.println("<button type='button'>변경</button>");
+				out.println("<button type='button'>삭제</button>");
 				out.println("</tr>");
 				out.println("</table>");
 				out.println("</td>");
