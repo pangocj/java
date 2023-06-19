@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import xyz.itwill.dao.GuestDAO;
 import xyz.itwill.dto.GuestDTO;
 
-//GUEST 테이블에 저장된 모든 행을 검색하여 클라이언트에게 전달하여 응답하는 서블릿
+//GUEST 테  이블에 저장된 모든 행을 검색하여 클라이언트에게 전달하여 응답하는 서블릿
 // => [글쓰기]를 클릭한 경우 입력페이지(/guest/writeForm.itwill)로 이동
 @WebServlet("/guest/list.itwill")
 public class GuestSelectServlet extends HttpServlet {
