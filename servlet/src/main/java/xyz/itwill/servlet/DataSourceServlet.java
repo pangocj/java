@@ -29,7 +29,7 @@ public class DataSourceServlet extends HttpServlet {
 		BasicDataSource dataSource=new BasicDataSource();
 		
 		//BasicDataSource 객체(DataSource 객체)에 저장될 다수의 Connection 객체를 생성하기 
-		//위한 정보를 메소드를 호출하여 변경 처리 
+		//위한 정보를 메소드를 호출하여 변경 처리 - DataSource 객체의 필드값 변경
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
 		dataSource.setUsername("scott");
