@@ -38,7 +38,7 @@ public class GuestInertServlet extends HttpServlet {
 		guest.setSubject(subject);
 		guest.setContent(content);
 		
-		//GUEST 테이블에 행을 삽입하는 DAO 클래스의 메소드 호출
+		//DTO 객체를 전달받아 GUEST 테이블에 행을 삽입하는 DAO 클래스의 메소드 호출
 		GuestDAO.getDAO().insertGuest(guest);
 		
 		//클라이언트에게 URL 주소를 전달하여 응답 처리
