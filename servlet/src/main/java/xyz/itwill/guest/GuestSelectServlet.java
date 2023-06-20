@@ -16,6 +16,7 @@ import xyz.itwill.dto.GuestDTO;
 //GUEST 테이블에 저장된 모든 행을 검색하여 클라이언트에게 전달하여 응답하는 서블릿
 // => [글쓰기] 태그를 클릭한 경우 방명록 게시글 입력페이지(/guest/writeForm.itwill)로 이동
 // => 방명록 게시글의 [변경] 태그를 클릭한 경우 방명록 게시글 입력페이지(/guest/modifyForm.itwill)로 이동 - 글번호 전달
+// => 방명록 게시글의 [삭제] 태그를 클릭한 경우 방명록 게시글 삭제페이지(/guest/remove.itwill)로 이동 - 글번호 전달
 @WebServlet("/guest/list.itwill")
 public class GuestSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -74,7 +75,7 @@ public class GuestSelectServlet extends HttpServlet {
 				out.println("<tr>");
 				out.println("<td align='right' colspan='4'>");
 				out.println("<button type='button' onclick='location.href=\"modifyForm.itwill?num="+guest.getNum()+"\";'>변경</button>");
-				out.println("<button type='button'>삭제</button>");
+				out.println("<button type='button' onclick='location.href=\"remove.itwill?num="+guest.getNum()+"\";'>삭제</button>");
 				out.println("</td");
 				out.println("</tr>");
 				out.println("</table>");
