@@ -93,7 +93,7 @@ public class GuestDAO extends JdbcDAO {
 		return rows;
 	}
 	
-	//방명록 게시글번호를 전달받아 GUEST 테이블에 저장된 행을 검색하여 반환하는 메소드
+	//방명록 게시글번호를 전달받아 GUEST 테이블에 저장된 행을 검색하여 DTO 객체를 반환하는 메소드
 	public GuestDTO selectGuest(int num) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -124,7 +124,7 @@ public class GuestDAO extends JdbcDAO {
 		return guest;
 	}
 	
-	//GUEST 테이블에 저장된 모든 행을 검색하여 반환하는 메소드
+	//GUEST 테이블에 저장된 모든 행을 검색하여 List 객체로 반환하는 메소드
 	public List<GuestDTO> selectGuestList() {
 		Connection con=null;
 		PreparedStatement pstmt=null;

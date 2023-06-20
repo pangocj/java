@@ -29,7 +29,7 @@ public class StudentDAO extends JdbcDAO {
 		return _dao;
 	}
 	
-	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 반환하는 메소드
+	//STUDENT 테이블에 저장된 모든 학생정보를 검색하여 List 객체로 반환하는 메소드
 	public List<StudentDTO> selectStudentList() {
 		Connection con=null;
 		PreparedStatement pstmt=null;

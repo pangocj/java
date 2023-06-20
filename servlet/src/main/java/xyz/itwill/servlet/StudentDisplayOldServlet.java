@@ -33,7 +33,7 @@ public class StudentDisplayOldServlet extends HttpServlet {
 			// => OracleDriver 객체가 생성되어 DriverManager 클래스의 JDBC Driver로 등록
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			//2.DriverManager 클래스에 등록된 JDBC 드라이버를 이용하여 DBMS 서버에 접속해
+			//2.DriverManager 클래스에 등록된 JDBC Driver를 이용하여 DBMS 서버에 접속해
 			//접속정보가 저장된 Connection 객체를 반환받아 저장
 			String url="jdbc:oracle:thin:@localhost:1521:xe";
 			String username="scott";

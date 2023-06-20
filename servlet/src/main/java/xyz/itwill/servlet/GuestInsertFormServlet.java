@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//사용자로부터 방명록 게시글을 입력받기 위한 서블릿
+// => [글저장] 태그를 클릭한 경우 방명록 게시글 삽입페이지(/guest/write.itwill)로 이동 - 입력값 전달
+// => [글목록] 태그를 클릭한 경우 방명록 게시글 목록페이지(/guest/list.itwill)로 이동
 @WebServlet("/guest/writeForm.itwill")
 public class GuestInsertFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

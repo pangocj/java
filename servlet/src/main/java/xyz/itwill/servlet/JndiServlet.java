@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-//JNDI(Java Naming Directory Interface) : WAS 프로그램에 의해 관리되는 객체를 미리 생성하여
-//저장하고 웹프로그램에서 객체가 필요한 경우 WAS 프로그램에 등록된 객체의 이름을 이용하여 
-//객체를 제공받아 사용하기 위한 기능
+//JNDI(Java Naming Directory Interface) 서비스 : WAS 프로그램에 의해 관리되는 객체를 미리 
+//생성하여 저장하고 웹프로그램에서 객체가 필요한 경우 WAS 프로그램에 등록된 객체의 이름을  
+//이용하여 객체를 제공받아 사용하기 위한 서비스
 // => WAS 프로그램에 의해 관리되는 객체에 대한 정보를 src/main/webapp/META-INF/context.xml 파일에 작성
 
 //WAS 프로그램에 등록된 DataSource 객체를 제공받아 DataSource 객체에 저장된 다수의 Connection
@@ -31,7 +31,6 @@ public class JndiServlet extends HttpServlet {
 		
 		try {
 			//InitialContext 객체 : JNDI 서비스를 제공하는 객체
-			// => JNDI 서비스 : WAS 프로그램에 의해 관리되는 객체를 제공하기 위한 서비스
 			//InitialContext.lookup(String name) : 매개변수로 전달받은 이름의 객체를 반환하는 메소드
 			// => 검색된 객체는 Object 객체로 반환하므로 반드시 명시적 객체 형변환 처리하여 사용
 			// => 매개변수로 전달받아 이름의 객체가 없는 경우 NamingException 발생 - 예외처리
