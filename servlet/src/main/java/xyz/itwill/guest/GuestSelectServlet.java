@@ -79,6 +79,9 @@ public class GuestSelectServlet extends HttpServlet {
 				out.println("</table>");
 				out.println("</td>");
 				out.println("</tr>");
+				out.println("<tr>");
+				out.println("<td>&nbsp;</td>");
+				out.println("</tr>");
 			}
 		}
 		out.println("</table>");
