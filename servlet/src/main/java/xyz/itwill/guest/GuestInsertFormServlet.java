@@ -1,4 +1,4 @@
-package xyz.itwill.servlet;
+package xyz.itwill.guest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
