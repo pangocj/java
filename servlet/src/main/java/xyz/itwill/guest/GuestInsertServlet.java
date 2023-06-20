@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import xyz.itwill.dao.GuestDAO;
 import xyz.itwill.dto.GuestDTO;
 
-//방명록 게시글을 전달받아 GUEST 테이블에 삽입하고 방명록 게시글 목록페이지(/guest/list.itwill)로
-//이동하기 위한 URL 주소를 클라이언트에게 전달하여 응답하는 서블릿
+//방명록 게시글을 전달받아 GUEST 테이블에 행을 삽입하고 방명록 게시글 목록페이지
+//(/guest/list.itwill)로 이동하기 위한 URL 주소를 클라이언트에게 전달하여 응답하는 서블릿
 // => 방명록 게시글 입력페이지(guest/writeForm.itwill)에서 form 태그를 사용해 post 방식으로 요청하는 서블릿
 @WebServlet("/guest/write.itwill")
-public class GuestInertServlet extends HttpServlet {
+public class GuestInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
