@@ -49,8 +49,9 @@
 	}
 	
 	//인증 성공 
-	//session.setAttribute(String attributeName, Object attributeValue) : 클라이언트의 정보로
-	//바인딩된 세션(session)에 이름(속성명)과 객체(속성값)를 전달받아 저장(변경)하는 메소드
+	//session.setAttribute(String attributeName, Object attributeValue) : 클라이언트의 정보
+	//(JSESSIONID 쿠키)로 바인딩된 세션(session)에 이름(속성명)과 객체(속성값)를 전달받아 
+	//저장(변경)하는 메소드
 	session.setAttribute("loginId", id);//권한 관련 정보가 저장된 객체를 세션에 저장
 	response.sendRedirect("login_user.jsp");
 %>
