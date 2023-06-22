@@ -17,6 +17,7 @@
 		return;
 		*/
 		
+		/*
 		//response.sendRedirect(int sc) : 클라이언트에게 URL 주소를 전달하여 응답 처리하는 메소드
 		// => URL 주소를 응답받은 클라이언트는 브라우저의 요청 URL 주소를 변경하여 요청 처리하고
 		//실행결과를 응답받아 출력 - 리다이렉트를 이용한 페이지 이동(리다이렉트 이동)
@@ -28,6 +29,12 @@
 		// => JavaScript의 encodeURIComponent 함수와 동일한 기능 제공
 		String message=URLEncoder.encode("비정상적인 방법으로 페이지를 요청 하였습니다.", "utf-8");		
 		response.sendRedirect("login_form.jsp?message="+message);
+		return;
+		*/
+		
+		//바인딩된 세션에 에러메세지 저장
+		session.setAttribute("message", "비정상적인 방법으로 페이지를 요청 하였습니다.");
+		response.sendRedirect("login_form.jsp");
 		return;
 	}
 
@@ -44,6 +51,8 @@
 	
 	//저장매체에 저장된 인증정보와 전달받은 인증정보를 비교 - 인증처리
 	if(!id.equals("abc123") || !passwd.equals("123456")) {//인증 실패
+		session.setAttribute("message", "아이디 또는 비밀번호가 맞지 않습니다.");
+		session.setAttribute("id", id);
 		response.sendRedirect("login_form.jsp");
 		return;
 	}
