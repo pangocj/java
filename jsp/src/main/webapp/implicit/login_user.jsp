@@ -59,12 +59,3 @@
 	<img alt="코알라" src="<%=request.getContextPath() %>/images/Koala.jpg" width="200">
 </body>
 </html>
-
-
-
-
-
-
-
-
-
