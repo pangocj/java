@@ -43,7 +43,7 @@
 	String passwd=request.getParameter("passwd");
 	
 	//저장매체에 저장된 인증정보와 전달받은 인증정보를 비교 - 인증처리
-	if(!id.equals("abc123") && !passwd.equals("123456")) {//인증 실패
+	if(!id.equals("abc123") || !passwd.equals("123456")) {//인증 실패
 		response.sendRedirect("login_form.jsp");
 		return;
 	}
