@@ -7,8 +7,6 @@
 <%
 	//바인딩된 세션에서 권한 관련 정보가 저장된 객체를 반환받아 저장
 	String loginId=(String)session.getAttribute("loginId");
-
-
 %>    
 <!DOCTYPE html>
 <html>
@@ -44,7 +42,7 @@
 			id="";
 		} else {
 			session.removeAttribute("id");
-		}	
+		}
 	%>
 	<h1>로그인</h1>
 	<hr>
@@ -95,13 +93,3 @@
 	<% } %>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-

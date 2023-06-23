@@ -30,12 +30,3 @@
 	<%@include file="include_sub.jspf" %> 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
