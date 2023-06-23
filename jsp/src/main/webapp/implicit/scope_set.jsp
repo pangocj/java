@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
+<% 
 	//내장객체를 이용하여 객체를 속성값으로 저장
 	// => 속성명을 이용하여 속성값을 구분 - 내장객체가 다른 경우 같은 이름의 속성명 사용 가능
 	// => 내장객체에 동일한 속성명을 있는 경우 기존 속성값 대신 새로운 속성값으로 변경

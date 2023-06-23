@@ -13,7 +13,7 @@
 	<a href="index.jsp">블로그(Blog)</a>&nbsp;&nbsp;
 	<a href="index.jsp">카페(Cafe)</a>&nbsp;&nbsp;
 	<hr>
-	
+	 
 	<%-- Content 영역 --%>
 	<p>메일 관련 정보가 출력됩니다.</p>
 	<p>메일 관련 정보가 출력됩니다.</p>
