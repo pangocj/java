@@ -18,7 +18,7 @@
 		*/
 		
 		/*
-		//response.sendRedirect(int sc) : 클라이언트에게 URL 주소를 전달하여 응답 처리하는 메소드
+		//response.sendRedirect(String url) : 클라이언트에게 URL 주소를 전달하여 응답 처리하는 메소드
 		// => URL 주소를 응답받은 클라이언트는 브라우저의 요청 URL 주소를 변경하여 요청 처리하고
 		//실행결과를 응답받아 출력 - 리다이렉트를 이용한 페이지 이동(리다이렉트 이동)
 		//[login_form.jsp] 문서로 이동하기 위한 URL 주소를 전달하여 응답

@@ -3,7 +3,8 @@
 <%-- 비로그인 상태의 사용자인 경우 사용자로부터 로그인 처리에 필요한 인증정보(아이디와 비밀번호)를 입력받기 JSP 문서 --%>
 <%-- => [로그인] 태그를 클릭한 경우 [login_action.jsp] 문서를 요청하여 페이지 이동 - 입력값(인증정보) 전달 --%>
 <%-- 로그인 상태의 사용자인 경우 환영메세자를 전달하여 응답하는 JSP 문서 --%>
-<%-- --%>
+<%-- => [로그아웃] 태그를 클릭한 경우 [logout_action.jsp] 문서를 요청하여 페이지 이동 --%>
+<%-- => [내정보] 태그를 클릭한 경우 [login_user.jsp] 문서를 요청하여 페이지 이동 --%>
 <%
 	//바인딩된 세션에서 권한 관련 정보가 저장된 객체를 반환받아 저장
 	String loginId=(String)session.getAttribute("loginId");
@@ -21,7 +22,7 @@
 		//전달된 에러메세지를 반환받아 저장
 		String message=request.getParameter("message");
 		if(message==null) {//전달값이 없는 경우
-			message="";//null 문자값 출력 방지
+			message="";//표현식으로 인해 null 문자열이 출력되는 것을 방지
 		}
 		*/
 		
