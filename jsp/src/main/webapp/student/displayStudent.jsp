@@ -45,10 +45,18 @@
 			<td width="150"><%=student.getPhone() %></td>				
 			<td width="250"><%=student.getAddress() %></td>				
 			<td width="100"><%=student.getBirthday().substring(0, 10) %></td>				
-			<td width="50"><input type="button" value="삭제"></td>				
+			<td width="50"><input type="button" value="삭제" onclick="removeConfirm(<%=student.getNo()%>);"></td>				
 			<td width="50"><input type="button" value="변경" onclick="location.href='updateFormStudent.jsp?no=<%=student.getNo()%>';"></td>				
 		</tr>	
 		<% } %>
 	</table>
+	
+	<script type="text/javascript">
+	function removeConfirm(no) {
+		if(confirm("학생정보를 정말로 삭제 하시겠습니까?")) {
+			location.href="deleteStudent.jsp?no="+no;
+		}
+	}
+	</script>
 </body>
 </html>
