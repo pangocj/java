@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%-- 요청 JSP 문서에서 스레드가 이동되어 실행되는 JSP 문서는 요청 JSP 문서의 request 객체와
 response 객체를 전달받아 사용 --%>
-<%-- => request 객체와 response 객체로 메소드 사용 제한 발생  --%>  
+<%-- => include 태그를 사용하여 전달받은 request 객체와 response 객체로 메소드 사용 제한 발생  --%>  
 <%
 	//스레드가 이동되어 실행되는 JSP 문서에서는 request 객체의 정보를 반환받아 사용할 수 
 	//있지만 request 객체의 정보 변경 불가능
