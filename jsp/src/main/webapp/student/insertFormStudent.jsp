@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 사용자로부터 학생정보를 입력받기 위한 JSP 문서 --%>
-<%-- => [학생추가] 태그를 클릭한 경우 [insertStudent.jsp] 문서를 요청하여 이동 - 입력값 전달 --%>
+<%-- => [학생추가] 태그를 클릭한 경우 [insertStudent.jsp] 문서를 요청하여 이동 - 입력값(학생정보) 전달 --%>
 <%-- => [학생목록] 태그를 클릭한 경우 [displayStudent.jsp] 문서를 요청하여 이동 --%>
 <%
 	String message=(String)session.getAttribute("message");
