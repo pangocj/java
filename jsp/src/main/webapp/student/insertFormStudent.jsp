@@ -93,7 +93,7 @@
 		}
 
 		if(studentForm.phone.value=="") {
-			alert("전화번호을 입력해 주세요.");
+			alert("전화번호를 입력해 주세요.");
 			studentForm.phone.focus();
 			return;
 		}
