@@ -96,7 +96,7 @@ public class StudentDAO extends JdbcDAO {
 		return rows;
 	}
 	
-	//학번을 전달받아 STUDENT 테이블에 저장된 학생정보를 검색하여 DTO 객체로 반환하는 메소드
+	//학생번호를 전달받아 STUDENT 테이블에 저장된 학생정보를 검색하여 DTO 객체로 반환하는 메소드
 	public StudentDTO selectStudent(int no) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
