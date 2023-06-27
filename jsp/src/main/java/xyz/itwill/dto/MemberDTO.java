@@ -7,18 +7,18 @@ package xyz.itwill.dto;
 /*
 이름            널?       유형            
 ------------- -------- ------------- 
-ID            NOT NULL VARCHAR2(30)  
-PASSWD                 VARCHAR2(200) 
-NAME                   VARCHAR2(30)  
-EMAIL                  VARCHAR2(50)  
-MOBILE                 VARCHAR2(20)  
-ZIPCODE                VARCHAR2(10)  
-ADDRESS1               VARCHAR2(200) 
-ADDRESS2               VARCHAR2(100) 
-JOIN_DATE              DATE          
-LAST_LOGIN             DATE          
-MEMBER_STATUS          NUMBER(1)  
- */
+ID            NOT NULL VARCHAR2(30)  - 아이디
+PASSWD                 VARCHAR2(200) - 비밀번호 : 암호화 처리
+NAME                   VARCHAR2(30)  - 이름
+EMAIL                  VARCHAR2(50)  - 이메일
+MOBILE                 VARCHAR2(20)  - 전화번호
+ZIPCODE                VARCHAR2(10)  - 우편번호
+ADDRESS1               VARCHAR2(200) - 기본주소
+ADDRESS2               VARCHAR2(100) - 상세주소
+JOIN_DATE              DATE          - 회원가입날짜
+LAST_LOGIN             DATE          - 마지막 로그인날짜
+MEMBER_STATUS          NUMBER(1)     - 회원상태 : 0(탈퇴회원), 1(일반회원), 9(관리자)
+*/
 
 public class MemberDTO {
 	private String id;
