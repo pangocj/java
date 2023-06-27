@@ -28,7 +28,8 @@
 	margin: 0 auto;
 	padding: 5px;
 	width: 300px;
-	background-color: aqua;
+	background-color: black;
+	color: white;
 	font-size: 1.2em;
 	cursor: pointer;
 	letter-spacing: 20px;
