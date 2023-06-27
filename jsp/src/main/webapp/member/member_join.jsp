@@ -1,7 +1,8 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 회원정보를 입력받기 위한 JSP 문서 --%>
-<%-- => [회원가입] 태그를 클릭한 경우 [member/member_join_action.jsp] 문서 요청 - 입력값(회원정보) 전달 --%>    
+<%-- => [회원가입] 태그를 클릭한 경우 [member/member_join_action.jsp] 문서 요청 - 입력값(회원정보) 전달 --%>
+<%-- => [아이디 중복 검사] 태그를 클릭한 경우 팝업창을 실행하여 [id_check.jsp] 문서 요청 - 아이디 전달 --%>    
 <style type="text/css">
 fieldset {
 	text-align: left;
@@ -51,6 +52,10 @@ legend {
 }
 </style>
 <form id="join" action="<%=request.getContextPath() %>/member/member_join_action.jsp" method="post">
+<%-- 아이디 중복 검삭 결과를 저장하기 위한 입력태그 --%>
+<%-- => 0 : 아이디 중복 검사 미실행 또는 아이디 중복 - 아이디 사용 불가능 --%>
+<%-- => 1 : 아이디 중복 검사 실행 및 아이디 미중복 - 아이디 사용 가능 --%>
+<input type="hidden" id="idCheckResult" value="0">
 <fieldset>
 	<legend>회원가입 정보</legend>
 	<ul>
@@ -59,6 +64,7 @@ legend {
 			<input type="text" name="id" id="id"><span id="idCheck">아이디 중복 검사</span>
 			<div id="idMsg" class="error">아이디를 입력해 주세요.</div>
 			<div id="idRegMsg" class="error">아이디는 영문자로 시작되는 영문자,숫자,_의 6~20범위의 문자로만 작성 가능합니다.</div>
+			<div id="idCheckMsg" class="error">아이디 중복 검사를 반드시 실행해 주세요.</div>
 		</li>
 		<li>
 			<label for="passwd">비밀번호</label>
@@ -135,6 +141,8 @@ $("#join").submit(function() {
 	} else if(!idReg.test($("#id").val())) {
 		$("#idRegMsg").css("display","block");
 		submitResult=false;
+	} else if($("#idCheckResult").val()=="0") {
+		$("#idCheckMsg").css("display","block");
 	}
 		
 	var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
@@ -195,4 +203,47 @@ $("#join").submit(function() {
 	
 	return submitResult;
 });
+
+$("#idCheck").click(function() {
+	//아이디 관련 에러메세지가 보여지지 않도록 설정	
+	$("#idMsg").css("display","none");
+	$("#idRegMsg").css("display","none");
+	
+	var idReg=/^[a-zA-Z]\w{5,19}$/g;
+	if($("#id").val()=="") {
+		$("#idMsg").css("display","block");
+		return;
+	} else if(!idReg.test($("#id").val())) {
+		$("#idRegMsg").css("display","block");
+		return;
+	}
+	
+	//팝업창을 실행하여 [id_check.jsp] 문서 요청
+	window.open("<%=request.getContextPath()%>/member/id_check.jsp?id="+$("#id").val()
+			,"idCheck", "width=450, height=130, left=700, top=400");
+});
+
+//입력태그(아이디)의 입력값이 변경된 경우 호출되는 이벤트 처리 함수 등록
+$("#id").change(function() {
+	//아이디 중복 검사 결과값을 저장한 입력태그의 입력값 변경 - 아이디 중복 검사 미실행
+	$("#idCheckResult").val("0");
+});
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
