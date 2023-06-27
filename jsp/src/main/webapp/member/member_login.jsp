@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- 사용자로부터 로그인정보(아이디와 비밀번호)를 입력받기 위한 JSP 문서 --%>
+<%-- => [로그인] 태그를 클릭한 경우 [member/member_login_action.jsp] 문서를 요청하여 이동 - 입력값(로그인정보) 전달 --%>    
 <style type="text/css">
 #space {
 	height: 50px;
@@ -52,7 +54,7 @@ a:hover {
 }
 </style>
 <div id="space"></div>
-<form id="login" name="loginForm" action="#" method="post">
+<form id="login" name="loginForm" action="<%=request.getContextPath() %>/member/member_login_action.jsp" method="post">
 	<ul class="login_tag">
 		<li>
 			<label for="id">아이디</label>
