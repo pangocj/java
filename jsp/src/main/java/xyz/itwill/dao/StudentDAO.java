@@ -75,7 +75,7 @@ public class StudentDAO extends JdbcDAO {
 		return rows;
 	}
 
-	//학번을 전달받아 STUDENT 테이블에 저장된 학생정보를 삭제하고 삭제행의 갯수를 반환하는 메소드
+	//학생번호을 전달받아 STUDENT 테이블에 저장된 학생정보를 삭제하고 삭제행의 갯수를 반환하는 메소드
 	public int deleteStudent(int no) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
