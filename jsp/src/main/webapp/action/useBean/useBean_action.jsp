@@ -24,7 +24,7 @@
 <%-- => scope 속성을 생략한 경우 [page] 속성값을 기본값으로 설정하여 사용 --%>
 <jsp:useBean id="hewon" class="xyz.itwill.bean.Hewon" scope="request"/>
 <%--
-	//useBean 태그와 동일한 명령
+	//useBean 태그와 동일한 명령 - 객체를 생성하여 내장객체의 속성값으로 저장하여 제공
 	Hewon hewon=new Hewon();
 	request.setAttribute("hewon", hewon);
 --%>

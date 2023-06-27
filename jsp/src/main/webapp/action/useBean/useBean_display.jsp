@@ -19,6 +19,7 @@
 	<hr>
 	<jsp:useBean id="hewon" class="xyz.itwill.bean.Hewon" scope="request"/>
 	<%--
+		//useBean 태그와 동일한 명령 - 내장객체에 저장된 속성값을 객체로 반환받아 제공
 		Hewon hewon=(Hewon)request.getAttribute("hewon");
 	--%>
 
@@ -38,9 +39,3 @@
 	--%>
 </body> 
 </html>
-
-
-
-
-
-
