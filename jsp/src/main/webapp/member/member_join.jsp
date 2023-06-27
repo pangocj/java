@@ -46,7 +46,8 @@ legend {
 }
 
 #idCheck:hover, #postSearch:hover {
-	background: aqua;
+	background: black;
+	color: white;
 }
 </style>
 <form id="join" action="<%=request.getContextPath() %>/member/member_join_action.jsp" method="post">
@@ -55,7 +56,7 @@ legend {
 	<ul>
 		<li>
 			<label for="id">아이디</label>
-			<input type="text" name="id" id="id"><!-- <span id="idCheck">아이디 중복 검사</span> -->
+			<input type="text" name="id" id="id"><span id="idCheck">아이디 중복 검사</span>
 			<div id="idMsg" class="error">아이디를 입력해 주세요.</div>
 			<div id="idRegMsg" class="error">아이디는 영문자로 시작되는 영문자,숫자,_의 6~20범위의 문자로만 작성 가능합니다.</div>
 		</li>
