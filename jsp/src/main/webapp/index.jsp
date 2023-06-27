@@ -27,8 +27,7 @@
 	</div>
 	
 	<div id="content">
-		<%-- <jsp:include page="<%=contentPath %>"/> --%>
-		메인페이지
+		<jsp:include page="<%=contentPath %>"/>
 	</div>
 	
 	<div id="footer">
