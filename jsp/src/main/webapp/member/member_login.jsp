@@ -47,7 +47,8 @@
 }
 
 a:hover {
-	background-color: orange;
+	color: blue;
+	text-decoration: underline;
 }
 </style>
 <div id="space"></div>
