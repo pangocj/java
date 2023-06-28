@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%-- 로그인 상태의 사용자정보(회원정보)를 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
 <%-- => 로그인 상태의 사용자만 요청 가능한 JSP 문서 --%>
-<%
+<%--
 	//바인딩된 세션에서 권한 관련 정보의 속성값을 객체(로그인 상태의 사용자정보)로 반환받아 저장
 	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
 
@@ -18,7 +18,8 @@
 		out.println("</script>");
 		return;
 	}
-%>
+--%>
+<%@include file="/security/login_check.jspf" %>
 <style type="text/css">
 #detail {
 	width: 500px;
