@@ -34,5 +34,5 @@ MEMBER 테이블에 저장된 회원정보의 회원상태를 [0]으로 변경�
 	session.invalidate();
 	
 	//페이지 이동	
-	response.sendRedirect(request.getContextPath()+"/index.jsp?group=main&worker=main_page");
+	response.sendRedirect(request.getContextPath()+"/index.jsp?group=member&worker=member_remove");
 %>
