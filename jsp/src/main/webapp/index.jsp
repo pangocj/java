@@ -19,7 +19,7 @@
 <meta charset="UTF-8">
 <title>JSP</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="header">

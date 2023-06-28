@@ -53,7 +53,7 @@ legend {
 }
 </style>
 <form id="join" action="<%=request.getContextPath() %>/member/member_join_action.jsp" method="post">
-<%-- 아이디 중복 검삭 결과를 저장하기 위한 입력태그 --%>
+<%-- 아이디 중복 검사 결과를 저장하기 위한 입력태그 --%>
 <%-- => 0 : 아이디 중복 검사 미실행 또는 아이디 중복 - 아이디 사용 불가능 --%>
 <%-- => 1 : 아이디 중복 검사 실행 및 아이디 미중복 - 아이디 사용 가능 --%>
 <input type="hidden" id="idCheckResult" value="0">
@@ -146,6 +146,7 @@ $("#join").submit(function() {
 		submitResult=false;
 	} else if($("#idCheckResult").val()=="0") {
 		$("#idCheckMsg").css("display","block");
+		submitResult=false;
 	}
 		
 	var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
