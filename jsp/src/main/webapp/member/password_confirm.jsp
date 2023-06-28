@@ -50,6 +50,8 @@ function submitCheck() {
 	<% } else {//[회원탈퇴]인 경우 %>
 		passwordForm.action="<%=request.getContextPath()%>/member/member_remove_action.jsp";
 	<% } %>
+	
+	passwordForm.submit();
 }
 </script>
 
