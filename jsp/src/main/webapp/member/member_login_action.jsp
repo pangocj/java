@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="xyz.itwill.dao.MemberDAO"%>
 <%@page import="xyz.itwill.dto.MemberDTO"%>
 <%@page import="xyz.itwill.util.Utility"%>
@@ -16,6 +17,12 @@
 	String id=request.getParameter("id");
 	String passwd=Utility.encrypt(request.getParameter("passwd"));
 	
+	//전달값(로그인 후 요청할 JSP 문서의 URL 주소)을 반환받아 저장
+	String returnUrl=request.getParameter("returnUrl");
+	if(returnUrl==null) {
+		returnUrl="";
+	}
+	
 	//아이디를 전달받아 MEMBER 테이블에 저장된 회원정보를 검색하여 DTO 객체로 반환하는 DAO 클래스의 메소드 호출
 	MemberDTO member=MemberDAO.getDAO().selectMember(id);
 	
@@ -23,7 +30,8 @@
 	if(member==null || !member.getPasswd().equals(passwd)) {//로그인 실패 
 		session.setAttribute("message", "아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.");
 		session.setAttribute("id", id);
-		response.sendRedirect(request.getContextPath()+"/index.jsp?group=member&worker=member_login");
+		response.sendRedirect(request.getContextPath()
+			+"/index.jsp?group=member&worker=member_login&returnUrl="+URLEncoder.encode(returnUrl, "utf-8"));
 		return;
 	}
 	
@@ -35,8 +43,13 @@
 	session.setAttribute("loginMember", MemberDAO.getDAO().selectMember(id));
 	
 	//페이지 이동
-	response.sendRedirect(request.getContextPath()+"/index.jsp?group=main&worker=main_page");
+	if(returnUrl.equals("")) {//반환받은 요청 JSP 문서의 URL 주소가 없는 경우 - 메인페이지 이동
+		response.sendRedirect(request.getContextPath()+"/index.jsp?group=main&worker=main_page");
+	} else {//반환받은 요청 JSP 문서의 URL 주소가 있는 경우 - URL 주소의 JSP 문서로 이동
+		response.sendRedirect(returnUrl);
+	}
 %>
+
 
 
 
