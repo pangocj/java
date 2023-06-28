@@ -28,18 +28,18 @@
 	width: 300px;
 }    
 
-#login label {
+#loginForm label {
 	text-align: right;
 	width: 100px;
 	float: left;
 }
 
-#login ul li {
+#loginForm ul li {
 	list-style-type: none;
 	margin-bottom: 10px;
 }
 
-#login input:focus {
+#loginForm input:focus {
 	border: 2px solid aqua;
 }
 
@@ -71,7 +71,7 @@ a:hover {
 }
 </style>
 <div id="space"></div>
-<form id="login" name="loginForm" action="<%=request.getContextPath() %>/member/member_login_action.jsp" method="post">
+<form id="loginForm" name="loginForm" action="<%=request.getContextPath() %>/member/member_login_action.jsp" method="post">
 	<ul class="login_tag">
 		<li>
 			<label for="id">아이디</label>
@@ -105,7 +105,7 @@ $("#login_btn").click(function() {
 		return;
 	}
 	
-	$("#login").submit();
+	$("#loginForm").submit();
 });
 
 </script>

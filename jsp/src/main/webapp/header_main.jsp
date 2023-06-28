@@ -2,9 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	//바딩된 세션에서 권한 관련 정보의 속성값을 객체로 반환받아 저장
+	//바인딩된 세션에서 권한 관련 정보의 속성값을 객체로 반환받아 저장
 	MemberDTO loginMember=(MemberDTO)session.getAttribute("loginMember");
-
 %>    
 <div id="profile">
 	<% if(loginMember==null) {//비로그인 상태의 사용자인 경우 %>
