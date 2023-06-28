@@ -86,6 +86,27 @@ public class MemberDAO extends JdbcDAO {
 		}
 		return member;
 	}
+	
+	//아이디를 전달받아 MEMBER 테이블에 저장된 회원정보의 마지막 로그인 날짜를 변경하고 변경행의 갯수를 반환하는 메소드
+	public int updateLastLogin(String id) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update member set last_login=sysdate where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateLastLogin() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
 }
 
 

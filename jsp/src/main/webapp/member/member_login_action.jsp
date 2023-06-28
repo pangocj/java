@@ -27,9 +27,19 @@
 		return;
 	}
 	
+	//아이디를 전달받아 MEMBER 테이블에 저장된 회원정보의 마지막 로그인 날짜를 변경하는 DAO 클래스의 메소드 호출
+	MemberDAO.getDAO().updateLastLogin(id);
+
 	//로그인 성공 - 바인딩된 세션에 권한 관련 정보의 객체를 속성값으로 저장
-	session.setAttribute("loginMember", member);
+	// => 권한 관련 정보로 로그인 사용자정보(MemberDTO)의 객체 저장
+	session.setAttribute("loginMember", MemberDAO.getDAO().selectMember(id));
 	
 	//페이지 이동
 	response.sendRedirect(request.getContextPath()+"/index.jsp?group=main&worker=main_page");
 %>
+
+
+
+
+
+
