@@ -16,15 +16,13 @@
 				
 		//request.getQueryString() : 요청 URL 주소에서 질의문자열(QueryString)을 반환하는 메소드 
 		String queryString=request.getQueryString();		
-		//System.out.println("queryString = "+queryString);//requestURI = /jsp/index.jsp
+		//System.out.println("queryString = "+queryString);//queryString = group=cart&worker=cart_list
 		
-		String returnUrl="";
+		String returnUrl=requestURI;
 		if(queryString!=null) {
-			returnUrl=requestURI+"?"+queryString;
-		} else {
-			returnUrl=requestURI;
-		}
-		//System.out.println("returnUrl = "+returnUrl);
+			returnUrl+="?"+queryString;
+		} 
+		//System.out.println("returnUrl = "+returnUrl);//returnUrl = /jsp/index.jsp?group=cart&worker=cart_list
 		
 		//로그인 후 요청할 JSP 문서의 URL 주소를 부호화 처리하여 저장
 		returnUrl=URLEncoder.encode(returnUrl, "utf-8");

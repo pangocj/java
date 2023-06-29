@@ -158,21 +158,32 @@ public class MemberDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//회원정보를 전달받아 MEMBER 테이블에 저장된 회원정보의 아이디를 검색하여 문자열로 반환하는 메소드
+	public String selectMemberId(MemberDTO member) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String id=null;
+		try {
+			con=getConnection();
+			
+			String sql="select id from member where name=? and email=? and member_status!=0";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, member.getName());
+			pstmt.setString(2, member.getEmail());
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				//id=rs.getString("id");
+				id=rs.getString(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectMemberId() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return id;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
