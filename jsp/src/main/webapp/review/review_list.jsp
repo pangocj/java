@@ -258,7 +258,7 @@ td {
 	<%-- 사용자로부터 검색어를 입력받아 게시글 검색 기능 구현 --%>
 	<form action="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list" method="post">
 		<%-- select 태그를 사용하여 검색대상을 선택해 컬럼명을 전달 --%>
-		<select name="se arch">
+		<select name="search">
 			<option value="name" selected="selected">&nbsp;작성자&nbsp;</option>
 			<option value="subject">&nbsp;제목&nbsp;</option>
 			<option value="content">&nbsp;내용&nbsp;</option>
