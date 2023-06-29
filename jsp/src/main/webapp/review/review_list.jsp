@@ -269,20 +269,3 @@ td {
 		<button type="submit">게시글 검색</button>
 	</form>
 </div>
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
