@@ -19,7 +19,7 @@
 	if(keyword==null) {
 		keyword="";
 	}
-
+	
 	//페이징 처리에 필요한 전달값(페이지 번호)을 반환받아 저장
 	// => 페이징 처리에 필요한 전달값이 없는 경우 1번째 페이지의 게시글 목록을 검색하여 응답
 	int pageNum=1;
@@ -123,6 +123,15 @@ td {
 	border: 1px solid black;
 	border-radius: 4px;
 }
+
+#page_list {
+	font-size: 1.1em;
+	margin-bottom: 10px;
+}
+
+#page_list a:hover {
+	font-size: 1.3em;
+}
 </style>
 
 <h1>제품후기</h1>
@@ -205,6 +214,60 @@ td {
 			<% } %>
 		<% } %>
 	</table>
+	
+	<%-- 페이지 번호 출력 및 링크 제공 - 블럭화 처리 --%>
+	<%
+		//하나의 페이지 블록에 출력될 페이지 번호의 갯수 설정
+		int blockSize=5;
+	
+		//페이지 블럭에 출력될 시작 페이지 번호를 계산하여 저장
+		//ex)1Block : 1, 2Block : 6, 3Block : 11, 4Block : 16, ...
+		int startPage=(pageNum-1)/blockSize*blockSize+1;		
+
+		//페이지 블럭에 출력될 종료 페이지 번호를 계산하여 저장
+		//ex)1Block : 5, 2Block : 10, 3Block : 15, 4Block : 20, ...
+		int endPage=startPage+blockSize-1;
+		if(endPage>totalPage) {
+			endPage=totalPage;
+		}
+	%>
+	<div id="page_list">
+	<% if(startPage>blockSize) { %>
+		<a href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list&pageNum=1&search=<%=search%>&keyword=<%=keyword%>">[처음]</a>
+		<a href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list&pageNum=<%=startPage-blockSize%>&search=<%=search%>&keyword=<%=keyword%>">[이전]</a>
+	<% } else { %>
+		[처음][이전]
+	<% } %>
+	
+	<% for(int i=startPage;i<=endPage;i++) { %>
+		<% if(pageNum!=i) { %>
+			<%-- 요청 페이지 번호와 이벤트가 발생된 페이지 번호가 다른 경우 링크 제공 --%>
+			<a href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list&pageNum=<%=i%>&search=<%=search%>&keyword=<%=keyword%>">[<%=i %>]</a>
+		<% } else { %>
+			<%-- 요청 페이지 번호와 이벤트가 발생된 페이지 번호가 같은 경우 링크 미제공 --%>
+			[<%=i %>]
+		<% } %>
+	<% } %>
+	
+	<% if(endPage!=totalPage) { %>
+		<a href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list&pageNum=<%=startPage+blockSize%>&search=<%=search%>&keyword=<%=keyword%>">[다음]</a>
+		<a href="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list&pageNum=<%=totalPage%>&search=<%=search%>&keyword=<%=keyword%>">[마지막]</a>
+	<% } else { %>
+		[다음][마지막]
+	<% } %>
+	</div>
+	
+	<%-- 사용자로부터 검색어를 입력받아 게시글 검색 기능 구현 --%>
+	<form action="<%=request.getContextPath()%>/index.jsp?group=review&worker=review_list" method="post">
+		<%-- select 태그를 사용하여 검색대상을 선택해 컬럼명을 전달 --%>
+		<select name="search">
+			<option value="name" selected="selected">&nbsp;작성자&nbsp;</option>
+			<option value="subject">&nbsp;제목&nbsp;</option>
+			<option value="content">&nbsp;내용&nbsp;</option>
+		</select>
+		<input type="text" name="keyword">
+		<button type="submit">게시글 검색</button>
+	</form>
 </div>
 
 

@@ -42,7 +42,7 @@ public class ReviewDAO extends JdbcDAO {
 				pstmt=con.prepareStatement(sql);
 			} else {//게시글 검색 기능을 사용한 경우
 				//검색대상(컬럼명)에 검색단어가 포함한 게시글의 갯수 검색 - 삭제글 제외
-				String sql="select count(*) from review where "
+				String sql="select count(*) from review join member on review.id=member.id where "
 						+search+" like '%'||?||'%' and status <> 0";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
