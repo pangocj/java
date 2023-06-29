@@ -1,3 +1,6 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="xyz.itwill.dto.MemberDTO"%>
 <%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
@@ -57,6 +60,14 @@
 	//게시글 목록을 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출
 	List<ReviewDTO> reviewList=ReviewDAO.getDAO().selectReviewList(startRow, endRow, search, keyword);
 	
+	//세션에 저장된 권한 관련 속성값을 객체로 반환받아 저장
+	// => 로그인 상태의 사용자에게만 글쓰기 권한 제공
+	// => 비밀글인 경우 로그인 상태의 사용자가 게시글 작성자이거나 관리자인 경우에만 사용 권한 제공
+	MemberDTO loginMener=(MemberDTO)session.getAttribute("loginMember");
+	
+	//서버 시스템의 현재 날짜를 제공받아 저장
+	// => 게시글 작성날짜와 현재 날짜를 비교하여 게시글 작성날짜를 다르게 출력되도록 응답 처리
+	String currentDate=new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 %>
 <h1>제품후기 목록</h1>
 
