@@ -1,3 +1,5 @@
+<%@page import="xyz.itwill.dto.ReviewDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -52,7 +54,9 @@
 	}
 	
 	//페이징 처리 관련 정보와 게시글 검색 기능 관련 정보를 전달하여 REVIEW 테이블에 저장된 
-	//게시글 목록을 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출  
+	//게시글 목록을 검색하여 List 객체로 반환하는 DAO 클래스의 메소드 호출
+	List<ReviewDTO> reviewList=ReviewDAO.getDAO().selectReviewList(startRow, endRow, search, keyword);
+	
 %>
 <h1>제품후기 목록</h1>
 
