@@ -7,6 +7,7 @@
 <%-- 새글 : [review_list.jsp] 문서에 의해 [review_writer.jsp] 문서를 요청한 경우 - 전달값 : X --%>    
 <%-- 답글 : [review_detail.jsp] 문서에 의해 [review_writer.jsp] 문서를 요청한 경우 - 전달값 : O --%>    
 <%-- => [review_detail.jsp] 문서에서 부모 게시글 관련 정보(ref, restep, relevel, pageNum) 전달--%>
+
 <%-- 비로그인 상태의 사용자가 JSP 문서를 요청한 경우 에러페이지로 이동되도록 응답 처리 --%>
 <%@include file="/security/login_check.jspf" %>
 <%
@@ -97,12 +98,3 @@ $("#resetBtn").click(function() {
 	$("#message").text("");
 });
 </script>
-
-
-
-
-
-
-
-
-
