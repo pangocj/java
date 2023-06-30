@@ -2,6 +2,7 @@ package xyz.itwill.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Pattern;
 
 //웹프로그램 작성에 필요한 기능을 제공하기 위한 클래스
 public class Utility {
@@ -35,5 +36,24 @@ public class Utility {
 			System.out.println("[에러]잘못된 암호화 알고리즘을 사용 하였습니다.");
 		}
 		return encryptPasswd;
+	}
+	
+	//문자열을 전달받아 태그 관련 문자열을 모두 제거하여 반환하는 메소드
+	public static String stripTag(String source) {
+		//Pattern.compile(String regex) : 매개변수로 전달받은 정규표현식이 저장된 Pattern 객체를
+		//생성하여 반환하는 메소드
+		Pattern htmlTag=Pattern.compile("\\<.*?\\>");
+		
+		//Pattern.matcher(CharSequence input) : 매개변수에 입력값을 전달받아 Pattern 객체의 
+		//정규표현식과 비교값이 저장된 Matcher 객체를 생성하여 반환하는 메소드
+		// => Matcher 객체 : 정규표현식과 입력값을 비교하여 문자열의 검색,변경,삭제 기능을 제공하기 위한 객체
+		//Matcher.replaceAll(String replacement) : 입력값에서 정규표현식과 동일한 패턴의
+		//문자열을 모두 찾아 매개변수로 전달받은 문자열로 변경하는 메소드
+		return htmlTag.matcher(source).replaceAll("");//문자열에서 HTML 태그를 삭제
+	}
+	
+	//문자열을 전달받아 태그 관련 문자를 회피문자로 변경하여 반환하는 메소드
+	public static String escapeTag(String source) {
+		return source.replace("<", "&lt;").replace(">", "&gt;");
 	}
 }
