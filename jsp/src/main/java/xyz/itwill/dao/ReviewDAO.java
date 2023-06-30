@@ -186,7 +186,7 @@ public class ReviewDAO extends JdbcDAO {
 			String sql="update review set restep=restep+1 where ref=? and restep>?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, ref);
-			pstmt.setInt(1, restep);
+			pstmt.setInt(2, restep);
 			
 			rows=pstmt.executeUpdate();
 		} catch (SQLException e) {
