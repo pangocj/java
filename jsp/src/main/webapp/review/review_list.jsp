@@ -10,6 +10,7 @@
 <%-- => 게시글을 페이지로 구분하여 검색 처리 - 페이징 처리 --%>
 <%-- => [페이지번호] 태그를 클릭한 경우 [review/review_list.jsp] 문서 요청 - 페이지번호,검색대상,검색단어 전달 --%>
 <%-- => [검색] 태그를 클릭한 경우 [review/review_list.jsp] 문서 요청 - 검색대상,검색단어 전달 --%>
+<%-- => [글쓰기] 태그를 클릭한 경우 [review/review_write.jsp] 문서 요청 - 로그인 상태의 사용자에게만 링크 제공 --%>
 <%
 	//게시글 검색 기능에 필요한 전달값(검색대상과 검색단어)을 반환받아 저장
 	String search=request.getParameter("search");
@@ -142,7 +143,7 @@ td {
 	
 	<% if(loginMember!=null) {//로그인 상태의 사용자인 경우 %>
 	<div style="text-align: right;">
-		<button type="button">글쓰기</button>
+		<button type="button" onclick="location.href='<%=request.getContextPath()%>/index.jsp?group=review&worker=review_write';">글쓰기</button>
 	</div>
 	<% } %>
 	
