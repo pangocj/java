@@ -12,7 +12,7 @@ NUM       NOT NULL NUMBER         - 글번호
 REVIEWID           VARCHAR2(30)   - 작성자(아이디)
 SUBJECT            VARCHAR2(500)  - 제목
 CONTENT            VARCHAR2(4000) - 내용
-REVIEWIMG          VARCHAR2(100)  - 이미지파일
+REVIEWIMG          VARCHAR2(100)  - 이미지파일명
 REGDATE            DATE           - 작성날짜
 READCOUNT          NUMBER         - 조회수
 REF                NUMBER(4)      - 글그룹(답글)
