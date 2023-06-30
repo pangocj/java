@@ -6,7 +6,7 @@
 <%-- 게시글(새글 또는 답글)을 전달받아 REVIEW 테이블에 삽입하고 [review/review_list.jsp] 문서로
 이동하기 위한 URL 주소를 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
 <%-- => 로그인 상태의 사용자만 요청 가능한 JSP 문서 --%>
-<%-- => [multipart/form-data] 형태로 값이 전달되므로 COS 라이브러리의 MultipartRequest 클래스 사용 --%>
+<%-- => [multipart/form-data] 형태로 값이 전달되므로 COS 라이브러리의 MultipartRequest 클래스를 사용하여 처리 --%>
 <%-- => 전달받은 파일은 [/review_images] 서버 디렉토리에 업로드 처리하여 저장 --%>
 <%@include file="/security/login_check.jspf" %>
 <%
@@ -21,6 +21,7 @@
 	//System.out.println("saveDirectory = "+saveDirectory);
 
 	//MultipartRequest 객체 생성 - 모든 전달파일을 서버 디렉토리에 업로드 처리하여 저장
+	// => cos.jar 라이브러리 파일을 프로젝트에 반드시 빌드 처리
 	MultipartRequest multipartRequest=new MultipartRequest(request, saveDirectory
 			, 20*1024*1024, "utf-8", new DefaultFileRenamePolicy());
 
@@ -54,16 +55,16 @@
 	
 	//게시글을 새글과 답글로 구분하여 REVIEW 테이블의 컬럼값으로 저장될 변수값 변경
 	// => [review_write.jsp] 문서에서 hidden 타입으로 전달된 값이 저장된 ref, restep, relevel
-	//변수값 변경 - 새글 : 초기값, 답글 : 부모글로부터 전달된 값
+	//변수값 변경 - 새글 : 초기값(0), 답글 : 부모글로부터 전달된 값
 	if(ref==0) {//새글인 경우
 		//REVIEW 테이블의 REF 컬럼값에는 시퀸스의 다음값(num 변수값)을 저장하고 RESTEP 컬럼과
 		//RELEVEL 컬럼에는 restep 변수값(0)과 relevel 변수값(0)을 저장
 		ref=num;		
 	} else {//답글인 경우
-		//REVIEW 테이블에 저장된 게시글에서 REF 컬럼값이 ref 변수값(부모글)과 같은 게시글 중 
-		//RESTEP 컬럼값이 restep 변수값(부모글)보다 큰 모든 게시글의 RESTEP 컬럼값을 1 증가
+		//REVIEW 테이블에 저장된 기존 게시글에서 REF 컬럼값이 ref 변수값(부모글)과 같은 게시글 
+		//중 RESTEP 컬럼값이 restep 변수값(부모글)보다 큰 모든 게시글의 RESTEP 컬럼값을 1 증가
 		//되도록 변경 처리
-		// => ref 변수값과 restep 변수값을 전달받아 REVIEW 테이블의 RESTEP 컬럼값을 변경하는 DAO 클래스의 호출
+		// => REVIEW 테이블에 저장된 게시글의 RESTEP 컬럼값을 변경하는 DAO 클래스의 호출
 		
 		
 		//REVIEW 테이블의 REF 컬럼값에는 ref 변수값(부모글)을 저장하고 RESTEP 컬럼과 RELEVEL
