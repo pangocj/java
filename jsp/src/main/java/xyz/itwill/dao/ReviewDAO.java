@@ -42,7 +42,7 @@ public class ReviewDAO extends JdbcDAO {
 				pstmt=con.prepareStatement(sql);
 			} else {//게시글 검색 기능을 사용한 경우
 				//검색대상(컬럼명)에 검색단어가 포함한 게시글의 갯수 검색 - 삭제글 제외
-				String sql="select count(*) from review join member on review.id=member.id where "
+				String sql="select count(*) from review join member on reviewid=id where "
 						+search+" like '%'||?||'%' and status <> 0";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
@@ -72,19 +72,17 @@ public class ReviewDAO extends JdbcDAO {
 			con=getConnection();
 			
 			if(keyword.equals("")) {//게시글 검색 기능을 사용하지 않은 경우
-				String sql="select * from (select rownum rn, temp.* from (select num, member.id"
-					+ ", name, subject, content, regdate, readcount, ref, restep, relevel"
-					+ ", ip, status from review join member on review.id=member.id "
-					+ "order by ref desc, restep) temp) where rn between ? and ?";
+				String sql="select * from (select rownum rn, temp.* from (select * from"
+					+ " review join member on reviewid=id order by ref desc, restep) temp)"
+					+ " where rn between ? and ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, startRow);
 				pstmt.setInt(2, endRow);
 			} else {//게시글 검색 기능을 사용한 경우
-				String sql="select * from (select rownum rn, temp.* from (select num, member.id"
-					+ ", name, subject, content, regdate, readcount, ref, restep, relevel"
-					+ ", ip, status from review join member on review.id=member.id"
-					+ " where "+search+" like '%'||?||'%' and status <> 0"
-					+ " order by ref desc, restep) temp) where rn between ? and ?";
+				String sql="select * from (select rownum rn, temp.* from (select * from"
+					+ " review join member on reviewid=id where "+search
+					+ " like '%'||?||'%' and status <> 0 order by ref desc, restep) temp)"
+					+ " where rn between ? and ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				pstmt.setInt(2, startRow);
@@ -96,10 +94,11 @@ public class ReviewDAO extends JdbcDAO {
 			while(rs.next()) {
 				ReviewDTO review=new ReviewDTO();
 				review.setNum(rs.getInt("num"));
-				review.setId(rs.getString("id"));
+				review.setReviewid(rs.getString("reviewid"));
 				review.setName(rs.getString("name"));
 				review.setSubject(rs.getString("subject"));
 				review.setContent(rs.getString("content"));
+				review.setReviewimg(rs.getString("reviewimg"));
 				review.setRegdate(rs.getString("regdate"));
 				review.setReadcount(rs.getInt("readcount"));
 				review.setRef(rs.getInt("ref"));
@@ -150,17 +149,18 @@ public class ReviewDAO extends JdbcDAO {
 		try {
 			con=getConnection();
 			
-			String sql="insert into review values(?,?,?,?,sysdate,0,?,?,?,?,?)";
+			String sql="insert into review values(?,?,?,?,?,sysdate,0,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, review.getNum());
-			pstmt.setString(2, review.getId());
+			pstmt.setString(2, review.getRegdate());
 			pstmt.setString(3, review.getSubject());
 			pstmt.setString(4, review.getContent());
-			pstmt.setInt(5, review.getRef());
-			pstmt.setInt(6, review.getRestep());
-			pstmt.setInt(7, review.getRelevel());
-			pstmt.setString(8, review.getIp());
-			pstmt.setInt(9, review.getStatus());
+			pstmt.setString(5, review.getReviewimg());
+			pstmt.setInt(6, review.getRef());
+			pstmt.setInt(7, review.getRestep());
+			pstmt.setInt(8, review.getRelevel());
+			pstmt.setString(9, review.getIp());
+			pstmt.setInt(10, review.getStatus());
 			
 			rows=pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -25,7 +25,7 @@ STATUS             NUMBER(1)      - 게시글 상태 : 0(삭제글), 1(일반글
 public class ReviewDTO {
 	private int num;
 	private String reviewid;
-	private String name;//MEMBER 테이블의 회원이름을 저장하기 위한 필드
+	private String name;//MEMBER 테이블의 회원이름(name)을 저장하기 위한 필드
 	private String subject;
 	private String content;
 	private String reviewimg;
