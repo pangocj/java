@@ -8,7 +8,7 @@
 	for(int i=1;i<=500;i++) {
 		int num=ReviewDAO.getDAO().selectNextNum();
 		review.setNum(num);
-		review.setId("abc123");
+		review.setReviewid("abc123");
 		review.setSubject("테스트-"+i);
 		review.setContent("게시글 연습-"+i);
 		review.setRef(num);

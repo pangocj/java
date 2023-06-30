@@ -152,7 +152,7 @@ public class ReviewDAO extends JdbcDAO {
 			String sql="insert into review values(?,?,?,?,?,sysdate,0,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, review.getNum());
-			pstmt.setString(2, review.getRegdate());
+			pstmt.setString(2, review.getReviewid());
 			pstmt.setString(3, review.getSubject());
 			pstmt.setString(4, review.getContent());
 			pstmt.setString(5, review.getReviewimg());
