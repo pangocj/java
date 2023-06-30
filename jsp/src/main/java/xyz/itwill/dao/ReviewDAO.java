@@ -72,17 +72,19 @@ public class ReviewDAO extends JdbcDAO {
 			con=getConnection();
 			
 			if(keyword.equals("")) {//게시글 검색 기능을 사용하지 않은 경우
-				String sql="select * from (select rownum rn, temp.* from (select * from"
-					+ " review join member on reviewid=id order by ref desc, restep) temp)"
-					+ " where rn between ? and ?";
+				String sql="select * from (select rownum rn, temp.* from (select num, reviewid"
+					+ ", name, subject, content, reviewimg, regdate, readcount, ref, restep"
+					+ ", relevel,ip, status from review join member on reviewid=id order by"
+					+ " ref desc, restep) temp) where rn between ? and ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, startRow);
 				pstmt.setInt(2, endRow);
 			} else {//게시글 검색 기능을 사용한 경우
-				String sql="select * from (select rownum rn, temp.* from (select * from"
-					+ " review join member on reviewid=id where "+search
-					+ " like '%'||?||'%' and status <> 0 order by ref desc, restep) temp)"
-					+ " where rn between ? and ?";
+				String sql="select * from (select rownum rn, temp.* from (select num, reviewid"
+					+ ", name, subject, content, reviewimg, regdate, readcount, ref, restep"
+					+ ", relevel,ip, status from review join member on reviewid=id where "
+					+ search + " like '%'||?||'%' and status <> 0 order by ref desc, restep)"
+					+ " temp) where rn between ? and ?";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, keyword);
 				pstmt.setInt(2, startRow);
