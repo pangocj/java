@@ -183,7 +183,7 @@ td {
 					<% } else if(review.getStatus()==2) {//비밀 게시글인 경우 %>
 						<span class="subject_hidden">비밀글</span>
 						<%-- 로그인 상태의 사용자가 게시글 작성자이거나 관리자인 경우 --%>
-						<% if(loginMember!=null && (loginMember.getId().equals(review.getReviewid()) || loginMember.getMemberStatus()==9)) { %>)
+						<% if(loginMember!=null && (loginMember.getId().equals(review.getReviewid()) || loginMember.getMemberStatus()==9)) { %>
 							<a href="#"><%=review.getSubject()%></a>					
 						<% } else { %>
 							게시글 작성자 또는 관리자만 확인 가능합니다.
