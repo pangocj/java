@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
@@ -64,23 +65,32 @@
 		//REVIEW 테이블에 저장된 기존 게시글에서 REF 컬럼값이 ref 변수값(부모글)과 같은 게시글 
 		//중 RESTEP 컬럼값이 restep 변수값(부모글)보다 큰 모든 게시글의 RESTEP 컬럼값을 1 증가
 		//되도록 변경 처리
+		// => 새로운 답글이 기존 답글보다 먼저 검색되도록 기존 답글의 순서를 증가
 		// => REVIEW 테이블에 저장된 게시글의 RESTEP 컬럼값을 변경하는 DAO 클래스의 호출
-		
+		ReviewDAO.getDAO().updateRestep(ref, restep);
 		
 		//REVIEW 테이블의 REF 컬럼값에는 ref 변수값(부모글)을 저장하고 RESTEP 컬럼과 RELEVEL
 		//컬럼에는 restep 변수값(부모글)과 relevel 변수값(부모글)을 1 증가하여 저장
 		restep++;
 		relevel++;
 	}
+	
+	//DTO 객체를 생성하고 전달값(변수값)으로 필드값 변경
+	ReviewDTO review=new ReviewDTO();
+	review.setNum(num);
+	review.setReviewid(loginMember.getId());
+	review.setSubject(subject);
+	review.setContent(content);
+	review.setReviewimg(reviewimg);
+	review.setRef(ref);
+	review.setRestep(restep);
+	review.setRelevel(relevel);
+	review.setIp(ip);
+	review.setStatus(status);
+	
+	//게시글을 전달받아 REVIEW 테이블에 삽입하는 DAO 클래스의 메소드 호출
+	ReviewDAO.getDAO().insertReview(review);
+	
+	//페이지 이동
+	response.sendRedirect(request.getContextPath()+"/index.jsp?group=review&worker=review_list&pageNum="+pageNum);
 %>
-
-
-
-
-
-
-
-
-
-
-
