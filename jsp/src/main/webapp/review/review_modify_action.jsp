@@ -60,14 +60,3 @@
 	response.sendRedirect(request.getContextPath()+"/index.jsp?group=review&worker=review_detail"
 		+"&num="+num+"&pageNum="+pageNum+"&search="+search+"&keyword="+keyword);
 %>
-
-
-
-
-
-
-
-
-
-
-
