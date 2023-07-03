@@ -86,9 +86,22 @@
 			alert("응답 완료 상태");
 		}
 		*/
+		
+		//5.실행결과를 응답받아 페이지의 태그 조작 - DHTML
 		if(xhr.readyState==4) {
-			
+			//XMLHttpRequest.status : 웹프로그램 요청에 대한 응답의 상태코드(StatusCode)를 저장한 프로퍼티
+			if(xhr.status==200) {//웹프로그램 요청에 대한 정상적인 실행결과를 받은 경우
+				//XMLHttpRequest.responseText : 웹프로그램 요청에 대한 실행결과를 HTML 형식의
+				//텍스트로 응답받은 경우 응답결과를 저장한 프로퍼티
+				document.getElementById("display").innerHTML=xhr.responseText;
+			} else {//웹프로그램 요청에 대한 비정상적인 실행결과를 받은 경우 - 에러코드(4XX 또는 5XX)
+				alert("에러코드 = "+xhr.status);
+			}
 		}
+	}
+	
+	document.getElementById("btn2").onclick=function() {
+		document.getElementById("display").style="background: green;";
 	}
 	</script>
 </body>
