@@ -196,4 +196,57 @@ public class ReviewDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//글번호를 전달받아 REVIEW 테이블에 저장된 게시글을 검색하여 DTO 객체로 반환하는 메소드
+	public ReviewDTO selectReview(int num) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		ReviewDTO review=null;
+		try {
+			con=getConnection();
+			
+			String sql="select num, reviewid, name, subject, content, reviewimg, regdate"
+					+ ", readcount, ref, restep, relevel, ip, status from review join member"
+					+ " on reviewid=id where num=? and status<>0";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				review=new ReviewDTO();
+				review.setNum(rs.getInt("num"));
+				review.setReviewid(rs.getString("reviewid"));
+				review.setName(rs.getString("name"));
+				review.setSubject(rs.getString("subject"));
+				review.setContent(rs.getString("content"));
+				review.setReviewimg(rs.getString("reviewimg"));
+				review.setRegdate(rs.getString("regdate"));
+				review.setReadcount(rs.getInt("readcount"));
+				review.setRef(rs.getInt("ref"));
+				review.setRestep(rs.getInt("restep"));
+				review.setRelevel(rs.getInt("relevel"));
+				review.setIp(rs.getString("ip"));
+				review.setStatus(rs.getInt("status"));
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectReview() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return review;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
