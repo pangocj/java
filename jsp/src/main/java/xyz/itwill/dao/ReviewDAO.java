@@ -259,6 +259,42 @@ public class ReviewDAO extends JdbcDAO {
 		return rows;
 		
 	}
+	
+	//게시글을 전달받아 REVIEW 테이블에 저장된 게시글 변경하고 변경행의 갯수를 반환하는 메소드
+	public int updateReView(ReviewDTO review) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			//동적 SQL 기능을 사용하여 컬럼값 변경을 다르게 설정 
+			if(review.getReviewimg()!=null) {
+				String sql="update review set subject=?,content=?,reviewimg=?,status=? where num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, review.getSubject());
+				pstmt.setString(2, review.getContent());
+				pstmt.setString(3, review.getReviewimg());
+				pstmt.setInt(4, review.getStatus());
+				pstmt.setInt(5, review.getNum());
+			} else {
+				String sql="update review set subject=?,content=?,status=? where num=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, review.getSubject());
+				pstmt.setString(2, review.getContent());
+				pstmt.setInt(3, review.getStatus());
+				pstmt.setInt(4, review.getNum());
+			}
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateReView() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+		
+	}
 }
 
 
