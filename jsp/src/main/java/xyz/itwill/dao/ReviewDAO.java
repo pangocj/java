@@ -261,7 +261,7 @@ public class ReviewDAO extends JdbcDAO {
 	}
 	
 	//게시글을 전달받아 REVIEW 테이블에 저장된 게시글 변경하고 변경행의 갯수를 반환하는 메소드
-	public int updateReView(ReviewDTO review) {
+	public int updateReview(ReviewDTO review) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		int rows=0;
