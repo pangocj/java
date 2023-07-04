@@ -31,6 +31,7 @@
 		<tr>
 			<td colspan="2">
 				<button type="button" id="btn">입력완료</button>
+			</td>	
 		</tr>
 	</table>
 	
