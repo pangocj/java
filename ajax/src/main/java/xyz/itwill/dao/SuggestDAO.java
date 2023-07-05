@@ -39,6 +39,8 @@ public class SuggestDAO extends JdbcDAO {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, keyword);
 			
+			rs=pstmt.executeQuery();
+			
 			while(rs.next()) {
 				SuggestDTO suggest=new SuggestDTO();
 				suggest.setWord(rs.getString("word"));
