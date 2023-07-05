@@ -50,9 +50,6 @@
 		<div id="suggestDiv">
 			<div id="suggestList"></div>
 		</div>
-		
-		<%-- 선택된 제시어 관련 정보를 출력하기 위한 태그 --%>
-		<div id="choice"></div>
 	</div>
 	
 	<script type="text/javascript">
@@ -74,7 +71,27 @@
 			data: "keyword="+keyword,
 			dataType: "xml",
 			success: function(xmlDoc) {
+				var code=$(xmlDoc).find("code").text();
+				//alert(code);
 				
+				if(code=="success") {//검색된 제시어 관련 정보가 있는 경우
+					var data=$(xmlDoc).find("data").text();
+					//alert(data);
+					
+					var suggestList=JSON.parse(data);
+					//alert(suggestList);
+					
+					var html="";
+					$(suggestList).each(function() {
+						html+="<a href='"+this.url+"' target='_blank'>"+this.word+"</a><br>";
+					});
+						
+					$("#suggestList").html(html);
+					
+					$("#suggestDiv").show();
+				} else {//검색된 제시어 관련 정보가 없는 경우
+					$("#suggestDiv").hide();
+				}
 			},
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
@@ -84,12 +101,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
