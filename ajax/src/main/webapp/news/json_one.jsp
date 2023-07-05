@@ -61,7 +61,8 @@
 					// => JSON 형식의 데이타를 전달받아 자바스크립트 객체로 변환
 					//var result=eval("("+xhr.responseText+")");
 					
-					//JSON.parse(json) : JSON 형식의 데이타를 전달받아 자바스크립트 객체로 변환하여 반환하는 메소드
+					//JSON.parse(json) : 매개변수로 전달받은 JSON 형식의 데이타를 자바스크립트
+					//객체로 변환하여 반환하는 메소드
 					var result=JSON.parse(xhr.responseText);
 					
 					//alert(result);//[object Object],[object Object],[object Object],[object Object],[object Object] - Array 객체
