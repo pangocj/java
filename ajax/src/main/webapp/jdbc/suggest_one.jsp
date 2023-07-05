@@ -48,18 +48,46 @@
 		
 		<%-- 제시어를 제공받아 출력하기 위한 태그 --%>
 		<div id="suggestDiv">
-			<div id="suggestList">
-				JAVA<br>
-				JAVA의 정석<br>
-				JAVA 문법
-			</div>
+			<div id="suggestList"></div>
 		</div>
 		
 		<%-- 선택된 제시어 관련 정보를 출력하기 위한 태그 --%>
-		<div id="choice">JAVA 문법</div>
+		<div id="choice"></div>
 	</div>
+	
+	<script type="text/javascript">
+	$("#keyword").focus();
+	
+	//입력태그에서 키보드를 눌렀다 띈 경우 호출될 이벤트 처리 함수 등록
+	$("#keyword").keyup(function() {
+		var keyword=$("#keyword").val();
+		//alert(keyword);
+		
+		if(keyword=="") {//입력태그에 입력값이 없는 경우
+			$("#suggestDiv").hide();//제시어 관련 정보를 출력하는 태그가 보여지지 않도록 설정
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "suggest_two.jsp",
+			data: "keyword="+keyword,
+			dataType: "xml",
+			success: function(xmlDoc) {
+				
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	});
+	</script>
 </body>
 </html>
+
+
+
+
 
 
 
