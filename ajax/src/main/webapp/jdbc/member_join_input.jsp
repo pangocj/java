@@ -154,7 +154,10 @@ POST 방식으로 요청 - 사용자 입력값(회원정보) 전달 --%>
 			data: "id="+id,
 			dataType: "xml",
 			success: function(xmlDoc) {
-				
+				var code=$(xmlDoc).find("code").text();
+				if(code=="possible") {
+					idCheckResult=true;
+				}
 			}, 
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
