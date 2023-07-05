@@ -51,6 +51,7 @@
 	<script type="text/javascript">
 	document.getElementById("newsList").onmouseover=function() {
 		var xhr=new XMLHttpRequest();
+		
 		xhr.onreadystatechange=function() {
 			if(xhr.readyState==4) {
 				if(xhr.status==200) {
@@ -63,7 +64,7 @@
 					
 					//Document.getElementsByTagName(tagName) : Document 객체(Element 객체)에서
 					//태그명으로 태그를 검색하여 검색된 모든 태그(Element 객체)가 요소로 
-					//저장된 NodeList 객체를 반환하는 메소드
+					//저장된 NodeList 객체(HTMLCollection 객체)를 반환하는 메소드
 					var newsList=xmlDoc.getElementsByTagName("news");
 					//alert(newsList);//[object HTMLCollection]
 					//alert(newsList.length);

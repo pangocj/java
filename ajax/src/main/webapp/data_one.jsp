@@ -58,7 +58,7 @@
 		//XMLHttpRequest 객체를 이용하여 웹프로그램을 GET 방식으로 요청
 		// => GET 방식으로 웹프로그램을 요청할 경우 질의문자열(QueryString)를 사용하여 값 전달
 		//문제점)질의문자열로 전달되는 값에 URL 주소로 표현 불가능한 문자가 존재할 경우 400 에러코드 발생 가능
-		//해결법)전달값을 부호 처리화 전달하여 질의문자열로 전달
+		//해결법)입력값을 부호화 처리하여 질의문자열로 전달
 		name=encodeURIComponent(name);
 		xhr.open("get", "data_two.jsp?name="+name, true);
 		xhr.send(null);		
@@ -101,7 +101,7 @@
 		xhr.open("post", "data_two.jsp");//async 매개변수에 전달값이 생략된 경우 자동으로 [true]로 처리
 		//XMLHttpRequest.setRequestHeader(header, value) : XMLHttpRequest 객체를 이용하여
 		//웹프로그램 요청시 사용되는 리퀘스트 메세지의 헤더 정보를 변경하는 메소드
-		// => 리퀘스트 메세지 몸체부에 저장된 값이 문자데이타 표현되도록 헤더 정보 변경
+		// => 리퀘스트 메세지 몸체부에 저장된 값이 문자데이타로 표현되도록 헤더 정보 변경
 		// => open() 메소드 호출 후 사용 가능
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send("name="+name);//리퀘스트 메세지 몸체부에 값을 저장하여 전달
