@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- [welcome_two.jsp] 문서를 AJAX 기능으로 요청하여 실행결과를 응답받아 태그를 변경하여 
-클라이언트에게 전달하는 JSP 문서 - jQuery 라이브러리의 AJAX 관련 메소드 사용 --%>    
+<%-- [welcome_two.jsp] 문서를 AJAX 기능으로 요청하여 실행결과를 HTML 태그로 응답받아 태그를  
+변경하여 클라이언트에게 전달하는 JSP 문서 - jQuery 라이브러리의 AJAX 관련 메소드 사용 --%>    
 <!DOCTYPE html>
 <html>
 <head>
