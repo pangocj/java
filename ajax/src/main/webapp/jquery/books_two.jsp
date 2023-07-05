@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <%@ page language="java" contentType="text/xml; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- 책정보를 XML 형식의 데이타로 제공하는 JSP 문서 --%>    
 <books>
 	<book>
 		<title>Java의 정석</title>
