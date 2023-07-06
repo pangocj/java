@@ -23,7 +23,8 @@
 		success: function(obj) {
 			//alert(obj);//[object Object]
 			
-			$("#now").html(obj.now);
+			//$("#now").html(obj.now);
+			$("#now").html(obj["now"]);
 			
 			var html="<ol>";
 			$(obj.songs).each(function() {
