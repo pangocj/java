@@ -82,6 +82,7 @@ POST 방식으로 요청 - 사용자 입력값(회원정보) 전달 --%>
 	</form>
 	
 	<script type="text/javascript">
+	/*
 	//아이디 중복 검증에 대한 결과값을 저장하기 위한 전역변수 선언
 	// => false : 아이디 사용 불가능, true : 아이디 사용 가능
 	var idCheckResult=false;
@@ -163,6 +164,91 @@ POST 방식으로 요청 - 사용자 입력값(회원정보) 전달 --%>
 				alert("에러코드 = "+xhr.status);
 			}
 		});
+	});
+	
+	$("#id").blur(function() {
+		var id=$("#id").val();
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(id=="") {
+			$("#idNullMsg").show();
+		} else if(!idReg.test(id)) {
+			$("#idValidMsg").show();
+		} else if(!idCheckResult) {//아이디가 중복된 경우
+			$("#idDuplMsg").show();
+		}
+	});
+	*/
+	
+	$("#id").focus();
+	$("#joinForm").submit(function() {
+		$(".msg").hide();
+		
+		var validResult=true;
+		
+		var id=$("#id").val();
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;
+		if(id=="") {
+			$("#idNullMsg").show();
+			validResult=false;
+		} else if(!idReg.test(id)) {
+			$("#idValidMsg").show();
+			validResult=false;
+		} else {//형식에 맞는 아이디가 입력된 경우 - 중복 검사
+			//문제점)비동기식 방식으로 아이디를 검사하는 웹프로그램을 요청한 경우 실행결과를
+			//응답받기 전에 form 태그가 실행 가능 - 정상적인 아이디 중복 검사 실행 불가능
+			//해결법)아이디를 검사하는 웹프로그램을 동기식 방식으로 요청하여 실행결과를 응답받아 처리
+			$.ajax({
+				type: "get",
+				url: "member_id_check.jsp",
+				data: "id="+id,
+				//async : 동기식 통신 또는 비동기식 통신을 구분하기 위한 속성
+				// => false : 동기식 통신, true : 비동기식 통신 - 기본
+				async: false,
+				dataType: "xml",
+				success: function(xmlDoc) {
+					var code=$(xmlDoc).find("code").text();
+					if(code=="impossible") {//아이디가 중복된 경우
+						$("#idDuplMsg").show();
+						validResult=false;
+					}
+				}, 
+				error: function(xhr) {
+					alert("에러코드 = "+xhr.status);
+				}
+			});
+		}
+		
+		var passwd=$("#passwd").val();
+		var passwdReg=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%^&*_-]).{6,20}$/g;
+		if(passwd=="") {
+			$("#passwdNullMsg").show();
+			validResult=false;
+		} else if(!passwdReg.test(passwd)) {
+			$("#passwdValidMsg").show();
+			validResult=false;
+		}
+		
+		var name=$("#name").val();
+		var nameReg=/^[가-힣]{2,10}$/g;
+		if(name=="") {
+			$("#nameNullMsg").show();
+			validResult=false;
+		} else if(!nameReg.test(name)) {
+			$("#nameValidMsg").show();
+			validResult=false;
+		}
+		
+		var email=$("#email").val();
+		var emailReg=/^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+(\.[-a-zA-Z0-9]+)+)*$/g;
+		if(email=="") {
+			$("#emailNullMsg").show();
+			validResult=false;
+		} else if(!emailReg.test(email)) {
+			$("#emailValidMsg").show();
+			validResult=false;
+		}
+		
+		return validResult;
 	});
 	</script>
 </body>
