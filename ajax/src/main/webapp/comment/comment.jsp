@@ -142,7 +142,7 @@ h1 {
 	</div>
 	
 	<script type="text/javascript">
-	dispalyComment();
+	displayComment();
 	
 	//[comment_list.jsp] 문서를 AJAX 기능으로 요청하여 댓글목록을 JSON 데이타로 응답받아 태그에 출력하는 함수
 	function displayComment() {
@@ -151,7 +151,26 @@ h1 {
 			url: "comment_list.jsp",
 			dataType: "json",
 			success: function(result) {
+				//댓글목록태그에 출력된 기존 댓글들을 삭제 처리 - 초기화
+				$("#comment_list").children().remove();
 				
+				if(result.code=="success") {//검색된 댓글정보가 있는 경우
+					$(result.data).each(function() {
+						//Array 객체의 요소값(Object 객체 - 댓글정보)을 HTML 태그로 변환
+						var html="<div class='comment' id='comment_"+this.num+"'>";//댓글태그
+						html+="<b>["+this.writer+"]</b><br>";//작성자
+						html+=this.content.replace(/\n/g,"<br>")+"<br>";//내용
+						html+="("+this.regdate+")<br>";//작성날짜
+						html+="<button type='button'>댓글변경</button>";//변경버튼
+						html+="<button type='button'>댓글삭제</button>";//삭제버튼
+						html+="</div>";
+						
+						//탯글목록태그에 댓글태그를 마지막 자식태그로 추가하여 출력 처리
+						$("#comment_list").append(html);
+					});					
+				} else {//검색된 댓글정보가 없는 경우
+					$("#comment_list").html("<div class='no_comment'>"+result.message+"</div>");
+				}
 			}, 
 			error: function(xhr) {
 				alert("에러코드 = "+xhr.status);
