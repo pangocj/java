@@ -140,5 +140,40 @@ h1 {
 			<button type="button" id="remove_cancel_btn">취소</button>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	dispalyComment();
+	
+	//[comment_list.jsp] 문서를 AJAX 기능으로 요청하여 댓글목록을 JSON 데이타로 응답받아 태그에 출력하는 함수
+	function displayComment() {
+		$.ajax({
+			type: "get",
+			url: "comment_list.jsp",
+			dataType: "json",
+			success: function(result) {
+				
+			}, 
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	}
+	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
