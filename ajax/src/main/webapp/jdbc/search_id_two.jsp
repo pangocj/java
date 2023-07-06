@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<%@page import="xyz.itwill.dto.AjaxMemberDTO"%>
 <%@page import="xyz.itwill.dao.AjaxMemberDAO"%>
 <%@ page language="java" contentType="text/xml; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,7 +15,12 @@
 	String name=request.getParameter("name");
 	String email=request.getParameter("email");
 	
-	String id=AjaxMemberDAO.getDAO().selectAjaxMemberId(name, email);
+	//String id=AjaxMemberDAO.getDAO().selectAjaxMemberId(name, email);
+	
+	AjaxMemberDTO ajaxMember=new AjaxMemberDTO();
+	ajaxMember.setName(name);
+	ajaxMember.setEmail(email);
+	String id=AjaxMemberDAO.getDAO().selectAjaxMemberId(ajaxMember);
 %>
 <result>
 	<% if(id!=null) {//검색된 아이디가 있는 경우 %>
