@@ -177,11 +177,49 @@ h1 {
 			}
 		});
 	}
+	
+	//[댓글등록] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 입력태그의 입력값(댓글정보)을 반환받아 AJAX_COMMENT 테이블에 댓글정보를 삽입하는 
+	//[comment_add.jsp] 문서를 AJAX 기능으로 요청하고 실행결과를 JSON 데이타로 응답받아 처리
+	$("#add_btn").click(function() {
+		var writer=$("#add_writer").val();
+		if(writer=="") {
+			$("#add_message").html("작성자를 입력해 주세요.");
+			$("#add_writer").focus();
+			return;
+		}
+		
+		var content=$("#add_content").val();
+		if(content=="") {
+			$("#add_message").html("내용을 입력해 주세요.");
+			$("#add_content").focus();
+			return;
+		}
+		
+		$("#add_writer").val("");
+		$("#add_content").val("");
+		$("#add_message").html("");
+		
+		$.ajax({
+			type: "post",
+			url: "comment_add.jsp",
+			data: {"writer":writer, "content":content},
+			dataType: "json",
+			success: function(result) {
+				if(result.code=="success") {
+					displayComment();
+				} else {
+					alert("댓글 삽입 실패");
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드 = "+xhr.status);
+			}
+		});
+	});
 	</script>
 </body>
 </html>
-
-
 
 
 
