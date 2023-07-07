@@ -326,7 +326,7 @@ h1 {
 	// => 입력태그의 입력값(댓글번호)을 반환받아 AJAX_COMMENT 테이블에 저장된 댓글정보를 삭제하는 
 	//[comment_remove.jsp] 문서를 AJAX 기능으로 요청하고 실행결과를 JSON 데이타로 응답받아 처리
 	$("#remove_btn").click(function() {
-		var num=$("#modify_num").val();
+		var num=$("#remove_num").val();
 
 		$.ajax({
 			type: "get",
