@@ -127,7 +127,7 @@ public class UserinfoModelOneDAO extends JdbcDAO {
 	}	
 	
 	//USERINFO 테이블에 저장된 모든 회원정보를 검색하여 List 객체로 반환하는 메소드
-	public UserinfoDTO selectUserinfoList() {
+	public List<UserinfoDTO> selectUserinfoList() {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
