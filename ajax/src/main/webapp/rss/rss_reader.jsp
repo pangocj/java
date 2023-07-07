@@ -43,7 +43,7 @@
 				} else {
 					date=$(this).find("dc\\:date").text();
 				}
-				html+="<li><a hrf='"+link+"' target='_blank'>"+title+"["+date+"]</a></li>";
+				html+="<li><a href='"+link+"' target='_blank'>"+title+"["+date+"]</a></li>";
 			});
 			html+="</ul>";
 			
