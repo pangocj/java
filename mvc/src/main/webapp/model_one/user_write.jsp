@@ -5,6 +5,13 @@
 <%-- => [회원등록] 태그를 클릭한 경우 [user_write_action.jsp] 문서 요청 - 입력값(회원정보) 전달 --%>
 <%-- => [로그인] 태그를 클릭한 경우 [user_login.jsp] 문서 요청 --%>
 <%
+	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
+	//비로그인 사용자이거나 로그인 사용자가 관리자가 아닌 경우 - 비정상적인 요청
+	if(loginUserinfo==null || loginUserinfo.getStatus()!=9) {
+		response.sendRedirect("user_error.jsp");
+		return;
+	}
+	
 	String message=(String)session.getAttribute("message");
 	if(message==null) {
 		message="";
