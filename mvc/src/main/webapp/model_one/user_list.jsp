@@ -56,7 +56,11 @@
 					</a>
 				</td>
 				<td width=200 align=center bgcolor="ffffff">
-					<%=userinfo.getEmail() %>
+					<!-- JSP 표현식(Expression)은 NULL을 [null] 문자열로 변환하여 출력 처리 -->
+					<%-- => JSP 표현식(Expression)의 값이 NULL인 경우 출력되지 않도록 if 구문 사용 --%>
+					<% if(userinfo.getEmail()!=null) { %>
+						<%=userinfo.getEmail() %>
+					<% } %>
 				</td>
 		  	</tr>
 		  	<% } %>
