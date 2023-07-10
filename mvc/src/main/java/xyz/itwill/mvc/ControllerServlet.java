@@ -65,12 +65,17 @@ public class ControllerServlet extends HttpServlet {
 			action=new LoginFormModel();
 		} else if(command.equals("/login.do")) {
 			action=new LoginModel();
+		} else if(command.equals("/logout.do")) {
+			action=new LogoutModel();
+		} else if(command.equals("/writeform.do")) {
+			action=new WriteFormModel();
+		} else if(command.equals("/write.do")) {
+			action=new WriteModel();
 		} else if(command.equals("/error.do")) {
 			action=new ErrorModel();
 		} else {//클라이언트 요청에 대한 모델 역활의 클래스가 없는 경우
 			action=new ErrorModel();
 		}
-			
 		
 		//인터페이스 참조변수로 추상메소드를 호출하면 참조변수에 저장된 모델 객체의 요청 
 		//처리 메소드를 호출하고 뷰 관련 정보를 반환받아 저장 -  오버라이드의 의한 다형성
