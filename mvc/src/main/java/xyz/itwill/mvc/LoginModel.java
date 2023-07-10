@@ -55,13 +55,12 @@ public class LoginModel implements Action {
 			request.setAttribute("userid", request.getParameter("userid"));
 			actionForward.setForward(true);
 			actionForward.setPath("/model_two/user_login.jsp");
-		}  catch (Exception e) {//모든 예외를 전달받아 예외 처리하기 위한 명령 작성
+		} catch (Exception e) {//모든 예외를 전달받아 예외 처리하기 위한 명령 작성
 			e.printStackTrace();//서버 콘솔에 예외가 발생한 예외정보 출력
 			//[error.do] 페이지로 리다이렉트 이동하기 위한 정보를 ActionForward 객체에 저장
 			actionForward.setForward(false);
 			actionForward.setPath(request.getContextPath()+"/error.do");
 		}
-		
 		return actionForward;
 	}
 
