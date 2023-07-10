@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- USERINFO 테이블에 저장된 모든 회원정보를 검색하여 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
-<%-- => 로그인 사용자만 요청 가능한 JSP 문서 --%>
+<%-- => 로그인 상태의 사용자만 요청 가능한 JSP 문서 --%>
 <%-- => 회원정보에서 [회원이름] 태그를 클릭한 경우 [user_view.jsp] 문서 요청 - 아이디 전달 --%>
 <%-- => [회원등록] 태그를 클릭한 경우 [user_write.jsp] 문서 요청 - 관리자에게만 링크 제공 --%>
 <%-- => [로그아웃] 태그를 클릭한 경우 [user_logout_action.jsp] 문서 요청 --%>
