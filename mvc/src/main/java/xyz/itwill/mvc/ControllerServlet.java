@@ -54,6 +54,37 @@ public class ControllerServlet extends HttpServlet {
 		// => [/remove.do]     >> RemoveModel 클래스
 		// => [/error.do]      >> ErrorModel 클래스
 		
+		
+		//모델 역활의 클래스가 상속받기 위한 인터페이스로 참조변수 생성
+		// => 인터페이스로 생성된 참조변수에는 인스페이스를 상속받은 모든 자식클래스(모델)의 객체 저장 가능
+		Action action=null;
+		
+		//클라이언트 요청정보를 구분하여 요청을 처리하기 위한 모델 역활의 클래스로 객체를 
+		//생성하여 인터페이스 참조변수에  저장
+		if(command.equals("/loginform.do")) {
+			action=new LoginFormModel();
+		} else if(command.equals("/login.do")) {
+			
+		} else if(command.equals("/error.do")) {
+			action=new ErrorModel();
+		} else {//클라이언트 요청에 대한 모델 역활의 클래스가 없는 경우
+			action=new ErrorModel();
+		}
+			
+		
+		//인터페이스 참조변수로 추상메소드를 호출하면 참조변수에 저장된 모델 객체의 요청 
+		//처리 메소드를 호출하고 뷰 관련 정보를 반환받아 저장 -  오버라이드의 의한 다형성
+		ActionForward actionForward=action.execute(request, response);
+		
+		//4.응답 관련 정보가 저장된 ActionForward 객체를 이용하여 응답 처리
+		if(actionForward.isForward()) {//ActionForward 객체의 forward 필드값이 [true]인 경우
+			//JSP 문서로 포워드 이동하여 JSP 문서의 실행결과(HTML)로 클라이언트에게 전달하여 응답 처리
+			request.getRequestDispatcher(actionForward.getPath()).forward(request, response);
+		} else {//ActionForward 객체의 forward 필드값이 [false]인 경우
+			//서블릿에서 클라이언트에게 URL 주소(/XXX.do)를 전달하여 응답 처리
+			// => URL 주소를 전달받은 클라이언트는 브라우저의 URL 주소를 변경하여 서블릿 요청
+			response.sendRedirect(actionForward.getPath());
+		}
 	}
 
 }
