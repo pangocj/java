@@ -6,6 +6,11 @@
   <servlet>
   	<servlet-name>controller</servlet-name>
   	<servlet-class>xyz.itwill.mvc.ControllerServlet</servlet-class>
+  	<!-- load-on-startup : 클라이언트 요청 없이 서블릿 클래스를 객체로 생성하기 위한 엘리먼트 -->
+  	<!-- => WAS 프로그램 프로그램이 실행될 때 서블릿 클래스로 객체를 미리 생성 --> 
+  	<!-- => 서블릿 객체를 생성되고 init() 메소드가 자동 호출되어 초기화 작업 -->
+  	<!-- => 엘리먼트의 값은 0 이상의 정수값으로 설정하며 정수값이 작을수록 먼저 서블릿 객체로 생성 -->
+  	<load-on-startup>1</load-on-startup>
   </servlet>
   
   <!-- servlet-mapping : 웹프로그램(서블릿)에 URL 패턴을 등록하기 위한 엘리먼트 -->

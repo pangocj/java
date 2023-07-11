@@ -1,6 +1,10 @@
 package xyz.itwill.mvc;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +25,32 @@ import javax.servlet.http.HttpServletResponse;
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//여러개의 엔트리(Entry)를 추가할 수 있는 Map 객체를 저장하기 위한 필드
+	// => 하나의 엔트리는 요청정보(Key - String)와 모델객체(Value - Action)를 이용하여 생성
+	// => Map 객체를 사용하면 요청정보(Key)를 이용하여 모델객체(Value)를 빠르게 제공받아 사용 가능 
+	private Map<String, Action> actionMap=new HashMap<>();
+	
+	//클라이언트가 서블릿(컨트롤러)를 최초로 요청할 경우 서블릿 클래스를 객체로 생성한 후  
+	//가장 먼저 한번만 호출되는 메소드 - 생성자 대신 초기화 작업을 실행하기 위한 메소드
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("ControllerServlet 클래스의 init() 메소드 호출");
+		
+		//Map 객체에 엔트리(Entry) 추가
+		// => 모델 객체를 하나만 생성하여 제공 - 메모리 효율 증가
+		actionMap.put("/loginform.do", new LoginFormModel());
+		actionMap.put("/login.do", new LoginModel());
+		actionMap.put("/logout.do", new LogoutModel());
+		actionMap.put("/writeform.do", new WriteFormModel());
+		actionMap.put("/write.do", new WriteModel());
+		actionMap.put("/list.do", new ListModel());
+		actionMap.put("/view.do", new ViewModel());
+		actionMap.put("/modifyform.do", new ModifyFormModel());
+		actionMap.put("/modify.do", new ModifyModel());
+		actionMap.put("/remove.do", new RemoveModel());
+		actionMap.put("/error.do", new ErrorModel());
+	}
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//System.out.println("ControllerServlet 클래스의 service() 메소드 호출");
 		
@@ -54,6 +84,7 @@ public class ControllerServlet extends HttpServlet {
 		// => [/remove.do]     >> RemoveModel 클래스
 		// => [/error.do]      >> ErrorModel 클래스
 		
+		/*
 		//모델 역활의 클래스가 상속받기 위한 인터페이스로 참조변수 생성
 		// => 인터페이스로 생성된 참조변수에는 인스페이스를 상속받은 모든 자식클래스(모델)의 객체 저장 가능
 		Action action=null;
@@ -84,6 +115,14 @@ public class ControllerServlet extends HttpServlet {
 			action=new ErrorModel();
 		} else {//클라이언트 요청에 대한 모델 역활의 클래스가 없는 경우
 			action=new ErrorModel();
+		}
+		*/
+		
+		//Map 객체에 저장된 엔트리에서 요청정보(Key)를 이용하여 모델객체(Value)를 반환받아 저장
+		// => 가독성 증가
+		Action action=actionMap.get(command);
+		if(action==null) {
+			action=actionMap.get("/error.do");
 		}
 		
 		//인터페이스 참조변수로 추상메소드를 호출하면 참조변수에 저장된 모델 객체의 요청 
