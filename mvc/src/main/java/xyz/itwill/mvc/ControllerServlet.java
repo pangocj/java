@@ -3,6 +3,7 @@ package xyz.itwill.mvc;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -36,6 +37,7 @@ public class ControllerServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("ControllerServlet 클래스의 init() 메소드 호출");
 		
+		/*
 		//Map 객체에 엔트리(Entry) 추가
 		// => 모델 객체를 하나만 생성하여 제공 - 메모리 효율 증가
 		actionMap.put("/loginform.do", new LoginFormModel());
@@ -49,6 +51,18 @@ public class ControllerServlet extends HttpServlet {
 		actionMap.put("/modify.do", new ModifyModel());
 		actionMap.put("/remove.do", new RemoveModel());
 		actionMap.put("/error.do", new ErrorModel());
+		*/
+		
+		//Properties 파일에 요청정보와 모델 클래스를 저장하고 Properties 파일을 읽어 Map 객체의
+		//엔트리로 추가 - 유지보수의 효율성 증가
+		// => 컨트롤러를 변경하지 않고 Properties 파일만 변경하여 요청정보에 대한 모델 객체 관리
+		//Properties 파일(XXX.properties) : 프로그램 실행에 필요한 값을 제공하기 위한 텍스트 파일
+		
+		//Properties 파일의 내용을 저장하기 위한 Properties 객체 생성
+		Properties properties=new Properties();
+		
+		//Properties 파일의 파일 시스템 경로를 반환받아 저장
+		
 	}
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
