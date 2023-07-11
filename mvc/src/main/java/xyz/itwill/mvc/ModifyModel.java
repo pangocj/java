@@ -44,7 +44,7 @@ public class ModifyModel implements Action {
 			userinfo.setEmail(email);
 			userinfo.setStatus(status);
 			
-			//UserinfoService 클래스의 addUserinfo() 메소드를 호출하여 회원등록 처리
+			//UserinfoService 클래스의 modifyUserinfo() 메소드를 호출하여 회원정보 변경 처리
 			UserinfoService.getService().modifyUserinfo(userinfo);
 			
 			actionForward.setForward(false);
