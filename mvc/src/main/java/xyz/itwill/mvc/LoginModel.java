@@ -12,9 +12,9 @@ import xyz.itwill.service.UserinfoService;
 
 //클라이언트가 [/login.do]로 요청한 경우 객체로 생성될 모델 역활의 클래스
 // => 로그인정보를 전달받아 USERINFO 테이블에 저장된 회원정보와 비교하여 인증 처리한 후 인증 
-//성공시 세션에 권한 관련 객체를 속성값으로 저장하고 [/loginform.do] 페이지로 리다이렉트 이동
+//성공시 세션에 권한 관련 객체를 속성값으로 저장하고 [/loginform.do]로 리다이렉트 이동
 //하기 위한 정보가 저장된 ActionForward 객체 반환
-// => 인증 실패시 [user_login.jsp] 문서로 포워드 이동하기 위한 정보가 저장된  ActionForward 
+// => 인증 실패시 [user_login.jsp]로 포워드 이동하기 위한 정보가 저장된  ActionForward 
 //객체 반환 - 에러메세지와 아이디를 request 객체의 속성값으로 저장하여 JSP 문서에 제공
 public class LoginModel implements Action {
 	@Override
