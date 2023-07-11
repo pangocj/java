@@ -6,6 +6,11 @@
   <servlet>
   	<servlet-name>controller</servlet-name>
   	<servlet-class>xyz.itwill.mvc.ControllerServlet</servlet-class>
+  	<!-- init-param : 서블릿 클래스에 필요한 값을 제공하기 위한 엘리먼트 -->
+  	<init-param>
+  		<param-name>configFile</param-name>
+  		<param-value>/WEB-INF/model.properties</param-value>
+  	</init-param>
   	<!-- load-on-startup : 클라이언트 요청 없이 서블릿 클래스를 객체로 생성하기 위한 엘리먼트 -->
   	<!-- => WAS 프로그램 프로그램이 실행될 때 서블릿 클래스로 객체를 미리 생성 --> 
   	<!-- => 서블릿 객체를 생성되고 init() 메소드가 자동 호출되어 초기화 작업 -->
