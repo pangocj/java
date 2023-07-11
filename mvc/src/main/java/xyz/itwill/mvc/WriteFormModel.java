@@ -11,7 +11,7 @@ import xyz.itwill.dto.UserinfoDTO;
 
 //클라이언트가 [/writeform.do]로 요청한 경우 객체로 생성될 모델 역활의 클래스
 // => 관리자만 요청 가능하도록 권한 설정
-//=> [user_write.jsp]로 포워드 이동하기 위한 정보가 저장된 ActionForward 객체 반환
+// => [user_write.jsp]로 포워드 이동하기 위한 정보가 저장된 ActionForward 객체 반환
 public class WriteFormModel implements Action {
 
 	@Override

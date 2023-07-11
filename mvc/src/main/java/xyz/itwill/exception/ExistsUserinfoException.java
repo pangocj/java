@@ -4,7 +4,7 @@ package xyz.itwill.exception;
 // => 예외 클래스는 반드시 Exception 클래스를 상속받아 작성
 public class ExistsUserinfoException extends Exception {
 	private static final long serialVersionUID = 1L;
-
+	
 	public ExistsUserinfoException() {
 		// TODO Auto-generated constructor stub
 	}

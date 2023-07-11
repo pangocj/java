@@ -54,7 +54,6 @@ public class ControllerServlet extends HttpServlet {
 		// => [/remove.do]     >> RemoveModel 클래스
 		// => [/error.do]      >> ErrorModel 클래스
 		
-		
 		//모델 역활의 클래스가 상속받기 위한 인터페이스로 참조변수 생성
 		// => 인터페이스로 생성된 참조변수에는 인스페이스를 상속받은 모든 자식클래스(모델)의 객체 저장 가능
 		Action action=null;
@@ -71,6 +70,8 @@ public class ControllerServlet extends HttpServlet {
 			action=new WriteFormModel();
 		} else if(command.equals("/write.do")) {
 			action=new WriteModel();
+		} else if(command.equals("/list.do")) {
+			action=new ListModel();
 		} else if(command.equals("/error.do")) {
 			action=new ErrorModel();
 		} else {//클라이언트 요청에 대한 모델 역활의 클래스가 없는 경우
@@ -93,18 +94,3 @@ public class ControllerServlet extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

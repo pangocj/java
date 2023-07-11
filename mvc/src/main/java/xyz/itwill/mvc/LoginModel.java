@@ -33,7 +33,7 @@ public class LoginModel implements Action {
 			String userid=request.getParameter("userid");
 			String password=request.getParameter("password");
 			
-			//모델 클래스의 요청 처리 매소드에서는 Service 클래스의 객체로 메소드를 호출하여
+			//모델 클래스의 요청 처리 메소드에서는 Service 클래스의 객체로 메소드를 호출하여
 			//데이타 처리 관련 기능이 실행되도록 작성
 			
 			//UserinfoService 클래스의 auth() 메소드를 호출하여 인증 처리
