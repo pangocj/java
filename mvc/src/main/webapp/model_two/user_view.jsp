@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- request 객체의 속성값으로 저장된 회원정보를 반환받아 클라이언트에게 전달하여 응답하는 JSP 문서 --%>
-<%-- => [수정] 태그를 클릭한 경우 [modifyform.do] 문서 요청 - 아이디 전달 --%>
-<%-- => [삭제] 태그를 클릭한 경우 [remove.do] 문서 요청 - 아이디 전달 --%>
-<%-- => [목록] 태그를 클릭한 경우 [list.do] 문서 요청 --%>
+<%-- => [수정] 태그를 클릭한 경우 [modifyform.do] 페이지 요청 - 아이디 전달 --%>
+<%-- => [삭제] 태그를 클릭한 경우 [remove.do] 페이지 요청 - 아이디 전달 --%>
+<%-- => [목록] 태그를 클릭한 경우 [list.do] 페이지 요청 --%>
 <%-- => [수정] 태그와 [삭제] 태그는 관리자에게만 링크 제공 --%>
 <%
 	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
