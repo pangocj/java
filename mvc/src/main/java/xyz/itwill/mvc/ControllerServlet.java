@@ -36,7 +36,7 @@ public class ControllerServlet extends HttpServlet {
 	//가장 먼저 한번만 호출되는 메소드 - 생성자 대신 초기화 작업을 실행하기 위한 메소드
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("ControllerServlet 클래스의 init() 메소드 호출");
+		//System.out.println("ControllerServlet 클래스의 init() 메소드 호출");
 		
 		/*
 		//Map 객체에 엔트리(Entry) 추가
