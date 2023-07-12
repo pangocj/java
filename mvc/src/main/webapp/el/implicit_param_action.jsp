@@ -34,7 +34,7 @@
 		<%-- EL 표현식에서 param 내장객체 또는 paramValues 내장객체를 사용하여 전달값을 
 		제공받아 출력 처리 가능 --%>
 		<%-- => param 내장객체 또는 paramValues 내장객체는 Map 객체로 맵키 대신 전달값의 
-		이름을 사용하여 전달값 구분 --%>
+		구분하는 이름을 사용하여 전달값을 제공받아 출력 --%>
 		<li>이름 = ${param.name }</li>
 		<li>주소 = ${param.address }</li>
 		<li>음식-1 = ${paramValues.food[0] }</li>
