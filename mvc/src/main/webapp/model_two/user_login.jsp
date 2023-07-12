@@ -27,7 +27,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%-- 요청 서블릿(컨트롤러)의 URL 주소 경로와 응답하는 JSP 문서의 경로가 서로 다르므로
 웹자원의 경로는 절대경로로 표현하는 것을 권장 --%>
-<link rel=stylesheet href="<%=request.getContextPath() %>/model_two/css/user.css" type="text/css">
+<%-- <link rel=stylesheet href="<%=request.getContextPath() %>/model_two/css/user.css" type="text/css"> --%>
+<link rel=stylesheet href="${pageContext.request.contextPath}/model_two/css/user.css" type="text/css">
 <script language="JavaScript">
 function userLogin() {
 	if ( f.userid.value == "" ) {
