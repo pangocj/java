@@ -29,14 +29,3 @@
 	<p>요청 URI 주소 = ${pageContext.request.requestURI }</p>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
