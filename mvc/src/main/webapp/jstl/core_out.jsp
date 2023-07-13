@@ -25,9 +25,3 @@
 	<p>html = <c:out value="${html }"/></p> 
 </body>
 </html>
-
-
-
-
-
-
