@@ -7,6 +7,12 @@ public class Student {
 	public Student() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Student(int num, String name) {
+		super();
+		this.num = num;
+		this.name = name;
+	}
 
 	public int getNum() {
 		return num;
