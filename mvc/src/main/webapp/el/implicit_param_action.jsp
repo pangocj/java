@@ -28,7 +28,7 @@
 		<li>음식-1 = <%=request.getParameterValues("food")[0] %></li>
 		<li>음식-2 = <%=request.getParameterValues("food")[1] %></li>
 	</ul>
-		<hr>
+	<hr>
 	<h2>EL 사용</h2>
 	<ul>
 		<%-- EL 표현식에서 param 내장객체 또는 paramValues 내장객체를 사용하여 전달값을 
