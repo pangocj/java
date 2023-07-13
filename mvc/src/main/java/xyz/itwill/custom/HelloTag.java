@@ -12,7 +12,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 // => TagSupport 클래스, BodyTagSupport 클래스, SimpleTagSupport 클래스 중 하나를 상속받아 작성
 // => 커스텀 태그 사용시 호출되는 메소드는 부모클래스의 메소드를 오버라이드 선언하여 작성
 
-//태그 속성과 태그 내용이 없는 커스텀 태그의 클래스
+//태그 속성과 태그 내용이 없는 커스텀 태그 클래스
 public class HelloTag extends TagSupport {
 	private static final long serialVersionUID = 1L;
 
