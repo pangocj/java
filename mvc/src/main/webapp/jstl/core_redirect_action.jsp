@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- formatter 태그 라이브러리를 JSP 문서에 포함  - 접두사로 [fmt] 사용 --%>
+<%-- Formatter 태그 라이브러리를 JSP 문서에 포함  - 접두사로 [fmt] 사용 --%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%--
 	//POST 방식으로 요청하여 전달된 값에 대한 캐릭터셋 변경
