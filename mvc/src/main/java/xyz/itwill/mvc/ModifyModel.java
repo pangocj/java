@@ -23,7 +23,7 @@ public class ModifyModel implements Action {
 				throw new Exception();
 			}
 			
-			request.setCharacterEncoding("utf-8");
+			//request.setCharacterEncoding("utf-8");
 			
 			String userid=request.getParameter("userid");
 			String password=request.getParameter("password");
