@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -19,15 +20,25 @@ import javax.servlet.ServletResponse;
 //클라이언트가 요청하는 모든 웹프로그램 실행 전에 리퀘스트 메세지 몸체부에 저장되어 전달되는
 //값에 대한 캐릭터셋를 변경하는 기능을 제공하는 필터 클래스 - 인코딩 필터
 public class EncodingFilter implements Filter {
-
+	private String encoding;
+	
+	//필터를 동작하기 위한 필터 클래스를 객체로 생성한 후 가장 먼저 한번만 호출되는 메소드 
+	// => 초기화 작업에 필요한 명령 작성
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		//FilterConfig.getInitParameter(String name) : [web.xml] 파일에서 init-param 엘리먼트로
+		//제공되는 값을 얻어와 반환하는 메소드
+		encoding=filterConfig.getInitParameter("encoding");
+	}
+	
 	//웹프로그램 실행 전 또는 후에 동작될 명령을 작성하는 메소드
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		//웹프로그램 실행 전에 동작될 명령 작성
 		if(request.getCharacterEncoding() == null || 
-				!request.getCharacterEncoding().equalsIgnoreCase("utf-8")) {
-			request.setCharacterEncoding("utf-8");
+				!request.getCharacterEncoding().equalsIgnoreCase(encoding)) {
+			request.setCharacterEncoding(encoding);
 		}
 
 		//FilterChain.doFilter(ServletRequest request, ServletResponseresponse)

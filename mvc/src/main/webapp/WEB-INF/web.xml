@@ -13,6 +13,11 @@
   <filter>
   	<filter-name>encoding filter</filter-name>
   	<filter-class>xyz.itwill.filter.EncodingFilter</filter-class>
+  	<!-- init-param : 필터 클래스에 필요한 값을 제공하기 위한 엘리먼트 -->
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
   </filter>
   
   <!-- filter-mapping : 필터가 실행되기 위한 요청 웹프로그램의 URL 패턴을 등록하기 위한 엘리먼트 -->
