@@ -15,7 +15,7 @@
 <script language="JavaScript">
 function userRemove(userid) {
 	if (confirm("정말로 삭제 하시겠습니까?") ) {
-		location.href='${pageContext.request.contextPath }/remove.do?userid='+userid;
+		location.href='<c:url value="/remove.do"/>?userid='+userid;
 	}
 }
 </script>
@@ -58,11 +58,11 @@ function userRemove(userid) {
 	  <table width=590 border=0 cellpadding=0 cellspacing=0>
 		  <tr>
 			<td align=center>
-			<c:if test="${loginUserinfo.statue == 9 }">
-				<input type="button" value="수정" onClick="location.href='${pageContext.request.contextPath }/modifyform.do?userid=${userinfo.userid}';">
+			<c:if test="${loginUserinfo.status == 9 }">
+				<input type="button" value="수정" onClick="location.href='<c:url value="/modifyform.do"/>?userid=${userinfo.userid}';">
 				<input type="button" value="삭제" onClick="userRemove('${userinfo.userid}');">
 			</c:if>
-			<input type="button" value="목록" onClick="location.href='${pageContext.request.contextPath }/list.do';"> 
+			<input type="button" value="목록" onClick="location.href='<c:url value="/list.do"/>';"> 
 			</td>
 		  </tr>
 	  </table>
