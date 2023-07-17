@@ -15,7 +15,7 @@
 	<p>가격 = ${price }원</p>
 	
 	<%-- formatNumber 태그 : 숫자값을 원하는 패턴의 문자열로 변환하여 제공하는 태그 --%>
-	<%-- => DecimalFormat 클래스와 유사한 기능 제공 --%>
+	<%-- => DecimalFormat 클래스의 format() 메소드와 유사한 기능 제공 --%>
 	<%-- value 속성 : 숫자값을 속성값으로 설정 -  EL를 사용하여 숫자값을 제공받아 속성값으로 사용 --%>
 	<%-- => 속성값으로 제공받은 값이 숫자값이 아닌 경우 NumberFormatException 발생 --%>
 	<%-- type 속성 : number(숫자) 또는 currency(화폐) 중 하나를 속성값으로 설정 --%>

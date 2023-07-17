@@ -19,14 +19,14 @@
 	
 	<%-- 웹자원의 경로를 절대경로로 표현하여 제공 --%>
 	<%-- 절대경로 : 최상위 디렉토리를 기준으로 웹자원의 경로를 표현하는 방법 --%>
-	<%-- 문제점)컨텍스트의 이름을 변경될 경우 컨텍스트 경로가 변경되어 404 에러 발생 --%>
+	<%-- 문제점)컨텍스트의 이름이 변경될 경우 컨텍스트 경로가 변경되어 404 에러 발생 --%>
 	<%-- 해결법)컨텍스트 경로를 제공받아 웹자원의 경로를 절대경로로 표현하여 제공 --%>
 	<img src="/mvc/jstl/images/Koala.jpg" width="200">
 	
-	<%-- request.getContextPath() 메소드를 호출하여 컨텍스트 경로를 반환받아 절대경로로 표현  --%>
+	<%-- request.getContextPath() 메소드를 호출하여 컨텍스트 경로를 반환받아 웹자원의 경로를 절대경로로 표현  --%>
 	<img src="<%=request.getContextPath() %>/jstl/images/Koala.jpg" width="200">
 	
-	<%-- EL 표현식에서 pageContext 내장객체를 사용하여 컨텍스트 경로를 제공받아 절대경로로 표현 --%>
+	<%-- EL 표현식에서 pageContext 내장객체를 사용하여 컨텍스트 경로를 제공받아 웹자원의 경로를 절대경로로 표현 --%>
 	<img src="${pageContext.request.contextPath}/jstl/images/Koala.jpg" width="200">
 	
 	<%-- url 태그 : 컨텍스트 경로가 포함된 웹자원의 절대경로를 제공하는 태그 --%>

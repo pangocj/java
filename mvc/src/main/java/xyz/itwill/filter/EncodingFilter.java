@@ -43,7 +43,7 @@ public class EncodingFilter implements Filter {
 
 		//FilterChain.doFilter(ServletRequest request, ServletResponseresponse)
 		// => 다른 필터 객체 연결하여 사용하기 위한 메소드
-		// => 필터 객체가 없는 서블릿과 연결되어 웹프로그램 실행
+		// => 필터 객체가 없는 경우 서블릿 객체와 연결되어 웹프로그램 실행
 		chain.doFilter(request, response);
 		
 		//웹프로그램 실행 후에 동작될 명령 작성
