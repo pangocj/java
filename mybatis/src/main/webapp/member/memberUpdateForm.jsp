@@ -1,5 +1,12 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="xyz.itwill.dao.MyMemberXMLDAO"%>
+<%@page import="xyz.itwill.dto.MyMember"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String id=request.getParameter("id");
+
+	MyMember member=MyMemberXMLDAO.getDAO().selectMember(id);
+%>      
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -49,30 +56,30 @@
 <body>
 	<h1 align="center">회원변경</h1>
 	<form id="input">
-	<input type="hidden" name="id" value="admin">
+	<input type="hidden" name="id" value="<%=member.getId()%>">
 	<table align="center" border="1" cellspacing="0" width="300">
 		<tr>
 			<th width="100">아이디</th>
 			<td align="center" width="200">
-				admin
+				<%=member.getId()%>
 			</td>
 		</tr>
 		<tr>
 			<th width="100">이름</th>
 			<td align="center" width="200">
-				<input type="text" name="name" id="name" value="관리자">
+				<input type="text" name="name" id="name" value="<%=member.getName()%>">
 			</td>
 		</tr>
 		<tr>
 			<th width="100">전화번호</th>
 			<td align="center" width="200">
-				<input type="text" name="phone" id="phone" value="010-1234-5678">
+				<input type="text" name="phone" id="phone" value="<%=member.getPhone()%>">
 			</td>
 		</tr>
 		<tr>
 			<th width="100">이메일</th>
 			<td align="center" width="200">
-				<input type="text" name="email" id="email" value="abc@daum.net">
+				<input type="text" name="email" id="email" value="<%=member.getEmail()%>">
 			</td>
 		</tr>
 		<tr>
