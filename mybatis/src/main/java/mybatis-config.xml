@@ -19,7 +19,7 @@
 			<!-- => type 속성값에 따라 하위 엘리먼트 설정 변경 -->
 			<!-- => UNPOOLED 속성값 : Connection 객체를 미리 생성하지 않고 실행시 생성하여 제공 -->
 			<!-- => POOLED 속성값 : Connection 객체를 미리 생성하여 실행시 제공 - DBCP -->
-			<!-- => JNDI 속성값 : Connection 객체를 WAS 프로그램에 등록된 자원을 이용하여 실행시 제공 -->
+			<!-- => JNDI 속성값 :  WAS 프로그램에 등록된 자원을 이용하여 Connection 객체를 실행시 제공 -->
 			<dataSource type="POOLED">
 				<!-- property : Connection 객체 생성에 필요한 값을 제공하는 엘리먼트 -->
 				<!-- name 속성 : Connection 객체 생성에 필요한 값이 저장될 이름을 속성값으로 설정 -->
@@ -31,7 +31,32 @@
 			</dataSource>
 		</environment>
 	</environments>
+
+	<!-- mappers : mapper 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
+	<mappers>
+		<!-- mapper : 매퍼 파일(Mapper File)을 매퍼(Mapper)로 등록하기 위한 엘리먼트 -->
+		<!-- 매퍼(Mapper) : SQL 명령에 필요한 값을 전달받아 SQL 명령을 등록하고 실행결과를
+		Java 객체(원시형)으로 매핑하기 위한 정보를 제공 -->
+		<!-- => mybatis 프레임워크에서는 XML 기반의 매퍼 파일과 Interface 기반의 매퍼 파일을 
+		이용하여 매퍼 등록 가능 -->
+		<!-- => ibatis 프레임워크에서는 XML 기반의 매퍼 파일로만 매퍼 등록 가능 -->
+		<!-- resource 속성 :  XML 기반의 매퍼 파일 경로를 속성값으로 설정 -->
+		<!-- => XML 기반의 매퍼 파일 경로는 파일 시스템 경로로 표현하여 작성 -->
+		<mapper resource="xyz/itwill/mapper/StudentMapper.xml"/>	
+	</mappers>
 </configuration>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
