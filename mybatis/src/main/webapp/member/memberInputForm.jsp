@@ -84,7 +84,7 @@ $(document).ready(function() {
 			<th colspan="2">
 				<button type="button" id="submitBtn">입력전송</button>
 				<button type="button" id="resetBtn">다시입력</button>
-				<button type="button" id="displayBtn">회원정보</button>
+				<button type="button" id="displayBtn">회원목록</button>
 			</th>
 		</tr>
 	</table>	

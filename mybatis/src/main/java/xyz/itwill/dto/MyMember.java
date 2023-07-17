@@ -6,7 +6,7 @@ public class MyMember {
 	private String id;
 	private String name;
 	private String phone;
-	private String address;
+	private String email;
 	
 	public MyMember() {
 		// TODO Auto-generated constructor stub
@@ -36,11 +36,11 @@ public class MyMember {
 		this.phone = phone;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
