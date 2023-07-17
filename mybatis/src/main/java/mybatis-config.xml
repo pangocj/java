@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis 환경설정파일 : SqlSessionFactory 객체를 생성하기 위해 필요한 정보를 제공하는 파일 -->
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!-- properties : property 엘리먼트를 등록하기 위한 상위 엘리먼트  -->
+	<!-- resource 속성 : Properties 파일의 경로를 속성값으로 설정 - 생략 가능 -->
+	<!-- => property 엘리먼트 대신 Properties 파일의 등록된 정보를 이용하여 이름으로 값을 제공받아 사용  -->
+	<properties resource="oracle_url.properties">
+		<!-- property : mybatis 환경설정파일에 필요한 값을 제공하기 위한 엘리먼트 -->
+		<!-- => 다른 엘리먼트에서 ${이름} 형식으로 property 엘리먼트로 제공되는 값을 사용 -->
+		<!-- => 다수의 엘리먼트에서 공통적으로 사용되는 값을 제공하기 위해 설정 - 유지보수의 효율성 증가 -->
+		<property name="oracleDriver" value="oracle.jdbc.driver.OracleDriver"/>
+	</properties>
+
 	<!-- environments : environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<!-- default 속성 : environment 엘리먼트의 식별자(id 속성값)을 속성값으로 설정 -->
 	<!-- => mybatis 프레임워크가 기본적으로 사용하기 위한 DBMS 서버 지정 -->
@@ -24,8 +35,10 @@
 				<!-- property : Connection 객체 생성에 필요한 값을 제공하는 엘리먼트 -->
 				<!-- name 속성 : Connection 객체 생성에 필요한 값이 저장될 이름을 속성값으로 설정 -->
 				<!-- value 속성 : Connection 객체 생성에 필요한 값을 속성값으로 설정 -->
-				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-				<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+				<!-- <property name="driver" value="oracle.jdbc.driver.OracleDriver"/> -->
+				<property name="driver" value="${oracleDriver}"/>
+				<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/> -->
+				<property name="url" value="${local}"/>
 				<property name="username" value="scott"/>
 				<property name="password" value="tiger"/>
 			</dataSource>
@@ -45,18 +58,3 @@
 		<mapper resource="xyz/itwill/mapper/StudentMapper.xml"/>	
 	</mappers>
 </configuration>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
