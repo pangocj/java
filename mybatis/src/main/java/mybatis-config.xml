@@ -11,6 +11,26 @@
 		<!-- => 다수의 엘리먼트에서 공통적으로 사용되는 값을 제공하기 위해 설정 - 유지보수의 효율성 증가 -->
 		<property name="oracleDriver" value="oracle.jdbc.driver.OracleDriver"/>
 	</properties>
+	
+	<!-- settings : setting 엘리먼트를 등록하기 위한 상위 엘리먼트  -->
+	<settings>
+		<!-- setting : mybatis 실행시 필요한 정보를 제공하기 위한 엘리먼트 -->
+		<!-- => setting 엘리먼트를 사용하지 않아도 실행에 필요한 값은 기본값으로 제공받아 사용 -->
+		<!-- => mybatis 실행을 기본값을 제외한 값으로 제공받아 사용할 경우에만 setting 엘리먼트 설정 -->
+		<!-- callSettersOnNulls 기능을 [true]로 설정하면 UPDATE 명령 실행시 컬럼값을 [NULL]로
+		변경하는 기능을 허용 -->
+		<setting name="callSettersOnNulls" value="true"/>
+	</settings>
+	
+	<!-- typeAliases : typeAlias 엘리먼트를 등록하기 위한 상위 엘리먼트  -->
+	<typeAliases>
+		<!-- typeAlias : XML 기반의 매퍼 파일에서 Java 자료형에 대신 사용할 수 있는 별칭
+		(AliasName)을 설정하기 위한 엘리먼트 -->
+		<!-- => mybatis 프레임워크는 내부적으로 Java 자료형에 대신 사용할 별칭 제공 -->
+		<!-- type 속성 : Java 자료형을 속성값으로 설정 -->
+		<!-- alias 속성 : Java 자료형 대신 사용될 별칭을 속성값으로 설정 -->
+		<typeAlias type="xyz.itwill.dto.Student" alias="Student"/>
+	</typeAliases>
 
 	<!-- environments : environment 엘리먼트를 등록하기 위한 상위 엘리먼트 -->
 	<!-- default 속성 : environment 엘리먼트의 식별자(id 속성값)을 속성값으로 설정 -->
