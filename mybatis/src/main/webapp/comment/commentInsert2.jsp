@@ -4,13 +4,13 @@
     pageEncoding="UTF-8"%>
 <%
 	MyComment1 comment3=new MyComment1();
-	comment3.setCommentId("abc");
-	comment3.setCommentContent("첫번째 게시글입니다.");
+	comment3.setCommentId("opq");
+	comment3.setCommentContent("셋번째 게시글입니다.");
 	MyCommentDAO.getDAO().insertComment2(comment3);
 	
 	MyComment1 comment4=new MyComment1();
-	comment4.setCommentId("xyz");
-	comment4.setCommentContent("두번째 게시글입니다.");
+	comment4.setCommentId("abc");
+	comment4.setCommentContent("네번째 게시글입니다.");
 	MyCommentDAO.getDAO().insertComment2(comment4);
 %>    
 <!DOCTYPE html>
