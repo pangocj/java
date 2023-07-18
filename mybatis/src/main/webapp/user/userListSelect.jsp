@@ -5,6 +5,8 @@
     pageEncoding="UTF-8"%>
 <%
 	List<MyUser> userList=MyUserDAO.getDAO().selectUserList();
+	//System.out.println("userList.size() = "+userList.size());	
+	//System.out.println("userList.get(0) = "+userList.get(0));	
 %>    
 <!DOCTYPE html>
 <html>
