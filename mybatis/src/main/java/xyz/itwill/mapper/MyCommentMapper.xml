@@ -26,9 +26,36 @@
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
 	</select>
 	
+	<!-- 검색행의 컬럼명과 resultType 속성값으로 설정된 클래스의 필드명이 모두 다른 경우
+	resultType 속성값으로 설정된 클래스의 객체 대신 NULL 제공 -->
+	<!-- 
 	<select id="selectCommentList2" resultType="MyComment2">
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
 	</select>
+	-->
+
+	<!-- 검색행의 컬럼명을 resultType 속성값으로 설정된 클래스의 필드명과 같도록 ColumnAlias
+	기능을 사용하여 검색 - 식별자로 사용하기 부적절한 단어는 " " 기호를 사용하여 표현  -->	
+	<!--  
+	<select id="selectCommentList2" resultType="MyComment2">
+		select comment_no no, comment_id id, comment_content content, comment_date "date" 
+			from mycomment order by comment_no desc
+	</select>
+	-->
+
+	<!-- resultMap 엘리먼트를 이용하여 검색행의 컬럼값을 객체 필드에 저장되도록 설정하여 
+	검색행을 Java 객체로 제공 -->	
+	<!-- => type 속성값으로 설정된 클래스의 기본 생성자를 이용하여 객체를 생성하고 id 엘리먼트 또는 
+	result 엘리먼트를 사용하여 객체의 Setter 메소드를 호출하여 검색행의 컬럼값으로 필드값 변경 -->
+	<resultMap type="MyComment2" id="myComment2ResultMap">
+		<id column="comment_no" property="no"/>
+		<result column="comment_id" property="id"/>
+		<result column="comment_content" property="content"/>
+		<result column="comment_date" property="date"/>
+	</resultMap>
+	
+	<!-- select 엘리먼트의 resultMap 속성을 사용하여 검색행을 Java 객체로 수동 매핑하여 제공 -->
+	<select id="selectCommentList2" resultMap="myComment2ResultMap">
+		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
+	</select>
 </mapper>
-
-
