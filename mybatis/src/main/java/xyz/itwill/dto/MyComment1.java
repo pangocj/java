@@ -62,13 +62,3 @@ public class MyComment1 {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
