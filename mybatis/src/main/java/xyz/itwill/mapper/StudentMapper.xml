@@ -4,7 +4,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- mapper : SQL 명령을 등록하기 위한 상위 엘리먼트 -->
 <!-- namespace 속성 : 매퍼를 구분하기 위한 식별자를 속성값으로 설정 -->
-<!-- => SqlSession 객체를 필요한 SQL 명령이 등록된 매퍼를 구분하기 사용 -->
+<!-- => SqlSession 객체가 필요한 SQL 명령이 등록된 매퍼를 구분하기 사용 -->
 <!-- => mybatis 프레임워크에서는 namespace 속성값을 Java 자료형 형식으로 표현하여 작성하는 것을 권장 -->
 <!-- => ibatis  프레임워크에서는 namespace 속성 생략 가능 -->
 <mapper namespace="xyz.itwill.mapper.StudentMapper">
