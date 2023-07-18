@@ -77,11 +77,33 @@
 		
 		<!-- resource 속성 :  XML 기반의 매퍼 파일 경로를 속성값으로 설정 -->
 		<!-- => XML 기반의 매퍼 파일 경로는 파일 시스템 경로로 표현하여 작성 -->
+		<!-- XML 기반의 매퍼 파일의 장점 : 수동 매핑 설정과 동적 SQL 설정에 대한 기능 구현 편리 -->
+		<!-- XML 기반의 매퍼 파일의 단점 : SqlSession 객체로 SQL 명령을 제공받아 사용하기 불편 -->
 		<mapper resource="xyz/itwill/mapper/StudentMapper.xml"/>	
 		<mapper resource="xyz/itwill/mapper/MyMemberXMLMapper.xml"/>
 		
 		<!-- class 속성 : Interface 기반의 매퍼 파일의 경로를 속성값으로 설정 -->
 		<!-- => Interface 기반의 매퍼 파일의 경로는 Java 자료형(인터페이스)으로 표현하여 작성 -->
-		<mapper class="xyz.itwill.mapper.MyMemberInterfaceMapper"/>	
+		<!-- Interface 기반의 매퍼 파일의 장점 : SqlSession 객체로 SQL 명령을 제공받아 사용하기 편리 -->
+		<!-- Interface 기반의 매퍼 파일의 단점 : 수동 매핑 설정과 동적 SQL 설정에 대한 기능 구현 불편 -->
+		<mapper class="xyz.itwill.mapper.MyMemberInterfaceMapper"/>
+		
+		<!-- 매퍼 바인딩 기능을 사용하여 XML 기반의 매퍼 파일과 Interface 기반의 매퍼 파일을
+		하나의 매퍼로 등록되어 동작되도록 설정 가능 -->
+		<!-- 매퍼 바인딩(Mapper Binding) : SQL 명령은 XML 기반의 매퍼 파일에 등록하고
+		DAO 클래스는 Interface 기반의 매퍼 파일을 이용하여 작성 -->
+		<!-- => mapper 엘리먼트에는 XML 기반의 매퍼 파일만 등록하여 사용하는 것을 권장 -->
+		<mapper resource="xyz/itwill/mapper/MyMemberMapper.xml"/>	
 	</mappers>
 </configuration>
+
+
+
+
+
+
+
+
+
+
+
