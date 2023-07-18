@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.mapper.MyCommentMapper">
+	<insert id="insertComment1" parameterType="MyComment1">
+		insert into mycomment values(mycomment_seq.nextval, #{commentId}, #{commentContent}, sysdate)
+	</insert>
+	
+	<!-- resultType 속성을 사용하여 검색행이 Java 객체로 제공되도록 자동 매핑 처리 -->
+	<!-- => 검색행의 컬럼명과 resultType 속성값으로 설정된 클래스의 필드명이 같도록 작성 -->
+	<select id="selectCommentList1" resultType="MyComment1">
+		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
+	</select>
+</mapper>
