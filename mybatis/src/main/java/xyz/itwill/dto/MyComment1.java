@@ -17,7 +17,7 @@ COMMENT_CONTENT          VARCHAR2(100) - 게시글 내용
 COMMENT_DATE             DATE          - 게시글 작성일
 */
 
-//클래스의 필드명을 테이블의 컬럼명과 같은 이름으로 작성한 클래스 - 자동 매핑
+//테이블의 컬럼명과 같은 이름으로 클래스의 필드명을 작성한 클래스 - 자동 매핑
 // => 스네이크 표기법으로 작성된 컬럼명은 카멜 표기법의 필드명으로 작성
 public class MyComment1 {
 	private int commentNo;
@@ -60,6 +60,7 @@ public class MyComment1 {
 	public void setCommentDate(String commentDate) {
 		this.commentDate = commentDate;
 	}
+
 }
 
 
