@@ -31,6 +31,25 @@
 			, reply_comment_no from myreply order by reply_no desc) reply where rownum <= 5
 		]]>	
 	</select>
+	
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap1">
+		<association property="reply" javaType="MyReply">
+			<id column="reply_no" property="replyNo"/>
+			<result column="reply_id" property="replyId"/>
+			<result column="reply_content" property="replyContent"/>
+			<result column="reply_date" property="replyDate"/>
+			<result column="reply_comment_no" property="replyCommentNo"/>
+		</association>
+		<association property="user" javaType="MyUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+	</resultMap>
+	
+	<select id="selectReplyUserList1" resultMap="myReplyUserResultMap1">
+		select reply_no, reply_id, reply_content, reply_date, reply_comment_no, user_id
+			, user_name from myreply join myuser on reply_id=user_id order by reply_no desc
+	</select>
 </mapper>
 
 
