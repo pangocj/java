@@ -78,13 +78,23 @@
 			<idArg column="comment_no" javaType="_int"/>
 			<!-- arg : 검색행의 컬럼값을 생성자 매개변수에 전달하기 위한 엘리먼트 -->
 			<arg column="comment_id" javaType="string"/>
+			<!--  
 			<arg column="comment_content" javaType="string"/>
 			<arg column="comment_date" javaType="string"/>
+			-->
 		</constructor>
+		<!-- constructor 엘리먼트와 id 엘리먼트(result 엘리먼트)를 같이 사용하여 매핑 정보 제공 가능 -->
+		<result column="comment_content" property="content"/>
+		<result column="comment_date" property="date"/>
 	</resultMap>	
 	
 	<select id="selectCommentList2" resultMap="myComment2ConstructorResultMap">
 		select comment_no, comment_id, comment_content, comment_date from mycomment order by comment_no desc
+	</select>
+	
+	<select id="selectCommentList3" resultType="MyComment3">
+		select comment_no "no", comment_id "id", user_name "name", comment_content "content" 
+			, comment_date "date" from mycomment join myuser on comment_id=user_id order by comment_no desc
 	</select>
 </mapper>
 
