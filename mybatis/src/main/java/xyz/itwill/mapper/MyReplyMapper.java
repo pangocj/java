@@ -10,4 +10,5 @@ public interface MyReplyMapper {
 	List<MyReply> selectReplyList();
 	List<MyReply> selectCountReplyList();
 	List<MyReplyUser> selectReplyUserList1();
+	List<MyReplyUser> selectReplyUserList2();
 }
