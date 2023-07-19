@@ -39,4 +39,13 @@ public class MyReplyDAO extends AbstractSession {
 			sqlSession.close();
 		}
 	}
+	
+	public List<MyReply> selectCountReplyList() {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyReplyMapper.class).selectCountReplyList();
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
