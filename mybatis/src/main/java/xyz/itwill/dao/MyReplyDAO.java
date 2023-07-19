@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import xyz.itwill.dto.MyReply;
-import xyz.itwill.mapper.MyCommentMapper;
 import xyz.itwill.mapper.MyReplyMapper;
 
 public class MyReplyDAO extends AbstractSession {
