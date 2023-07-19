@@ -17,7 +17,7 @@ USER_NAME          VARCHAR2(50) - 이름
 // => 파스칼 표기법(PascalCase) : 모든 단어의 첫문자를 대문자로 표현하여 식별자를 선언하는 방법
 public class MyUser {
 	//Java 자료형을 제외한 식별자는 카멜 표기법 사용
-	// => 카멜 표기법(CamelCase) : 첫단어를 제외한 나머지 단어의 첫문을 대문자로 표현하여 식별자를 선언하는 방법
+	// => 카멜 표기법(CamelCase) : 첫단어를 제외한 나머지 단어의 첫문자를 대문자로 표현하여 식별자를 선언하는 방법
 	private String userId;
 	private String userName;
 	
