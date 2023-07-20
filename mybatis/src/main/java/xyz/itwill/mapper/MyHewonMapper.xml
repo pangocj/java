@@ -5,7 +5,7 @@
 		insert into myhewon values(#{id}, #{name}, #{phone}, #{email}, #{status})
 	</insert>
 	
-	<resultMap type="MyHewon" id="myHewonReultMap">
+	<resultMap type="MyHewon" id="myHewonResultMap">
 		<id column="hewon_id" property="id"/>
 		<result column="hewon_name" property="name"/>
 		<result column="hewon_phone" property="phone"/>
@@ -13,7 +13,7 @@
 		<result column="hewon_status" property="status"/>
 	</resultMap>
 	
-	<select id="selectHewonList" resultMap="myHewonReultMap">
+	<select id="selectHewonList" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon order by hewon_id
 	</select>
 	
@@ -106,7 +106,37 @@
 	<select id="selectDiscriminatorHewonList" resultMap="myHewonDiscriminatorResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon order by hewon_id
 	</select>
+	
+	<!-- 매퍼에 등록된 SQL 명령에 필요한 값을 전달하는 방법 -->
+	<!-- => 전달값은 SQL 명령에서 #{변수명|필드명|맵키} 형식으로 표현하여 사용 -->
+	<!-- 1.XML 기반의 매퍼 파일에서 SQL 명령이 등록된 엘리먼트의 parameterType 속성값으로
+	Java 자료형(별칭)을 설정하여 값을 전달받아 SQL 명령에서 사용 -->
+	<!-- => 단일값을 전달받기 위해 parameterType 속성에 원시형(PrimitiveType - Wrapper 클래스)
+	또는 String 클래스를 속성값으로 설정 - SQL 명령에서는 #{변수명} 형식으로 전달값 사용 -->
+	<!-- => 다수값을 전달받기 위해 parameterType 속성에 JavaBean(DTO) 클래스를 속성값으로 설정 
+	- SQL 명령에서는 #{필드명} 형식으로 전달값(필드값) 사용 -->
+	<!-- => 다수값을 전달받기 위해 parameterType 속성에 HashMap 클래스(Map 인터페이스)를 
+	속성값으로 설정	- SQL 명령에서는 #{맵키} 형식으로 전달값(맵값) 사용 -->
+	<!-- 2.Interface 기반의 매퍼 파일에서 추상메소드의 매개변수에 @Param 어노테이션을
+	설정하여 매개변수의 전달되어 저장된 값을 SQL 명령에서 사용 -->
+	<!-- => 매퍼 바인딩을 한 경우 XML 기반의 매퍼 파일의 엘리먼트에서 SQL 명령에 전달값을 사용 가능 -->
+	<!-- => Interface 기반의 매퍼 파일의 추상메소드 매개변수로 전달받은 값을 XML 기반의 매퍼
+	파일의 엘리먼트에서 사용할 경우 parameterType 속성을 반드시 생략 -->
+	
+	<!-- 공개범위를 전달받아 MYHEWON 테이블에 저장된 회원정보 중 해당 공개범위의 회원정보를
+	검색하여 검색결과를 객체로 제공하는 엘리먼트 -->
+	<!-- => 값을 하나만 전달받아 SQL 명령에서 사용할 경우 parameterType 속성값으로 원시형
+	(Wrapper 클래스) 또는 String 클래스를 설정하고 SQL 명령에서는 #{변수명} 형식으로 전달값 표현 -->
+	<!-- => 변수명은 어떤 이름을 사용해도 상관 없으며 식별자 작성 규칙에 맞게 작성 -->
+	<select id="selectStatusHewonList" parameterType="int" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon 
+			where hewon_status=#{status} order by hewon_id
+	</select>	
 </mapper>
+
+
+
+
 
 
 
