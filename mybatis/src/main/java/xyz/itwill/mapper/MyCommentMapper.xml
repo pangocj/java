@@ -154,6 +154,49 @@
 		select reply_no, reply_id, reply_content, reply_date, reply_comment_no
 			from myreply where reply_comment_no=#{replyCommentNo} order by reply_no desc
 	</select>
+
+	<!-- resultMap 엘리먼트의 하위 엘리먼트 작성 순서 -->
+	<!-- => constructor, id, result, association, collection, discriminator -->
+	<!-- 문제점)resultMap 엘리먼트의 첫번째 하위 엘리먼트로 association 엘리먼트를 사용한
+	경우 내부적으로 selectOne() 메소드를 사용하여 하나의 검색행을 Java 객체로 생성하여 제공 -->
+	<!-- => SELECT 명령으로 다수의 행이 검색된 경우 TooManyResultsException 발생  -->
+	<!-- 해결법)다수의 행이 검색되는 경우 resultMap 엘리먼트의 첫번째 자식 엘리먼트로 
+	association 엘리먼트가 아닌 다른 엘리먼트 사용 -->
+	<resultMap type="MyCommentReply" id="myCommentReplyResultMap">
+		<id column="comment_no" property="commentNo"/>
+	
+		<association property="comment" javaType="MyComment1">
+			<id column="comment_no" property="commentNo"/>
+			<result column="comment_id" property="commentId"/>
+			<result column="comment_content" property="commentContent"/>
+			<result column="comment_date" property="commentDate"/>
+		</association>
+		
+		<!-- collection : 1:N 관계의 테이블 조인에서 0개의 검색행을 List 객체로 생성하여 resultMap 
+		엘리먼트의 type 속성값으로 설정된 클래스의 객체 필드에 저장되도록 매핑 처리하는 엘리먼트 -->
+		<!-- => id 엘리먼트 또는 result 엘리먼트를 하위 엘리먼트로 사용하여 collection 엘리먼트로
+		생성될 List 객체의 요소(객체) 필드에 검색행의 컬럼값이 저장되도록 매핑 처리 -->
+		<!-- property 속성 : collection 엘리먼트로 생성된 List 객체가 저장될 클래스의 필드명을 속성값으로 설정 -->
+		<!-- ofType 속성 : List 객체의 요소로 저장될 객체의 Java 자료형을 속성값으로 설정 -->
+		<!-- => Java 자료형 대신 typeAlias로 설정된 별칭 사용 가능 -->
+		<collection property="replyList" ofType="MyReply">
+			<id column="reply_no" property="replyNo"/>
+			<result column="reply_id" property="replyId"/>
+			<result column="reply_content" property="replyContent"/>
+			<result column="reply_date" property="replyDate"/>
+			<result column="reply_comment_no" property="replyCommentNo"/>
+		</collection>
+	</resultMap>
+
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블에 저장된 게시글정보(1개)와 MYREPLY 테이블에
+	저장된 댓글정보(0개 이상)를 검색하여 MyCommentReply 객체로 제공하는 엘리먼트 -->	
+	<!-- => 1:N 관계의 테이블 조인에서는 OUTER JOIN를 사용하여 검색 -->
+	<select id="selectCommentReply" parameterType="int" resultMap="myCommentReplyResultMap">
+		<!-- 댓글이 없는 게시글을 무조건 검색하기 위해 LEFT OUTER JOIN 사용 -->
+		select comment_no, comment_id, comment_content, comment_date, reply_no, reply_id
+			, reply_content, reply_date, reply_comment_no from mycomment left join myreply
+			on comment_no=reply_comment_no where comment_no=#{commentNo} order by reply_no desc 
+	</select>
 </mapper>
 
 
