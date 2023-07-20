@@ -16,4 +16,50 @@
 	<select id="selectHewonList" resultMap="myHewonReultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon order by hewon_id
 	</select>
+	
+	<!-- discriminator : 검색행의 컬럼값을 비교하여 매핑정보를 다르게 제공하기 위한 엘리먼트 -->
+	<!-- => 하위 엘리먼트로 case 엘리먼트를 사용하여 검색행의 컬럼값을 비교하여 매핑정보 제공 -->
+	<!-- javaType 속성 : 검색행의 비교 컬럼값에 대한 Java 자료형을 속성값으로 설정 -->
+	<!-- => Java 자료형 대신 typeAlias 엘리먼트로 제공된 별칭을 사용 가능 -->
+	<!-- column 속성 : 검색행의 비교 컬럼명을 속성값으로 설정 -->
+	<resultMap type="MyHewon" id="myHewonDiscriminatorResultMap">
+		<discriminator javaType="int" column="hewon_status">
+			<case value="1">
+				<id column="hewon_id" property="id"/>
+				<result column="hewon_status" property="status"/>
+			</case>
+			<case value="2">
+				<id column="hewon_id" property="id"/>
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_status" property="status"/>
+			</case>
+			<case value="3">
+				<id column="hewon_id" property="id"/>
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_phone" property="phone"/>
+				<result column="hewon_status" property="status"/>
+			</case>
+			<case value="4">
+				<id column="hewon_id" property="id"/>
+				<result column="hewon_name" property="name"/>
+				<result column="hewon_phone" property="phone"/>
+				<result column="hewon_email" property="email"/>
+				<result column="hewon_status" property="status"/>
+			</case>
+		</discriminator>
+	</resultMap>
+	
+	<select id="selectDiscriminatorHewonList" resultMap="myHewonDiscriminatorResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon order by hewon_id
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
