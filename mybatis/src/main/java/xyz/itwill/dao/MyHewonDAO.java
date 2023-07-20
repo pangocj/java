@@ -1,6 +1,7 @@
 package xyz.itwill.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -62,6 +63,33 @@ public class MyHewonDAO extends AbstractSession {
 		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
 		try {
 			return sqlSession.getMapper(MyHewonMapper.class).selectBeanHewonId(hewon);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public String selectMapHewonId(Map<String, Object> map) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).selectMapHewonId(map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public int insertMapHewon(Map<String, Object> map) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).insertMapHewon(map);
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public List<Map<String, Object>> selectMapHewonList() {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).selectMapHewonList();
 		} finally {
 			sqlSession.close();
 		}
