@@ -47,7 +47,8 @@ td {
 			<%-- <td><%=commentUser.getComment().getCommentContent() %></td> --%>
 			<td>
 				<%-- <a href="commentReplySelect1.jsp?commentNo=<%=commentUser.getComment().getCommentNo()%>"> --%>
-				<a href="commentReplySelect2.jsp?commentNo=<%=commentUser.getComment().getCommentNo()%>">
+				<%-- <a href="commentReplySelect2.jsp?commentNo=<%=commentUser.getComment().getCommentNo()%>"> --%>
+				<a href="commentReplyUserSelect.jsp?commentNo=<%=commentUser.getComment().getCommentNo()%>">
 					<%=commentUser.getComment().getCommentContent() %>
 				</a>
 			</td>
