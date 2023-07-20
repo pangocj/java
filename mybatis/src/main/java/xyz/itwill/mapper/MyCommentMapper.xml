@@ -118,11 +118,11 @@
 	</select>
 	
 	<resultMap type="MyCommentUser2" id="myCommentUser2ResultMap">
-		<!-- association : 1:1 관계의 테이블 조인에서 1개의 검색행을 Java 객체로 생성하여
-		type 속성값으로 설정된 클래스의 필드에 저장되도록 매핑 처리하는 엘리먼트 -->
+		<!-- association : 1:1 관계의 테이블 조인에서 1개의 검색행을 Java 객체로 생성하여 resultMap 
+		엘리먼트의 type 속성값으로 설정된 클래스의 객체 필드에 저장되도록 매핑 처리하는 엘리먼트 -->
 		<!-- => id 엘리먼트 또는 result 엘리먼트를 하위 엘리먼트로 사용하여 association 엘리먼트로
 		생성될 객체의 필드에 검색행의 컬럼값이 저장되도록 매핑 처리 -->
-		<!-- property 속성 : 객체가 저장된 클래스의 필드명을 속성값으로 설정 -->
+		<!-- property 속성 : association 엘리먼트로 생성된 객체가 저장될 클래스의 필드명을 속성값으로 설정 -->
 		<!-- javaType 속성 : 검색행을 이용하여 생성될 객체의 Java 자료형을 속성값으로 설정 -->
 		<!-- => Java 자료형 대신 typeAlias로 설정된 별칭 사용 가능 -->
 		<association property="comment" javaType="MyComment1">
