@@ -255,12 +255,12 @@
 		<collection property="replyUserList" select="selectReplyUser" column="comment_no"/>
 	</resultMap>
 	
-	<resultMap type="MyReplyUser" id="myReplyUserResulyMapper">
+	<resultMap type="MyReplyUser" id="myReplyUserResultMap">
 		<association property="reply" javaType="MyReply" autoMapping="true"/>
 		<association property="user" javaType="MyUser" autoMapping="true"/>
 	</resultMap>
 	
-	<select id="selectReplyUser" parameterType="int" resultMap="myReplyUserResulyMapper">
+	<select id="selectReplyUser" parameterType="int" resultMap="myReplyUserResultMap">
 		select reply_no, reply_id, reply_content, reply_date, reply_comment_no, user_id
 			, user_name from myreply join myuser on reply_id=user_id where 
 			reply_comment_no=#{replyCommentNo} order by reply_no desc
