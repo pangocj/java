@@ -5,7 +5,7 @@
 <%
 	//MYHEWON 테이블에서 아이디가 [xxx]인 회원의 이름을 [홍경래]으로 변경
 	MyHewon hewon=new MyHewon();
-	hewon.setId("xxx");
+	hewon.setId("xxx"); 
 	hewon.setName("홍경래");
 	hewon.setPhone("010-1247-5411");
 	

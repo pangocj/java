@@ -8,7 +8,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String ids=request.getParameter("ids");
-
+ 
 	List<String> idList=null;
 	if(ids!=null && !ids.equals("")) {//전달값이 있는 경우
 		idList=new ArrayList<>();

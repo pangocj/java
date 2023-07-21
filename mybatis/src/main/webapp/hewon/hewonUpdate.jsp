@@ -16,7 +16,7 @@
 	*/	
 
 	//DTO 객체에 변경값외에 기존값을 객체 필드에 저장 
-	MyHewon hewon=new MyHewon();
+	MyHewon hewon=new MyHewon(); 
 	hewon.setId("xxx");
 	hewon.setName("로빈훗");
 	hewon.setPhone("010-5678-2135");
