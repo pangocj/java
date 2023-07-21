@@ -172,7 +172,7 @@
 			<result column="comment_date" property="commentDate"/>
 		</association>
 		
-		<!-- collection : 1:N 관계의 테이블 조인에서 0개의 검색행을 List 객체로 생성하여 resultMap 
+		<!-- collection : 1:N 관계의 테이블 조인에서 0개 이상의 검색행을 List 객체로 생성하여 resultMap 
 		엘리먼트의 type 속성값으로 설정된 클래스의 객체 필드에 저장되도록 매핑 처리하는 엘리먼트 -->
 		<!-- => id 엘리먼트 또는 result 엘리먼트를 하위 엘리먼트로 사용하여 collection 엘리먼트로
 		생성될 List 객체의 요소(객체) 필드에 검색행의 컬럼값이 저장되도록 매핑 처리 -->
@@ -226,8 +226,9 @@
 	</resultMap>	
 	-->
 	 
-	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블에 저장된 게시글정보(1개)와 MYREPLY 테이블에
-	저장된 댓글정보(0개 이상)를 검색하여 MyCommentReplyUser 객체로 제공하는 엘리먼트 -->
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블(MYUSER 테이블)에 저장된 게시글정보(1개)와 
+	MYREPLY 테이블(MYUSER 테이블)에	저장된 댓글정보(0개 이상)를 검색하여 MyCommentReplyUser
+	객체로 제공하는 엘리먼트 -->
 	<!-- 
 	<select id="selectCommentReplyUser" parameterType="int" resultMap="myCommentReplyUserResultMap">
 		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
@@ -261,8 +262,6 @@
 	
 	<select id="selectCommentReplyUser" parameterType="int" resultMap="myCommentReplyUserResultMap">
 		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
-			, reply_no, reply_id, reply_content, reply_date, reply_comment_no from
-			mycomment join myuser on comment_id=user_id left join myreply on 
-			comment_no=reply_comment_no where comment_no=#{commentNo} order by reply_no desc
-	</select> 
+			from mycomment join myuser on comment_id=user_id where comment_no=#{commentNo}
+	</select>
 </mapper>
