@@ -26,5 +26,5 @@ public interface MyHewonMapper {
 	String selectParamHewonId(@Param(value = "name") String name,@Param("email") String email);
 	List<MyHewon> selectSearchHewonList(Map<String, Object> map);
 	List<MyHewon> selectNameHewonList(String name);
-	List<MyHewon> selectDynamicHewonList(String name);
+	List<MyHewon> selectDynamicNameHewonList(String name);
 }

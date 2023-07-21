@@ -8,7 +8,7 @@
 
 	String name=request.getParameter("name");
 
-	List<MyHewon> hewonList=MyHewonDAO.getDAO().selectDynamicHewonList(name);
+	List<MyHewon> hewonList=MyHewonDAO.getDAO().selectDynamicNameHewonList(name);
 %>    
 <!DOCTYPE html>
 <html>
