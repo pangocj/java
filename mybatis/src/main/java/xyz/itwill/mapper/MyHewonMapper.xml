@@ -242,7 +242,7 @@
 		<!-- => if 엘리먼트의 조건이 참인 경우 엘리먼트 내용을 SQL 명령에 포함 -->
 		<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
 		<!-- => parameterType 속성값으로 전달값에 대한 조건식을 작성하여 test 속성값으로 제공 -->
-		<if test="name!=null and name!=''"><!-- 조건 : 전달값(이름)이 있는 경우 >> [true] -->
+		<if test="name != null and name != ''"><!-- 조건 : 전달값(이름)이 있는 경우 >> [true] -->
 			where hewon_name = #{name}
 		</if> 
 		order by hewon_id
@@ -251,17 +251,158 @@
 	<!-- 아이디와 이름을 전달받지 못한 경우 MYHEWON 테이블에 저장된 모든 회원정보를 검색하여 
 	검색결과를 객체로 제공하고 아이디 또는 이름을 전달받은 경우 MYHEWON 테이블에 저장된 해당 
 	아이디 또는 이름의 회원정보를 검색하여	검색결과를 객체로 제공하는 엘리먼트 -->
+	<!-- 문제점)아이디와 이름를 모두 전달받은 경우 WHERE 문장이 2번 포함되어 에러 발생 -->
+	<!-- 
 	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
-		<if test="id!=null and id!=''">
+		<if test="id != null and id != ''">
 			where hewon_id = #{id}
 		</if>
-		<if test="name!=null and name!=''">
+		<if test="name != null and name != ''">
 			where hewon_name = #{name}
 		</if>
 		order by hewon_id
-	</select>	
-</mapper>
+	</select>
+ 	-->
+ 	
+ 	<!-- 해결법-1)아이디와 이름를 모두 전달받아도 하나의 WHERE 문장만 포함되도록 동적 SQL 기능 구현 -->
+ 	<!-- choose : 조건에 맞는 하나의 엘리먼트 내용(SQL의 부분 명령)이 SQL 명령에 포함되도록
+ 	설정하는 엘리먼트 -->
+ 	<!-- => 하위 엘리먼트 : when 엘리먼트(1개 이상), otherwise 엘리먼트(0개 또는 1개) -->
+ 	<!-- when : 조건에 의해 엘리먼트 내용을 SQL 명령에 포함하는 엘리먼트 -->
+ 	<!-- => when 엘리먼트의 조건에 맞는 엘리먼트 내용을 SQL 명령에 포함한 후 choose 엘리먼트 종료 -->
+	<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
+	<!-- otherwise : when 엘리먼트의 모든 조건이 거짓인 경우 엘리먼트 내용을 SQL 명령에 포함하는 엘리먼트 -->
+	<!--  
+ 	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<choose>
+			<when test="id != null and id != ''">
+				where hewon_id = #{id}
+			</when>
+			<when test="name != null and name != ''">
+				where hewon_name = #{name}
+			</when>
+		</choose>
+		order by hewon_id
+	</select>
+	-->
+
+ 	<!-- 해결법-2)아이디와 이름를 모두 전달받아 하나의 WHERE 문장만 포함되도록 동적 SQL 기능 구현 -->
+	<!-- trim : 엘리먼트 내용에 필요한 부분 명령을 추가하거나 불필요한 부분 명령을 삭제하여
+	SQL 명령에 포함하는 엘리먼트 - 하위 엘리먼트로 여러개의 if 엘리먼트 사용 -->
+	<!-- prefix 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 앞에 추가될
+	부분 SQL 명령을 속성값 설정 -->
+	<!-- suffix 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용 뒤에 추가될
+	부분 SQL 명령을 속성값 설정 -->
+	<!-- prefixOverrides 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용에서
+	제거될 앞에 존재하는 부분 SQL 명령을 속성값으로 설정 -->
+	<!-- suffixOverrides 속성 : trim 엘리먼트에 엘리먼트 내용이 존재할 경우 엘리먼트 내용에서
+	제거될 뒤에 존재하는 부분 SQL 명령을 속성값으로 설정 -->
+	<!--  
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<trim prefix="where" prefixOverrides="or|and">
+			<if test="id != null and id != ''">
+				hewon_id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				${choice} hewon_name = #{name}
+			</if>
+		</trim>
+		order by hewon_id
+	</select>
+	-->
+	
+	<!-- where : 엘리먼트 내용이 있는 경우 엘리먼트 내용 앞부분에 [and] 또는 [or] 키워드가
+	있으면 제거하고 엘리먼트 앞부분에 [where] 키워드를 추가하여 SQL 명령에 포함하는 엘리먼트 -->
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<where>
+			<if test="id != null and id != ''">
+				hewon_id = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				${choice} hewon_name = #{name}
+			</if>
+		</where>
+		order by hewon_id
+	</select>
+	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 회원정보를 변경하는 엘리먼트 -->
+	<!-- => 아이디를 비교하여 아이디를 제외한 컬럼값을 전달값으로 변경 -->
+	<update id="updateHewon" parameterType="MyHewon">
+		update myhewon set hewon_name=#{name}, hewon_phone=#{phone}, hewon_email=#{email}
+				, hewon_status=#{status} where hewon_id=#{id}
+	</update>
+	
+	<!-- 회원정보를 전달받아 MYHEWON 테이블에 저장된 회원정보를 변경하는 엘리먼트 -->
+	<!-- => 아이디를 비교하여 전달값이 있는 경우에만 아이디를 제외한 컬럼값을 전달값으로 변경 -->
+	<!-- if 엘리먼트의 test 속성값으로 조건식을 사용할 경우 비교 연산자(>, <, >=, <=)를 사용하면 에러 발생 -->
+	<!-- => 기호로 표현된 비교 연산자 대신 문자로 표현된 연산자(gt, lt, gte, lte) 사용하여 표현 -->
+	<!--  
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon 
+			<trim prefix="set" suffixOverrides=",">
+				<if test="name != null and name != ''">	
+					hewon_name=#{name},
+				</if> 
+				<if test="phone != null and phone != ''">
+					hewon_phone=#{phone},
+				</if>
+				<if test="email != null and email != ''">
+					hewon_email=#{email},
+				</if>
+				<if test="status gte 1 and status lte 4">
+					hewon_status=#{status}
+				</if>
+			</trim>
+			where hewon_id=#{id}
+	</update>
+	-->
+	
+	<!-- set : 엘리먼트 내용이 있는 경우 엘리먼트 내용 뒷부분에 [,] 기호가 있으면 제거하고
+	엘리먼트 앞부분에 [set] 키워드를 추가하여 SQL 명령에 포함하는 엘리먼트 -->
+	<update id="updateDynamicHewon" parameterType="MyHewon">
+		update myhewon 
+			<set>
+				<if test="name != null and name != ''">	
+					hewon_name=#{name},
+				</if> 
+				<if test="phone != null and phone != ''">
+					hewon_phone=#{phone},
+				</if>
+				<if test="email != null and email != ''">
+					hewon_email=#{email},
+				</if>
+				<if test="status gte 1 and status lte 4">
+					hewon_status=#{status}
+				</if>
+			</set>
+			where hewon_id=#{id}
+	</update>
+	
+	<!-- 여러개의 아이디를 전달받아 MYHEWON 테이블에 저장된 해당 아이디의 회원정보를 검색하여
+	검색결과를 객체로 제공하는 엘리먼트 -->
+	<!-- => 아이디가 하나도 전달되지 않은 경우 MYHEWON 테이블의 모든 검색하여 객체로 제공 -->
+	<!-- parameterType 속성값으로 ArrayList 클래스(List 인터페이스)를 설정하여 List 객체를
+	전달받아 SQL 명령에서 [list] 이름으로 표현하여 사용 -->
+	<select id="selectMultiDynamicHewonList" parameterType="list" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<if test="list != null">
+			where hewon_id in
+			<!-- foreach : 전달받은 List 객체의 요소값을 반복적으로 제공받아 SQL 명령에 포함하는 엘리먼트 -->
+			<!-- collection 속성 : 반복 처리하기 위한 List 객체의 이름을 속성값으로 설정 -->
+			<!-- item 속성 : list 객체의 요소값을 저장하여 SQL 명령으로 사용하기 위한 이름을 속성값으로 설정 -->
+			<!-- open 속성 : foreach 엘리먼트로 제공될 엘리먼트 내용 앞부분에 추가될 부분 SQL 명령을 속성값으로 설정 -->
+			<!-- close 속성 : foreach 엘리먼트로 제공될 엘리먼트 내용 뒷부분에 추가될 부분 SQL 명령을 속성값으로 설정 -->
+			<!-- separator 속성 : List 객체의 요소값을 구분하기 위한 부분 SQL 명령을 속성값으로 설정 -->
+			<foreach collection="list" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		</if>
+	</select>
+</mapper> 
 
 
 
