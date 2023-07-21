@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="xyz.itwill.dto.MyHewon"%>
 <%@page import="xyz.itwill.dao.MyHewonDAO"%>
 <%@page import="java.util.List"%>
@@ -14,7 +16,11 @@
 	if(searchKeyword==null || searchKeyword.equals("")) {
 		hewonList=MyHewonDAO.getDAO().selectHewonList();//전체 검색
 	} else {
+		Map<String, Object> map=new HashMap<>();
+		map.put("searchColumn", searchColumn);
+		map.put("searchKeyword", searchKeyword);
 		
+		hewonList=MyHewonDAO.getDAO().selectSearchHewonList(map);//조건 검색
 	}
 %>    
 <!DOCTYPE html>

@@ -103,4 +103,13 @@ public class MyHewonDAO extends AbstractSession {
 			sqlSession.close();
 		}
 	}
+	
+	public List<MyHewon> selectSearchHewonList(Map<String, Object> map) {
+		SqlSession sqlSession=getSqlSessionFactory().openSession(true);
+		try {
+			return sqlSession.getMapper(MyHewonMapper.class).selectSearchHewonList(map);
+		} finally {
+			sqlSession.close();
+		}
+	}
 }
