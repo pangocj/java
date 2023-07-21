@@ -25,4 +25,6 @@ public interface MyHewonMapper {
 	// => 다른 속성이 없는 경우 속성값만 설정 가능
 	String selectParamHewonId(@Param(value = "name") String name,@Param("email") String email);
 	List<MyHewon> selectSearchHewonList(Map<String, Object> map);
+	List<MyHewon> selectNameHewonList(String name);
+	List<MyHewon> selectDynamicHewonList(String name);
 }

@@ -194,11 +194,59 @@
 	<!-- ${변수명|필드명|맵키} : 전달값 - 전달값을 SQL 명령에서 부분 명령으로 사용 -->
 	<!-- => ibitis 프레임워크에서는 $변수명|필드명|맵키$ 형식으로 표현 -->
 	<!-- => $표현식은 InSQL 공격에 취약하므로 사용하는 것을 비권장 -->
+	<!--  
 	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon 
 			where ${searchColumn}=#{searchKeyword} order by hewon_id
 	</select>
+	-->
 
+	<!-- 검색대상과 검색단어를 전달받아 MYHEWON 테이블에 저장된 회원정보를 검색대상(컬럼명)에
+	검색단어(비교값)가 컬럼에 포함된 회원정보를 검색하여 검색결과를 객체로 제공하는 엘리먼트 -->
+	<!--  
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon 
+			where ${searchColumn} like '%'||#{searchKeyword}||'%' order by hewon_id
+	</select>
+	--> 
+	
+	<select id="selectSearchHewonList" parameterType="map" resultMap="myHewonResultMap">
+		<!-- bind : SQL 명령에서 사용하기 위한 값을 제공하는 엘리먼트 -->
+		<!-- => parameterType 속성값으로 전달받은 값을 변경하여 SQL 명령에서 사용할 목적으로 선언  -->
+		<!-- => bind 엘리먼트로 제공된 값은 SQL 명령에서 #{이름} 형식으로 표현하여 사용 -->
+		<!-- name 속성 : SQL 명령에서 사용할 이름을 속성값으로 설정 -->
+		<!-- value 속성 : SQL 명령에서 사용할 값을 속성값으로 설정 -->
+		<!-- => parameterType 속성값으로 전달받은 값에 문자값을 결합할 경우 + 연산자 사용 -->
+		<bind name="keyword" value="'%'+searchKeyword+'%'"/>
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon 
+			where ${searchColumn} like #{keyword} order by hewon_id
+	</select> 
+	
+	<!-- 이름을 전달받아 MYHEWON 테이블에 저장된 해당 이름의 회원정보를 검색하여 검색결과를
+	객체로 제공하는 엘리먼트 -->
+	<select id="selectNameHewonList" parameterType="string" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon 
+			where hewon_name like #{name} order by hewon_id
+	</select>
+	
+	<!-- 동적 SQL(Dynamic SQL) : 전달값에 따라 엘리먼트에 다른 SQL 명령을 등록하는 기능 -->
+	<!-- => OGNL(Object Graph Navigation Language) 표현식을 사용하여 구현 -->
+	
+	<!-- 이름을 전달받지 못한 경우 MYHEWON 테이블에 저장된 모든 회원정보를 검색하여 검색결과를
+	객체로 제공하고	이름을 전달받은 경우 MYHEWON 테이블에 저장된 해당 이름의 회원정보를 검색하여
+	검색결과를 객체로 제공하는 엘리먼트 -->
+	<!-- => 동적 SQL 기능을 사용하여 전달값에 따라 SQL 명령을 다르게 등록되어 사용되도록 설정 -->
+	<select id="selectDynamicHewonList" parameterType="string" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<!-- if 엘림먼트 : 조건에 의해 엘리먼트 내용(SQL의 부분 명령)의 포함여부를 설정하는 엘리먼트 -->
+		<!-- => if 엘리먼트의 조건이 참인 경우 엘리먼트 내용을 SQL 명령에 포함 -->
+		<!-- test 속성 : false(엘리먼트 내용 미포함) 또는 true(엘리먼트 내용 포함) 중 하나를 속성값으로 설정 -->
+		<!-- => parameterType 속성값으로 전달값에 대한 조건식을 작성하여 test 속성값으로 제공 -->
+		<if test="name!=null and name!=''"><!-- 조건 : 전달값(이름)이 있는 경우 >> [true] -->
+			where hewon_name = #{name}
+		</if> 
+		order by hewon_id
+	</select>
 </mapper>
 
 
