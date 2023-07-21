@@ -248,10 +248,19 @@
 		order by hewon_id
 	</select>
 	
-	<!-- 아이디 또는 이름을 전달받지 못한 경우 MYHEWON 테이블에 저장된 모든 회원정보를 검색하여 
+	<!-- 아이디와 이름을 전달받지 못한 경우 MYHEWON 테이블에 저장된 모든 회원정보를 검색하여 
 	검색결과를 객체로 제공하고 아이디 또는 이름을 전달받은 경우 MYHEWON 테이블에 저장된 해당 
 	아이디 또는 이름의 회원정보를 검색하여	검색결과를 객체로 제공하는 엘리먼트 -->
-	<select id="selectDynamicHewonList"></select>	
+	<select id="selectDynamicHewonList" parameterType="map" resultMap="myHewonResultMap">
+		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon
+		<if test="id!=null and id!=''">
+			where hewon_id = #{id}
+		</if>
+		<if test="name!=null and name!=''">
+			where hewon_name = #{name}
+		</if>
+		order by hewon_id
+	</select>	
 </mapper>
 
 

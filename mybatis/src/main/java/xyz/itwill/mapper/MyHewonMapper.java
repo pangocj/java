@@ -27,4 +27,5 @@ public interface MyHewonMapper {
 	List<MyHewon> selectSearchHewonList(Map<String, Object> map);
 	List<MyHewon> selectNameHewonList(String name);
 	List<MyHewon> selectDynamicNameHewonList(String name);
+	List<MyHewon> selectDynamicHewonList(Map<String, Object> map);
 }
