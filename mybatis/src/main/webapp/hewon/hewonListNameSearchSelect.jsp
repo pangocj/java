@@ -14,7 +14,7 @@
 	
 	if(name==null || name.equals("")) {//전달값이 없는 경우
 		hewonList=MyHewonDAO.getDAO().selectHewonList();//전체 검색
-	} else {
+	} else {//전달값이 있는 경우
 		hewonList=MyHewonDAO.getDAO().selectNameHewonList(name);//조건 검색
 	}
 %>    

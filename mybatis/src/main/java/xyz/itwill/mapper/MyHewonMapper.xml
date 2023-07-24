@@ -188,7 +188,7 @@
 		select hewon_id from myhewon where hewon_name=#{name} and hewon_email=#{email}
 	</select>	
 	
-	<!-- 검색대상과 검색단어를 전달받아 MYHEWON 테이블에 저장된 회원정보를 검색대상(컬럼명)에
+	<!-- 검색대상과 검색단어를 전달받아 MYHEWON 테이블에 저장된 회원정보에서 검색대상(컬럼명)에
 	검색단어(비교값)가 컬럼에 저장된 회원정보를 검색하여 검색결과를 객체로 제공하는 엘리먼트 -->
 	<!-- #{변수명|필드명|맵키} : '전달값' - 전달값을 SQL 명령에서 문자값으로 사용 -->
 	<!-- ${변수명|필드명|맵키} : 전달값 - 전달값을 SQL 명령에서 부분 명령으로 사용 -->
@@ -226,7 +226,7 @@
 	객체로 제공하는 엘리먼트 -->
 	<select id="selectNameHewonList" parameterType="string" resultMap="myHewonResultMap">
 		select hewon_id, hewon_name, hewon_phone, hewon_email, hewon_status from myhewon 
-			where hewon_name like #{name} order by hewon_id
+			where hewon_name = #{name} order by hewon_id
 	</select>
 	
 	<!-- 동적 SQL(Dynamic SQL) : 전달값에 따라 엘리먼트에 다른 SQL 명령을 등록하는 기능 -->
@@ -403,17 +403,4 @@
 		</if> 
 	</select>
 </mapper> 
-
-
-
-
-
-
-
-
-
-
-
-
-
 

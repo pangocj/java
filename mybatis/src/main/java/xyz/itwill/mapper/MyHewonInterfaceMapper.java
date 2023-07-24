@@ -42,7 +42,7 @@ public interface MyHewonInterfaceMapper {
 		, @Result(column = "hewon_email", property = "email")	
 		, @Result(column = "hewon_status", property = "status")	
 	})
-	@Select(value = "select * from myhewon where hewon_name=#{name} order by hewon_id")
+	@Select("select * from myhewon where hewon_name=#{name} order by hewon_id")
 	List<MyHewon> selectNameHewonList(String name);
 }
 
