@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+	<!-- Maven : 빌드 툴(Build Tool) - 프로젝트의 라이브러리를 관리하는 프로그램 -->
+	<!-- pom.xml : 메이븐을 이용하여 프로젝트에 라이브러리를 빌드 처리하기 위한 정보를 제공하는 환경설정파일  -->
+	<!-- => 로컬 저장소의 라이브러리 파일을 제공받아 프로젝트에 빌드 처리 -->
+	<!-- => 로컬 저장소에 라이브러리 파일이 없는 경우 메이븐 저장소에서 라이브러리 파일을 
+	다운로드 받아 로컬 저장소에 저장 -->
+	<!-- 로컬 저장소(Local Repository) : 프로젝트에 빌드 처리될 라이브러리 파일을 저장하는 폴더 -->
+	<!-- => 기본적으로 사용자 폴더의 .m2 폴더를 로컬 저장소 사용 -->
+	<!-- => 라이브러리 파일에 문제가 있어 프로그램 실행시 에러가 발생될 경우 이클립스 종료 후
+	해당 라이브러리	파일(폴더)을 삭제하고 이클립스 재실행 -->
+	<!-- 메이블 저장소(Maven Repository) : 라이브러리 파일이 저장된 인터넷상의 저장소 -->
+	<!-- => https://mvnrepository.com 사이트 참조 -->
+	
+	<!-- 메이븐을 사용하여 현재 프로젝트를 배포하기 위해 배포파일을 생성할 정보를 제공하기 위한 엘리먼트 -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>xyz.itwill</groupId>
+	<artifactId>controller</artifactId>
+	<name>spring</name>
+	<packaging>war</packaging>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
+	<!-- propertie : pom.xml 파일에서 자주 사용되는 값을 이름을 이용하여 등록하기 위한 엘리먼트 -->
+	<!-- => 하위 엘리먼트의 이름을 식별자로 사용하여 엘리먼트 내용을 값으로 제공 -->
+	<!-- => pom.xml 파일에서 ${이름} 형식으로 값을 제공받아 사용 -->
+	<!-- => 라이브러리 버전을 효율적으로 관리하기 위해 properties 엘리먼트 사용 -->
+	<properties>
+		<org.springframework-version>5.3.29</org.springframework-version>
+		<org.aspectj-version>1.9.19</org.aspectj-version>
+		<org.slf4j-version>2.0.7</org.slf4j-version>
+	</properties>
+	
+	<!-- dependencies : dependency 엘리먼트를 등록하기 위한 엘리먼트 --> 
+	<dependencies>
+		<!-- Spring -->
+		<!-- dependency : 라이브러리 파일을 제공받아 프로젝트에 빌드 처리하기 위한 엘리먼트 -->
+		<!-- => 라이브러리 의존 관계에 의해 다른 라이브러리 파일을 프로젝트에 자동으로 빌드 처리 - 의존 전이(Transitive Dependencies) -->
+		<dependency>
+			<!-- groupId : 라이브러리 파일을 제공하는 그룹의 도메인을 설정하기 위한 엘리먼트 -->
+			<groupId>org.springframework</groupId>
+			<!-- artifactId : 라이브러리의 이름을 설정하기 위한 엘리먼트 -->
+			<artifactId>spring-context</artifactId>
+			<!-- version : 라이브러리의 버전을 설정하기 위한 엘리먼트 -->
+			<version>${org.springframework-version}</version>
+			<!-- exclusions : exclusion 엘리먼트를 등록하기 위한 엘리먼트 -->
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<!-- exclusion : 의존 관계의 라이브러리 중 제외 라이브러리를 설정하기 위한 엘리먼트 -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				 </exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+				
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>	
+		
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<!--scope : 라이브러리가 프로젝트에 빌드되는 시점을 설정하는 엘리먼트 -->
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+				
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+	
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>        
+	</dependencies>
+	
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <additionalProjectnatures>
+                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+                    </additionalProjectnatures>
+                    <additionalBuildcommands>
+                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+                    </additionalBuildcommands>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>org.test.int1.Main</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
