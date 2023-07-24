@@ -8,13 +8,16 @@
 	
 	String name=request.getParameter("name");
 	
+	/*
 	List<MyHewon> hewonList=null; 
-	
 	if(name==null || name.equals("")) {//전달값이 없는 경우
 		hewonList=MyHewonInterfaceDAO.getDAO().selectHewonList();//전체 검색
 	} else {//전달값이 있는 경우
 		hewonList=MyHewonInterfaceDAO.getDAO().selectNameHewonList(name);//조건 검색
 	}
+	*/
+	
+	List<MyHewon> hewonList=MyHewonInterfaceDAO.getDAO().selectDynamicHewonList(name);
 %>    
 <!DOCTYPE html>
 <html>
