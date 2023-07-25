@@ -1,5 +1,5 @@
 package xyz.itwill04.bean;
-
+ 
 public class CreateBean {
 	public CreateBean() {
 		System.out.println("### CreateBean 클래스의 기본 생성자 호출 ###");
