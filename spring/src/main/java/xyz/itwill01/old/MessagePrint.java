@@ -6,4 +6,10 @@ public class MessagePrint {
 		String message=object.getHelloMessage();
 		System.out.println("message = "+message);
 	}
+	
+	public void hiMessagePrint() {
+		HiMessageObject object=new HiMessageObject();
+		String message=object.getHiMessage();
+		System.out.println("message = "+message);
+	}
 }
