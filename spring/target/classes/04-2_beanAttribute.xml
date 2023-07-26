@@ -11,4 +11,10 @@
 	<!-- => destroy-method 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
 	<bean class="xyz.itwill04.bean.InitDestroyMethodBean" id="initDestroyMethodBean"
 		init-method="init" destroy-method="destroy"/>
+		
+	<!-- lazy-init 속성 : false 또는 true 중 하나를 속성값으로 설정 -->
+	<!-- => false(기본) : 스프링 컨테이너가 초기화될 때 객체(Spring Bean)를 미리 생성 -->	
+	<!-- => true : 스프링 컨테이너가 초기화될 때 객체(Spring Bean)를 미리 생성하지 않고
+	getBean() 메소드를 호출할 때 객체를 생성하여 제공 -->	
+	<bean class="xyz.itwill04.bean.LazyInitBean" id="lazyInitBean" lazy-init="true"/>	
 </beans>

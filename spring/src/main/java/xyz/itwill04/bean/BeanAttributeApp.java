@@ -25,6 +25,8 @@ public class BeanAttributeApp {
 		//bean 엘리먼트를 이용하면 메소드를 객체 소멸 전 자동으로 호출되도록 설정 가능
 		//bean.destroy();//마무리 메소드
 		System.out.println("==========================================================");
+		context.getBean("lazyInitBean", LazyInitBean.class);
+		System.out.println("==========================================================");
 		((ClassPathXmlApplicationContext)context).close();
 		System.out.println("==========================================================");
 	}
