@@ -93,7 +93,7 @@
 		<!-- value 속성 : 로그 이벤트를 속성값으로 설정 -->
 		<priority value="warn" />
 		<!-- appender-ref : 참조할 Appender를 설정하기 위한 엘리먼트 -->
-		<!-- ref 속성 : appender 엘리먼트의 식별자를 속성값으로 설정  -->
+		<!-- ref 속성 : appender 엘리먼트의 식별자(name 속성값)를 속성값으로 설정  -->
 		<appender-ref ref="console" />
 	</root>
 	
