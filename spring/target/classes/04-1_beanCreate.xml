@@ -10,7 +10,7 @@
 	<!-- resource 속성 : 포함될 Spring Bean Configuration File의 경로를 속성값으로 설정 -->
 	<!-- <import resource="03_message.xml"/> -->
  
-	<!-- bean : 스프링 컨테이너에세 Spring Bean 관련 정보를 제공하기 위한 엘리먼트 -->
+	<!-- bean : 스프링 컨테이너에게 Spring Bean 관련 정보를 제공하기 위한 엘리먼트 -->
 	<!-- => Spring Bean : 스프링 컨테이너에 의해 관리(생성, 제공, 소멸) 되는 객체(클래스) -->
 	<!-- class 속성 : Spring Bean으로 등록되어 사용될 클래스를 속성값으로 설정 - 필수 -->
 	<!-- => class 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
