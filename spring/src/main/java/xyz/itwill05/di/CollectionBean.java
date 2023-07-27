@@ -1,6 +1,8 @@
 package xyz.itwill05.di;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 public class CollectionBean {
@@ -10,6 +12,8 @@ public class CollectionBean {
 	//모든 자식클래스로 생성된 객체를 요소 추가 가능
 	private Set<Controller> controllerSet;
 	private List<Controller> controllerList;
+	private Map<String, Controller> controllerMap;
+	private Properties controllerProperties;
 	
 	public CollectionBean() {
 		System.out.println("### CollectionBean 클래스의 기본 생성자 호출 ###");
@@ -46,6 +50,20 @@ public class CollectionBean {
 	public void setControllerList(List<Controller> controllerList) {
 		this.controllerList = controllerList;
 	}
-	
-	
+
+	public Map<String, Controller> getControllerMap() {
+		return controllerMap;
+	}
+
+	public void setControllerMap(Map<String, Controller> controllerMap) {
+		this.controllerMap = controllerMap;
+	}
+
+	public Properties getControllerProperties() {
+		return controllerProperties;
+	}
+
+	public void setControllerProperties(Properties controllerProperties) {
+		this.controllerProperties = controllerProperties;
+	}
 }
