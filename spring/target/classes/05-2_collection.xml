@@ -3,12 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- Setter Injection를 사용하여 객체 필드에 Collection 객체에 저장하여 의존관계 구현 - DI -->
+	<!-- Controller 인터페이스를 상속받은 자식클래스를 Spring Bean를 등록 -->
+	<bean class="xyz.itwill05.di.LoginController" id="loginController"/>
+	<bean class="xyz.itwill05.di.LogoutController" id="logoutController"/>
+	<bean class="xyz.itwill05.di.ListController" id="listController"/>
+
+	<!-- Setter Injection를 사용하여 객체 필드에 콜렉션 객체에 저장하여 의존관계 구현 - DI -->
 	<bean class="xyz.itwill05.di.CollectionBean" id="collectionBean">
 		<property name="nameSet">
 			<!-- set : Set 객체를 생성하여 필드에 저장하기 위한 엘리먼트 -->
 			<set>
-				<!-- value : Collection 객체에 값을 전달하여 요소로 추가하는 엘리먼트 -->
+				<!-- value : 콜렉션 객체에 값을 전달하여 요소로 추가하는 엘리먼트 -->
 				<value>홍길동</value>
 				<value>임꺽정</value>
 				<value>전우치</value>
@@ -25,5 +30,36 @@
 				<value>홍길동</value>
 			</list>
 		</property>
+		
+		<property name="controllerSet">
+			<set>
+				<!-- ref : 콜렉션 객체에 Spring Bean을 전달하여 요소로 추가하는 엘리먼트 -->
+				<!-- bean 속성 : 요소로 추가될 Spring Bean의 식별자(beanName)를 속성값으로 설정 -->
+				<ref bean="loginController"/>
+				<ref bean="logoutController"/>
+				<ref bean="listController"/>
+			</set>
+		</property>
+		
+		<property name="controllerList">
+			<list>
+				<ref bean="loginController"/>
+				<ref bean="logoutController"/>
+				<ref bean="listController"/>
+			</list>
+		</property>
 	</bean>
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
