@@ -45,6 +45,6 @@
 	<!-- scope 속성값을 [prototype]으로 설정한 경우 lazy-init 속성값을 [true]로 설정한 것과 동일하게 동작 -->
 	<!-- => 스프링 컨테이너가 초기화될 때 객체를 미리 생성하는 것이 아니라 getBean() 메소드를 호출할 때 객체 생성 -->
 	<!-- request 또는 session : 객체의 사용범위를 설정하는 속성값 - 웹프로그램 작성시에만 사용 -->
-	<bean class="xyz.itwill04.bean.ScopeBean" id="singletonBean" scope="singleton"/>
-	<bean class="xyz.itwill04.bean.ScopeBean" id="prototypeBean" scope="prototype"/>
+	<bean class="xyz.itwill04.bean.ScopeBean" id="singletonBean" lazy-init="true" scope="singleton"/>
+	<bean class="xyz.itwill04.bean.ScopeBean" id="prototypeBean" lazy-init="true" scope="prototype"/>
 </beans>
