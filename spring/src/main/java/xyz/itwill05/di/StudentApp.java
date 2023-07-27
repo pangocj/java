@@ -27,6 +27,31 @@ public class StudentApp {
 		Student student6=context.getBean("student6", Student.class);
 		System.out.println(student6);
 		System.out.println("==========================================================");
+		//프로그램 실행에 필요한 데이타 처리 기능을 제공하는 Service 객체를 제공받아 저장
+		StudentServiceImpl service=context.getBean("studentServiceImpl", StudentServiceImpl.class);
+		
+		//Service 객체의 메소드를 호출하여 데이타 처리 기능 구현
+		service.addStudent(student1);
+		service.modifyStudent(student1);
+		service.removeStudent(1000);
+		service.getStudent(1000);
+		service.getStudentList();
+		System.out.println("==========================================================");
 		((ClassPathXmlApplicationContext)context).close();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
