@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Setter Injection를 사용하여 객체 필드에 Collection 객체에 저장하여 의존관계 구현 - DI -->
+	<bean class="xyz.itwill05.di.CollectionBean" id="collectionBean">
+		<property name="nameSet">
+			<!-- set : Set 객체를 생성하여 필드에 저장하기 위한 엘리먼트 -->
+			<set>
+				<!-- value : Collection 객체에 값을 전달하여 요소로 추가하는 엘리먼트 -->
+				<value>홍길동</value>
+				<value>임꺽정</value>
+				<value>전우치</value>
+				<value>홍길동</value>
+			</set>
+		</property>
+		
+		<property name="nameList">
+			<!-- list : List 객체를 생성하여 필드에 저장하기 위한 엘리먼트 -->
+			<list>
+				<value>홍길동</value>
+				<value>임꺽정</value>
+				<value>전우치</value>
+				<value>홍길동</value>
+			</list>
+		</property>
+	</bean>
+</beans>
