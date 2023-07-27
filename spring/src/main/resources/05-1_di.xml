@@ -92,24 +92,42 @@
 	
 	<!-- StudentDAO 인터페이스를 상속받은 자식클래스(DAO 클래스)를 Spring Bean으로 등록 -->
 	<bean class="xyz.itwill05.di.StudentJdbcDAO" id="studentJdbcDAO"/>
+	<bean class="xyz.itwill05.di.StudentMybatisDAO" id="studentMybatisDAO"/>
 
 	<!-- StudentService 인터페이스를 상속받은 자식클래스(Service 클래스)를 Spring Bean으로 등록 -->
-	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentServiceImpl"/>
+	<!-- => 클래스의 기본 생성자를 이용하여 객체 생성 - 객체 필드에는 기본값 저장 -->
+	<!-- 문제점)StudentServiceImpl 클래스로 생성된 객체의 studentDAO 필드에는 [null]이 저장되어
+	StudentServiceImpl 클래스의 메소드에서 필드로 메소드를 호출할 경우 NullPointerException 발생 -->
+	<!-- => 포함관계(의존관계) 미구현 -->
+	<!-- 해결법)StudentServiceImpl 클래스로 생성된 객체의 studentDAO 필드에 StudentDAO 인터페이스를
+	상속받은 자식클래스의 객체가 저장되도록 설정 - 포함관계(의존관계) 구현 -->
+	<!--  <bean class="xyz.itwill05.di.StudentServiceImpl" id="studentServiceImpl"/> -->
+	
+	<!-- StudentServiceImpl 클래스의 매개변수가 선언된 생성자를 이용하여 객체 생성 -->
+	<!-- => 생성자 매개변수에 StudentDAO 인터페이스를 상속받은 자식클래스(DAO 클래스)의
+	객체를 전달하여 studentDAO 필드에 저장 - Constructor Injection -->
+	<!-- constructor-arg 엘리먼트를 사용하여 StudentServiceImpl 클래스가 객체로 생성될 때 생성자 
+	매개변수에 StudentDAO 인터페이스를 상속받은 자식클래스의 객체를 전달하여 필드에 저장 - 의존관계 구현 -->
+	<!-- ref 속성 : 스프링 컨테이너로 관리되는 Spring Bean의 식별자(beanName)을 속성값으로 설정 - 자동 완성 기능 사용 가능 -->
+	<!-- => 스프링 컨테이너에게 Spring Bean를 제공받아 객체 필드에 저장 - 의존성 주입(DI : Dependency Injection) -->
+	<!--  
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentServiceImpl">
+		<constructor-arg ref="studentJdbcDAO"/>
+	</bean>
+	-->
+	
+	<!-- 클래스의 기본 생성자를 이용하여 객체 생성 - 객체 필드에는 기본값 저장 -->
+	<!-- => Setter 메소드를 호출하여 StudentDAO 인터페이스를 상속받은 자식클래스(DAO 클래스)의
+	객체를 필드에 저장 - Setter Injection -->
+	<!-- property 엘리먼트를 사용하여 StudentServiceImpl 객체의 필드에 대한 Setter 메소드를
+	호출하여 StudentDAO 인터페이스를 상속받은 자식클래스의 객체를 필드에 저장 - 의존관계 구현 -->
+	<!-- ref 속성 : 스프링 컨테이너로 관리되는 Spring Bean의 식별자(beanName)을 속성값으로 설정 - 자동 완성 기능 사용 가능 -->
+	<!-- => 스프링 컨테이너에게 Spring Bean를 제공받아 객체 필드에 저장 - 의존성 주입(DI : Dependency Injection) -->
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentServiceImpl">
+		<!-- Service 클래스에서 사용하던 DAO 클래스의 객체가 변경돼도 Service 클래스를 변경
+		하지 않고 Spring Bean Configuration Fil만 수정해도 객체와의 의존관계 변경 가능 -->
+		<!-- => 유지보수의 효율성 증가 -->
+		<!--  <property name="studentDAO" ref="studentJdbcDAO"/> -->
+		<property name="studentDAO" ref="studentMybatisDAO"/>
+	</bean>
 </beans>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
