@@ -2,9 +2,9 @@ package xyz.itwill05.di;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class AnnotationStudentMybatisDAO implements StudentDAO {
 	public AnnotationStudentMybatisDAO() {
 		System.out.println("### AnnotationStudentMybatisDAO 클래스의 기본 생성자 호출 ###");

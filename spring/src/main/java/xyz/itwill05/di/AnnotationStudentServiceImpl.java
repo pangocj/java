@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class AnnotationStudentServiceImpl implements StudentService {
 	//@Autowired : 스프링 컨테이너로부터 Spring Bean를 제공받아 필드에 저장하여 의존관계를 
 	//자동으로 구현하기 위한 어노테이션 - DI 구현을 위한 어노테이션
-	// => 필드에 @Autowired 어노테이션을 사용하여 의존성 주입 - 필드 의존성 주입
+	// => 필드에 @Autowired 어노테이션을 사용하여 의존성 주입 - 필드 레벨의 의존성 주입
 	// => 필드가 여러개 선언된 경우 필드마다 @Autowired 어노테이션을 사용하여 의존성 주입
 	// => bean 엘리먼트의 autowire 속성값을 [byType]으로 설정한 것과 같은 방법으로 의존성 주입 - Setter Injection
 	// => Setter 메소드를 이용하여 의존관계를 구현하지만 Setter 메소드를 선언하지 않하도 의존성 주입 가능

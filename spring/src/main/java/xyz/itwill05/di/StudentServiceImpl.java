@@ -4,7 +4,7 @@ import java.util.List;
 
 //Service 클래스 : 프로그램 실행에 필요한 데이타 처리 기능을 제공하는 클래스 - 컴퍼넌트
 // => Service 클래스의 메소드는 다수의 DAO 객체로 메소드를 호출하여 작성 - DAO 모듈화
-// => Service 클래스의 메소드에서 DAO 객체를 사용하기 위해 포함관계(의존관계)로 설정되도록 작성
+// => Service 클래스의 메소드에서 DAO 객체를 사용하기 위해 DAO 클래스와 포함관계(의존관계)로 설정되도록 작성
 // => Service 클래스가 변경돼도 Service 클래스를 사용하는 클래스(컨트롤러 - 모델)에 영향을 
 //최소화 하기 위한 반드시 인터페이스를 상속받아 작성 - 결합도를 낮춰 유지보수의 효율성 증가
 public class StudentServiceImpl implements StudentService {

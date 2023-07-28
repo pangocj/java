@@ -17,7 +17,7 @@
 	자식클래스의 객체가 저장되도록 설정 - Setter Injection을 이용하여 DI 구현 -->
 	<!--  
 	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService">
-		<property name="studentDAO" ref="studentJdbcDAO"/>
+		<property name="studentDAO" ref="studentDAO"/>
 	</bean>
 	-->
 	
