@@ -24,6 +24,7 @@ public class HewonServiceImpl implements HewonService {
 	@Override
 	public List<Hewon> getHewonList() {
 		System.out.println("*** HewonServiceImpl 클래스의 getHewonList() 메소드 호출 ***");
-		return hewonDAO.selectHewonList();
+		throw new RuntimeException();//인위적 예외 발생
+		//return hewonDAO.selectHewonList();
 	}
 }
