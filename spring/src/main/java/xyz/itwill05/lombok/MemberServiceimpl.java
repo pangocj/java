@@ -45,7 +45,7 @@ public class MemberServiceimpl implements MemberService {
 	//매개변수로 전달받은 객체로 필드에 의존성 주입하는 생성자에 @Autowired 어노테이션을 
 	//사용하여 의존성 주입 - Constructor 레벨의 의존성 주입
 	// => Spring 프레임워크에서는 순환 참조 방지를 위해 생성자를 이용한 의존성 주입 권장
-	// => 매개변수가 선언된 생성자를 하나만 작성한 경우 @Autowired 생략 가능
+	// => 매개변수가 선언된 생성자를 하나만 작성한 경우 @Autowired 어노테이션 생략 가능
 	//@Autowired
 	public MemberServiceimpl(MemberDAO memberDAO) {
 		this.memberDAO=memberDAO;
