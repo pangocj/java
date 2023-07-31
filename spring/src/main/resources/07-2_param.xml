@@ -7,4 +7,14 @@
 
 	<!-- 핵심관심모듈의 클래스를 Spring Bean으로 등록 -->
 	<bean class="xyz.itwill07.aop.JoinPointBean" id="joinPointBean"/>
+	
+	<!-- 횡단관심모듈의 클래스를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill07.aop.JoinPointAdvice" id="joinPointAdvice"/>
+	
+	<aop:config>
+		<aop:aspect ref="joinPointAdvice">
+			<aop:before method="beforeDisplay" pointcut="execution(* *(..))"/>
+			<aop:after method="displayMessage" pointcut="execution(void remove(int))"/>			
+		</aop:aspect>
+	</aop:config>
 </beans>
