@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- init-method 속성 : 스프링 컨테이너에 의해 객체(Spring Bean)가 생성된 후에 자동으로
+	한번만 호출되어 객체 초기화 작업을 실행하기 위한 메소드의 이름을 속성값으로 설정 -->
+	<!-- => init-method 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
+	<!-- destroy-method 속성 : 스프링 컨테이너에 의해 객체(Spring Bean)가 소멸되기 전에 자동으로
+	한번만 호출되어 객체 마무리 작업을 실행하기 위한 메소드의 이름을 속성값으로 설정 -->
+	<!-- => destroy-method 속성값은 이클립스의 자동 완성 기능을 사용하여 작성 가능 -->
+	<bean class="xyz.itwill04.bean.InitDestroyMethodBean" id="initDestroyMethodBean"
+		init-method="init" destroy-method="destroy"/>
+		
+	<!-- lazy-init 속성 : false 또는 true 중 하나를 속성값으로 설정 -->
+	<!-- => false(기본) : 스프링 컨테이너가 초기화될 때 객체(Spring Bean)를 미리 생성 -->	
+	<!-- => true : 스프링 컨테이너가 초기화될 때 객체(Spring Bean)를 미리 생성하지 않고
+	getBean() 메소드를 호출할 때 객체를 생성하여 제공 -->	
+	<bean class="xyz.itwill04.bean.LazyInitBean" id="lazyInitBean" lazy-init="true"/>
+	
+	<!-- 스프링 컨테이너는 Spring Bean Configuration File에 등록된 모든 클래스를 리플렉션 
+	기술을 사용하여 미리 객체(Spring Bean)로 생성 -->
+	<!-- => 리플렉션 기술을 사용하면 접근 제한자에 상관없이 필드 또는 메소드 사용 가능 -->
+	<!-- => 생성자가 은닉화 선언되어 있어도 스프링 컨테이너를 클래스의 생성자를 이용하여 객체 생성 -->
+	<!-- 문제점)Spring Bean Configuration File에 등록된 싱글톤 클래스는 해당 클래스를 읽어  
+	메모리에 저장하여 Class 객체로 생성된 후 정적영역의 명령을 실행하여 객체를 생성하고 스프링 
+	컨테이너의 리플렉션에 의해 객체를 다시 생성 - 싱글톤 클래스는 2개 객체가 생성 -->
+	<!-- 해결법)bean 엘리먼트에 factory-method 속성을 사용하면 싱글톤 클래스도 1개 객체의 생성  -->
+	<!-- factory-method 속성 : 싱글톤 클래스에서 객체를 반환하는 메소드의 이름을 속성값으로 설정 -->
+	<!-- => 스프링 컨테이너의 리플렉션을 이용하여 객체를 생성하지 않고 정적영역에서 생성된 객체를 사용 -->
+	<bean class="xyz.itwill04.bean.FactoryMehodBean" factory-method="getFactoryMehodBean"/>
+	
+	<!-- 스프링 컨테이너는 bean 엘리먼트의 선언 순서대로 클래스를 읽어 객체로 생성 -->
+	<!-- depends-on 속성 : Spring Bean를 구분하기 위한 식별자(beanName)를 속성값으로 설정 -->
+	<!-- => bean 엘리먼트에 등록된 클래스로 객체를 생성하기 전에 depends-on 속성값으로 설정된
+	beanName의 Spring Bean을 먼저 생성 -->
+	<!-- => Spring Bean(객체)의 초기화 작업에 필요한 객체를 제공받기 위해 먼저 생성할 경우 사용  -->
+	<bean class="xyz.itwill04.bean.DependsOnOneBean" depends-on="dependsOnTwoBean"/>
+	<bean class="xyz.itwill04.bean.DependsOnTwoBean" id="dependsOnTwoBean"/>
+	
+	<!-- scope 속성 : singleton(기본), prototype, request, session 중 하나를 속성값으로 설정 -->
+	<!-- singleton 또는 prototype : 객체(Spring Bean)의 생성 갯수를 설정하는 속성값 -->
+	<!-- => singleton 속성값 : 스프링 컨테이너가 bean 엘리먼트로 등록된 클래스로 객체를 하나만 생성하여 제공 -->
+	<!-- => prototype 속성값 : 스프링 컨테이너가 bean 엘리먼트로 등록된 클래스로 객체를 여러개 생성하여 제공 -->
+	<!-- scope 속성값을 [prototype]으로 설정한 경우 lazy-init 속성값을 [true]로 설정한 것과 동일하게 동작 -->
+	<!-- => 스프링 컨테이너가 초기화될 때 객체를 미리 생성하는 것이 아니라 getBean() 메소드를 호출할 때 객체 생성 -->
+	<!-- request 또는 session : 객체의 사용범위를 설정하는 속성값 - 웹프로그램 작성시에만 사용 -->
+	<bean class="xyz.itwill04.bean.ScopeBean" id="singletonBean" lazy-init="true" scope="singleton"/>
+	<bean class="xyz.itwill04.bean.ScopeBean" id="prototypeBean" lazy-init="true" scope="prototype"/>
+</beans>
