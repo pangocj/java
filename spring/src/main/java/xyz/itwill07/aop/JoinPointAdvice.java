@@ -21,7 +21,6 @@ public class JoinPointAdvice {
 		//Object.getClass() : 객체를 생성한 클래스의 Class 객체(Clazz)를 반환하는 메소드
 		//Class.getName() : Class 객체에 저장된 클래스의 이름(패키지 포함)을 반환하는 메소드
 		//System.out.println(joinPoint.getTarget().getClass().getName());
-		
 		//Class.getSimpleName() : Class 객체에 저장된 클래스의 이름(패키지 제외)을 반환하는 메소드
 		//System.out.println(joinPoint.getTarget().getClass().getSimpleName());
 
