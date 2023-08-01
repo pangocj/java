@@ -19,6 +19,7 @@
 		<config>src/main/resources/07-1_aop.xml</config>
 		<config>src/main/resources/07-2_param.xml</config>
 		<config>src/main/resources/07-3_email.xml</config>
+		<config>src/main/resources/07-4_timer.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
