@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
@@ -13,6 +14,24 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+	<!-- servlet : 클래스를 서블릿으로 등록하기 위한 엘리먼트  -->
+	<servlet>
+		<!-- servlet-name : 서블릿을 구분하기 위한 식별자를 설정하기 위한 엘리먼트 -->
+		<servlet-name>mvc</servlet-name>
+		<!-- servlet-class : 서블릿으로 구현하기 위한 클래스를 설정하는 엘리먼트  -->
+		<!-- DispatcherServlet : 컨트롤러 기능을 제공하는 클래스 - Front Controller  -->
+		<servlet-class>xyz.itwill09.mvc.DispatcherServlet</servlet-class>
+	</servlet>
+	
+	<!-- servlet-mapping : 서블릿에 URL 주소를 등록하기 위한 엘리먼트  -->
+	<servlet-mapping>
+		<!-- servlet-name : 등록된 URL 주소로 실행될 서블릿의 식별자를 설정하기 위한 엘리먼트 -->
+		<servlet-name>mvc</servlet-name>
+		<!-- url-pattern : 서블릿을 실행하기 위한 URL 주소(패턴)를 설정하기 위한 엘리먼트 -->
+		<!-- => 컨트롤러 기능을 제공하는 클래스는 클라이언트의 모든 요청을 받아 처리할 수 있도록 설정 -->
+		<url-pattern>*.itwill</url-pattern>
+	</servlet-mapping>
 
 	<!-- Processes application requests -->
 	<servlet>

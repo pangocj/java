@@ -42,22 +42,22 @@ public class DispatcherServlet extends HttpServlet {
 		//HandlerMapping 클래스로 객체 생성
 		// => HandlerMapping 클래스 :클라이언트의 요청정보와 요청 처리 클래스의 객체가 엔트리로
 		//저장된 Map 객체를 제공하기 위한 클래스
-		
+		HandlerMapping handlerMapping=new HandlerMapping();
+		//HandlerMapping 객체의 메소드를 호출하여 매개변수에 전달된 요청정보에 대한 요청 처리
+		//클래스의 객체를 반환받아 저장
+		Controller controller=handlerMapping.getController(command);
 		
 		//요청 처리 클래스의 메소드를 호출하여 클라이언트의 요청을 처리하고 응답 처리할 JSP
 		//문서의 이름(ViewName)을 반환받아 저장
 		String viewName=controller.handleRequest(request, response);
+		
+		//3.JSP 문서로 포워드 이동하여 클라이언트에게 처리결과가 응답되도록 처리
+		// => 요청 처리 메소드의 반환값(ViewName)을 이용하여 JSP 문서의 경로를 완성하여 포워드 이동
+		//ViewResolver 클래스로 객체 생성
+		// => ViewResolver 클래스 : 요청 처리 메소드의 반환값(ViewName)을 이용하여 응답 처리할
+		//JSP 문서의 경로를 완성하여 반환하는 메소드
+		ViewResolver viewResolver=new ViewResolver();
+		String view=viewResolver.getView(viewName);//응답할 JSP 문서의 경로를 반환받아 저장
+		request.getRequestDispatcher(view).forward(request, response);//JSP 문서로 포워드 이동
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
