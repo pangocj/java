@@ -1,5 +1,10 @@
 package xyz.itwill08.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,10 +17,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 //스프링 컨테이너에게 DataSource 객체를 제공받아 Connection 객체를 반환받아 사용
 public class DataSourceApp {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		ApplicationContext context=new ClassPathXmlApplicationContext("08_dao.xml");
+		DataSource dataSource=context.getBean("dataSource", DataSource.class);
+		System.out.println("==========================================================");
+		System.out.println("dataSource = "+dataSource);
+		Connection connection=dataSource.getConnection();
+		System.out.println("connection = "+connection);
+		connection.close();
 		System.out.println("==========================================================");
 		((ClassPathXmlApplicationContext)context).close();
 	
 	}
 }
+
+
+
+
+

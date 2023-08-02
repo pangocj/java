@@ -21,6 +21,7 @@
 		<config>src/main/resources/07-3_email.xml</config>
 		<config>src/main/resources/07-4_timer.xml</config>
 		<config>src/main/resources/07-5_aopAnnotation.xml</config>
+		<config>src/main/resources/08_dao.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
