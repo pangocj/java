@@ -13,8 +13,8 @@ import lombok.Setter;
 
 //메일 전송 기능을 제공하기 위한 클래스 - 메일 서버의 SMTP 서비스를 사용하여 메일 전송
 // => 메일 서버(Mail Server) : 메일을 송수신하는 서비스를 제공하는 컴퓨터
-// => SMTP(Simple Message Transfer Protocol) 서비스로 메일을 보내고 POP3(Post Office Protocol 3)
-//서비스나 IMAP(Internet Message Access Protocol) 서비스로 메일을 받아 사용자에 전달
+// => SMTP(Simple Message Transfer Protocol - 25) 서비스로 메일을 보내고 POP3(Post Office Protocol 3 - 110)
+//서비스나 IMAP(Internet Message Access Protocol - 143) 서비스로 메일을 받아 사용자에 전달
 public class EmailSendBean {
 	//JavaMailSender 객체를 저장하기 위한 필드 선언
 	// => JavaMailSender 객체 : SMTP 서비스를 제공하는 서버의 정보를 저장하기 위한 객체
