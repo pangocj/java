@@ -14,5 +14,6 @@ public class AopAnnotationBean {
 	
 	public void display3() {
 		System.out.println("*** AopAnnotationBean 클래스의 display3() 메소드 호출 ***");
+		throw new RuntimeException();//인위적 예외 발생
 	}
 }
