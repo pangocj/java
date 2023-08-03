@@ -92,6 +92,10 @@
 	<logger name="xyz.itwill07.aop">
 		<level value="info"/>
 	</logger>
+	
+	<logger name="xyz.itwill10.controller">
+		<level value="info"/>
+	</logger>
 
 	<!-- Root Logger -->
 	<!-- root : 모든 클래스에서 발생되는 로그 이벤트를 기록하기 위한 엘리먼트 -->

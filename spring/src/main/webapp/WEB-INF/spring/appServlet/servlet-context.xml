@@ -8,19 +8,34 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- servlet-context.xml : appServlet 이름의 서블릿(Front Controller)에게 제공될 Spring
+	Bean을 등록하기 위한 Spring Bean Configuration File -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- annotation-driven : @Controller 어노테이션으로 등록된 Spring Bean에서 @RequestMapping
+	어노테이션으로 등록된 요청 처리 메소드를 클라이언트 요청에 의해 자동으로 호출되어 실행될 
+	수 있도록 설정하는 엘리먼트  -->
+	<!-- => HanlderMapping 객체를 사용하지 않아 클라이언트 요청에 의해 Controller 클래스의
+	요청 처리 메소드가 호출되도록 매핑 설정 -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- InternalResourceViewResolver 클래스를 Spring Bean으로 등록 -->
+	<!-- InternalResourceViewResolver 객체 : 클라이언트 요청에 의해 호출되는 요청 처리 메소드의
+	반환값(ViewName)을 제공받아 응답 처리할 JSP 문서로 변환하여 반환하는 기능을 제공하는 객체 -->	
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<context:component-scan base-package="xyz.itwill.controller" />
-	
+
+	<!-- component-scan : 스프링 컨테이너가 클래스에서 사용된 스프링 어노테이션을 검색하여
+	처리할 수 있는 패키지를 제공하는 엘리먼트  -->
+	<!-- base-package 속성 : 스프링 어노테이션을 사용한 클래스가 선언된 패키지를 속성값으로 설정 -->	
+	<!-- <context:component-scan base-package="xyz.itwill.controller" /> -->
+	<!-- [xyz.itwill10.controller] 패키지에 요청 처리 클래스(Controller 클래스)를 작성하여 
+	@Controller 어노테이션을 사용하여 Spring Bean으로 등록 -->
+	<context:component-scan base-package="xyz.itwill10.controller" />
 </beans:beans>
