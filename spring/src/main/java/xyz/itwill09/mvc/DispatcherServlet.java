@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 //이동하여 응답처리 되도록 프로그램의 흐름을 제어하는 기능 제공 - 서블릿(Servlet)으로 구현
 
 //컨트롤러 기능을 제공하기 위한 서블릿 클래스
-// => 클라이언트의 모든 요청을 받아 처리하는 단일 진점의 역활을 수행 - Front Controller Pattern
+// => 클라이언트의 모든 요청을 받아 처리하는 단일 진입점의 역활을 수행 - Front Controller Pattern
 // => [web.xml] 파일에서 클래스를 서블릿(웹프로그램)으로 등록하고 클라이언트의 모든 요청을 
 //받아 처리할 수 있도록 URL 패턴 설정
 public class DispatcherServlet extends HttpServlet {
