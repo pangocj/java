@@ -22,6 +22,8 @@
 		<config>src/main/resources/07-4_timer.xml</config>
 		<config>src/main/resources/07-5_aopAnnotation.xml</config>
 		<config>src/main/resources/08_dao.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/springMVC/mvc-context1.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/springMVC/mvc-context2.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
