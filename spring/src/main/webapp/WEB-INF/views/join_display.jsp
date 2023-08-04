@@ -18,11 +18,20 @@
 	</ul>
 	--%>
 	
+	<%--
 	<ul>
 		<li>아이디 = ${member.id }</li>
 		<li>비밀번호 = ${member.passwd }</li>
 		<li>이름 = ${member.name }</li>
 		<li>이메일 = ${member.email }</li>
+	</ul>
+	--%>
+	
+	<ul>
+		<li>아이디 = ${mem.id }</li>
+		<li>비밀번호 = ${mem.passwd }</li>
+		<li>이름 = ${mem.name }</li>
+		<li>이메일 = ${mem.email }</li>
 	</ul>
 </body>
 </html>
