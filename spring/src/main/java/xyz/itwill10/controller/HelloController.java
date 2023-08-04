@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 //@Controller 어노테이션을 사용하면 Controller 인터페이스를 상속받지 않아도 요청 처리 클래스로 작성 가능
-// => @RequestMapping 어노테이션을 사용하여 메소드를 요청 처리 메소드 처리되도록 작성
+// => @RequestMapping 어노테이션을 사용하여 메소드를 요청 처리 메소드로 처리되도록 작성
 // => @RequestMapping 어노테이션을 사용하여 요청 처리 메소드를 여러개 선언 가능 
 @Controller
 public class HelloController {

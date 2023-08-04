@@ -26,7 +26,7 @@
 		<!-- listener-class : ServletContextListener 인터페이스를 상속받은 자식클래스를 설정하기 위한 엘리먼트 -->
 		<!-- => WAS 프로그램이 시작될 때 ContextLoaderListener 클래스를 객체로 생성하고 
 		contextInitialized 메소드를 호출하여 초기화 작업 -->
-		<!-- =>  ContextLoaderListener 클래스의 contextInitialized 메소드는 스프링 컨테이너
+		<!-- => ContextLoaderListener 클래스의 contextInitialized 메소드에 의해 스프링 컨테이너
 		(Root Spring Container)를 생성하면서 Spring Bean Configuration File을 제공받아 클래스를 
 		Spring Bean(객체)으로 등록 -->
 		<!-- Listener 객체에 의해 생성된 스프링 컨테이너(WebApplicationContext 객체)는 모든
@@ -54,7 +54,7 @@
 
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
-		<!-- Spring 프레임워크의 라이브러리에 의해 제공되는 DispatcherServlet 클래스 사용 - Front Controller -->
+		<!-- Spring 프레임워크 라이브러리의 DispatcherServlet 클래스를 Front Controller로 사용 -->
 		<!-- => Front Controller 기능의 클래스에서만 사용할 수 있는 스프링 컨테이너 생성 -->
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<!-- init-param : 클래스에 필요한 값을 제공하는 엘리먼트 -->
