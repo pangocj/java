@@ -59,22 +59,28 @@ public class ParamController {
 	}
 	*/
 	
+	/*
 	//required 속성 : false(선택 전달값) 또는 true(필드 전달값 - 기본값) 중 하나를 속성값으로 설정
-	// => @RequestParam 어노테이션으로 전달값이 매개변수에 저장되는 필수 여부를 구분하기 위한 속성
+	// => required 속성값을 [true]로 설정하면 매개변수의 이름과 전달값의 이름을 동일하게 작성
+	//하여 매개변수에 전달값이 저장되도록 설정 
+	// => required 속성값을 [true]로 설정한 경우 전달값의 이름과 매개변수의 이름이 같아도 전달값이
+	//없으면 매개변수에 [null] 저장 - 400 에러코드 미발생 
+	//value 속성 : 전달값의 이름을 속성값으로 설정
+	// => @RequestParam 어노테이션의 value 속성값을 이용하여 전달값을 제공받아 매개변수에 저장
+	// => 전달값의 이름과 매개변수의 이름을 다르게 작성할 경우 사용하는 속성
+	// => 다른 속성이 없으면 속성값만 설정 가능
 	@RequestMapping(value = "/param", method = RequestMethod.POST)
-	public String result(@RequestParam(required = true) String food, Model model) {
+	public String result(@RequestParam(required = true, value = "foodname") String food, Model model) {
+		model.addAttribute("food", food);
+		return "param_display";
+	}
+	*/
+	
+	//defaultValue 속성 : 전달값과 매개변수의 이름이 다른 경우 매개변수에 저장된 기본값을 속성값으로 설정
+	// => 전달값이 없는 경우에도 매개변수에 [null] 대신 저장될 기본값으로 사용
+	@RequestMapping(value = "/param", method = RequestMethod.POST)
+	public String result(@RequestParam(defaultValue = "된장찌개", value = "foodname") String food, Model model) {
 		model.addAttribute("food", food);
 		return "param_display";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

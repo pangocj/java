@@ -10,7 +10,8 @@
 	<h1>입력페이지</h1>
 	<hr>
 	<form action="param" method="post">
-		내가 좋아하는 음식 : <input type="text" name="food">
+		<%-- 내가 좋아하는 음식 : <input type="text" name="food"> --%>
+		내가 좋아하는 음식 : <input type="text" name="foodname">
 		<button type="submit">제출</button>
 	</form>
 </body>
