@@ -2,6 +2,7 @@ package xyz.itwill10.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import xyz.itwill10.dto.Hewon;
@@ -19,6 +20,7 @@ public class SessionController {
 	
 	//아이디를 전달받아 아이디의 회원정보를 검색하여 뷰에게 제공하기 위한 요청 처리 메소드
 	// => 요청 처리 메소드에서 검색된 회원정보를 속성값으로 저장하여 뷰(JSP)에서 응답 처리
+	@RequestMapping("/hewon_view")
 	public String view(@RequestParam(defaultValue = "abc123") String id, Model model) {
 		//Service 클래스의 메소드를 호출하여 매개변수에 전달된 아이디의 회원정보를 검색하여 반환받아 저장
 		Hewon hewon=getHewon(id);
