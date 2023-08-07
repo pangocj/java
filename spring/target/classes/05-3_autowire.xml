@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- StudentDAO 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<!-- <bean class="xyz.itwill05.di.StudentJdbcDAO" id="studentDAO"/> -->
+	<bean class="xyz.itwill05.di.StudentJdbcDAO" id="studentJdbcDAO"/>
+	<bean class="xyz.itwill05.di.StudentMybatisDAO" id="studentMybatisDAO"/> 
+	
+	<!-- StudentService 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<!-- => StudentServiceImpl 클래스로 생성된 객체의 studentDAO 필드에 StudentDAO 인터페이스를 
+	상속받은 자식클래스의 객체가 저장되도록 의존성 주입 - 의존관계 구현 -->
+	<!-- => 의존성 주입을 하지 않은 경우 StudentServiceImpl 클래스의 메소드에서 studentDAO 필드로
+	메소드를 호출할 경우 NullPointerException 발생 -->
+	<!-- property 엘리먼트를 사용하여 studentDAO 필드에 StudentDAO 인터페이스를 상속받은 
+	자식클래스의 객체가 저장되도록 설정 - Setter Injection을 이용하여 DI 구현 -->
+	<!--  
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService">
+		<property name="studentDAO" ref="studentDAO"/>
+	</bean>
+	-->
+	
+	<!-- autowire 속성 : no(기본), byName, byType, constructor 중 하나를 속성값으로 설정 -->
+	<!-- => 클래스로 객체(Spring Bean)가 생성될 때 스프링 컨테이너가 자동으로 Spring Bean를 
+	필드에 저장하는 속성 - DI 기능을 자동으로 구현되도록 설정 -->
+	<!-- no 속성값 : 자동으로 의존관계를 구현하는 기능 미사용 -->
+	<!-- => 생성자 또는 Setter 메소드를 사용하여 필드에 Spring Bean 저장 - 수동으로 DI 구현 -->
+	<!--  
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService" autowire="no">
+		<property name="studentDAO" ref="studentJdbcDAO"/>
+	</bean>
+	-->
+
+	<!-- byName 속성값 : 클래스의 필드명과 같은 이름의 식별자(beanName)으로 등록된 Spring 
+	Bean을 제공받아 필드에 저장되도록 의존성 주입 - Setter Injection  -->
+	<!-- => 필드명과 같은 이름의 식별자로 선언된 Spring Bean이 없는 경우 의존성 미주입 - NullPointerException 발생 -->
+	<!-- <bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService" autowire="byName"/> -->
+	
+	<!-- byType 속성값 : 클래스의 필드와 같은 자료형의 Spring Bean를 제공받아 필드에 저장되도록
+	의존성 주입 - Setter Injection -->
+	<!-- => 필드의 자료형이 인터페이스인 경우 인터페이스를 상속받은 자식클래스로 등록된 Spring
+	Bean를 제공받아 필드에 저장되도록 의존성 주입 -->
+	<!-- => 필드의 자료형과 같은 Spring Bean이 2개 이상 등록된 경우 의존성 주입 실패 - NoUniqueBeanDefinitionException 발생 -->
+	<!-- <bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService" autowire="byType"/> -->
+
+	<!-- constructor 속성값 : 클래스의 필드와 같은 자료형의 Spring Bean를 제공받아 필드에 저장되도록
+	의존성 주입 - Constructor Injection -->
+	<!-- => 필드의 자료형이 인터페이스인 경우 인터페이스를 상속받은 자식클래스로 등록된 Spring
+	Bean를 제공받아 필드에 저장되도록 의존성 주입 -->
+	<!-- => 필드의 자료형과 같은 Spring Bean이 2개 이상 등록된 경우 의존성 미주입 -->
+	<bean class="xyz.itwill05.di.StudentServiceImpl" id="studentService" autowire="constructor"/>
+</beans>
