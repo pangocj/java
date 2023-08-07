@@ -211,6 +211,22 @@
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<!-- => Mybatis 프레임워크 기능을 제공하기 위한 라이브러리  -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.13</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<!-- => Spring 프레임워크에서 Mybatis 프레임워크 기능을 제공하기 위한 라이브러리  -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>3.0.2</version>
+		</dependency>
 
 	</dependencies>
 	
