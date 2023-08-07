@@ -16,7 +16,7 @@ import xyz.itwill.mapper.MyCommentMapper;
 
 public class MyCommentDAO extends AbstractSession {
 	private static MyCommentDAO _dao;
-
+ 
 	private MyCommentDAO() {
 		// TODO Auto-generated constructor stub
 	}

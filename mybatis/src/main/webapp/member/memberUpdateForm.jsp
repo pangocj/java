@@ -1,4 +1,4 @@
-﻿<%@page import="xyz.itwill.dao.MyMemberXMLDAO"%>
+<%@page import="xyz.itwill.dao.MyMemberXMLDAO"%>
 <%@page import="xyz.itwill.dto.MyMember"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

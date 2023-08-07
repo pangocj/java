@@ -1,4 +1,4 @@
-﻿<%@page import="xyz.itwill.dao.UserinfoModelOneDAO"%>
+<%@page import="xyz.itwill.dao.UserinfoModelOneDAO"%>
 <%@page import="xyz.itwill.dto.UserinfoDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
