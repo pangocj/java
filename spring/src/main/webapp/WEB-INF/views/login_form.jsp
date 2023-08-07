@@ -13,7 +13,8 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="id"></td>
+			<%-- <td><input type="text" name="id" value="${id }"></td> --%>
+			<td><input type="text" name="id" value="${member.id }"></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
@@ -24,6 +25,6 @@
 		</tr>
 	</table>
 	</form>
-	<p style="color: red;"></p>
+	<p style="color: red;">${message }</p>
 </body>
 </html>
