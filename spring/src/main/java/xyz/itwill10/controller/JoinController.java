@@ -78,12 +78,12 @@ public class JoinController {
 	*/
 	
 	/*
-	//요청 처리 메소드의 매개변수를 VO(STO) 클래스로 작성하면 Front Controller는 VO(DTO) 
+	//요청 처리 메소드의 매개변수를 VO(DTO) 클래스로 작성하면 Front Controller는 VO(DTO) 
 	//클래스로 객체를 생성하여 매개변수에 저장되도록 제공
 	// => 페이지 요청시 전달값과 같은 이름의 필드에 전달값을 제공받아 저장하여 매개변수에 
 	//VO(DTO) 클래스의 객체를 저장
 	//Command 객체 : 전달값을 제공받아 필드에 저장된 객체로 속성값으로 저장되어 요청 처리
-	//메소드의 뷰에세 사용될 수 있도록 제공
+	//메소드의 뷰에서 사용될 수 있도록 제공
 	// => Command 객체를 저장하기 위한 매개변수에 @ModelAttribute 어노테이션 사용
 	// => @ModelAttribute 어노테이션을 생략해도 자동으로 @ModelAttribute 어노테이션이 설정된 것과 동일하게 처리
 	// => @ModelAttribute 어노테이션의 value 속성을 생략하면 Command 객체의 자료형(클래스)을
@@ -108,9 +108,9 @@ public class JoinController {
 	
 	//요청 처리 메소드의 매개변수를 Map 인터페이스로 작성하면 Front Controller는 Map(HashMap) 
 	//객체를 생성하여 매개변수에 저장되도록 제공
-	// => 페이지 요청시 모든 전달값을 Map 객체의 엔트리로 추가하여 매개변수에 Map 객체를 저장
-	// => Map 객체에는 전달값의 이름을 맵키(MapKey - String)로 제공받고 전달값은 맵값
-	//(MapValue - String)로 제공받아 엔트리로 추가 
+	// => 페이지 요청시 모든 전달값을 Map 객체의 엔트리로 추가
+	// => 매개변수에 저장되는 Map 객체에는 전달값의 이름을 맵키(MapKey - String)로 제공받고 
+	//전달값은 맵값(MapValue - String)로 제공받아 엔트리로 추가 
 	// => 매개변수에 전달값이 저장된 Map 객체를 저장하기 위해서는 반드시 매개변수에 
 	//@RequestParam 어노테이션을 사용
 	@RequestMapping(value = "/join", method = RequestMethod.POST)

@@ -34,7 +34,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- servlet : 필터 클래스를 필터으로 등록하기 위한 엘리먼트  -->
+	<!-- filter : 필터 클래스를 필터으로 등록하기 위한 엘리먼트  -->
 	<filter>
 		<!-- filter-name : 필터를 구분하기 위한 식별자를 설정하기 위한 엘리먼트 -->
 		<filter-name>encodingFilter</filter-name>
