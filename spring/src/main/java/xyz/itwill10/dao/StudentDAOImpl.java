@@ -25,10 +25,10 @@ import xyz.itwill10.mapper.StudentMapper;
 // => DAO 클래스의 메소드에서는 DBMS 서버에 SQL 명령을 전달하여 실행하고 실행결과를 Java 객체(값)으로 반환되도록 작성
 // => DAO 클래스가 변경돼도 의존관계로 설정된 Service 클래스의 영향을 최소화 하기 위한 인터페이스를 상속받아 작성
 
-//DAO 클래스는 Service 클래스의 객체로 제공받아 사용되도록 반드시 Spring Bean으로 등록
+//DAO 클래스는 Service 클래스에게 객체로 제공되어 사용되도록 반드시 Spring Bean으로 등록
 // => DAO 클래스는 @Repository 어노테이션을 사용하여 Spring Bean으로 등록
 // => @Repository 어노테이션을 사용하면 SQL 명령으로 발생되는 예외(SQLException)를 Spring 예외로 제공되도록 처리
-// => @Repository 어노테이션를 스프링 컨테이너가 처리하기 위해 반드시 클래스가 작성된 패키지를
+// => @Repository 어노테이션을 스프링 컨테이너가 처리하기 위해 반드시 클래스가 작성된 패키지를
 //Spring Bean Configuration File(servlet-context.xml)의 component-scan 엘리먼트로 검색되도록 설정
 @Repository
 //final 제한자로 작성된 필드만 초기화 처리하는 생성자를 만들어주는 어노테이션
