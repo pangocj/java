@@ -21,9 +21,9 @@ import xyz.itwill10.service.StudentService;
 //등록한 bean 엘리먼트의 driverClassName 필드와 url 필드의 값을 변경 
 //3.[src/main/resources] 폴더에 [log4jdbc.log4j2.properties] 파일 작성
 // => Mybatis 프레임워크에서 발생되는 로그 이벤트를 Spring 프레임워크의 로그 구현체에게 제공
-//하기 위한 Delegator 클래스를 지정하기 위한 파일
-
-
+//하기 위한 SpyLogDelegator 클래스를 지정하기 위한 파일
+//4.SpyLogDelegator 객체에 의해 발생된 로그 이벤트를 Spring 프레임워크의 로그 구현체로 기록되도록
+//환경설정파일 변경 - log4j.xml : logger 엘리먼트 추가
 
 //Controller 클래스 : 클라이언트의 요청을 처리하기 위한 기능을 제공하기 위한 클래스
 

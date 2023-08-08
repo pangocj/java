@@ -97,6 +97,39 @@
 		<level value="info"/>
 	</logger>
 
+	<!-- SpyLogDelegator 객체에 의해 발생된 로그 이벤트를 기록하기 위한 logger 엘리먼트 -->
+	<!-- jdbc.sqlonly : 완성된 SQL 명령 기록 -->
+	<logger name="jdbc.sqlonly">
+		<level value="info"/>
+	</logger>
+	
+	<!-- jdbc.sqltiming : SQL 명령의 실행시간(ms) 기록 -->
+	<logger name="jdbc.sqltiming">
+		<level value="info"/>
+	</logger>
+	
+	<!-- jdbc.audit : ResultSet 관련 매핑정보를 제외한 모든 JDBC 관련 정보 기록 -->
+	<logger name="jdbc.audit">
+		<level value="info"/>
+	</logger>
+	
+	<!-- jdbc.resultset : ResultSet 관련 매핑정보를 포함한 모든 JDBC 관련 정보 기록 -->
+	<!-- 
+	<logger name="jdbc.resultset">
+		<level value="info"/>
+	</logger>
+	 -->
+	 
+	<!-- jdbc.resultsettable : ResultSet 관련 매핑정보를 표(Table)형식으로 기록 -->
+	<logger name="jdbc.resultsettable">
+		<level value="info"/>
+	</logger>
+	
+	<!-- jdbc.connection : Connection 객체 관련 정보 기록 - Open 또는 Close -->
+	<logger name="jdbc.connection">
+		<level value="info"/>
+	</logger>
+
 	<!-- Root Logger -->
 	<!-- root : 모든 클래스에서 발생되는 로그 이벤트를 기록하기 위한 엘리먼트 -->
 	<!-- => 모든 logger 엘리먼트는 root 엘리먼트의 정보를 상속받아 사용 -->
