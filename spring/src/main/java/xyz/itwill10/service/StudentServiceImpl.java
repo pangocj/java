@@ -22,7 +22,7 @@ import xyz.itwill10.dto.Student;
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 	//Service 클래스의 메소드에서 사용될 DAO 클래스의 객체를 저장하기 위한 필드
-	// => 생성자를 이용하여 필드에 DAO 클래스의 객체가 저장되도록 의존성 주입
+	// => 생성자를 이용하여 필드에 DAO 클래스의 객체(Spring Bean)가 저장되도록 의존성 주입
 	private final StudentDAO studentDAO;
 	
 	@Override
