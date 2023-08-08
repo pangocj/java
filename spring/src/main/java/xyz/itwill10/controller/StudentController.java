@@ -41,7 +41,13 @@ public class StudentController {
 	// => Service 클래스의 객체로 메소드를 호출하여 데이타 처리 기능 구현 
 	@RequestMapping(value = "/student/add", method = RequestMethod.POST)
 	public String add(@ModelAttribute Student student, Model model) {
-		studentService.addStudent(student);
+		try {
+			//Service 클래스의 메소드 호출시 예외 발생 - 중복된 학생번호가 전달되어 PK 제약조건 위반 
+			studentService.addStudent(student);
+		} catch (Exception e) {
+			model.addAttribute("message", "이미 사용중인 학생번호를 입력 하였습니다.");
+			return "student/student_add";//포워드 이동
+		}
 		return "redirect:/student/display";//라디이렉트 이동
 	}
 	
@@ -53,15 +59,3 @@ public class StudentController {
 		return "student/student_display";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
