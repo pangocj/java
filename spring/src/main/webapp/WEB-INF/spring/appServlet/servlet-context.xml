@@ -38,7 +38,7 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-
+ 
 	<!-- component-scan : 스프링 컨테이너가 클래스에서 사용된 스프링 어노테이션을 검색하여
 	처리할 수 있는 패키지를 제공하는 엘리먼트  -->
 	<!-- base-package 속성 : 스프링 어노테이션을 사용한 클래스가 선언된 패키지를 속성값으로 설정 -->	

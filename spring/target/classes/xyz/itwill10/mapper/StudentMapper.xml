@@ -5,7 +5,7 @@
 	<insert id="insertStudent">
 		insert into student values(#{no}, #{name}, #{phone}, #{address}, #{birthday})	
 	</insert>
-	
+	 
 	<!-- 검색행의 컬럼명과 DTO 클래스의 필드명이 같은 경우 resultType 속성을 사용하여 자동 매핑 처리 -->
 	<select id="selectStudentList" resultType="Student">
 		select no, name, phone, address, birthday from student order by no

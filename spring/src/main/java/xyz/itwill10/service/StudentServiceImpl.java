@@ -12,7 +12,7 @@ import xyz.itwill10.dto.Student;
 // => Service 클래스의 메소드에서는 데이타 처리에 필요한 기능을 구현하기 위한 DAO 클래스의 메소드를 
 //호출하여 작성 - 컴퍼넌트(Component)
 // => Service 클래스가 변경돼도 의존관계로 설정된 Controller 클래스의 영향을 최소화 하기 위한 인터페이스를 상속받아 작성
-
+ 
 //Service 클래스는 Controller 클래스게 객체로 제공되어 사용되도록 반드시 Spring Bean으로 등록
 // => Service 클래스는 @Service 어노테이션을 사용하여 Spring Bean으로 등록
 // => @Service 어노테이션을 사용하면 TransactionManager에 의해 트렌젝션 관리 가능
