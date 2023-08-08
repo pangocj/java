@@ -46,4 +46,6 @@
 	<!-- [xyz.itwill10.controller] 패키지에 요청 처리 클래스(Controller 클래스)를 작성하여 
 	@Controller 어노테이션을 사용하여 Spring Bean으로 등록 -->
 	<context:component-scan base-package="xyz.itwill10.controller" />
+	<!-- [xyz.itwill10.dao] 패키지에 DAO 클래스를 작성하여 @Repository 어노테이션을 사용하여 Spring Bean으로 등록 -->
+	<context:component-scan base-package="xyz.itwill10.dao" />
 </beans:beans>
