@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import lombok.extern.slf4j.Slf4j;
 
-//Spring 프레임워크를 사용하여 모듈(단위 프로그램)을 검사하는 테스트 프로그램 작성 방법
+//Spring 프레임워크를 사용하여 모듈(단위 프로그램 - 컴퍼넌트)을 검사하는 테스트 프로그램 작성 방법
 // => SpringMVC 프로그램에서 사용하는 모듈 : DAO 클래스, Service 클래스, Controller 클래스 등
 //1.junit 라이브러리와 spring-test 라이브러리를 프로젝트 빌드 처리 - 메이븐 : pom.xml
 //2.테스트 프로그램에서 사용될 로그 구현체에 대한 환경설정파일 변경
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 //3.[src/test/java] 폴더에 테스트 프로그램 관련 클래스 작성
 // => junit 라이브러리와 spring-test 라이브러리의 scope 속성을 주석 처리한 후 테스트 프로그램
 //관련 클래스 작성 - 테스트 프로그램 관련 클래스 작성 후 주석 제거
-//4.테스트 프로그램을 실행하여 모듈 검사
+//4.JUint 프로그램으로 테스트 프로그램을 실행하여 모듈 검사
 
 //@RunWith : 테스트 프로그램을 실행하기 위한 실행 클래스를 설정하는 어노테이션
 // => 테스트 프로그램 관련 클래스를 객체로 생성하여 메소드를 호출하기 위한 클래스 지정

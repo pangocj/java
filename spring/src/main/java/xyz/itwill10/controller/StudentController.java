@@ -29,8 +29,8 @@ import xyz.itwill10.service.StudentService;
 
 //Controller 클래스는 Front Controller(DispatchServlet 클래스)에게 객체로 제공되어 사용되도록 반드시 Spring Bean으로 등록
 // => Controller 클래스는 @Controller 어노테이션을 사용하여 Spring Bean으로 등록
-//=> @Controller 어노테이션을 사용하면 클라이언트 요청에 의해 호출되는 요청 처리 메소드 작성
-//=> @Controller 어노테이션을 스프링 컨테이너가 처리하기 위해 반드시 클래스가 작성된 패키지를
+// => @Controller 어노테이션을 사용하면 클라이언트 요청에 의해 호출되는 요청 처리 메소드 작성
+// => @Controller 어노테이션을 스프링 컨테이너가 처리하기 위해 반드시 클래스가 작성된 패키지를
 //Spring Bean Configuration File(servlet-context.xml)의 component-scan 엘리먼트로 검색되도록 설정
 
 @Controller

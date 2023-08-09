@@ -21,8 +21,8 @@ import xyz.itwill10.mapper.StudentMapper;
 //File에서 bean 엘리먼트로 클래스를 Spring Bean 등록 - root-context.xml 또는 servlet-context.xml
 //4.테이블 생성 >> DTO 클래스 작성 >> 매퍼 파일 작성 >> DAO  클래스 작성 
 
-//DAO 클래스(Repository 클래스) : 저장매체(DBMS)에게 행에 대한 삽입, 변경, 삭제, 감섹 기능을 제공하기 위한 클래스
-// => DAO 클래스의 메소드에서는 DBMS 서버에 SQL 명령을 전달하여 실행하고 실행결과를 Java 객체(값)으로 반환되도록 작성
+//DAO 클래스(Repository 클래스) : 저장매체(DBMS)에게 행에 대한 삽입, 변경, 삭제, 검색 기능을 제공하기 위한 클래스
+// => DAO 클래스의 메소드에서는 DBMS 서버에 SQL 명령을 전달하여 실행하고 실행결과를 Java 객체(값)으로 반환되도록 작성 - JDBC
 // => DAO 클래스가 변경돼도 의존관계로 설정된 Service 클래스의 영향을 최소화 하기 위한 인터페이스를 상속받아 작성
  
 //DAO 클래스는 Service 클래스에게 객체로 제공되어 사용되도록 반드시 Spring Bean으로 등록
@@ -39,7 +39,7 @@ public class StudentDAOImpl implements StudentDAO {
 	//전달하여 실행하고 실행결과를 Java 객체(값)으로 반환받기 위해 SqlSession 객체 필요
 	// => SqlSession 객체를 저장할 수 있는 필드를 선언하여 스프링 컨테이너가 관리하는
 	//Spring Bean를 제공받아 의존성 주입(DI)
-	// => 매개변수가 선언된 생성자를 작성하여 @Autowired 어노테이션을 사용하여 의존성 주입 - 순환참조 방지  
+	// => 매개변수가 선언된 생성자를 작성하여 @Autowired 어노테이션을 사용하여 의존성 주입 - 순환참조 방지
 	private final SqlSession sqlSession;
 	
 	@Override
