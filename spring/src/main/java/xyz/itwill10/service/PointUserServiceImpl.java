@@ -11,8 +11,8 @@ import xyz.itwill10.dto.PointUser;
 public class PointUserServiceImpl implements PointUserService {
 	private final PointUserDAO pointUserDAO;
 
-	//매개변수로 회원정보를 전달받아 POINTUSER 테이블에 회원정보를 삽입 처리하고 삽입된 
-	//회원정보를 검색하여 반환하는 메소드
+	//매개변수로 회원정보를 전달받아 POINTUSER 테이블에 회원정보를 삽입하고 삽입된 회원정보를 
+	//검색하여 반환하는 메소드
 	@Override
 	public PointUser addPointUser(PointUser user) throws Exception {
 		//매개변수로 전달받은 회원정보의 아이디가 POINTUSER 테이블에 저장된 기존 회원정보의
