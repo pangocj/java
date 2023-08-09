@@ -70,6 +70,7 @@
 	<!-- => 메소드 이름에 [*] 패턴문자를 사용하여 설정 가능 -->
 	<!-- rollback-for 속성 : ROLLBACK 명령이 실행될 예외를 속성값으로 설정 -->
 	<!-- read-only 속성 : false(기본) 또는 true(읽기) 중 하나를 속성값으로 설정 -->
+	<!-- 
 	<tx:advice id="txAdvisor" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" rollback-for="Exception"/>
@@ -78,15 +79,18 @@
 			<tx:method name="get*" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
+	-->
 	
 	<!-- SpringAOP 기능을 사용하기 위해서는 aop 네임스페이스에 spring-aop.xsd 파일을 제공받아 
 	엘리먼트를 사용할 수 있도록 설정 -->
 	<!-- => SpringAOP 기능을 사용하여 타겟메소드 호출시 TransactionManager 객체가 동작될 수 있도록 설정 -->
 	<!-- advisor : Advisor(삽입위치가 지장된 Advice 객체)를 제공받아 사용하기 위한 엘리먼트 -->
 	<!-- advice-ref 속성 : advice 엘리먼트의 식별자를 속성값으로 설정 -->
+	<!--  
 	<aop:config>
 		<aop:advisor advice-ref="txAdvisor" pointcut="execution(* xyz.itwill10.service..*(..))"/>
 	</aop:config>
+	-->
 </beans:beans>
 
 

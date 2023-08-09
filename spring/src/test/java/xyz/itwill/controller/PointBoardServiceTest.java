@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 import xyz.itwill10.dto.PointBoard;
@@ -19,6 +20,15 @@ import xyz.itwill10.service.PointBoardService;
 // => spring-jdbc 라이브러리를 빌드 처리하면 의존 관계에 의해 자동 빌드 처리
 //2.Spring Bean Configuration File(root-context.xml)에 TransactionManager 관련 클래스를 Spring Bean으로 등록
 //3.Spring Bean Configuration File(servlet-context.xml)에 트렌젝션 처리를 위한 AOP 설정
+// => Spring Bean Configuration File의 AOP 설정을 이용하여 TaransactionManager 객체를 사용하여
+//트렌젝션 처리 할 수도 있지만 @Tranactional 어노테이션을 사용하여 트렌젝션 처리 가능
+
+//TaransactionManager 객체를 이용하여 트렌젝션 처리 기능을 제공받을 메소드에 @Tranactional 
+//어노테이션 사용하면 메소드의 명령 실행시 예외(Exception)가 발생된 경우 자동으로 롤백 처리
+// => @Tranactional 어노테이션을 사용하기 위해 Spring Bean Configuration File(root-context.xml)에
+//tx 네임스페이스를 추가하여 spring-tx.xsd 파일을 제공받아 annotaion-driven 엘리먼트를 반드시 설정
+// => 테스트 클래스의 테스트 메소드에 @Tranactional 어노테이션을 사용하면 테스트 메소드의 
+//명령 실행 후 무조건 롤백 처리
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -29,11 +39,12 @@ public class PointBoardServiceTest {
 	@Autowired
 	private PointBoardService pointBoardService;
 	
+	@Transactional
 	@Test
 	public void test1() throws Exception {
 		//게시글(PointBoard 객체) 생성
-		//PointBoard board=PointBoard.builder().writer("abc123").subject("테스트").build();
-		PointBoard board=PointBoard.builder().writer("xyz789").subject("테스트").build();
+		PointBoard board=PointBoard.builder().writer("abc123").subject("테스트").build();
+		//PointBoard board=PointBoard.builder().writer("xyz789").subject("테스트").build();
 		
 		//PointBoardService 클래스의 addPointBoard() 메소드를 호출하여 POINTBOARD 테이블에 게시글 삽입
 		// => POINTUSER 테이블에 저장된 회원정보 중 게시글 작성자에 대한 회원정보의 포인트 증가
@@ -55,6 +66,7 @@ public class PointBoardServiceTest {
 	}
 	
 	/*
+	@Transactional
 	@Test
 	public void test2() throws Exception {
 		//PointBoardService 클래스의 removePointBoard() 메소드를 호출하여 POINTBOARD 테이블에 저장된 게시글 삭제
