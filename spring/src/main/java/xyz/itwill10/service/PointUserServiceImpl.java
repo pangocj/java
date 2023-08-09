@@ -16,7 +16,7 @@ public class PointUserServiceImpl implements PointUserService {
 	@Override
 	public PointUser addPointUser(PointUser user) throws Exception {
 		//매개변수로 전달받은 회원정보의 아이디가 POINTUSER 테이블에 저장된 기존 회원정보의
-		//아이디와 중복될 경우 인위적 예외 발생
+		//아이디와 중복될 경우 인위적 예외 발생 
 		if(pointUserDAO.selectPointUser(user.getId()) != null) {
 			throw new Exception("이미 사용중인 아이디입니다.");
 		}

@@ -12,7 +12,7 @@ import xyz.itwill10.mapper.PointUserMapper;
 public class PointUserDAOImpl implements PointUserDAO {
 	private final SqlSession sqlSession;
 	
-	@Override
+	@Override 
 	public int insertPointUser(PointUser user) {
 		return sqlSession.getMapper(PointUserMapper.class).insertPointUser(user);
 	}
