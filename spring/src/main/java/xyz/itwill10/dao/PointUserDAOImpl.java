@@ -31,5 +31,4 @@ public class PointUserDAOImpl implements PointUserDAO {
 	public PointUser selectPointUser(String id) {
 		return sqlSession.getMapper(PointUserMapper.class).selectPointUser(id);
 	}
-
 }
