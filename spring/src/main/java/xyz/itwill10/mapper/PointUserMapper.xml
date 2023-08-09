@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill10.mapper.PointUserMapper">
+	<insert id="insertPointUser">
+		insert into pointuser values(#{id}, #{name}, 0)
+	</insert>
+	
+	<update id="updatePlusPointUser">
+		update pointuser set point=point+100 where id=#{id}
+	</update>
+	
+	<update id="updateMinusPointUser">
+		update pointuser set point=point-100 where id=#{id}
+	</update>
+	
+	<select id="selectPointUser" resultType="PointUser">
+		select id, name, point from pointuser where id=#{id}
+	</select>
+</mapper>
