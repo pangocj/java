@@ -3,9 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	<!-- servlet-context.xml : appServlet 이름의 서블릿(Front Controller)에게 제공될 Spring
@@ -50,4 +54,50 @@
 	<context:component-scan base-package="xyz.itwill10.dao" />
 	<!-- [xyz.itwill10.service] 패키지에 Service 클래스를 작성하여 @Service 어노테이션을 사용하여 Spring Bean으로 등록 -->
 	<context:component-scan base-package="xyz.itwill10.service" />
+	
+	<!-- TransactionManager 객체를 사용하여 트렌젝션 처리를 설정하기 위해서는 tx 네임스페이스에
+	spring-tx.xsd 파일을 제공받아 엘리먼트를 사용할 수 있도록 설정 -->
+	<!-- advice : TransactionManager 객체(Spring Bean)를 Advisor로 설정하기 위한 엘리먼트 -->
+	<!-- Advisor : 삽입위치(JoinPoint)가 정해져 있는 횡단관심코드의 메소드가 작성된 Advice
+	클래스로 생성된 객체(Spring Bean) -->
+	<!-- id 속성 : advice 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!-- transaction-manager 속성 : TransactionManager 관련 클래스의 Spring Bean에 대한 
+	식별자(beanName)을 속성값으로 설정 -->
+	<!-- => TransactionManager 객체(Spring Bean)을 이용하여 커밋처리 또는 롤백처리 제공 -->
+	<!-- attributes : TransactionManager 객체에 의해 처리될 메소드 목록을 설정하기 위한 엘리먼트 -->
+	<!-- method : TransactionManager 객체에 의해 처리될 메소드와 방식을 설정하기 위한 엘리먼트 -->
+	<!-- name 속성 : TransactionManager 객체에 의해 처리될 메소드의 이름을 속성값으로 설정 -->
+	<!-- => 메소드 이름에 [*] 패턴문자를 사용하여 설정 가능 -->
+	<!-- rollback-for 속성 : ROLLBACK 명령이 실행될 예외를 속성값으로 설정 -->
+	<!-- read-only 속성 : false(기본) 또는 true(읽기) 중 하나를 속성값으로 설정 -->
+	<tx:advice id="txAdvisor" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" rollback-for="Exception"/>
+			<tx:method name="modify*" rollback-for="Exception"/>
+			<tx:method name="remove*" rollback-for="Exception"/>
+			<tx:method name="get*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- SpringAOP 기능을 사용하기 위해서는 aop 네임스페이스에 spring-aop.xsd 파일을 제공받아 
+	엘리먼트를 사용할 수 있도록 설정 -->
+	<!-- => SpringAOP 기능을 사용하여 타겟메소드 호출시 TransactionManager 객체가 동작될 수 있도록 설정 -->
+	<!-- advisor : Advisor(삽입위치가 지장된 Advice 객체)를 제공받아 사용하기 위한 엘리먼트 -->
+	<!-- advice-ref 속성 : advice 엘리먼트의 식별자를 속성값으로 설정 -->
+	<aop:config>
+		<aop:advisor advice-ref="txAdvisor" pointcut="execution(* xyz.itwill10.service..*(..))"/>
+	</aop:config>
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
