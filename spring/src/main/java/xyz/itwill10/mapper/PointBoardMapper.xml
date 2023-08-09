@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill10.mapper.PointBoardMapper">
+	<insert id="insertPointBoard">
+		<selectKey resultType="int" keyProperty="idx" order="BEFORE">
+			select pointboard_seq.nextval from dual
+		</selectKey>
+		insert into pointboard values(#{idx}, #{writer}, #{subject})
+	</insert>
+	
+	<delete id="deletePointBoard">
+		delete from pointboard where idx=#{idx}
+	</delete>
+	
+	<select id="selectPointBoard" resultType="PointBoard">
+		select idx, writer, subject from pointboard where idx=#{idx}
+	</select>
+	
+	<select id="selectPointBoardList" resultType="PointBoard">
+		select idx, writer, subject from pointboard order by idx desc
+	</select>
+</mapper>
