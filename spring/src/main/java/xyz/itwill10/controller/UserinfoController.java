@@ -141,6 +141,56 @@ public class UserinfoController {
 		return "userinfo/user_view";
 	}
 
+	//아이디를 전달받아 USEINFO 테이블에 저장된 회원정보를 검색하여 속성값으로 저장하여 
+	//회원정보를 변경하는 뷰이름을 반환하는 요청 처리 메소드
+	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청할 경우 인위적 예외 발생
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String modify(@RequestParam String userid, Model model, HttpSession session) throws BadRequestException, UserinfoNotFoundException {
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		if(loginUserinfo == null || loginUserinfo.getStatus() != 9) {
+			throw new BadRequestException("비정상적인 요청입니다.");
+		}
+		
+		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
+		return "userinfo/user_modify";
+	}
+	
+	//회원정보를 전달받아 USERINFO 테이블에 저장된 회원정보를 변경하고 회원정보를 출력하는 
+	//페이지를 요청할 수 있는 URL 주소를 클라이언트에게 전달하여 응답 처리하는 요청 처리 메소드
+	// => 회원정보를 출력하는 페이지 요청시 아이디 전달
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(@ModelAttribute Userinfo userinfo, HttpSession session) throws UserinfoNotFoundException {
+		userinfoService.modifyUserinfo(userinfo);
+		
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		//로그인 사용자와 변경 처리된 사용자가 동일한 경우
+		if(loginUserinfo.getUserid().equals(userinfo.getUserid())) {
+			//세션에 권한 관련 정보(회원정보)로 저장된 속성값 변경
+			session.setAttribute("loginUserinfo", userinfoService.getUserinfo(userinfo.getUserid()));
+		}
+		
+		return "redirect:/userinfo/view?userid="+userinfo.getUserid();
+	}
+
+	//아이디를 전달받아 USEINFO 테이블에 저장된 회원정보를 삭제하고 회원목록 출력페이지를
+	//요청할 수 있는 URL 주소를 클라이언트에게 전달하여 응답 처리하는 요청 처리 메소드
+	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청할 경우 인위적 예외 발생
+	@RequestMapping("/remove")
+	public String remove(@RequestParam String userid, HttpSession session) throws BadRequestException, UserinfoNotFoundException {
+		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
+		if(loginUserinfo == null || loginUserinfo.getStatus() != 9) {
+			throw new BadRequestException("비정상적인 요청입니다.");
+		}
+		
+		userinfoService.removeUserinfo(userid);
+		
+		if(loginUserinfo.getUserid().equals(userid)) {
+			return "redirect:/userinfo/logout";
+		}
+		
+		return "redirect:/userinfo/list";
+	}
+	
 	
 	/*
 	//@ExceptionHandler : 메소드에 예외 처리 기능을 제공하기 위한 어노테이션
@@ -179,18 +229,3 @@ public class UserinfoController {
 	}
 	*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
