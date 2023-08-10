@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="xyz.itwill.util.Utility"%>
 <%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
