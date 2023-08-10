@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
-import xyz.itwill10.dto.Student;
 import xyz.itwill10.dto.Userinfo;
 import xyz.itwill10.mapper.UserinfoMapper;
 
