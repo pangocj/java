@@ -1,5 +1,6 @@
 package xyz.itwill10.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.springframework.stereotype.Controller;
@@ -40,8 +41,24 @@ public class FileController {
 		//MultipartFile.getBytes() : MultipartFile 객체에 저장된 전달파일을 원시데이타(byte 배열)로 반환하는 메소드
 		System.out.println("파일 크기 = "+uploadFile.getBytes().length);
 		
+		//전달파일을 저장하기 위한 서버 디렉토리의 시스템 경로를 반환받아 저장
+		String uploadDirectory=request.getServletContext().getRealPath("/resources/images/upload");
+		System.out.println("uploadDirectory = "+uploadDirectory);
 		
-		return "file/form_one";
+		//전달파일을 서버 디렉토리에 저장될 업로드 파일정보가 저장된 File 객체 생성
+		//File 객체 : 시스템(서버)에 존재하는 파일정보를 저장하기 위한 객체
+		//MultipartFile.getOriginalFilename() : MultipartFile 객체에 저장된 전달파일의 이름을 반환하는 메소드
+		String uploadFilename=uploadFile.getOriginalFilename();
+		File file=new File(uploadDirectory, uploadFilename);
+		
+		//MultipartFile..transferTo(File file) : MultipartFile 객체에 저장된 전달파일을 File
+		//객체의 시스템 파일(업로드 파일)로 전달하여 저장하는 메소드
+		uploadFile.transferTo(file);//전달파일을 서버 디렉토리에 저장 - 업로드 처리
+		
+		request.setAttribute("uploaderName", uploaderName);
+		request.setAttribute("uploadFilename", uploadFilename);
+		
+		return "file/upload_success";
 	}
 }
 
