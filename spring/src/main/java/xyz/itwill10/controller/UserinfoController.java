@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill10.dto.Userinfo;
-import xyz.itwill10.exception.BadRequestException;
 import xyz.itwill10.exception.ExistsUserinfoException;
 import xyz.itwill10.exception.LoginAuthFailException;
 import xyz.itwill10.exception.UserinfoNotFoundException;
@@ -23,6 +22,7 @@ import xyz.itwill10.service.UserinfoService;
 public class UserinfoController {
 	private final UserinfoService userinfoService;
 	
+	/*
 	//회원정보를 입력받기 위한 뷰이름을 반환하는 요청 처리 메소드
 	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청할 경우 인위적 예외 발생
 	// => 예외 처리 메소드(Exception Handle Method)를 이용하여 예외 처리
@@ -33,6 +33,17 @@ public class UserinfoController {
 			//throw new Exception("비정상적인 요청입니다.");
 			throw new BadRequestException("비정상적인 요청입니다.");
 		}
+		return "userinfo/user_write";
+	}
+	*/
+	
+	//회원정보를 입력받기 위한 뷰이름을 반환하는 요청 처리 메소드
+	// => 인터셉터를 사용하여 권한 관련 처리 기능 구현 - 요청 처리 메소드에서 권한 관련 명령 미작성
+	//인터셉터(Interceptor) : 요청 처리 메소드가 호출되기 전 또는 후에 삽입되어 실행될 명령을 제공 기능
+	// => 인터셉터 관련 클래스를 작성하여 Spring Bean Configuration File(servlet-context.xml)에
+	//인터셉터가 동작될 수 있도록 설정
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public String write() {
 		return "userinfo/user_write";
 	}
 	
@@ -113,6 +124,7 @@ public class UserinfoController {
 		return "redirect:/userinfo/login";
 	}
 
+	/*
 	//USEINFO 테이블에 저장된 모든 회원정보를 검색하여 속성값으로 저장하여 회원목록을 출력하는
 	//뷰이름을 반환하는 요청 처리 메소드
 	// => 비로그인 사용자가 페이지를 요청할 경우 인위적 예외 발생
@@ -126,31 +138,30 @@ public class UserinfoController {
 		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
 		return "userinfo/user_list";
 	}
+	*/
+	//USEINFO 테이블에 저장된 모든 회원정보를 검색하여 속성값으로 저장하여 회원목록을 출력하는
+	//뷰이름을 반환하는 요청 처리 메소드
+	// => 인터셉터를 사용하여 권한 관련 처리 기능 구현 - 요청 처리 메소드에서 권한 관련 명령 미작성
+	@RequestMapping("/list")
+	public String list(Model model) {
+		model.addAttribute("userinfoList", userinfoService.getUserinfoList());
+		return "userinfo/user_list";
+	}
 	
 	//아이디를 전달받아 USEINFO 테이블에 저장된 회원정보를 검색하여 속성값으로 저장하여 
 	//회원정보를 출력하는 뷰이름을 반환하는 요청 처리 메소드
-	// => 비로그인 사용자가 페이지를 요청할 경우 인위적 예외 발생
+	// => 인터셉터를 사용하여 권한 관련 처리 기능 구현
 	@RequestMapping("/view")
-	public String view(@RequestParam String userid, Model model, HttpSession session) throws BadRequestException, UserinfoNotFoundException {
-		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
-		if(loginUserinfo == null) {
-			throw new BadRequestException("비정상적인 요청입니다.");
-		}
-		
+	public String view(@RequestParam String userid, Model model) throws UserinfoNotFoundException {
 		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
 		return "userinfo/user_view";
 	}
 
 	//아이디를 전달받아 USEINFO 테이블에 저장된 회원정보를 검색하여 속성값으로 저장하여 
 	//회원정보를 변경하는 뷰이름을 반환하는 요청 처리 메소드
-	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청할 경우 인위적 예외 발생
+	// => 인터셉터를 사용하여 권한 관련 처리 기능 구현
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public String modify(@RequestParam String userid, Model model, HttpSession session) throws BadRequestException, UserinfoNotFoundException {
-		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
-		if(loginUserinfo == null || loginUserinfo.getStatus() != 9) {
-			throw new BadRequestException("비정상적인 요청입니다.");
-		}
-		
+	public String modify(@RequestParam String userid, Model model) throws UserinfoNotFoundException {
 		model.addAttribute("userinfo", userinfoService.getUserinfo(userid));
 		return "userinfo/user_modify";
 	}
@@ -174,14 +185,10 @@ public class UserinfoController {
 
 	//아이디를 전달받아 USEINFO 테이블에 저장된 회원정보를 삭제하고 회원목록 출력페이지를
 	//요청할 수 있는 URL 주소를 클라이언트에게 전달하여 응답 처리하는 요청 처리 메소드
-	// => 비로그인 사용자 또는 관리자가 아닌 사용자가 페이지를 요청할 경우 인위적 예외 발생
+	// => 인터셉터를 사용하여 권한 관련 처리 기능 구현
 	@RequestMapping("/remove")
-	public String remove(@RequestParam String userid, HttpSession session) throws BadRequestException, UserinfoNotFoundException {
+	public String remove(@RequestParam String userid, HttpSession session) throws UserinfoNotFoundException {
 		Userinfo loginUserinfo=(Userinfo)session.getAttribute("loginUserinfo");
-		if(loginUserinfo == null || loginUserinfo.getStatus() != 9) {
-			throw new BadRequestException("비정상적인 요청입니다.");
-		}
-		
 		userinfoService.removeUserinfo(userid);
 		
 		if(loginUserinfo.getUserid().equals(userid)) {
