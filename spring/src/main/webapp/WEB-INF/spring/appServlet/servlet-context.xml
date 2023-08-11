@@ -156,4 +156,13 @@
 			<beans:ref bean="loginAuthInterceptor"/>
 		</interceptor>
 	</interceptors>
+	
+	<!-- 파일 업로드 처리 기능을 제공하는 클래스를 Spring Bean으로 등록  -->
+	<!-- => Spring Bean의 식별자(beanName)를 반드시 [multipartResolver]로 설정 -->
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<!-- maxUploadSize 필드에 최대 업로드 처리 가능한 파일의 제한 용량(Byte)이 저장되도록 값 주입 -->
+		<beans:property name="maxUploadSize" value="20971520"/>
+		<!-- defaultEncoding 필드에 전달값에 문자형태(캐릭터셋)가 저장되도록 값 주입 -->
+		<beans:property name="defaultEncoding" value="utf-8"/>
+	</beans:bean>	
 </beans:beans>

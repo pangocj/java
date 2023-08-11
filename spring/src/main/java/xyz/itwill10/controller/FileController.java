@@ -2,21 +2,38 @@ package xyz.itwill10.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import lombok.RequiredArgsConstructor;
+
+//파일을 전달받아 서버 디렉토리에 업로드 처리하기 위한 방법
+//1.commons-fileupload 라이브러리를 프로젝트 빌드 처리 - 메이븐 : pom.xml
+//2.Spring Bean Configuration File(servlet-context.xml)에 파일 업로드 처리 기능을 제공하는 
+//클래스를 Spring Bean으로 등록
+//3.MultipartHttpServletRequest 객체를 사용하여 [multipart/form-data] 형태로 전달된 값 또는 파일을 제공받아 처리
+
 @Controller
 @RequestMapping("/file")
+@RequiredArgsConstructor
 public class FileController {
+	//WebApplicationContext 객체(스프링 컨테이너)를 제공받아 필드에 의존성 주입
+	private final WebApplicationContext context;
+	
 	@RequestMapping(value = "/upload1", method = RequestMethod.GET)
 	public String uploadOne() {
 		return "file/form_one";
 	}
 	
+	/*
 	//요청 처리 메소드에 MultipartHttpServletRequest 인터페이스로 매개변수를 선언하면 Front
 	//Controller에게 MultipartHttpServletRequest 객체를 제공받아 사용 가능
 	//MultipartHttpServletRequest 객체 : [multipart/form-data] 형태로 전달된 값 또는 파일을 처리하기 위한 객체
@@ -60,6 +77,38 @@ public class FileController {
 		
 		return "file/upload_success";
 	}
+	*/
+	
+	//요청 처리 메소드의 매개변수를 사용하여 전달값 및 전달파일을 제공받아 사용 가능
+	// => 전달값 및 전달파일의 이름과 같은 이름으로 매개변수 작성
+	//문제점)전달파일의 이름이 서버 디렉토리에 저장된 파일의 이름과 같은 경우 전달파일로 덮어씌우기
+	//해결법)전달파일의 이름을 서버 디렉터리에 없는 파일이름으로 변경하여 서버 디렉토리에 저장
+	@RequestMapping(value = "/upload1", method = RequestMethod.POST)
+	public String uploadOne(@RequestParam String uploaderName
+			, @RequestParam MultipartFile uploadFile, Model model) throws IOException {
+		//전달받은 파일에 대한 검증 작성
+		if(uploadFile.isEmpty() || !uploadFile.getContentType().equals("image/jpeg")) {
+			return "file/upload_fail";
+		}
+		
+		//전달파일을 저장하기 위한 서버 디렉토리의 시스템 경로를 반환받아 저장
+		String uploadDirectory=context.getServletContext().getRealPath("/resources/images/upload");
+		
+		//전달파일을 서버 디렉토리에 저장될 업로드 파일정보가 저장된 File 객체 생성
+		// => 서버 디렉토리에 저장된 파일이름은 중복되지 않는 이름으로 사용되도록 변경
+		//UUID.randomUUID() : 36Byte의 문자열로 구현된 식별자를 생성하여 반환하는 메소드
+		String uploadFilename=UUID.randomUUID()+"_"+uploadFile.getOriginalFilename();
+		File file=new File(uploadDirectory, uploadFilename);
+		
+		//전달파일을 서버 디렉토리에 저장 - 업로드 처리
+		uploadFile.transferTo(file);
+		
+		model.addAttribute("uploaderName", uploaderName);
+		model.addAttribute("uploadFilename", uploadFilename);
+		
+		return "file/upload_success";
+	}
+
 }
 
 
