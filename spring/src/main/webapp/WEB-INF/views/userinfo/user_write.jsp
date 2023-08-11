@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
 <%-- => [회원등록] 태그를 클릭한 경우 [/userinfo/write] 페이지 요청 - 입력값(회원정보) 전달 --%>
-<%-- => [로그인] 태그를 클릭한 경우 [/userinfo/login] 문서 요청 --%>
+<%-- => [로그인] 태그를 클릭한 경우 [/userinfo/login] 페이지 요청 --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

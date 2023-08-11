@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MVC</title>
+<title>SPRING</title>
 <style type="text/css">
 body {
 	text-align: center;

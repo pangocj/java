@@ -94,7 +94,7 @@ public class UserinfoServiceImpl implements UserinfoService {
 
 	//매개변수로 회원정보(아이디와 비밀번호)를 전달받아 인증 처리하기 위한 메소드
 	// => 인증 실패시 예외 발생하고 인증 성공시 예외 미발생
-	// => 인증 성공시 로그인된 회원정보를 검색하여 반환 - 세션에 권한 관련 정보로 저장
+	// => 인증 성공시 매개변수로 전달받은 아이디의 회원정보를 검색하여 반환 - 세션에 권한 관련 정보로 저장
 	@Override
 	public Userinfo loginAuth(Userinfo userinfo) throws LoginAuthFailException {
 		//매개변수로 전달받은 회원정보의 아이디로 기존 회원정보를 검색하여 검색결과를 반환받아 저장
