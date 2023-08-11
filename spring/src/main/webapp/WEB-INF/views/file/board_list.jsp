@@ -33,33 +33,33 @@ th, td {
 		
 		<c:forEach var="fileBoard" items="${fileBoardList }">
 		<tr>
-			<td align="center">${fileBoard.num }</td>
+			<td align="center">${fileBoard.idx }</td>
 			<td align="center">${fileBoard.writer }</td>
 			<td>${fileBoard.subject }</td>
 			<td>${fileBoard.origin }</td>
 			<td align="center">
-				<button type="button" onclick="fileDownload(${fileBoard.num });">다운로드</button> 
+				<button type="button" onclick="fileDownload(${fileBoard.idx });">다운로드</button> 
 			</td>
 			<td align="center">
-				<button type="button" onclick="fileDelete(${fileBoard.num });">삭제</button> 
+				<button type="button" onclick="fileDelete(${fileBoard.idx });">삭제</button> 
 			</td>
 		</tr>
 		</c:forEach>
 	</table>
 	
 	<p>
-		<button type="button" onclick="location.href='${pageContext.request.contextPath}/fileboard/write';">업로드</button>
+		<button type="button" onclick="location.href='<c:url value="/file/write"/>';">업로드</button>
 	</p> 
 	
 	<script type="text/javascript">
-	function fileDownload(num) {
+	function fileDownload(idx) {
 		//URL 주소를 이용하여 자료실 번호 전달
-		location.href="${pageContext.request.contextPath}/fileboard/download/"+num;
+		location.href="<c:url value="/file/download"/>?idx="+idx;
 	}
 	
-	function fileDelete(num) {
+	function fileDelete(idx) {
 		if(confirm("자료를 정말로 삭제 하시겠습니까?")) {
-			location.href="${pageContext.request.contextPath}/fileboard/delete/"+num;
+			location.href="<c:url value="/file/delete"/>?idx="+idx;
 		} 
 	}
 	</script>
