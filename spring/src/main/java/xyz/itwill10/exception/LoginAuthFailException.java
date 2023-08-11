@@ -2,8 +2,8 @@ package xyz.itwill10.exception;
 
 import lombok.Getter;
 
-//로그인 처리할때 사용자로부터 입력받은 아이디와 비밀번호에 대한 인증이 실패한 경우 발생될 
-//예외를 처리하기 위한 예외 클래스
+//로그인 처리할때 사용자로부터 입력받은 아이디와 비밀번호에 대한 인증이 실패한 경우의
+//문제를 처리하기 위한 예외 클래스
 public class LoginAuthFailException extends Exception {
 	private static final long serialVersionUID = 1L;
 
