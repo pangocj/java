@@ -13,7 +13,9 @@ import xyz.itwill10.exception.BadRequestException;
 //Interceptor 클래스 : 요청 처리 메소드가 호출되기 전 또는 후에 삽입되어 실행될 기능을 제공하는 클래스
 // => Interceptor 클래스는 반드시 HandlerInterceptor 인터페이스를 상속받아 작성 - 필요한 메소드만 오버라이드 선언하여 사용
 // => Interceptor 클래스는 Spring Bean Configuration File(servlet-context.xml)에 Spring Bean으로
-//등록하고 요청 처리 메소드 호출 전 또는 후에 실행되도록 설정
+//등록하고 요청 처리 메소드 호출 전 또는 후에 실행되도록 설정 - 스프링 컨테이너에 의해 관리
+// => Filter 클래스는 Front Controller 앞에 위치하여 실행(WAS에 의해 관리)되며 Interceptor 클래스는 
+//Front Controller 뒤에 위치하여 실행(스프링 컨테이너에 의해 관리)
 
 //관리자 관련 권한 처리를 위해 작성된 인터셉터 클래스
 // => 요청 처리 메소드가 호출 전에 비로그인 사용자이거나 관리자가 아닌 사용자가 페이지를 요청한

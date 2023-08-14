@@ -53,7 +53,7 @@ th, td {
 	
 	<script type="text/javascript">
 	function fileDownload(idx) { 
-		//URL 주소를 이용하여 자료실 번호 전달
+		//질의문자열(QueryString)를 이용하여 자료실 번호 전달
 		location.href="<c:url value="/file/download"/>?idx="+idx;
 	}
 	

@@ -1,7 +1,5 @@
 package xyz.itwill10.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Data;
 
 //create table fileboard(idx number primary key, writer varchar2(20), subject varchar2(100)
@@ -27,8 +25,9 @@ public class FileBoard {
 	private String subject;
 	private String origin;
 	private String upload;
-	//사용자로부터 입력되어 전달된 파일정보를 저장하기 필드
-	private MultipartFile multipartFile;
+	//사용자로부터 입력되어 전달된 파일정보를 저장하기 필드 
+	// => 요청 처리 메소드의 매개변수로 전달파일을 제공받아 저장 가능
+	//private MultipartFile multipartFile;
 }
 
 

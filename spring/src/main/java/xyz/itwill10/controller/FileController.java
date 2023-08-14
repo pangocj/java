@@ -123,6 +123,7 @@ public class FileController {
 	
 	//전달파일이 여러개인 경우 매개변수를 List 인터페이스로 선언하여 전달파일이 저장된  
 	//MultipartFile 객체가 여러개 저장된 List 객체로 제공받아 처리
+	// => List 인터페이스 대신 배열을 사용하여 여러개의 전달파일을 배열로 제공받아 저장 가능
 	@RequestMapping(value = "/upload2", method = RequestMethod.POST)
 	public String uploadTwo(@RequestParam String uploaderName
 			, @RequestParam List<MultipartFile> uploadFileList, Model model) throws IOException {
@@ -159,8 +160,9 @@ public class FileController {
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String fileBoardWrite(@ModelAttribute FileBoard fileBoard) throws IllegalStateException, IOException {
-		if(fileBoard.getMultipartFile().isEmpty()) {
+	public String fileBoardWrite(@ModelAttribute FileBoard fileBoard
+			, @RequestParam MultipartFile multipartFile) throws IllegalStateException, IOException {
+		if(multipartFile.isEmpty()) {
 			return "file/board_write";
 		}
 		
@@ -169,7 +171,7 @@ public class FileController {
 		String uploadDirectory=context.getServletContext().getRealPath("/WEB-INF/upload");
 		
 		//사용자로부터 입력받아 전달받은 파일의 이름을 반환받아 Command 객체의 필드값 변경
-		String origin=fileBoard.getMultipartFile().getOriginalFilename();
+		String origin=multipartFile.getOriginalFilename();
 		fileBoard.setOrigin(origin);
 		
 		//서버 디렉토리에 업로드 처리되어 저장된 파일의 이름을 반환받아 Command 객체의 필드값 변경
@@ -179,7 +181,7 @@ public class FileController {
 		fileBoard.setUpload(upload);
 		
 		//파일 업로드 처리
-		fileBoard.getMultipartFile().transferTo(new File(uploadDirectory, upload));
+		multipartFile.transferTo(new File(uploadDirectory, upload));
 		
 		//FILEBOARD 테이블에 행 삽입
 		fileBoardService.addFileBoard(fileBoard);
