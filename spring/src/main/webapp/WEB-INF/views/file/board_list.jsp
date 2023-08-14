@@ -21,6 +21,10 @@ th, td {
 <body>
 	<h1>자료실(출력페이지)</h1>
 	<hr>
+	<p>
+		<button type="button" onclick="location.href='<c:url value="/file/write"/>';">업로드</button>
+	</p> 
+	
 	<table>
 		<tr>
 			<th width="50">번호</th>
@@ -47,13 +51,10 @@ th, td {
 		</c:forEach>
 	</table>
 	
-	<p>
-		<button type="button" onclick="location.href='<c:url value="/file/write"/>';">업로드</button>
-	</p> 
 	
 	<script type="text/javascript">
 	function fileDownload(idx) { 
-		//질의문자열(QueryString)를 이용하여 자료실 번호 전달
+		//질의문자열를 이용하여 자료실 번호 전달
 		location.href="<c:url value="/file/download"/>?idx="+idx;
 	}
 	
