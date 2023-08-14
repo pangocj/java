@@ -1,6 +1,7 @@
 package xyz.itwill10.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -29,8 +30,20 @@ public class FileBoardDAOImpl implements FileBoardDAO {
 		return sqlSession.getMapper(FileBoardMapper.class).selectFileBoard(idx);
 	}
 
+	/*
 	@Override
 	public List<FileBoard> selectFileBoardList() {
 		return sqlSession.getMapper(FileBoardMapper.class).selectFileBoardList();
+	}
+	*/
+	
+	@Override
+	public List<FileBoard> selectFileBoardList(Map<String, Object> map) {
+		return sqlSession.getMapper(FileBoardMapper.class).selectFileBoardList(map);
+	}
+
+	@Override
+	public int selectFileBoardCount() {
+		return sqlSession.getMapper(FileBoardMapper.class).selectFileBoardCount();
 	}
 }

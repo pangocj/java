@@ -16,7 +16,24 @@
 		select idx, writer, subject, origin, upload from fileboard where idx=#{idx}
 	</select>
 	
+	<!-- 
 	<select id="selectFileBoardList" resultType="FileBoard">
 		select idx, writer, subject, origin, upload from fileboard order by idx desc
 	</select>
+	-->
+	 
+	<select id="selectFileBoardList" resultType="FileBoard">
+		select * from (select rownum rn, board.* from (select idx, writer, subject, origin, upload 
+			from fileboard order by idx desc) board) where rn between #{startRow} and #{endRow} 
+	</select>
+	
+	<select id="selectFileBoardCount" resultType="int">
+		select count(*) from fileboard
+	</select>
 </mapper>
+
+
+
+
+
+

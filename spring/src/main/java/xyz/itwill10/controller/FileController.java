@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
@@ -189,9 +190,23 @@ public class FileController {
 		return "redirect:/file/list";
 	}
 	
+	/*
 	@RequestMapping("/list")
 	public String fileBoardList(Model model) {
 		model.addAttribute("fileBoardList", fileBoardService.getFileBoardList());
+		return "file/board_list";
+	}
+	*/
+	
+	@RequestMapping("/list")
+	public String fileBoardList(@RequestParam(defaultValue = "1") int pageNum, Model model) {
+		//System.out.println("pageNum = "+pageNum);
+		
+		Map<String, Object> map=fileBoardService.getFileBoardList(pageNum);
+		
+		model.addAttribute("pager", map.get("pager"));
+		model.addAttribute("fileBoardList", map.get("fileBoardList"));
+		
 		return "file/board_list";
 	}
 	
