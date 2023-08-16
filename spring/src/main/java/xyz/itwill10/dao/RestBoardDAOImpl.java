@@ -1,6 +1,7 @@
 package xyz.itwill10.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -40,7 +41,7 @@ public class RestBoardDAOImpl implements RestBoardDAO {
 	}
 
 	@Override
-	public List<RestBoard> selectRestBoardList() {
-		return sqlSession.getMapper(RestBoardMapper.class).selectRestBoardList();
+	public List<RestBoard> selectRestBoardList(Map<String, Object> map) {
+		return sqlSession.getMapper(RestBoardMapper.class).selectRestBoardList(map);
 	}
 }
