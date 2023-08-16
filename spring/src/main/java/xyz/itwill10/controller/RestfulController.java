@@ -1,5 +1,12 @@
 package xyz.itwill10.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +59,7 @@ public class RestfulController {
 		return input;
 	}	
 	
+	/*
 	//@ResponseBody 어노테이션을 사용하여 요청 처리 메소드의 반환값(RestMember 객체)을 리스폰즈
 	//메세지 몸체부에 저장하여 텍스트 데이타로 클라이언트에게 응답되도록 처리
 	//문제점)리스폰즈 메세지 몸체부에는 Java 객체를 저장하여 응답 처리 불가능 - 406 에러코드 발생
@@ -64,9 +72,61 @@ public class RestfulController {
 	public RestMember restMember() {
 		//RestMember 객체를 생성하여 반환 
 		// => jackson-databind 라이브러리에 의해 JSON 형식의 문자열로 자동 변환되어 응답 처리
+		// => Java 객체를 자바스크립트의 Object 객체의 JSON 형식의 텍스트 데이타로 변환되어 응답 처리
 		return RestMember.builder().id("abc123").name("홍길동").email("abc@itwill.xyz").build();
 	}
+	*/
+	
+	//@ResponseBody 어노테이션 대신 요청 처리 메소드에서 ResponseEntity 객체를 반환해도 
+	//클라이언트에게 텍스트 데이타로 응답 처리 가능
+	// => ResponseEntity 객체의 제네릭에는 응답 처리된 Java 객체의 자료형(클래스)을 설정 
+	@RequestMapping("/member")
+	public ResponseEntity<RestMember> restMember() {
+		try {
+			RestMember member=RestMember.builder().id("abc123").name("홍길동").email("abc@itwill.xyz").build();
+			//클라이언트에게 응답코드 200과 실행결과를 텍스트로 응답 처리
+			return new ResponseEntity<RestMember>(member, HttpStatus.OK);
+		} catch (Exception e) {
+			//클라이언트에게 응답코드 400으로 응답 처리
+			return new ResponseEntity<RestMember>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping("/member_list")
+	@ResponseBody
+	public List<RestMember> restMemberList() {
+		List<RestMember> memberList=new ArrayList<RestMember>();
+		
+		memberList.add(RestMember.builder().id("abc123").name("홍길동").email("abc@itwill.xyz").build());
+		memberList.add(RestMember.builder().id("opq456").name("임꺽정").email("opq@itwill.xyz").build());
+		memberList.add(RestMember.builder().id("xyz789").name("전우치").email("xyz@itwill.xyz").build());
+		
+		//List 객체를 자바스크립트의 Array 객체의 JSON 형식의 텍스트 데이타로 변환되어 응답 처리
+		return memberList;
+	}
+
+	@RequestMapping("/member_map")
+	@ResponseBody
+	public Map<String, Object> restMemberMap() {
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		map.put("id", "abc123");
+		map.put("name", "홍길동");
+		map.put("email", "abc@itwill.xyz");
+		
+		//Map 객체를 자바스크립트의 Object 객체의 JSON 형식의 텍스트 데이타로 변환되어 응답 처리
+		return map;
+	}
+	
+	@RequestMapping(value = "/board", method = RequestMethod.GET)
+	public String board() {
+		return "rest/board";
+	}
 }
+
+		
+
+
 
 
 
