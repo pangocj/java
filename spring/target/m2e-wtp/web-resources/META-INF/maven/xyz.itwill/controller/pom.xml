@@ -269,7 +269,14 @@
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.5</version>
 		</dependency>
-
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<!-- => Java 객체를 JSON 형식의 문자열로 변환하는 기능을 제공하는 라이브러리 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.15.2</version>
+		</dependency>
 	</dependencies>
 	
     <build>
