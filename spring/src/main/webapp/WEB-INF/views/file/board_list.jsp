@@ -52,7 +52,7 @@ th, td {
 		</c:forEach>
 	</table>
 
-	<%-- 페이지 번호 출력 --%>
+	<%-- 페이지 번호 출력 - 링크 제공 --%>
 	<c:choose>
 		<c:when test="${pager.startPage > pager.blockSize }">
 			<a href="<c:url value="/file/list"/>?pageNum=${pager.prevPage}">[이전]</a>

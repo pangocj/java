@@ -66,7 +66,7 @@ public class FileBoardServiceImpl implements FileBoardService {
 		pageMap.put("endRow", pager.getEndRow());
 		List<FileBoard> fileBoardList=fileBoardDAO.selectFileBoardList(pageMap);
 		
-		//Controller 클래스에 반환되는 결과값을 제공하기 위한 Map 객체(시작 행번호, 종료 행번호) 생성
+		//Controller 클래스에게 제공되는 데이타 처리 결과값을 반환하기 위한 Map 객체 생성
 		Map<String, Object> resultMap=new HashMap<String, Object>();
 		resultMap.put("pager", pager);
 		resultMap.put("fileBoardList", fileBoardList);

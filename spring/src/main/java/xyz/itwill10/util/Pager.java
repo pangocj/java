@@ -2,7 +2,7 @@ package xyz.itwill10.util;
 
 import lombok.Data;
 
-//페이징 처리 관련 값을 필드에 저장하기 위한 클래스
+//페이징 처리 관련 값을 저장하기 위한 클래스
 @Data
 public class Pager {
 	//생성자를 이용하여 초기값을 전달받아 필드에 저장

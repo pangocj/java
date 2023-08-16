@@ -46,7 +46,7 @@ public class FileDownload extends AbstractView {
 		// => response.setContentLengthLong(long length) : 클라이언트에게 파일의 크기를 전달하는 메소드 
 		response.setContentLengthLong(file.length());
 		//클라이언트에 저장될 파일명을 클라이언트에게 전달
-		// => 전달될 파일의 이름에 한글이 존재할 경우 부로화 처리하여 전달
+		// => 전달될 파일의 이름에 한글이 존재할 경우 부호화 처리하여 전달
 		originalFilename=URLEncoder.encode(originalFilename, "utf-8");
 		response.setHeader("Content-Disposition", "attachement;filename=\""+originalFilename+"\";");
 		
