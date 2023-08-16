@@ -1,8 +1,10 @@
 package xyz.itwill10.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 //REST(Representational State Transfer) : 자원(Resource)의 표현(Representational)에 의한
 //상태(State)를 전달(Transfer)하는 것을 의미
@@ -11,9 +13,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 // => 스마트기기의 프로그램(앱) 정보를 전달받아 사용하거나 실행결과를 제공받아 출력하기 위해 사용
 
 @Controller
+@RequestMapping("/rest")
 public class RestfulController {
-	@RequestMapping(value = "/rest", method = RequestMethod.GET)
-	public String rest() {
+	//회원정보를 입력받기 위한 JSP 문서의 뷰이름을 반환하는 요청 처리 메소드
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String join() {
 		return "rest/input";
 	}
+	
+	//전달값을 매개변수로 제공받아 뷰에게 속성값으로 저장하여 출력하기 위한 JSP 문서의 뷰이름을
+	//반환하는 요청 처리 메소드
+	// => 하나의 전달값을 하나의 매개변수로 제공받아 요청 처리 메소드에서 사용 - @RequestParam 어노테이션 사용
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public String join(@RequestParam String id, @RequestParam String name, Model model) {
+		model.addAttribute("id", id);
+		model.addAttribute("name", name);
+		return "rest/output";
+	}
 }
+
+
+
+
+
+
+
