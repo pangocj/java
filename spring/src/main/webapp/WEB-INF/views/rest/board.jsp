@@ -107,7 +107,8 @@
 		page=pageNum;
 		$.ajax({
 			type: "get",
-			url: "<c:url value="/rest/board_list"/>?pageNum="+pageNum,
+			url: "<c:url value="/rest/board_list"/>",
+			data: {"pageNum":pageNum},		
 			dataType: "json",
 			success: function(result) {
 				//alert(result);//[object Object] >> Map 객체가 변환되어 응답된 결과
@@ -165,7 +166,7 @@
 			html+="[이전]";
 		}
 		
-		for(i = pager.startPage ; i < pager.endPage ; i++) {
+		for(i = pager.startPage ; i <= pager.endPage ; i++) {
 			if(pager.pageNum != i) {
 				html+="<a href='javascript:boardListDisplay("+i+");'>["+i+"]</a>";
 			} else {
@@ -181,6 +182,63 @@
 		
 		$("#pageNumDiv").html(html);
 	}
+	
+	//[글쓰기] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	$("#writeBtn").click(function() {
+		//변경 게시글을 입력받기 위한 태그 초기화
+		$(".update").val("");//입력태그 초기화
+		$("#updateDiv").hide();//태그 숨김
+		
+		//신규 게시글을 입력받기 위한 태그 출력
+		$("#insertDiv").show();
+	});
+	
+	//신규 게시글을 입력받기 위핸 태그에서 [저장] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 사용자 입력값을 반환받아 RESTBOARD 테이블에 삽입 처리하는 Restful API를 비동기식을 요청하여
+	//실행결과를 제공받아 출력 처리
+	$("#insertBtn").click(function() {
+		var writer=$("#insertWriter").val();
+		var content=$("#insertContent").val();
+		
+		if(writer == "") {
+			alert("작성자를 입력해 주세요.");
+			return;
+		}
+		
+		if(content == "") {
+			alert("내용을 입력해 주세요.");
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "<c:url value="/rest/board_add"/>",
+			//headers : 요청정보가 저장된 리퀘스트 메세지의 머릿부(Header)를 변경하기 위한 속성
+			// => 리퀘스트 메세지 몸체부에 저장되어 전달될 값의 파일형식(MimeType)을 변경
+			//headers: {"contentType":"application/json"},
+			//contentType : 리퀘스트 메세지 몸체부에 저장되어 전달될 값의 파일형식(MimeType)을 변경하기 위한 속성
+			// => 리퀘스트 메소드 몸체부에 JSON 형식의 문자열로 값 전달
+			// => 요청 처리 메소드의 매개변수에서 @RequestBody 어노테이션을 사용하여 JSON 형식의
+			//문자열을 Java 객체로 전달받아 사용 - 값을 Java 객체의 필드값으로 저장되어 제공
+			contentType: "application/json",
+			//JSON.stringify(object) : 자바스트립트 객체를 JSON 형식의 문자값으로 변환하여 반환하는 메소드
+			data: JSON.stringify({"writer":writer, "content":content}),
+			dateType: "text",
+			success: function(result) {
+				if(result == "success") {
+					//신규 게시글을 입력받기 위한 태그 초기화
+					$(".insert").val("");//입력태그 초기화
+					$("#insertDiv").hide();//태그 숨김
+					
+					//게시글 목록을 제공받아 출력하는 함수 호출
+					boardListDisplay(page);
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 삽입) = "+xhr.stauts);
+			}
+		});
+	});
 	</script>
 </body>
 </html>
