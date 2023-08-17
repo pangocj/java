@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- DataSource 인터페이스를 상속받은 자식클래스를 Spring Bean으로 등록 -->
+	<!-- => spring-jdbc 라이브러리의 DriverManagerDataSource 클래스 사용 -->
+	<!-- => DBCP(DataBase Connection Pool) 기능을 제공하는 DataSource 객체 생성 -->
+	<!-- => DataSource 객체 필드에 Connection 객체를 생성하기 위한 값을 전달하여 저장 - Setter Injection -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
+	</bean>
+	
+	<!-- JdbcTemplate 클래스를 Spring Bean으로 등록 -->
+	<!-- => JdbcTemplate 클래스의 dataSource 필드에 DataSource 인터페이스를 상속받은 자식클래스의 
+	Spring Bean(객체)를 제공받아 의존성 주입(DI) - Setter Injection -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- StudentDAO 인터페이스를 상속받은 자식클래스(StudentDAOImpl 클래스)을 Spring Bean으로 등록 -->
+	<!-- => StudentDAOImpl 클래스의 jdbcTemplate 필드에 JdbcTemplate 클래스의 Spring Bean(객체)를
+	제공받아 의존성 주입(DI) - Setter Injection -->
+	<bean class="xyz.itwill08.dao.StudentDAOImpl" id="studentDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
+	<!-- StudentService 인터페이스를 상속받은 자식클래스(StudentServiceImpl 클래스)을 Spring Bean으로 등록 -->
+	<!-- => StudentServiceImpl 클래스의 studentDAO 필드에 StudentDAO 인터페이스를 상속받은
+	자식클래스의 Spring Bean(객체)를 제공받아 의존성 주입(DI) - Setter Injection -->
+	<bean class="xyz.itwill08.dao.StudentServiceImpl" id="studentService">
+		<property name="studentDAO" ref="studentDAO"/>
+	</bean>
+</beans>

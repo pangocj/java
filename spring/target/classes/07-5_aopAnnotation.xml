@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="xyz.itwill07.aop"/>
+	
+	<!-- aspectj-autoproxy : 스프링 어노테이션을 이용하여 AOP 기능을 제공하기 위한 엘리먼트 -->
+	<!-- => AOP 관련 어노테이션을 사용하여 핵심관심코드에 횡단관심코드가 삽입되어 실행되도록 설정 -->
+	<aop:aspectj-autoproxy/>
+</beans>

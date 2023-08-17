@@ -10,5 +10,5 @@ public class RestBoard {
 	private int idx;
 	private String writer;
 	private String content;
-	private String regDate;
+	private String regdate;
 }
