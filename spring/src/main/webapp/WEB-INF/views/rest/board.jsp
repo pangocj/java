@@ -102,7 +102,8 @@
 	
 	//매개변수로 요청 페이지 번호을 전달받아 페이지 번호에 대한 게시글 목록을 JSON 형식의 
 	//문자열로 제공받아 HTML 태그로 변환하여 출력하는 함수
-	// => 게시글 목록을 JSON 형식의 문자열로 제공하는 Restful API를 비동기식으로 요청하여 응답받아 처리
+	// => 게시글 목록을 JSON 형식의 문자값으로 제공하는 Restful API를 비동기식으로 요청하여
+	//실행결과(JSON)를 응답받아 처리
 	function boardListDisplay(pageNum) {
 		page=pageNum;
 		$.ajax({
@@ -111,7 +112,8 @@
 			data: {"pageNum":pageNum},		
 			dataType: "json",
 			success: function(result) {
-				//alert(result);//[object Object] >> Map 객체가 변환되어 응답된 결과
+				//JSON 형식의 문자값이 자바스크립트 객체로 변환되어 매개변수에 저장
+				//alert(result);//[object Object] 
 				
 				//매개변수로 제공받은 자바스크립트의 Object 객체를 HTML 태그로 변환
 				if(result.restBoardList.length == 0) {//검색된 게시글이 없는 경우
@@ -238,6 +240,12 @@
 				alert("에러코드(게시글 삽입) = "+xhr.stauts);
 			}
 		});
+	});
+	
+	$("#cancelInsertBtn").click(function() {
+		//신규 게시글을 입력받기 위한 태그 초기화
+		$(".insert").val("");//입력태그 초기화
+		$("#insertDiv").hide();//태그 숨김
 	});
 	</script>
 </body>

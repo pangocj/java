@@ -18,7 +18,7 @@ import xyz.itwill10.dto.RestBoard;
 import xyz.itwill10.service.RestBoardService;
 
 //REST 기능을 제공하는 요청 처리 메소드가 정상적으로 실행되는지 확인하기 위해 Advanced REST
-//Client 크롬앱을 설치하여 사용 - Restful API 테스트 프로그램
+//Client 프로그램을 설치하여 사용 - Restful API 테스트 프로그램
 
 //@RestController : REST 기능을 제공하는 요청 처리 메소드(Restful API)만 선언된 Controller 
 //클래스를 Spring Bean으로 등록하는 어노테이션
@@ -32,8 +32,8 @@ public class RestBoardController {
 	//페이지 번호를 전달받아 RESTBAORD 테이블에 저장된 게시글 중 페이지 번호에 출력될 게시글
 	//목록을 검색하여 JSON 형식의 문자열로 응답하는 요청 처리 메소드
 	//REST 기능을 제공하는 요청 처리 메소드는 @RequestMapping 어노테이션 대신 @GetMapping,
-	//@PostMapping, @PutMapping, @PatchMapping, @DeleteMapping 어노테이션을 사용하여 요청 
-	//페이지를 요청 처리 메소드와 매핑 처리하는 것을 권장
+	//@PostMapping, @PutMapping, @PatchMapping, @DeleteMapping 어노테이션을 사용하여 페이지의 
+	//요청 URL 주소를 요청 처리 메소드와 매핑 처리하는 것을 권장
 	// => 요청방식 : GET(검색), POST(삽입), PUT(전체 변경), PATCH(부분 변경), DELETE(삭제) 등
 	//@RequestMapping(value = "/board_list", method = RequestMethod.GET)
 	@GetMapping("/board_list")
@@ -41,11 +41,11 @@ public class RestBoardController {
 	//@ResponseBody 어노테이션을 생략해도 문자열로 응답 처리 가능
 	//@ResponseBody
 	public Map<String, Object> restBoardList(@RequestParam(defaultValue = "1") int pageNum) {
-		//자바스트립트의 Object 객체 형식의 문자열로 반환
+		//Map 객체를 자바스트립트의 Object 객체 형식의 문자열로 변환하여 응답 처리
 		return restBoardService.getRestBoardList(pageNum);		
 	}
 	
-	//게시글을 전달받아 RESTBOARD 테이블에 게시글을 삽입 처리하고 실행결과를 문자열로 응답하는 요청 처리 메소드
+	//게시글을 전달받아 RESTBOARD 테이블에 게시글을 삽입 처리하고 실행결과를 일반 문자열로 응답하는 요청 처리 메소드
 	// => [application/json] 형식의 문자열로 전달된 게시글을 Java 객체로 제공받아 매개변수에
 	//저장하기 위해 @RequestBody 어노테이션 사용
 	@PostMapping("/board_add")
@@ -82,16 +82,17 @@ public class RestBoardController {
 		return restBoardService.getRestBoard(idx);
 	}
 	
-	//게시글을 전달받아 RESTBOARD 테이블에 저장된 게시글을 변경하고 실행결과를 문자열로 응답하는 요청 처리 메소드
+	//게시글을 전달받아 RESTBOARD 테이블에 저장된 게시글을 변경하고 실행결과를 일반 문자열로 응답하는 요청 처리 메소드
 	// => [application/json] 형식의 문자열로 전달된 게시글을 Java 객체로 제공받아 매개변수에
 	//저장하기 위해 @RequestBody 어노테이션 사용	
 	@PutMapping("/board_modify")
 	public String restBoardModify(@RequestBody RestBoard restBoard) {
+		restBoard.setContent(HtmlUtils.htmlEscape(restBoard.getContent()));
 		restBoardService.modifyRestBoard(restBoard);
 		return "success";
 	}
 
-	//글번호를 전달받아 RESTBOARD 테이블에 저장된 게시글을 삭제하고 실행결과를 문자열로 응답하는 요청 처리 메소드
+	//글번호를 전달받아 RESTBOARD 테이블에 저장된 게시글을 삭제하고 실행결과를 일반 문자열로 응답하는 요청 처리 메소드
 	// => 요청 URL 주소로 표현된 글번호를 매개변수로 제공받아 사용
 	@DeleteMapping("/board_remove/{idx}")
 	public String restBoardRemove(@PathVariable int idx) {
