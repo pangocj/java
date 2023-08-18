@@ -73,7 +73,7 @@
 	
 	<%-- 변경 게시글을 입력받기 위한 태그 --%>
 	<div id="updateDiv" class="inputDiv">
-		<input type="hidden" id="updateNum">
+		<input type="hidden" id="updateIdx">
 		<table>
 			<tr>
 				<td>작성자</td>
@@ -141,8 +141,8 @@
 					html+="<td align='center'>"+this.writer+"</td>";
 					html+="<td>"+this.content+"</td>";
 					html+="<td align='center'>"+this.regdate+"</td>";
-					html+="<td align='center'><button type='button'>변경</button></td>";
-					html+="<td align='center'><button type='button'>삭제</button></td>";
+					html+="<td align='center'><button type='button' onclick='modify("+this.idx+");'>변경</button></td>";
+					html+="<td align='center'><button type='button' onclick='remove("+this.idx+");'>삭제</button></td>";
 					html+="</tr>";
 				});
 				html+="</table>";
@@ -196,8 +196,7 @@
 	});
 	
 	//신규 게시글을 입력받기 위핸 태그에서 [저장] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
-	// => 사용자 입력값을 반환받아 RESTBOARD 테이블에 삽입 처리하는 Restful API를 비동기식을 요청하여
-	//실행결과를 제공받아 출력 처리
+	// => 사용자 입력값(게시글)을 삽입 처리하는 Restful API를 비동기식으로 요청하여 실행결과를 제공받아 응답 처리
 	$("#insertBtn").click(function() {
 		var writer=$("#insertWriter").val();
 		var content=$("#insertContent").val();
@@ -242,11 +241,109 @@
 		});
 	});
 	
+	//신규 게시글을 입력받기 위핸 태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
 	$("#cancelInsertBtn").click(function() {
 		//신규 게시글을 입력받기 위한 태그 초기화
 		$(".insert").val("");//입력태그 초기화
 		$("#insertDiv").hide();//태그 숨김
 	});
+	
+	//게시글의 [변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 글번호의 게시글을 JSON 형식의 문자값으로 제공하는 Restful API를 비동기식을 요청하여 
+	//실행결과(JSON)를 응답받아 처리
+	function modify(idx) {
+		//alert(idx);
+		
+		//신규 게시글을 입력받기 위한 태그 초기화
+		$(".insert").val("");//입력태그 초기화
+		$("#insertDiv").hide();//태그 숨김
+		
+		//변경 게시글을 입력받기 위한 태그 출력
+		$("#updateDiv").show();
+		
+		$.ajax({
+			type: "get",
+			//비동기식으로 페이지 요청시 요청 URL 주소로 글번호를 표현하여 전달
+			url: "<c:url value="/rest/board_view"/>/"+idx,
+			dataType: "json",
+			success: function(result) {
+				//실행결과를 자바스트립트 객체로 제공받아 입력태그의 초기값 변경
+				$("#updateIdx").val(result.idx);
+				$("#updateWriter").val(result.writer);
+				$("#updateContent").val(result.content);
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 검색) = "+xhr.stauts);
+			}
+		});
+	}
+	
+	//변경 게시글을 입력받기 위한 태그에서 [변경] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	// => 사용자 입력값(게시글)을 변경 처리하는 Restful API를 비동기식으로 요청하여 실행결과를 제공받아 응답 처리
+	$("#updateBtn").click(function() {
+		var idx=$("#updateIdx").val();
+		var writer=$("#updateWriter").val();
+		var content=$("#updateContent").val();
+		
+		if(writer == "") {
+			alert("작성자를 입력해 주세요.");
+			return;
+		}
+		
+		if(content == "") {
+			alert("내용을 입력해 주세요.");
+			return;
+		}
+		
+		$.ajax({
+			type: "put",
+			url: "<c:url value="/rest/board_modify"/>",
+			contentType: "application/json",
+			data: JSON.stringify({"idx":idx, "writer":writer, "content":content}),
+			dateType: "text",
+			success: function(result) {
+				if(result == "success") {
+					//변경 게시글을 입력받기 위한 태그 초기화
+					$(".update").val("");//입력태그 초기화
+					$("#updateDiv").hide();//태그 숨김
+					
+					//게시글 목록을 제공받아 출력하는 함수 호출
+					boardListDisplay(page);
+				}
+			},
+			error: function(xhr) {
+				alert("에러코드(게시글 변경) = "+xhr.stauts);
+			}
+		});
+	});
+	
+	//변경 게시글을 입력받기 위핸 태그에서 [취소] 태그를 클릭한 경우 호출되는 이벤트 처리 함수 등록
+	$("#cancelUpdateBtn").click(function() {
+		//변경 게시글을 입력받기 위한 태그 초기화
+		$(".update").val("");//입력태그 초기화
+		$("#updateDiv").hide();//태그 숨김
+	});
+	
+	//게시글의 [삭제] 태그를 클릭한 경우 호출되는 이벤트 처리 함수
+	// => 게시글을 삭제 처리하는 Restful API를 비동기식으로 요청하여 실행결과를 제공받아 응답 처리
+	function remove(idx) {
+		if(confirm("게시글을 삭제 하시겠습니까?")) {
+			$.ajax({
+				type: "delete",
+				url: "<c:url value="/rest/board_remove"/>/"+idx,
+				dateType: "text",
+				success: function(result) {
+					if(result == "success") {
+						//게시글 목록을 제공받아 출력하는 함수 호출
+						boardListDisplay(page);
+					}
+				},
+				error: function(xhr) {
+					alert("에러코드(게시글 삭제) = "+xhr.stauts);
+				}
+			});
+		}
+	}
 	</script>
 </body>
 </html>
