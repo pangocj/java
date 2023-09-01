@@ -60,24 +60,21 @@
 		<tr>
 			<td>성별</td>
 			<td>
+				<%-- Spring radiobutton 태그 : 문자열을 입력받기 위한 태그 --%>
+				<%-- => input 태그의 type 속성값을 [radio]로 설정하는 것과 동일 --%>
 				남자<form:radiobutton path="gender" value="남자"/>&nbsp;&nbsp;
 				여자<form:radiobutton path="gender" value="여자"/>
+				<form:errors path="gender" cssClass="error" element="span" delimiter=", "/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<%-- Spring button 태그 : 제출 이벤트를 발생하기 위한 태그 --%>
+				<%-- => button 태그의 type 속성값을 [submit]로 설정하는 것과 동일 --%>
+				<form:button>등록</form:button>
 			</td>
 		</tr>
 	</table>
 	</form:form>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
