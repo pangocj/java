@@ -39,4 +39,15 @@ public class ValidController {
 				
 		return "valid/html_result";
 	}
+	
+	//Spring Form 태그에서 사용하기 위한 Command 객체를 저장할 매개변수 선언
+	@RequestMapping(value = "/spring", method = RequestMethod.GET)
+	public String spring(@ModelAttribute Employee employee) {
+		return "valid/spring_form";
+	}
 }
+
+
+
+
+
