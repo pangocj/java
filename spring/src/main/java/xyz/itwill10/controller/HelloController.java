@@ -19,7 +19,7 @@ public class HelloController {
 	
 	//요청 처리 메소드는 Front Controller에게 반드시 뷰이름(ViewName) 제공
 	// => Front Controller는 제공받은 뷰이름을 이용하여 ViewResolver 객체로 응답 처리되도록 변환
-	//1.메소드의 반환형을 [void]로 작성한 경우 메소드의 이름을 뷰이름으로 제공 
+	//1.메소드의 반환형을 [void]로 작성한 경우 @RequestMapping 오노테이션의 value 속성값을 뷰이름으로 제공 
 	//2.메소드의 반환형을 [String]로 작성한 경우 메소드의 반환값(문자열)을 뷰이름으로 제공 
 	//3.메소드의 반환형을 [ModelAndView]로 작성한 경우 반환된 ModelAndView 객체에 뷰이름을 저장하여 제공
 
