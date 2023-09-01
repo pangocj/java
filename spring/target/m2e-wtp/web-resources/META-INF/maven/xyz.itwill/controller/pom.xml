@@ -286,7 +286,14 @@
 		    <artifactId>validation-api</artifactId>
 		    <version>2.0.1.Final</version>
 		</dependency>
-
+		
+		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<!-- => 어노테이션을 이용하여 유효성 검증 기능을 제공하는 라이브러리 -->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.2.5.Final</version>
+		</dependency>
 	</dependencies>
 	
     <build>

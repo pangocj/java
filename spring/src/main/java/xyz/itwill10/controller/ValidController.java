@@ -1,5 +1,7 @@
 package xyz.itwill10.controller;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.validation.Valid;
@@ -50,6 +52,8 @@ public class ValidController {
 	//Spring Form 태그에서 사용하기 위한 Command 객체를 저장할 매개변수 선언
 	@RequestMapping(value = "/spring", method = RequestMethod.GET)
 	public String spring(@ModelAttribute Employee employee) {
+		//List 객체를 생성하여 뷰에게 제공
+		//model.addAttribute("genderList", Arrays.asList("남자", "여자"));
 		return "valid/spring_form";
 	}
 	
@@ -61,12 +65,19 @@ public class ValidController {
 	public String spring(@ModelAttribute @Valid Employee employee, Errors errors) {
 		//Errors.hasErrors() : Errors 객체에 에러 관련 정보가 존재할 경우 [true]를 반환하는 메소드
 		if(errors.hasErrors()) {
+			//model.addAttribute("genderList", Arrays.asList("남자", "여자"));
 			return "valid/spring_form";
 		}
 		
 		employee.setPasswd(BCrypt.hashpw(employee.getPasswd(), BCrypt.gensalt()));
 
 		return "valid/result";
+	}
+	
+	//모든 요청 처리 메소드의 뷰에게 반환값을 제공하는 어노테이션
+	@ModelAttribute("genderList")
+	public List<String> genderList() {
+		return Arrays.asList("남자", "여자");
 	}
 }
 

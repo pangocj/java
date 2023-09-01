@@ -8,6 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>SPRING</title>
+<style type="text/css">
+.error {
+	color: red;
+}
+</style>
 </head>
 <body>
 	<h1>사원등록</h1>
@@ -15,7 +20,7 @@
 	<c:url value="/valid/spring" var="url"/>
 	<%-- Spring Form 태그 : 페이지를 요청하여 입력값을 전달하는 태그 --%>
 	<%-- modelAttribute 속성(필수) : 요청 처리 메소드 매개변수에 저장된 Command 객체의 속성명을 속성값으로 설정 --%>
-	<form:form action="${url }" method="post" id="joinForm" modelAttribute="employee">
+	<form:form action="${url }" method="post" modelAttribute="employee">
 	<table>
 		<tr>
 			<td>아이디</td>
@@ -60,10 +65,20 @@
 		<tr>
 			<td>성별</td>
 			<td>
-				<%-- Spring radiobutton 태그 : 문자열을 입력받기 위한 태그 --%>
+				<%-- Spring radiobutton 태그 : 목록 중 하나를 선택하여 전달하기 위한 태그 --%>
 				<%-- => input 태그의 type 속성값을 [radio]로 설정하는 것과 동일 --%>
+				<%-- 
 				남자<form:radiobutton path="gender" value="남자"/>&nbsp;&nbsp;
 				여자<form:radiobutton path="gender" value="여자"/>
+				--%>
+				<%-- Spring radiobuttons 태그 : 목록 중 하나를 선택하여 전달하기 위한 태그 --%>
+				<%-- => List 객체의 요소값을 제공받아 선택 가능 목록 제공 --%>
+				<%-- items 속성 : List 객체(EL)를 속성값으로 설정 --%>
+				<%-- <form:radiobuttons path="gender" items="${genderList }"/> --%>
+				
+				<%-- Spring select 태그 : 목록 중 하나를 선택하여 전달하기 위한 태그 --%>
+				<%-- => select 태그와 option 태그를 설정하는 것과 동일 --%>
+				<form:select path="gender" items="${genderList }"/>
 				<form:errors path="gender" cssClass="error" element="span" delimiter=", "/>
 			</td>
 		</tr>
