@@ -12,7 +12,7 @@
 <body>
 	<h1>사원등록</h1>
 	<hr>
-	<c:url value="/valid/html" var="url"/>
+	<c:url value="/valid/spring" var="url"/>
 	<%-- Spring Form 태그 : 페이지를 요청하여 입력값을 전달하는 태그 --%>
 	<%-- modelAttribute 속성(필수) : 요청 처리 메소드 매개변수에 저장된 Command 객체의 속성명을 속성값으로 설정 --%>
 	<form:form action="${url }" method="post" id="joinForm" modelAttribute="employee">
