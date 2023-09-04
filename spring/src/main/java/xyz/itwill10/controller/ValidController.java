@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import xyz.itwill10.dto.Employee;
 
-//스프링 입력값 검증(InputDate Validation) : 사용자 입력값에 대한 유효성 검사를 구현하기 위한 기능
+//스프링 검증(Spring Validation) : 사용자 입력값에 대한 유효성 검사를 구현하기 위한 기능
 //1.validation-api 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
 //2.HTML 태그 대신 Spring 태그를 사용하여 페이지 요청시 입력값이 전달되도록 뷰 작성
 //3.Controller 클래스의 요청 처리 메소드에서 전달값이 저장된 Command 객체를 저장하는 매개변수에
@@ -59,8 +59,9 @@ public class ValidController {
 	
 	//@Valid  : Spring 태그에 의해 전달된 값을 Command 객체의 필드에 저장하기 전에 전달값에
 	//대한 유효성 검증 기능을 제공하기 위한 어노테이션
-	// => VO(DTO) 클래스의 필드에 유효성 검증 관련 어노테이션 사용
-	//Errors : 유효성 검증 후 발생되는 모든 에러 관련 정보를 저장하기 위한 객채
+	// => VO(DTO) 클래스의 필드에 유효성 검증 관련 어노테이션 사용 - hibernate-validator 
+	//라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
+	//Errors 객체 : 유효성 검증 후 발생되는 모든 에러 관련 정보를 저장하기 위한 객체
 	@RequestMapping(value = "/spring", method = RequestMethod.POST)
 	public String spring(@ModelAttribute @Valid Employee employee, Errors errors) {
 		//Errors.hasErrors() : Errors 객체에 에러 관련 정보가 존재할 경우 [true]를 반환하는 메소드
