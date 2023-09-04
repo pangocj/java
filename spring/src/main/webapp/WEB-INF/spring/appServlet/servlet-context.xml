@@ -180,12 +180,25 @@
 	<beans:bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSource">
 		<beans:property name="basenames">
 			<beans:list>
+				<!-- classpath를 이용하여 설정된 Properties 파일을 변경한 경우 반드시 서버를
+				재실행해야 변경된 메세지로 적용  -->
 				<beans:value>classpath:message/label</beans:value>
+				<!-- classpath를 이용하지 않고 설정된 Properties 파일을 변경한 경우 cacheSeconds
+				필드에 저장된 시간이 지나면 변경된 메세지로 적용 -->
+				<beans:value>/WEB-INF/message/error</beans:value>
 			</beans:list>
 		</beans:property>
+		<!-- cacheSeconds 필드에 Properties 파일을 읽어 메모리에 로딩되기 위한 시간(초)이 저장되도록 값 주입 -->
 		<beans:property name="cacheSeconds" value="60"/>
+		<!-- defaultEncoding 필드에 Properties 파일의 문자형태(캐릭터셋)을 저장되도록 값 주입 -->
 		<beans:property name="defaultEncoding" value="utf-8"/>
 	</beans:bean>	
+	
+	<!-- 세션에 저장된 사용 언어를 이용하여 메세지 기능을 제공하기 위한 클래스를 Spring Bean으로 등록 -->
+	<beans:bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver" id="localeResolver">
+		<!-- defaultLocale 필드에 기본적으로 사용될 메세지의 사용 언어를 속성값으로 설정 -->
+		<beans:property name="defaultLocale" value="ko"/>
+	</beans:bean>
 	
 	<!-- 파일 다운로드 기능을 제공하는 클래스를 Spring Bean으로 등록 -->
 	<!-- => Spring Bean의 식별자(beanName)을 반드시 요청 처리 메소드의 반환값과 같도록 작성 -->

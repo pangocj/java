@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class Product {
+	//@NotEmpty(message = "제품코드를 입력해 주세요.")
 	@NotEmpty
 	private String productCode;
 	@NotEmpty
