@@ -5,7 +5,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
@@ -200,7 +202,40 @@
 		<beans:property name="defaultLocale" value="ko"/>
 	</beans:bean>
 	
+	<!-- Scheduling 기능을 제공하기 위한 클래스를 Spring Bean으로 등록 -->
+	<beans:bean class="xyz.itwill10.util.Scheduler" id="scheduler"/>
+	
+	<!-- 스케줄링 기능을 구현하기 위해 Spring Bean Configuration File에 task 네임스페이스를
+	추가하여 spring-task.xsd 파일의 엘리먼트를 사용할 수 있도록 설정 -->
+	<!-- scheduler : 스케줄링 기능을 제공하기 위한 엘리먼트 -->
+	<!-- pool-size 속성 : 스케줄링 기능을 제공하기 위한 스레드의 갯수를 속성값으로 설정 -->
+	<!-- <task:scheduler id="baseScheduler" pool-size="10"/> -->
+	<!-- scheduled-tasks : 스케줄링 기능으로 실행될 객체를 설정하기 위한 엘리먼트 -->
+	<!-- scheduled : 스케줄링 기능을 이용하여 실행하기 위한 정보를 제공하는 엘리먼트 -->
+	<!-- ref 속성 : 스케줄링 기능으로 실행된 객체(Spring Bean)의 식별자(beanName)를 속성값으로 설정 -->
+	<!-- method 속성 : 객체(Spring Bean)로 자동 호출되는 메소드를 속성값으로 설정 -->
+	<!-- cron 속성 : 메소드를 호출하기 위한 날짜 및 시간을 속성값으로 설정 -->
+	<!-- => 속성값 : 초 분 시 일 월 요일 - 패턴문자 사용 가능 -->
+	<!--  
+	<task:scheduled-tasks scheduler="baseScheduler">
+		<task:scheduled ref="scheduler" method="autoUpdate" cron="1 * * * * *"/>
+	</task:scheduled-tasks>
+	-->
+	
+	<!-- annotation-driven : 스케줄링 관련 어노테이션을 사용하기 위해 설정하는 엘리먼트 -->
+	<task:annotation-driven/>
+	
 	<!-- 파일 다운로드 기능을 제공하는 클래스를 Spring Bean으로 등록 -->
 	<!-- => Spring Bean의 식별자(beanName)을 반드시 요청 처리 메소드의 반환값과 같도록 작성 -->
 	<beans:bean class="xyz.itwill10.util.FileDownload" id="fileDownload"/>	
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
