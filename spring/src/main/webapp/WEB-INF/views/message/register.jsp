@@ -17,9 +17,9 @@
 	<form:form action="${url }" method="post" modelAttribute="product">
 	<table>
 		<tr>
-			<%-- <td>제품코드</td> --%>
 			<%-- message : MessageSource 객체를 사용하여 메세지를 제공받아 출력하는 태그 --%>
 			<%-- code 속성 : Properties 파일에서 메세지를 제공하기 위한 식별자(이름)를 속성값 설정  --%>
+			<%-- <td>제품코드</td> --%>
 			<td><spring:message code="product.code"/></td>
 			<td>
 				<form:input path="productCode"/>
