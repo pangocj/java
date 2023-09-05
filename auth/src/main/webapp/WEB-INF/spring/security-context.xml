@@ -30,6 +30,15 @@
 		<intercept-url pattern="/manager/**" access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')"/>
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<intercept-url pattern="/**" access="permitAll"/>
+		
+		<!-- form-login : form 방식의 로그인 페이지를 설정하기 위한 엘리먼트 -->
+		<!-- => 속성을 사용하지 않은 경우 Spring Security의 로그인 페이지를 제공 -->
+		<!-- login-page : 아이디와 비밀번호를 입력받기 위한 로그인 페이지의 URL 주소를 속성값으로 설정 -->
+		<!-- login-processing-url : 아이디와 비밀번호를 전달받아 로그인 처리하는 페이지의 URL 주소를 속성값으로 설정 -->
+		<!-- username-parameter : 아이디를 전달하기 위한 이름을 속성값으로 설정 -->
+		<!-- default-target-url : 로그인 성공시 이동될 페이지의 URL 주소를 속성값으로 설정  -->
+		<form-login login-page="/login" login-processing-url="/login" 
+			username-parameter="userid" password-parameter="passwd" default-target-url="/"/>
 	</http>
 	
 	<!-- authentication-manager : 인증 관리자를 등록하기 위한 엘리먼트  -->
