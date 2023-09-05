@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http></http>
+	
+	<!-- authentication-manager : 인증 관리자를 등록하기 위한 엘리먼트  -->
+	<!-- authentication-provider : 인증 제공자를 등록하기 위한 엘리먼트 -->
+	<!-- user-service : 인증 정보를 등록하기 위한 엘리먼트 -->
+	<!-- user : 인증을 위한 정보를 설정하는 엘리먼트 -->
+	<!-- name 속성 : 사용자를 구분하기 위한 식별자(아이디)를 속성값으로 설정 -->
+	<!-- password 속성 : 사용자의 비밀번호를 속성값으로 설정 -->
+
+	<!-- authorities 속성 : 권한(Role)를 속성값으로 설정 -->
+	<!-- => 권한은 ROLE 기반으로 설정 - 속성값은 ROLE_XXX 형식으로 설정 -->
+	<!-- => , 기호를 사용하여 권한을 구분하여 여러개의 권한 설정 가능 -->
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="abc123" password="123456" authorities="ROLE_USER"/>
+				<user name="xyz789" password="123456" authorities="ROLE_MANAGER"/>
+				<user name="opq456" password="123456" authorities="ROLE_ADMIN"/>
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
