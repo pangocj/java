@@ -49,6 +49,14 @@
 		<!-- default-target-url : 로그인 성공시 이동될 페이지의 URL 주소를 속성값으로 설정  -->
 		<form-login login-page="/loginPage" login-processing-url="/loginPage" 
 			username-parameter="userid" password-parameter="passwd" default-target-url="/"/>
+			
+		<!-- access-denied-handler : AccessDeniedException 발생된 경우 403 에러코드를 전달하는
+		대신 응답결과를 제공하기 위한 엘리먼트 -->
+		<!-- error-page 속성 : 403 에러코드 대신 응답될 페이지의 URL 주소를 속성값으로 설정 -->	
+		<!-- <access-denied-handler error-page="/accessDenied"/> -->
+		<!-- ref 속성 : AccessDeniedHandler 인터페이스를 상속받은 클래스에 대한 Spring Bean의
+		식별자(beanName)를 속성값으로 설정 -->
+		<access-denied-handler ref="customAccessDeniedHandler"/>	
 	</http>
 	
 	<!-- authentication-manager : 인증 관리자를 등록하기 위한 엘리먼트  -->
@@ -74,4 +82,15 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
+	
+	<!-- Spring Security 관련 클래스를 Spring Bean으로 등록 -->
+	<beans:bean class="xyz.itwill.security.CustomAccessDeniedHandler" id="customAccessDeniedHandler"/>
 </beans:beans>
+
+
+
+
+
+
+
+

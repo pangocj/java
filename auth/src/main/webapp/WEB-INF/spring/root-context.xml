@@ -32,4 +32,14 @@
 	</bean>
 	
 	<tx:annotation-driven/>
+	
+	<bean class="org.springframework.context.support.ReloadableResourceBundleMessageSource" id="messageSource">
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/message/security_message</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="60"/>
+		<property name="defaultEncoding" value="utf-8"/>
+	</bean>		
 </beans>

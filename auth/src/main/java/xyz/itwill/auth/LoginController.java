@@ -10,4 +10,9 @@ public class LoginController {
 	public String login() {
 		return "login_page";
 	}
+	
+	@RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
+	public String accessDenied() {
+		return "access_denied";
+	}
 }
