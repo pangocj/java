@@ -45,6 +45,20 @@
 		<%-- 예외가 저장된 세션의 속성값 삭제 --%>
 		<c:remove var="SPRING_SECURITY_LAST_EXCEPTION"/>
 	</c:if>
+	
+	<script type="text/javascript">
+	$("#loginForm").submit(function() {
+		if($("#userid").val()=="") {
+			alert("아이디를 입력해 주세요.");
+			return false;
+		}
+		
+		if($("#passwd").val()=="") {
+			alert("비밀번호를 입력해 주세요.");
+			return false;
+		}
+	});
+	</script>
 </body>
 </html>
 
