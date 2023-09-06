@@ -21,7 +21,7 @@
 	<%-- access 속성 : 권한(Role)을 속성값으로 설정 - SpEL 사용 가능 --%>
 	<%-- 인증을 받지 않은 사용자인 경우 태그 포함되도록 설정 --%>
 	<sec:authorize access="isAnonymous()">
-		<h3><a href="<c:url value="/login"/>">로그인</a></h3>
+		<h3><a href="<c:url value="/loginPage"/>">로그인</a></h3>
 	</sec:authorize>
 </body>
 </html>
