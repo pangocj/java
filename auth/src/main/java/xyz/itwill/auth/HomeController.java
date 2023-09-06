@@ -4,19 +4,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-//Spring Security : SpringMVC 프로그램의 인증과 인가 기능을 지원하는 보안 프레임워크
+//Spring Security : SpringMVC 프로그램에 인증과 인가 기능을 지원하는 보안 프레임워크
 
-//인증(Authentication) : 로그인 사용자가 맞는지를 확인하는 절차
+//인증(Authentication) : SpringMVC 프로그램을 사용할 수 있는 사용자가 맞는지를 확인하는 절차
 // => 인증을 정상적으로 수행하기 위해 사용자를 식별할 수 있는 정보 필요 - Credential  
-//인가(Authorization - 권한) : 인증된 사용자가 요청된 자원에 접근 가능한가를 결정하는 절차
-// => 인증 처리 후 실행 - 권한은 일반적으로 역활(Role) 형태로 부여
+//인가(Authorization - 권한 부여) : 인증된 사용자가 요청된 자원에 접근 가능한가를 결정하는 절차
+// => 인증 처리 후 실행되어 권한을 부여 받을 수 있으며 권한은 일반적으로 역활(Role) 형태로 부여
 
 //Spring Security는 인증과 인가를 위해 Principal 객체를 아이디로 Credential 객체를 비밀번호로 
 //사용하는 Credential 기반의 인증 방식 사용
 
 //Spring Security를 SpringMVC 프로그램에 적용하여 제공받을 수 있는 기능
 // => 다양한 형태(폼로그인 인증, 토큰 기반 인증, OAuth2 기반 인증, LDAP 인증)의 사용자 인증 기능 적용 
-// => 프로그램 사용자의 역화(Role)에 따른 권한 레벨 적용
+// => 프로그램 사용자의 역활(Role)에 따른 권한 레벨 적용
 // => 프로그램에서 제공하는 자원에 대한 접근 제어
 // => 데이타 암호화
 // => SSL 적용
@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //3.UsernamePasswordAuthenticationFilter : 아이디와 비밀번호를 사용하는 Form 기반 유저 인증을 처리하는 필터
 //=> Authentication 객체를 만들고 AuthenticationManager에게 인증 처리 위임
 //=> AuthenticationManager는 실질적인 인증에 대한 검증 단계를 총괄하는 AuthenticationProvider에게
-//인증 처리를 위임 - UserDetailService와 같은 서비스를 사용해서 인증 가능
+//인증 처리를 위임 - UserDetailService와 같은 서비스를 사용해서 인증 처리
 //4.ConcurrentSessionFilter : 동시 세션과 관련된 필터 - 이중 로그인 방지
 //5.RememberMeAuthenticationFilter : 세션이 사라지거나 만료 되더라도 쿠키 또는 DB를 사용하여
 //저장된 토큰을 기반으로 인증 처리하는 필터
@@ -58,6 +58,11 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		return "home";
+	}
+
+	@RequestMapping(value = "/guest/page", method = RequestMethod.GET)
+	public String guestPage() {
+		return "guest_page";
 	}
 	
 	@RequestMapping(value = "/user/page", method = RequestMethod.GET)

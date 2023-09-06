@@ -18,10 +18,8 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
  
 	<context:component-scan base-package="xyz.itwill.auth" />
-	
 	
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 		<beans:property name="maxUploadSize" value="20971520"/>

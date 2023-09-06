@@ -4,9 +4,10 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	
 
 	<!-- http : Spring Security 기능을 SpringMVC 프로그램에 적용하기 위한 정보를 제공하는 엘리먼트 -->
-	<!-- => Spring Security 관련 환경 설정을 제공 -->
+	<!-- => Spring Security 관련 환경 설정이 시작되는 위치를 제공 -->
 	<!-- use-expressions 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
 	<!-- => use-expressions 속성값을 [true]로 설정하면 SpEL 표현식을 사용하여 페이지 접근 여부 설정 가능 -->
 	<!-- SpEL 표현식 -->
@@ -19,25 +20,34 @@
 	<!-- => isAuthenticated() : 인증 처리된 사용자(Remember-me 기능의 사용자 포함)인 경우에만 접근 가능 -->
 	<!-- => isFullyAuthenticated() : 인증 처리된 사용자(Remember-me 기능의 사용자 제외)인 경우에만 접근 가능 -->
 	<http auto-config="true" use-expressions="true">
+		<!-- use-expressions 속성값을 [false]를 사용한 경우 access 속성값으로 SpEL 표현식 사용 불가능 -->
+		<!-- => intercept-url 엘리먼트를 사용하여 페이지에 접근 가능한 권한을 하나만 설정 가능 -->
+		<!--  
+		<intercept-url pattern="/user/**" access="ROLE_USER"/>
+		<intercept-url pattern="/manager/**" access="ROLE_MANAGER"/>
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+		-->
+		
 		<!-- intercept-url : 요청 페이지에 접근 가능한 권한을 설정하는 엘리먼트 -->
 		<!-- => 특정 페이지에 대한 권한 설정을 먼저하고 나머지는 마지막에 설정하는 것을 권장 -->
 		<!-- pattern 속성 : 요청 페이지의 URL 주소를 속성값으로 설정 -->
 		<!-- => * 또는 ** 등의 패턴문자를 사용하여 속성값 설정 가능 -->
 		<!-- access 속성 : 페이지에 접근 가능한 권한(Role)을 속성값으로 설정 -->
 		<!-- => use-expressions 속성을 [true]인 경우 SpEL를 사용하여 권한 설정 가능 -->
-		<!-- => 권한이 없는 사용자가 페이지를 요청할 경우 403 에러 코드 발생 -->
-		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN')"/>
-		<intercept-url pattern="/manager/**" access="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')"/>
+		<!-- => 권한이 없는 사용자가 페이지를 요청할 경우 AccessDeniedException 예외 발생 -->
+		<intercept-url pattern="/guest/**" access="hasAnyRole('ROLE_USER', 'ROLE_MANAGER', 'ROLE_ADMIN')"/>
+		<intercept-url pattern="/user/**" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/manager/**" access="hasRole('ROLE_MANAGER')"/>
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 		<intercept-url pattern="/**" access="permitAll"/>
 		
 		<!-- form-login : form 방식의 로그인 페이지를 설정하기 위한 엘리먼트 -->
 		<!-- => 속성을 사용하지 않은 경우 Spring Security의 로그인 페이지를 제공 -->
 		<!-- login-page : 아이디와 비밀번호를 입력받기 위한 로그인 페이지의 URL 주소를 속성값으로 설정 -->
-		<!-- login-processing-url : 아이디와 비밀번호를 전달받아 로그인 처리하는 페이지의 URL 주소를 속성값으로 설정 -->
+		<!-- login-processing-url : 아이디와 비밀번호를 전달받아 인증 처리하는 페이지의 URL 주소를 속성값으로 설정 -->
 		<!-- username-parameter : 아이디를 전달하기 위한 이름을 속성값으로 설정 -->
 		<!-- default-target-url : 로그인 성공시 이동될 페이지의 URL 주소를 속성값으로 설정  -->
-		<form-login login-page="/login" login-processing-url="/login" 
+		<form-login login-page="/loginPage" login-processing-url="/loginPage" 
 			username-parameter="userid" password-parameter="passwd" default-target-url="/"/>
 	</http>
 	
@@ -59,7 +69,7 @@
 		<authentication-provider>
 			<user-service>
 				<user name="abc123" password="{noop}123456" authorities="ROLE_USER"/>
-				<user name="xyz789" password="{noop}123456" authorities="ROLE_MANAGER"/>
+				<user name="xyz789" password="{noop}123456" authorities="ROLE_USER, ROLE_MANAGER"/>
 				<user name="opq456" password="{noop}123456" authorities="ROLE_ADMIN"/>
 			</user-service>
 		</authentication-provider>
