@@ -46,6 +46,8 @@
 		<%-- 예외가 저장된 세션의 속성값 삭제 --%>
 		<c:remove var="SPRING_SECURITY_LAST_EXCEPTION"/>
 	</c:if>
+	<hr>
+	<h3><a href="<c:url value="/"/>">메인으로</a></h3>
 	
 	<script type="text/javascript">
 	$("#loginForm").submit(function() {

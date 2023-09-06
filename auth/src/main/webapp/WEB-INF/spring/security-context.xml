@@ -4,7 +4,6 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
-	
 
 	<!-- http : Spring Security 기능을 SpringMVC 프로그램에 적용하기 위한 정보를 제공하는 엘리먼트 -->
 	<!-- => Spring Security 관련 환경 설정이 시작되는 위치를 제공 -->
@@ -49,17 +48,21 @@
 		<!-- default-target-url : 로그인 성공시 이동될 페이지의 URL 주소를 속성값으로 설정  -->
 		<!-- Spring Security는 인증 성공 후 기본적으로 SaveRequestAwareAuthenticationSuccessHandler 클래스를
 		이용하여 사용자가 원래 요청한 페이지의 정보를 유지하여 요청 페이지로 이동되도록 처리  -->
-		<!-- 
-		<form-login login-page="/loginPage" login-processing-url="/loginPage" 
-			username-parameter="userid" password-parameter="passwd" default-target-url="/"/>
-		-->
-		
 		<!-- authentication-success-handler-ref 속성 : AuthenticationSuccessHandler 인터페이스를 
+		상속받은 클래스에 대한 Spring Bean의 식별자(beanName)를 속성값으로 설정 -->
+		<!-- authentication-failure-handler-ref 속성 : AuthenticationFailuerHandler 인터페이스를 
 		상속받은 클래스에 대한 Spring Bean의 식별자(beanName)를 속성값으로 설정 -->
 		<form-login login-page="/loginPage" login-processing-url="/loginPage" 
 			username-parameter="userid" password-parameter="passwd" default-target-url="/"
 			authentication-success-handler-ref="customLoginSuccessHandler"
 			authentication-failure-handler-ref="customLoginFailuerHandler"/>
+	
+		<!-- logout : 로그아웃 처리 기능을 제공하는 엘리먼트 -->
+		<!-- logout-url 속성 : 로그아웃 처리를 위해 요청하기 위한 URL 주소를 속성값으로 설정 -->
+		<!-- logout-success-url 속성 : 로그아웃 처리후 요청할 페이지의 URL 주소를 속성값으로 설정 -->
+		<!-- invalidate-session 속성 : 세션을 무효화 처리하기 위한 논리값(false 또는 true)을 속성값으로 설정 -->
+		<!-- delete-cookies 속성 : 삭제할 쿠키에 대한 이름을 속성값으로 설정 -->
+		<logout logout-url="/logout" logout-success-url="/" invalidate-session="true" delete-cookies="JSESSIONID"/>
 			
 		<!-- access-denied-handler : AccessDeniedException 발생된 경우 403 에러코드를 전달하는
 		대신 에러 메세지로 응답결과를 제공하기 위한 엘리먼트 -->
@@ -84,6 +87,7 @@
 	<!-- authorities 속성 : 권한(Role)를 속성값으로 설정 -->
 	<!-- => 권한은 ROLE 기반으로 설정 - 속성값은 ROLE_XXX 형식으로 설정 -->
 	<!-- => 사용자에게 다수의 권한을 제공할 경우 , 기호로 구분하여 등록 설정 가능 -->
+	<!--  
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
@@ -91,6 +95,20 @@
 				<user name="xyz789" password="{noop}123456" authorities="ROLE_USER, ROLE_MANAGER"/>
 				<user name="opq456" password="{noop}123456" authorities="ROLE_ADMIN"/>
 			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+	-->
+	
+	<!-- jdbc-user-service : Spring Security가 JDBC를 이용하는 인증 처리를 하는 경우 사용하는 엘리먼트 -->
+	<!-- => JdbcUserDetailsManager 클래스를 사용하여 인증과 인가 처리 -->
+	<!-- => USERS 테이블을 생성하여 사용자 정보를 저장하고 AUTHORITIES 테이블을 생성하여 
+	사용자의 권한 정보를 저장할 경우 SQL 명령을 제공하지 않아도 기본적으로 제공되는 SQL 명령으로 
+	인증 처리후 사용자 정보(UserDetails 객체)를 반환 -->
+	<!-- data-source-ref 속성 : Connection 객체를 제공하기 위한 DataSource 관련 클래스에 대한
+	Spring Bean의 식별자(beanName)을 속성값으로 설정 -->
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"/>
 		</authentication-provider>
 	</authentication-manager>
 	
