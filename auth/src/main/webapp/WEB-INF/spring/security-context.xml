@@ -47,11 +47,22 @@
 		<!-- login-processing-url : 아이디와 비밀번호를 전달받아 인증 처리하는 페이지의 URL 주소를 속성값으로 설정 -->
 		<!-- username-parameter : 아이디를 전달하기 위한 이름을 속성값으로 설정 -->
 		<!-- default-target-url : 로그인 성공시 이동될 페이지의 URL 주소를 속성값으로 설정  -->
+		<!-- Spring Security는 인증 성공 후 기본적으로 SaveRequestAwareAuthenticationSuccessHandler 클래스를
+		이용하여 사용자가 원래 요청한 페이지의 정보를 유지하여 요청 페이지로 이동되도록 처리  -->
+		<!-- 
 		<form-login login-page="/loginPage" login-processing-url="/loginPage" 
 			username-parameter="userid" password-parameter="passwd" default-target-url="/"/>
+		-->
+		
+		<!-- authentication-success-handler-ref 속성 : AuthenticationSuccessHandler 인터페이스를 
+		상속받은 클래스에 대한 Spring Bean의 식별자(beanName)를 속성값으로 설정 -->
+		<form-login login-page="/loginPage" login-processing-url="/loginPage" 
+			username-parameter="userid" password-parameter="passwd" default-target-url="/"
+			authentication-success-handler-ref="customLoginSuccessHandler"
+			authentication-failure-handler-ref="customLoginFailuerHandler"/>
 			
 		<!-- access-denied-handler : AccessDeniedException 발생된 경우 403 에러코드를 전달하는
-		대신 응답결과를 제공하기 위한 엘리먼트 -->
+		대신 에러 메세지로 응답결과를 제공하기 위한 엘리먼트 -->
 		<!-- error-page 속성 : 403 에러코드 대신 응답될 페이지의 URL 주소를 속성값으로 설정 -->	
 		<!-- <access-denied-handler error-page="/accessDenied"/> -->
 		<!-- ref 속성 : AccessDeniedHandler 인터페이스를 상속받은 클래스에 대한 Spring Bean의
@@ -85,6 +96,8 @@
 	
 	<!-- Spring Security 관련 클래스를 Spring Bean으로 등록 -->
 	<beans:bean class="xyz.itwill.security.CustomAccessDeniedHandler" id="customAccessDeniedHandler"/>
+	<beans:bean class="xyz.itwill.security.CustomLoginSuccessHandler" id="customLoginSuccessHandler"/>
+	<beans:bean class="xyz.itwill.security.CustomLoginFailuerHandler" id="customLoginFailuerHandler"/>
 </beans:beans>
 
 

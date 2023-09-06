@@ -16,7 +16,8 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="userid" id="userid"></td>
+			<td><input type="text" name="userid" id="userid" value="${userid }"></td>
+			<c:remove var="userid"/>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
