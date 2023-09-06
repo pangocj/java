@@ -106,9 +106,12 @@
 	인증 처리후 사용자 정보(UserDetails 객체)를 반환 -->
 	<!-- data-source-ref 속성 : Connection 객체를 제공하기 위한 DataSource 관련 클래스에 대한
 	Spring Bean의 식별자(beanName)을 속성값으로 설정 -->
+	<!-- password-encoder : 암호화 처리된 비밀번호를 비교하기 위한 기능을 제공하는 엘리먼트 -->
+	<!-- ref 속성 : PasswordEncoder 인터페이스를 상속받은 클래스에 대한 Spring Bean의 식별자(beanName)를 속성값으로 설정 -->
 	<authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"/>
+			<password-encoder ref="customPasswordEncoder"/>
 		</authentication-provider>
 	</authentication-manager>
 	
@@ -116,6 +119,7 @@
 	<beans:bean class="xyz.itwill.security.CustomAccessDeniedHandler" id="customAccessDeniedHandler"/>
 	<beans:bean class="xyz.itwill.security.CustomLoginSuccessHandler" id="customLoginSuccessHandler"/>
 	<beans:bean class="xyz.itwill.security.CustomLoginFailuerHandler" id="customLoginFailuerHandler"/>
+	<beans:bean class="xyz.itwill.security.CustomPasswordEncoder" id="customPasswordEncoder"/>
 </beans:beans>
 
 
