@@ -41,6 +41,6 @@ public class SecurityUsersController {
 		securityUsersService.addSecurityAuth(auth3);
 		securityUsersService.addSecurityAuth(auth4);
 		
-		return "사용자와 권한을 성공적으로 등록 하였습니다.";
+		return "success";
 	}
 }
