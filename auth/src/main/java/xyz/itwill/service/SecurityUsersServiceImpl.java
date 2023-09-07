@@ -1,4 +1,4 @@
-package xyz.itwill.xyz;
+package xyz.itwill.service;
 
 import org.springframework.stereotype.Service;
 

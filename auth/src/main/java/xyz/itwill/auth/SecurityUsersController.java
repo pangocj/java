@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import xyz.itwill.dto.SecurityAuth;
 import xyz.itwill.dto.SecurityUsers;
-import xyz.itwill.xyz.SecurityUsersService;
+import xyz.itwill.service.SecurityUsersService;
 
 @Controller
 @RequiredArgsConstructor
