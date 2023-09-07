@@ -23,4 +23,9 @@ public class SecurityUsersRepositoryImpl implements SecurityUsersRepository {
 		return sqlSession.getMapper(SecurityUsersMapper.class).insertSecurityAuth(auth);
 	}
 
+	@Override
+	public SecurityUsers selectSecurityUsersByUserid(String userid) {
+		return sqlSession.getMapper(SecurityUsersMapper.class).selectSecurityUsersByUserid(userid);
+	}
+
 }

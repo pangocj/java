@@ -1,5 +1,7 @@
 package xyz.itwill.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -21,4 +23,5 @@ public class SecurityUsers {
 	private String name;
 	private String email;
 	private String enabled;
+	private List<SecurityAuth> securityAuthList;
 }
