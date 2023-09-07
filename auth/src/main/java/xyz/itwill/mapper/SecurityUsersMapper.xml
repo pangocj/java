@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.mapper.SecurityUsersMapper">
+	<insert id="insertSecurityUsers">
+		insert into security_users values(#{userid}, #{passwd}, #{name}, #{email}, #{enabled})
+	</insert>
+	
+	<insert id="insertSecurityAuth">
+		insert into security_auth values(#{userid}, #{auth})
+	</insert>
+</mapper>
