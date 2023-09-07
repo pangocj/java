@@ -2,8 +2,10 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- http : Spring Security 기능을 SpringMVC 프로그램에 적용하기 위한 정보를 제공하는 엘리먼트 -->
 	<!-- => Spring Security 관련 환경 설정이 시작되는 위치를 제공 -->
@@ -114,6 +116,7 @@
 	속성값으로 설정 - 인증 성공한 사용자에게 권한 제공 -->
 	<!-- password-encoder : 암호화 처리된 비밀번호를 비교하기 위한 기능을 제공하는 엘리먼트 -->
 	<!-- ref 속성 : PasswordEncoder 인터페이스를 상속받은 클래스에 대한 Spring Bean의 식별자(beanName)를 속성값으로 설정 -->
+	<!--  
 	<authentication-manager>
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource" 
@@ -122,6 +125,19 @@
 			<password-encoder ref="passwordEncoder"/>
 		</authentication-provider>
 	</authentication-manager>
+	-->
+
+	<!-- user-service-ref 속성 : 인증에 필요한 사용자 및 권한 정보(UserDetails 객체)가 저장된
+	객체를 반환하는 클래스(CustomUserDetailsService 클래스)에 대한 Spring Bean의 식별자(beanName)를
+	속성값으로 설정 -->	
+	<authentication-manager>
+		<authentication-provider user-service-ref="customUserDetailsService">
+			<password-encoder ref="passwordEncoder"/>
+		</authentication-provider>
+	</authentication-manager>
+	
+	<context:component-scan base-package="xyz.itwill.repository" />
+	<context:component-scan base-package="xyz.itwill.security"/>
 	
 	<!-- Spring Security 관련 클래스를 Spring Bean으로 등록 -->
 	<beans:bean class="xyz.itwill.security.CustomAccessDeniedHandler" id="customAccessDeniedHandler"/>

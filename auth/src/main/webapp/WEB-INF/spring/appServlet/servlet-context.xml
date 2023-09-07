@@ -20,7 +20,6 @@
 	</beans:bean>
  
 	<context:component-scan base-package="xyz.itwill.auth" />
-	<context:component-scan base-package="xyz.itwill.repository" />
 	<context:component-scan base-package="xyz.itwill.service" />
 	
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
