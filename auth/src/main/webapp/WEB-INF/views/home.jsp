@@ -26,7 +26,9 @@
 	
 	<%-- 인증된 사용자인 경우 태그가 포함되도록 설정 --%>
 	<sec:authorize access="isAuthenticated()">
-		<h3><sec:authentication property="principal.username"/>님, 환영합니다.</h3>
+		<%-- <h3><sec:authentication property="principal.username"/>님, 환영합니다.</h3> --%>
+		<%-- <h3><sec:authentication property="principal.userid"/>님, 환영합니다.</h3> --%>
+		<h3><sec:authentication property="principal.name"/>님, 환영합니다.</h3>
 	
 		<%-- 로그아웃 처리 기능을 제공하는 페이지는 반드시 form 태그를 사용하여 요청 --%>
 		<%-- => CSRF 토큰을 전달하여 처리되도록 설정 --%>

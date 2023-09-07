@@ -4,6 +4,7 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /*
 create table security_users(userid varchar2(100) primary key, passwd varchar2(100)
@@ -16,6 +17,7 @@ create unique index auth_userid_index on security_auth(userid, auth);
 */
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class SecurityUsers {
 	private String userid;
