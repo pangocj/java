@@ -1,8 +1,18 @@
 package xyz.itwill.auth;
 
+import java.security.Principal;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import xyz.itwill.dto.SecurityUsers;
+import xyz.itwill.security.CustomUserDetails;
+import xyz.itwill.service.SecurityUsersService;
 
 //Spring Security : SpringMVC 프로그램에 인증과 인가 기능을 지원하는 보안 프레임워크
 
@@ -53,10 +63,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //11.CorsFilter : 허가된 사이트나 클라이언트의 요청인지 검사하는 필터
 //12.CsrfFilter : CSRF Tocken을 사용하여 CSRF 공격을 막아주는 기능을 제공하는 필터
 
+@Slf4j
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
+	private final SecurityUsersService securityUsersService;
+	
+	//Principal 인터페이스 >> Authentication 인터페이스 >> AbstractAuthenticationToken 추상클래스 
+	//>> UsernamePasswordAuthenticationToken 클래스 - 구현클래스 
+	
+	//Principal 객체 : 로그인된 사용자 정보와 권한 정보가 저장된 객체
+	// => Principal.getName() 메소드로 아이디만 제공받아 사용 가능
+	/*
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
+	public String home(Principal principal) {
+		if(principal != null) {
+			//log.warn("아이디 = "+principal.getName());
+			
+			SecurityUsers users=securityUsersService.getSecurityUsers(principal.getName());
+			
+			log.warn("아이디 = "+users.getUserid());
+			log.warn("이름 = "+users.getName());
+			log.warn("이메일 = "+users.getEmail());
+		}
+		
+		return "home";
+	}
+	*/
+
+	//Authentication 객체 : 로그인된 사용자 정보와 권한 정보가 저장된 객체
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Authentication authentication) {
+		if(authentication != null) {
+			//Authentication.getPrincipal() : Authentication 객체에서 사용자와 권한 정보를
+			//Object 타입의 객체로 반환하는 메소드 - 반드시 UserDetails 객체로 형변환하여 사용
+			CustomUserDetails users=(CustomUserDetails)authentication.getPrincipal();
+			log.warn("아이디 = "+users.getUserid());
+			log.warn("이름 = "+users.getName());
+			log.warn("이메일 = "+users.getEmail());
+		}
+		
 		return "home";
 	}
 
