@@ -26,7 +26,10 @@
 		<tr>
 			<td colspan="2"><button type="submit">로그인</button></td>
 		</tr>		
-	</table>		
+	</table>
+	
+	<input type="checkbox" name="remember-me">자동 로그인
+			
 	<%-- CSRF 공격을 방어하기 위해 Spring Security에 의해 발급된 CSRF Token을 hidden 타입으로 전달 --%>
 	<%-- => 서버에 전달된 요청이 실제 서버에서 허용된 요청이 맞는지를 확인하기 위해 CSRF Token 발행 --%>
 	<%-- => 서버에서는 뷰페이지를 생성할 때마다 랜덤으로 토큰을 발행하여 세션에 저장하고 사용자가 서버에 
@@ -37,6 +40,7 @@
 	<%-- csrfInput : CSRF Token을 hidden 타입으로 서버에 전달하기 위한 태그 --%>
 	<sec:csrfInput/>
 	</form>
+	
 	<%-- SPRING_SECURITY_LAST_EXCEPTION : Spring Security에 의해 마지막에 발생된 예외(Exception 객체)가 
 	세션의 속성값으로 저장된 세션의 속성명 --%>
 	<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">

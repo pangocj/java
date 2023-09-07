@@ -65,6 +65,17 @@
 		<!-- invalidate-session 속성 : 세션을 무효화 처리하기 위한 논리값(false 또는 true)을 속성값으로 설정 -->
 		<!-- delete-cookies 속성 : 삭제할 쿠키에 대한 이름을 속성값으로 설정 -->
 		<logout logout-url="/logout" logout-success-url="/" invalidate-session="true" delete-cookies="JSESSIONID"/>
+
+		<!-- remember-me : 자동 로그인 기능을 제공하기 위한 엘리먼트 -->
+		<!-- => 사용자 인증 처리를 요청하기 전에 [remember-me] 이름의 쿠키를 검색하여 로그인 처리 -->
+		<!-- => [remember-me] 이름의 쿠키에는 자동 로그인 관련 토큰이 자동 생성되어 저장 -->
+		<!-- token-validity-seconds 속성 : 자동 로그인 기능을 유지하기 위한 시간(초)을 속성값으로 설정 -->
+		<!-- 쿠키에 자동 로그인 관련 토큰을 저장하는 보안상 위험하므로 DB에 자동 로그인 관련 토큰을 저장하여 사용하는 것을 권장 -->
+		<!-- => persistent_logins 테이블을 생성하여 자동 로그인 관련 정보 저정 -->
+		<!-- create table persistent_logins(serise varchar2(100) primary key, username varchar2(100)
+    	, token varchar2(100), last_used timestamp); -->
+    	<!-- data-source-ref : persistent_logins 테이블이 저장된 DB 서버의 DataSource 객체의 Spring BeanName을 속성값으로 설정 -->
+		<remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 			
 		<!-- access-denied-handler : AccessDeniedException 발생된 경우 403 에러코드를 전달하는
 		대신 에러 메세지로 응답결과를 제공하기 위한 엘리먼트 -->
