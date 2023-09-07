@@ -87,6 +87,8 @@
 	<!-- authorities 속성 : 권한(Role)를 속성값으로 설정 -->
 	<!-- => 권한은 ROLE 기반으로 설정 - 속성값은 ROLE_XXX 형식으로 설정 -->
 	<!-- => 사용자에게 다수의 권한을 제공할 경우 , 기호로 구분하여 등록 설정 가능 -->
+	<!-- 인증을 성공한 경우 Authentication Manager는 Spring Security 관련 세션(Security 
+	ContextHolder)에 인증 및 인가 관련 정보(Authentication 객체)를 저장 -->
 	<!--  
 	<authentication-manager>
 		<authentication-provider>

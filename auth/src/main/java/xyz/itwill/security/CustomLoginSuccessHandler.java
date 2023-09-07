@@ -21,14 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
-	//로그인 계정의 권한을 확인하여 특정 페이지를 무조건 요청되도록 설정
+	//로그인 계정의 권한을 확인하여 특정 페이지로 이동되도록 설정
 	//Authentication 객체 : 인증 및 인가(권한)와 관련된 정보를 저장한 객체
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		//로그인 사용자의 권한의 저장하기 위한 List 객체 생성
 		List<String> roleNames=new ArrayList<String>();
 		
-		//Authentication.getAuthorities() : 인증된 계정된 모든 권한(GrantedAuthority 객체)을 
+		//Authentication.getAuthorities() : 인증된 계정의 모든 권한(GrantedAuthority 객체)을 
 		//List 객체로 반환하는 메소드
 		//GrantedAuthority 객체 : 사용자에게 부여된 권한에 대한 정보를 저장한 객체
 		for(GrantedAuthority authority : authentication.getAuthorities()) {
