@@ -1,18 +1,13 @@
 package xyz.itwill.auth;
 
-import java.security.Principal;
-
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import xyz.itwill.dto.SecurityUsers;
 import xyz.itwill.security.CustomUserDetails;
-import xyz.itwill.service.SecurityUsersService;
 
 //Spring Security : SpringMVC 프로그램에 인증과 인가 기능을 지원하는 보안 프레임워크
 
@@ -67,6 +62,7 @@ import xyz.itwill.service.SecurityUsersService;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
+	/*
 	private final SecurityUsersService securityUsersService;
 	
 	//Principal 인터페이스 >> Authentication 인터페이스 >> AbstractAuthenticationToken 추상클래스 
@@ -74,7 +70,6 @@ public class HomeController {
 	
 	//Principal 객체 : 로그인된 사용자 정보와 권한 정보가 저장된 객체
 	// => Principal.getName() 메소드로 아이디만 제공받아 사용 가능
-	/*
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Principal principal) {
 		if(principal != null) {

@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 import xyz.itwill.dto.SecurityUsers;
 import xyz.itwill.repository.SecurityUsersRepository;
 
-//인증 처리 후 인증된 사용자 정보와 권한을 저장한 UserDetails 객체를 반환하는 기능을 제공하는 클래스
+//DB에 저장된 사용자 정보를 이용하여 UserDetails 객체로 제공하는 클래스
+// => 사용자 정보와 권한을 저장한 UserDetails 객체를 반환하여 인증 처리되도록 제공
 // => UserDetailsService 인터페이스를 상속받아 작성
 @Service
 @RequiredArgsConstructor

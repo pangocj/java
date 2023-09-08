@@ -25,6 +25,7 @@ public class CustomUserDetails implements UserDetails {
 	private String name;
 	private String email;
 	private String enabled;
+	
 	//인증된 사용자의 권한 정보가 저장될 필드 선언
 	private List<GrantedAuthority> securityAuthList;
 	
