@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill.mapper.SecurityBoardMapper">
+	<insert id="insertSecurityBoard">
+		<selectKey resultType="int" keyProperty="idx" order="BEFORE">
+			select security_board_seq.nextval from dual
+		</selectKey>
+		insert into security_board values(#{idx}, #{writer}, #{subject}, #{content}, sysdate)
+	</insert>
+
+	<update id="updateSecurityBoard">
+		update security_board set subject=#{subject}, content=#{content} where idx=#{idx}
+	</update>
+	
+	<delete id="deleteSecurityBoard">
+		delete from security_board where idx=#{idx}
+	</delete>
+	
+	<select id="selectSecurityBoardByIdx" resultType="SecurityBoard">
+		select idx, writer, subject, content, regdate from security_board where idx=#{idx}
+	</select>
+	
+	<select id="selectSecurityBoardCount" resultType="int">
+		select count(*) from security_board
+		<if test="keyword != null and keyword != ''">
+			<bind name="word" value="'%'+keyword+'%'"/>
+			where ${column} like #{word}
+		</if>
+	</select>
+	
+	<select id="selectSecurityBoardList" resultType="SecurityBoard">
+		select * from (select rownum rn, board.* from (select idx, writer, subject, content
+		, regdate from security_board
+		<if test="keyword != null and keyword != ''">
+			<bind name="word" value="'%'+keyword+'%'"/>
+			where ${column} like #{word}
+			</if>
+		order by idx desc) board) where rn between #{startRow} and #{endRow}
+	</select>
+</mapper>
