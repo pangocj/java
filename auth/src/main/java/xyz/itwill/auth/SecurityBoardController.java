@@ -53,6 +53,37 @@ public class SecurityBoardController {
 		return "board/detail";
 	}
 
+	//로그인 사용자가 관리자이거나 로그인 사용자의 아이디와 게시글 작성자가 같은 경우에만 
+	//요청 처리 메소드 호출
+	// => SpEL을 이용하여 권한 설정시 연산자 사용 가능
+	@PreAuthorize("hasRole('ROLE_ADMIN') or principal.userid eq #map['writer']")
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String modify(@RequestParam Map<String, Object> map, Model model) {
+		int idx=Integer.parseInt((String)map.get("idx"));
+		model.addAttribute("securityBoard", securityBoardService.getSecurityBoardByIdx(idx));
+		model.addAttribute("search", map);
+		return "board/modify";
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or principal.userid eq #board.writer")
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(@ModelAttribute SecurityBoard board, @RequestParam Map<String, Object> map) {
+		board.setSubject(HtmlUtils.htmlEscape(board.getSubject()));
+		board.setContent(HtmlUtils.htmlEscape(board.getContent()));
+		securityBoardService.modifySecurityBoard(board);
+		String pageNum=(String)map.get("pageNum");
+		String column=(String)map.get("column");
+		String keyword=(String)map.get("keyword");
+		return "redirect:/board/detail?idx="+board.getIdx()+"&pageNum="+pageNum
+				+"&column="+column+"&keyword="+keyword;
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN') or principal.userid eq #writer")
+	@RequestMapping(value = "/remove", method = RequestMethod.GET)
+	public String remove(@RequestParam int idx, @RequestParam String writer) {
+		securityBoardService.removeSecurityBoard(idx);
+		return "redirect:/board/list";
+	}
 }
 
 

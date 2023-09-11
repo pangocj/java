@@ -51,11 +51,11 @@ th, td {
 	<div style="margin-top: 10px;">
 		<sec:authentication property="principal" var="pinfo"/>	
 		<form method="get" id="linkForm">
-			<sec:csrfInput/>	
 			<input type="hidden" name="pageNum" value="${search.pageNum }">
 			<input type="hidden" name="column" value="${search.column }">
 			<input type="hidden" name="keyword" value="${search.keyword }">
 			<input type="hidden" name="idx" value="${securityBoard.idx }">
+			<%-- 요청 처리 메소드에게 게시글 작성자를 권한 처리에 사용되도록 전달 --%>
 			<input type="hidden" name="writer" value="${securityBoard.writer }">
 			
 			<button type="button" id="listBtn">목록</button>
@@ -74,6 +74,16 @@ th, td {
 	<script type="text/javascript">
 	$("#listBtn").click(function() {
 		$("#linkForm").attr("action", "<c:url value="/board/list"/>").submit();
+	});
+	
+	$("#modifyBtn").click(function() {
+		$("#linkForm").attr("action", "<c:url value="/board/modify"/>").submit();
+	});
+	
+	$("#removeBtn").click(function() {
+		if(confirm("게시글을 삭제 하시겠습니까?")) {
+			$("#linkForm").attr("action", "<c:url value="/board/remove"/>").submit();
+		}
 	});
 	</script>
 </body>
