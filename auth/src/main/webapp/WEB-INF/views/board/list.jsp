@@ -34,9 +34,11 @@ th, td {
 	<h1>게시글 목록</h1>
 	<hr>
 	<div id="container">
-		<div style="text-align: right; margin-bottom: 10px;">
-			<button type="button">글쓰기</button>
-		</div>
+		<sec:authorize access="isAuthenticated()">
+			<div style="text-align: right; margin-bottom: 10px;">
+				<button type="button">글쓰기</button>
+			</div>
+		</sec:authorize>
 		<table>
 			<tr>
 				<th class="idx">글번호</th>
