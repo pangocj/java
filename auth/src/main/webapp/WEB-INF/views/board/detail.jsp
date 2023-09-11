@@ -48,26 +48,36 @@ th, td {
 		</tr>
 	</table>
 	
-	<div style="margin-top: 10px;">	
+	<div style="margin-top: 10px;">
 		<sec:authentication property="principal" var="pinfo"/>	
+		<form method="get" id="linkForm">
+			<sec:csrfInput/>	
+			<input type="hidden" name="pageNum" value="${search.pageNum }">
+			<input type="hidden" name="column" value="${search.column }">
+			<input type="hidden" name="keyword" value="${search.keyword }">
+			<input type="hidden" name="idx" value="${securityBoard.idx }">
+			<input type="hidden" name="writer" value="${securityBoard.writer }">
+			
+			<button type="button" id="listBtn">목록</button>
 		
-		<button type="button" id="listBtn">목록</button>
+			<sec:authorize access="isAuthenticated()">
+				<%-- 게시글 작성자인 경우에만 태그를 포함하여 제공 --%>
+				<c:if test="${pinfo.userid eq securityBoard.writer}">
+					<button type="button" id="modifyBtn">수정</button>
+					<button type="button" id="removeBtn">삭제</button>
+				</c:if>
+			</sec:authorize>
 		
-		<sec:authorize access="isAuthenticated()">
-			<%-- 게시글 작성자인 경우에만 태그를 포함하여 제공 --%>
-			<c:if test="${pinfo.userid eq securityBoard.writer}">
-				<button type="button">수정</button>
-				<button type="button">삭제</button>
-			</c:if>
-		</sec:authorize>
+		</form>
 	</div>
 	
 	<script type="text/javascript">
 	$("#listBtn").click(function() {
-		location.href="<c:url value="/board/list"/>?pageNum=${search.pageNum}&column=${search.column}&keyword=${search.keyword}";
+		$("#linkForm").attr("action", "<c:url value="/board/list"/>").submit();
 	});
 	</script>
 </body>
+
 </html>
 
 
