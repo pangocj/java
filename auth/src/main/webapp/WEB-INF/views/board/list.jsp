@@ -34,7 +34,7 @@ th, td {
 	<h1>게시글 목록</h1>
 	<hr>
 	<div id="container">
-		<div style="text-align: right;">
+		<div style="text-align: right; margin-bottom: 10px;">
 			<button type="button">글쓰기</button>
 		</div>
 		<table>
