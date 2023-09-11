@@ -36,7 +36,7 @@ th, td {
 	<div id="container">
 		<sec:authorize access="isAuthenticated()">
 			<div style="text-align: right; margin-bottom: 10px;">
-				<button type="button">글쓰기</button>
+				<button type="button" onclick="location.href='<c:url value="/board/register"/>';">글쓰기</button>
 			</div>
 		</sec:authorize>
 		<table>

@@ -65,7 +65,7 @@ public class SecurityBoardServiceImpl implements SecurityBoardService {
 		if(map.get("pageNum") != null) {
 			pageNum=Integer.parseInt((String)map.get("pageNum"));
 		}
-		int pageSize=2;
+		int pageSize=5;
 		int totalBoard=securityBoardRepository.selectSecurityBoardCount(map);
 		int blockSize=5;
 		

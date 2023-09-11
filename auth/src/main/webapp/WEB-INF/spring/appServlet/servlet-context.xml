@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -26,4 +28,26 @@
 		<beans:property name="maxUploadSize" value="20971520"/>
 		<beans:property name="defaultEncoding" value="utf-8"/>
 	</beans:bean>	
+	
+	<!-- global-method-security : Controller 클래스의 요청 처리 메소드에 권한 관련 어노테이션을 
+	제공하기 위한 엘리먼트 -->
+	<!-- => security 네임스페이스를 추가하여 spring-security.xsd 파일의 엘리먼트를 사용할 수 있도록 설정 -->
+	<!-- pre-post-annotations 속성 : [disable] 또는 [enabled] 중 하나를 속성값으로 설정 -->
+	<!-- => 속성값을 [enabled]로 설정항 경우 @PreAuthorize 어노테이션을 제공  -->
+	<!-- secured-annotations 속성 : [disable] 또는 [enabled] 중 하나를 속성값으로 설정 -->
+	<!-- => 속성값을 [enabled]로 설정항 경우 @Secured 어노테이션을 제공  -->
+	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

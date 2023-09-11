@@ -54,10 +54,16 @@
 		상속받은 클래스에 대한 Spring Bean의 식별자(beanName)를 속성값으로 설정 -->
 		<!-- authentication-failure-handler-ref 속성 : AuthenticationFailuerHandler 인터페이스를 
 		상속받은 클래스에 대한 Spring Bean의 식별자(beanName)를 속성값으로 설정 -->
+		<!--  
 		<form-login login-page="/loginPage" login-processing-url="/loginPage" 
 			username-parameter="userid" password-parameter="passwd" default-target-url="/"
 			authentication-success-handler-ref="customLoginSuccessHandler"
 			authentication-failure-handler-ref="customLoginFailuerHandler"/>
+		-->
+		
+		<form-login login-page="/loginPage" login-processing-url="/loginPage" 
+			username-parameter="userid" password-parameter="passwd" default-target-url="/"
+			authentication-failure-handler-ref="customLoginFailuerHandler"/>	
 	
 		<!-- logout : 로그아웃 처리 기능을 제공하는 엘리먼트 -->
 		<!-- logout-url 속성 : 로그아웃 처리를 위해 요청하기 위한 URL 주소를 속성값으로 설정 -->
