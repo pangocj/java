@@ -21,7 +21,7 @@
 	<%-- Spring Form 태그 : 페이지를 요청하여 입력값을 전달하는 태그 --%>
 	<%-- modelAttribute 속성(필수) : 요청 처리 메소드 매개변수에 저장된 Command 객체의 속성명을 속성값으로 설정 --%>
 	<%-- => 유효성 검증 실패시 사용자 입력값이 저장된 Command 객체를 제공받아 사용 --%>
-	<form:form action="${url }" method="post" modelAttribute="employee">
+	<form:form action="${url }" method="post" modelAttribute="employee" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<td>아이디</td>
@@ -61,6 +61,12 @@
 			<td>
 				<form:input path="email"/>
 				<form:errors path="email" cssClass="error" element="span" delimiter=" "/>
+			</td>
+		</tr>
+		<tr>
+			<td>파일</td>
+			<td>
+				<input type="file" name="file">
 			</td>
 		</tr>
 		<tr>

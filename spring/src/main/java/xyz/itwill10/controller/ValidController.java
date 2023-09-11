@@ -13,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import xyz.itwill10.dto.Employee;
 
@@ -63,7 +64,10 @@ public class ValidController {
 	//라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
 	//Errors 객체 : 유효성 검증 후 발생되는 모든 에러 관련 정보를 저장하기 위한 객체
 	@RequestMapping(value = "/spring", method = RequestMethod.POST)
-	public String spring(@ModelAttribute @Valid Employee employee, Errors errors) {
+	public String spring(@ModelAttribute @Valid Employee employee, MultipartFile file ,Errors errors) {
+		
+		System.out.println("파일 = "+file);
+
 		//Errors.hasErrors() : Errors 객체에 에러 관련 정보가 존재할 경우 [true]를 반환하는 메소드
 		if(errors.hasErrors()) {
 			//model.addAttribute("genderList", Arrays.asList("남자", "여자"));

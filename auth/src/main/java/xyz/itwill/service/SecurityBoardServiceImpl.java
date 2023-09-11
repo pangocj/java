@@ -1,13 +1,17 @@
 package xyz.itwill.service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill.dto.SecurityBoard;
 import xyz.itwill.repository.SecurityBoardRepository;
 import xyz.itwill.repository.SecurityUsersRepository;
+import xyz.itwill.util.Pager;
 
 @Service
 @RequiredArgsConstructor
@@ -15,6 +19,7 @@ public class SecurityBoardServiceImpl implements SecurityBoardService {
 	private final SecurityUsersRepository securityUsersRepository;
 	private final SecurityBoardRepository securityBoardRepository;
 
+	@Transactional(rollbackFor = IllegalArgumentException.class)
 	@Override
 	public void addSecurityBoard(SecurityBoard board) {
 		if(securityUsersRepository.selectSecurityUsersByUserid(board.getWriter()) == null) {
@@ -23,6 +28,7 @@ public class SecurityBoardServiceImpl implements SecurityBoardService {
 		securityBoardRepository.insertSecurityBoard(board);
 	}
 
+	@Transactional(rollbackFor = IllegalArgumentException.class)
 	@Override
 	public void modifySecurityBoard(SecurityBoard board) {
 		if(securityUsersRepository.selectSecurityUsersByUserid(board.getWriter()) == null) {
@@ -35,6 +41,7 @@ public class SecurityBoardServiceImpl implements SecurityBoardService {
 		securityBoardRepository.updateSecurityBoard(board);
 	}
 
+	@Transactional(rollbackFor = IllegalArgumentException.class)
 	@Override
 	public void removeSecurityBoard(int idx) {
 		if(securityBoardRepository.selectSecurityBoardByIdx(idx) == null) {
@@ -54,8 +61,25 @@ public class SecurityBoardServiceImpl implements SecurityBoardService {
 
 	@Override
 	public Map<String, Object> getSecurityBoardList(Map<String, Object> map) {
+		int pageNum=1;
+		if(map.get("pageNum") != null) {
+			pageNum=Integer.parseInt((String)map.get("pageNum"));
+		}
+		int pageSize=2;
+		int totalBoard=securityBoardRepository.selectSecurityBoardCount(map);
+		int blockSize=5;
 		
-		return null;
+		Pager pager=new Pager(pageNum, totalBoard, pageSize, blockSize);
+		
+		map.put("startRow", pager.getStartRow());
+		map.put("endRow", pager.getEndRow());
+		List<SecurityBoard> securityBoardList=securityBoardRepository.selectSecurityBoardList(map);
+		
+		Map<String, Object> result=new HashMap<String, Object>();
+		result.put("pager", pager);
+		result.put("securityBoardList", securityBoardList);
+		
+		return result;
 	}
 }
 

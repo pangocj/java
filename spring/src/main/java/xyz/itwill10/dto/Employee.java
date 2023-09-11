@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -33,4 +35,5 @@ public class Employee {
 	private String email;
 	@NotEmpty(message = "성별을 입력해 주세요.")
 	private String gender;
+	
 }
