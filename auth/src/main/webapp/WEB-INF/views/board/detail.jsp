@@ -32,15 +32,15 @@ th, td {
 		</tr>
 		<tr>
 			<td>작성자</td>
-			<td>${securityBoard.writer }</td>
+			<td>${securityBoard.name }</td>
 		</tr>
 		<tr>
 			<td>제목</td>
-			<td>${securityBoard.subject }</td>
+			<td style="text-align: left;">${securityBoard.subject }</td>
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td>${securityBoard.content}</td>
+			<td style="font-size: 16px; text-align: left;"><pre >${securityBoard.content}</pre></td>
 		</tr>
 		<tr>
 			<td>작성일</td>
@@ -61,8 +61,10 @@ th, td {
 			<button type="button" id="listBtn">목록</button>
 		
 			<sec:authorize access="isAuthenticated()">
-				<%-- 게시글 작성자인 경우에만 태그를 포함하여 제공 --%>
-				<c:if test="${pinfo.userid eq securityBoard.writer}">
+				<%-- authorize 태그로 사용 권한이 있는 경우 속성명의 속성값으로 [true] 저장 --%>
+				<sec:authorize access="hasRole('ROLE_ADMIN')" var="adminRole"/>			
+				<%-- 로그인 사용자가 관리자이거나 게시글 작성자인 경우에만 태그를 포함하여 제공 --%>
+				<c:if test="${adminRole || pinfo.userid eq securityBoard.writer}">
 					<button type="button" id="modifyBtn">수정</button>
 					<button type="button" id="removeBtn">삭제</button>
 				</c:if>
@@ -87,7 +89,6 @@ th, td {
 	});
 	</script>
 </body>
-
 </html>
 
 

@@ -71,6 +71,7 @@ public class SecurityBoardController {
 		board.setSubject(HtmlUtils.htmlEscape(board.getSubject()));
 		board.setContent(HtmlUtils.htmlEscape(board.getContent()));
 		securityBoardService.modifySecurityBoard(board);
+		
 		String pageNum=(String)map.get("pageNum");
 		String column=(String)map.get("column");
 		String keyword=(String)map.get("keyword");
@@ -85,18 +86,3 @@ public class SecurityBoardController {
 		return "redirect:/board/list";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

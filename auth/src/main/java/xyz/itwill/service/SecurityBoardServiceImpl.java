@@ -56,7 +56,7 @@ public class SecurityBoardServiceImpl implements SecurityBoardService {
 		if(board == null) {
 			throw new IllegalArgumentException("게시글을 찾을 수 없습니다.");
 		}
-		board.setContent(board.getContent().replaceAll("\\n", "<br>"));
+
 		return board;
 	}
 

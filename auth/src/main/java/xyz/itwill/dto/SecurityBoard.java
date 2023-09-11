@@ -18,4 +18,5 @@ public class SecurityBoard {
 	private String subject;
 	private String content;
 	private Date regdate;
+	private String name;
 }

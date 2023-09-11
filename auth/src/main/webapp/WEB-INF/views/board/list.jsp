@@ -56,7 +56,7 @@ th, td {
 					<c:forEach var="securityBoard" items="${result.securityBoardList}">
 						<tr>
 							<td>${securityBoard.idx}</td>
-							<td>${securityBoard.writer}</td>
+							<td>${securityBoard.name}</td>
 							<td><a href="<c:url value="/board/detail"/>?idx=${securityBoard.idx }&pageNum=${search.pageNum}&column=${search.column}&keyword=${search.keyword}">${securityBoard.subject}</a></td>
 							<td>${securityBoard.regdate}</td>
 						</tr>
@@ -98,7 +98,7 @@ th, td {
 		<div style="text-align: center;">
 			<form action="<c:url value="/board/list"/>" method="post">
 				<select name="column">
-					<option value="writer">작성자</option>
+					<option value="name">작성자</option>
 					<option value="subject">제목</option>
 					<option value="content">내용</option>
 				</select>

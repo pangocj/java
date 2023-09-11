@@ -17,11 +17,12 @@
 	</delete>
 	
 	<select id="selectSecurityBoardByIdx" resultType="SecurityBoard">
-		select idx, writer, subject, content, regdate from security_board where idx=#{idx}
+		select idx, writer, subject, content, regdate, name 
+		from security_board join security_users on writer=userid where idx=#{idx}
 	</select>
 	
 	<select id="selectSecurityBoardCount" resultType="int">
-		select count(*) from security_board 
+		select count(*) from security_board join security_users on writer=userid  
 		<if test="keyword != null and keyword != ''">
 			<bind name="word" value="'%'+keyword+'%'"/>
 			where ${column} like #{word}
@@ -30,11 +31,11 @@
 	
 	<select id="selectSecurityBoardList" resultType="SecurityBoard">
 		select * from (select rownum rn, board.* from (select idx, writer, subject, content
-		, regdate from security_board
+		, regdate, name from security_board join security_users on writer=userid
 		<if test="keyword != null and keyword != ''">
 			<bind name="word" value="'%'+keyword+'%'"/>
 			where ${column} like #{word}
-			</if>
+		</if>
 		order by idx desc) board) where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>
