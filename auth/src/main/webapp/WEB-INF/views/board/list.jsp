@@ -57,7 +57,7 @@ th, td {
 						<tr>
 							<td>${securityBoard.idx}</td>
 							<td>${securityBoard.writer}</td>
-							<td>${securityBoard.subject}</td>
+							<td><a href="<c:url value="/board/detail"/>?idx=${securityBoard.idx }&pageNum=${search.pageNum}&column=${search.column}&keyword=${search.keyword}">${securityBoard.subject}</a></td>
 							<td>${securityBoard.regdate}</td>
 						</tr>
 					</c:forEach>

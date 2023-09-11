@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="selectSecurityBoardCount" resultType="int">
-		select count(*) from security_board
+		select count(*) from security_board 
 		<if test="keyword != null and keyword != ''">
 			<bind name="word" value="'%'+keyword+'%'"/>
 			where ${column} like #{word}
