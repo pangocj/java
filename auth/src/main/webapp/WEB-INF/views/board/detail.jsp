@@ -32,7 +32,7 @@ th, td {
 		</tr>
 		<tr>
 			<td>작성자</td>
-			<td>${securityBoard.name }[${securityBoard.writer }]</td>
+			<td>${securityBoard.name }</td>
 		</tr>
 		<tr>
 			<td>제목</td>
