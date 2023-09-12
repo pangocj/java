@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import xyz.itwill.dto.SecurityReply;
+import xyz.itwill.repository.SecurityBoardRepository;
 import xyz.itwill.repository.SecurityReplyRepository;
 import xyz.itwill.repository.SecurityUsersRepository;
 
@@ -13,6 +14,7 @@ import xyz.itwill.repository.SecurityUsersRepository;
 @RequiredArgsConstructor
 public class SecurityReplyServiceImpl implements SecurityReplyService {
 	private final SecurityUsersRepository securityUsersRepository;
+	private final SecurityBoardRepository securityBoardRepository;
 	private final SecurityReplyRepository securityReplyRepository;
 
 	@Override
@@ -25,6 +27,9 @@ public class SecurityReplyServiceImpl implements SecurityReplyService {
 
 	@Override
 	public List<SecurityReply> getSecurityReplyList(int boardIdx) {
+		if(securityBoardRepository.selectSecurityBoardByIdx(boardIdx) == null) {
+			new IllegalArgumentException("게시글을 찾을 수 없습니다.");
+		}
 		return securityReplyRepository.selectSecurityReplyList(boardIdx);
 	}
 }
