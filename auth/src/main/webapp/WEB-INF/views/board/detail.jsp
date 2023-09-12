@@ -81,7 +81,7 @@ th, td {
 	</div>
 	</sec:authorize>
 	<div id="replyList"></div>	
-	
+		
 	<script type="text/javascript">
 	$("#listBtn").click(function() {
 		$("#linkForm").attr("action", "<c:url value="/board/list"/>").submit();
@@ -128,7 +128,56 @@ th, td {
 	
 	replyDisplay();
 	
+	//현재 로그인 사용자의 아이디를 자바스크립트 변수에 저장
+	// => Spring Security 태그를 자바스크립트에서 사용 가능
+	var writer=null;
+	<sec:authorize access="isAuthenticated()">
+		writer='<sec:authentication property="principal.userid"/>';
+		//alert("writer = "+writer);
+	</sec:authorize>
 	
+	//CSRF 토큰 관련 정보를 자바스트립트 변수에 저장 
+	var csrfHeaderName="${_csrf.headerName}";
+	var csrfTokenValue="${_csrf.token}";
+	
+	//ajaxSend() 메소드를 호출하여 페이지에서 Ajax 기능으로 요청하는 모든 웹프로그램에게 CSRF 토큰 전달
+	// => Ajax 요청시 beforeSend 속성을 설정 불필요
+	$(document).ajaxSend(function(e, xhr) {
+		xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+	});
+	
+	$("#addBtn").click(function() {
+		var content=$("#content").val();
+		if(content == "") {
+			alert("댓글 내용을 입력해 주세요.");
+			return;
+		}
+		$("#content").val("");
+		
+		$.ajax({
+			type: "post",
+			url: "<c:url value="/reply/register"/>",
+			contentType: "application/json",
+			data: JSON.stringify({"writer": writer, "content": content, "boardIdx": ${securityBoard.idx}}),
+			//beforeSend 속성 : 페이지 요청전에 실행될 명령을 저장된 함수를 속성값으로 설정
+			// => 매개변수로 XMLHttpRequest 객체를 제공받아 사용 가능
+			/*
+			beforeSend: function(xhr) {
+				//XMLHttpRequest 객체의 요청 메세지의 머릿부에 CSRF 토큰을 저장하여 전달
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			*/
+			dateType: "text",
+			success: function(result) {
+				if(result=="success") {
+					replyDisplay();
+				}
+			},
+			error: function(xhr) {
+				alert("에러 = "+xhr.status);
+			}
+		});
+	});
 	</script>
 </body>
 </html>

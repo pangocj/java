@@ -5,7 +5,7 @@
 		<selectKey resultType="int" keyProperty="idx" order="BEFORE">
 			select security_reply_seq.nextval from dual
 		</selectKey>
-		insert into security_reply values(#{idx}, #{writer} #{content}, sysdate, #{boardIdx})
+		insert into security_reply values(#{idx}, #{writer}, #{content}, sysdate, #{boardIdx})
 	</insert>
 
 	<select id="selectSecurityReplyList" resultType="SecurityReply">

@@ -17,7 +17,7 @@ public class SecurityReply {
 	private int idx;
 	private String writer;
 	private String content;
-	private Date regdate;
+	private String regdate;
 	private int boardIdx;
 	//SECURITY_USERS 테이블에 저장된 댓글 작성자의 이름을 저장하기 위한 필드
 	private String name;
