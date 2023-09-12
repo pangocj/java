@@ -253,6 +253,22 @@
 		    <artifactId>spring-security-taglibs</artifactId>
 		    <version>${spring.security-version}</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.github.scribejava/scribejava-apis -->
+		<!-- => Social 로그인 기능(OAuth2.0 통신)을 제공하기 위한 라이브러리 -->
+		<dependency>
+		    <groupId>com.github.scribejava</groupId>
+		    <artifactId>scribejava-apis</artifactId>
+		    <version>3.3.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<!-- => JSON 형식의 문자열을 Java 객체로 변환하기 위한 기능을 제공하는 라이브러리 -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
 	</dependencies>
 	
     <build>
