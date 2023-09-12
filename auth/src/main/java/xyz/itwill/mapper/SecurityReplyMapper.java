@@ -6,5 +6,5 @@ import xyz.itwill.dto.SecurityReply;
 
 public interface SecurityReplyMapper {
 	int insertSecurityReply(SecurityReply reply);
-	List<SecurityReply> selectSecurityReplyList();
+	List<SecurityReply> selectSecurityReplyList(int boardIdx);
 }

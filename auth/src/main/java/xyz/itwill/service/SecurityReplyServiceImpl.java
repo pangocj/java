@@ -24,7 +24,7 @@ public class SecurityReplyServiceImpl implements SecurityReplyService {
 	}
 
 	@Override
-	public List<SecurityReply> getSecurityReplyList() {
-		return securityReplyRepository.selectSecurityReplyList();
+	public List<SecurityReply> getSecurityReplyList(int boardIdx) {
+		return securityReplyRepository.selectSecurityReplyList(boardIdx);
 	}
 }

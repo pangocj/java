@@ -10,6 +10,6 @@
 
 	<select id="selectSecurityReplyList" resultType="SecurityReply">
 		select idx, writer, content, regdate, board_idx, name from security_reply 
-		join security_users on writer=userid order by idx desc
+		join security_users on writer=userid where board_idx=#{boardIdx} order by idx desc
 	</select>
 </mapper>

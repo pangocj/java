@@ -20,7 +20,7 @@ public class SecurityReplyRepositoryImpl implements SecurityReplyRepository {
 	}
 
 	@Override
-	public List<SecurityReply> selectSecurityReplyList() {
-		return sqlSession.getMapper(SecurityReplyMapper.class).selectSecurityReplyList();
+	public List<SecurityReply> selectSecurityReplyList(int boardIdx) {
+		return sqlSession.getMapper(SecurityReplyMapper.class).selectSecurityReplyList(boardIdx);
 	}
 }

@@ -69,9 +69,18 @@ th, td {
 					<button type="button" id="removeBtn">삭제</button>
 				</c:if>
 			</sec:authorize>
-		
 		</form>
 	</div>
+	<hr>
+
+	<%-- 댓글을 입력받거나 댓글 목록을 출력하는 태그 --%>
+	<sec:authorize access="isAuthenticated()">
+	<div>
+		<textarea rows="3" cols="60" id="content"></textarea>
+		<button type="button" id="addBtn">댓글쓰기</button>
+	</div>
+	</sec:authorize>
+	<div id="replyList"></div>	
 	
 	<script type="text/javascript">
 	$("#listBtn").click(function() {
@@ -87,6 +96,50 @@ th, td {
 			$("#linkForm").attr("action", "<c:url value="/board/remove"/>").submit();
 		}
 	});
+	
+	function replyDisplay() {
+		$.ajax({
+			type: "get",
+			url: "<c:url value="/reply/list"/>/"+${securityBoard.idx },
+			dataType: "json",
+			success: function(result) {
+				if(result.length == 0) {
+					var html="<div style='width: 600px; border-bottom: 1px solid black;'>";
+					html+="댓글이 하나도 없습니다.";
+					html+="</div>";
+					$("#replyList").html(html);
+					return;
+				}
+				
+				var html="";
+				$(result).each(function() {
+					html+="<div style='width: 600px; border-bottom: 1px solid black;'>";
+					html+="["+this.idx+"]"+this.name+"<br>";	
+					html+="<pre>"+this.content+"</pre>("+this.regdate+")";	
+					html+="</div>";			
+				})
+				$("#replyList").html(html);
+			},
+			error: function(xhr) {
+				alert("에러 = "+xhr.status);
+			}
+		});
+	}
+	
+	replyDisplay();
+	
+	
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
