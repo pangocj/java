@@ -18,5 +18,6 @@ public class SecurityBoard {
 	private String subject;
 	private String content;
 	private Date regdate;
+	//SECURITY_USERS 테이블에 저장된 게시글 작성자의 이름을 저장하기 위한 필드
 	private String name;
 }

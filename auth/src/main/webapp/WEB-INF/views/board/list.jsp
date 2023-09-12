@@ -56,7 +56,7 @@ th, td {
 					<c:forEach var="securityBoard" items="${result.securityBoardList}">
 						<tr>
 							<td>${securityBoard.idx}</td>
-							<td>${securityBoard.name}</td>
+							<td>${securityBoard.name}[${securityBoard.writer}]</td>
 							<td><a href="<c:url value="/board/detail"/>?idx=${securityBoard.idx }&pageNum=${search.pageNum}&column=${search.column}&keyword=${search.keyword}">${securityBoard.subject}</a></td>
 							<td>${securityBoard.regdate}</td>
 						</tr>
@@ -68,7 +68,7 @@ th, td {
 		<div style="text-align: center;">
 			<c:choose>
 				<c:when test="${result.pager.startPage > result.pager.blockSize }">
-					<a href="<c:url value="/board/list"/>?pageNum=${pager.prevPage}&column=${search.column}&keyword=${search.keyword}">[이전]</a>
+					<a href="<c:url value="/board/list"/>?pageNum=${result.pager.prevPage}&column=${search.column}&keyword=${search.keyword}">[이전]</a>
 				</c:when>
 				<c:otherwise>
 					[이전]
@@ -85,9 +85,10 @@ th, td {
 					</c:otherwise>
 				</c:choose>	
 			</c:forEach>
+			
 			<c:choose>
 				<c:when test="${result.pager.endPage != result.pager.totalPage }">
-					<a href="<c:url value="/board/list"/>?pageNum=${pager.nextPage}&column=${search.column}&keyword=${search.keyword}">[이전]</a>
+					<a href="<c:url value="/board/list"/>?pageNum=${result.pager.nextPage}&column=${search.column}&keyword=${search.keyword}">[이전]</a>
 				</c:when>
 				<c:otherwise>
 					[다음]

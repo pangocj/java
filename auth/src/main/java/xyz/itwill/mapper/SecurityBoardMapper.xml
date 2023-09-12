@@ -38,4 +38,5 @@
 		</if>
 		order by idx desc) board) where rn between #{startRow} and #{endRow}
 	</select>
+	
 </mapper>
