@@ -75,6 +75,7 @@ th, td {
 
 	<%-- 댓글을 입력받거나 댓글 목록을 출력하는 태그 --%>
 	<sec:authorize access="isAuthenticated()">
+		<input type="hidden" id="writer" value="<sec:authentication property="principal.userid"/>">
 	<div>
 		<textarea rows="3" cols="60" id="content"></textarea>
 		<button type="button" id="addBtn">댓글쓰기</button>
@@ -130,11 +131,11 @@ th, td {
 	
 	//현재 로그인 사용자의 아이디를 자바스크립트 변수에 저장
 	// => Spring Security 태그를 자바스크립트에서 사용 가능
-	var writer=null;
+	<%--
 	<sec:authorize access="isAuthenticated()">
-		writer='<sec:authentication property="principal.userid"/>';
-		//alert("writer = "+writer);
+		var writer="<sec:authentication property="principal.userid"/>";
 	</sec:authorize>
+	--%>
 	
 	//CSRF 토큰 관련 정보를 자바스트립트 변수에 저장 
 	var csrfHeaderName="${_csrf.headerName}";
@@ -147,6 +148,8 @@ th, td {
 	});
 	
 	$("#addBtn").click(function() {
+		var writer=$("#writer").val();
+
 		var content=$("#content").val();
 		if(content == "") {
 			alert("댓글 내용을 입력해 주세요.");
@@ -181,14 +184,3 @@ th, td {
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
