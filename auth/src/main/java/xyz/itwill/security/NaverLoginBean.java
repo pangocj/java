@@ -35,7 +35,6 @@ public class NaverLoginBean {
 		//로그인 기능을 요청하기 위한 정보가 저장된 OAuth20Service 객체 생성
 		OAuth20Service oAuth20Service=new ServiceBuilder()
 				.apiKey(CLIENT_ID)
-				.apiSecret(CLIENT_SAECRET)
 				.callback(REDIRECT_URI)
 				.state(state)
 				.build(NaverLoginApi.instance());
