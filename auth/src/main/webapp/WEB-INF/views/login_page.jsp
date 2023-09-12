@@ -51,7 +51,8 @@
 		<c:remove var="SPRING_SECURITY_LAST_EXCEPTION"/>
 	</c:if>
 	
-	<img alt="네이버로그인" src="<c:url value="/resources/images/naverBtn.png"/>">	
+	<img alt="네이버로그인" src="<c:url value="/resources/images/naverBtn.png"/>" width="200"
+		onclick="location.href='<c:url value="/naver/login"/>';">	
 	<hr>
 	<h3><a href="<c:url value="/"/>">메인으로</a></h3>
 	
