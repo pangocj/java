@@ -22,14 +22,15 @@ public class NaverLoginBean {
 	private static final String CLIENT_SAECRET="HJJjPBiVan";
 	private static final String REDIRECT_URI="http://localhost:8000/auth/naver/callback";
 	private static final String SESSION_STATE="naverState";
+	//사용자 프로필을 조회하기 위한 API의 URL 주소 저장
 	private static final String PROFILE_API_URI="https://openapi.naver.com/v1/nid/me";
 	
-	//네이버 로그인 기능을 제공하는 API를 호출하여 결과를 반환하는 메소드 
+	//네이버 로그인 기능을 제공하는 API를 호출하여 결과(code와 state)를 반환하는 메소드 
 	public String getAuthorizationUrl(HttpSession session) {
-		//세션의 유효성 검증을 위한 난수값을 발생하여 저장
+		//세션의 유효성 검증을 위한 난수값을 발생하여 저장 - 클라이언트가 동일한지를 검사하기 위한 값
 		String state=UUID.randomUUID().toString();
 		
-		//난수값을 세션 속성값으로 저장
+		//난수값을 세션 속성값으로 저장 - CSRF 토큰과 동일한 역활
 		session.setAttribute(SESSION_STATE, state);
 		
 		//로그인 기능을 요청하기 위한 정보가 저장된 OAuth20Service 객체 생성
@@ -40,6 +41,7 @@ public class NaverLoginBean {
 				.build(NaverLoginApi.instance());
 		
 		//네이버 로그인 기능을 요청하는 API를 요청하여 결과를 반환
+		// => Callback URL 주소에 질의문자열로 code와 state 이름으로 값이 저장된 URL 주소 반환 
 		return oAuth20Service.getAuthorizationUrl();
 	}
 	
@@ -48,7 +50,8 @@ public class NaverLoginBean {
 		//세션의 유효성 검증을 위해 세션에 저장된 속성값(상태)를 반환받아 저장
 		String sessionState=(String)session.getAttribute(SESSION_STATE);
 		
-		//매개변수로 전달받은 값과 세션에 저장된 값이 다른 경우 - 비정상적인 요청
+		//매개변수로 전달받은 값과 세션에 저장된 값이 다른 경우
+		// => 로그인 요청 클라이언트와 토큰 요청 클라이언트가 다른 경우 - 비정상적인 요청
 		if(!StringUtils.pathEquals(sessionState, state)) {
 			return null;
 		}

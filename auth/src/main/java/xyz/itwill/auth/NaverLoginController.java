@@ -15,7 +15,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -54,11 +53,11 @@ public class NaverLoginController {
 	//네이버 로그인 성공시 Callback URL 페이지를 처리하기 위한 요청 처리 메소드
 	@RequestMapping("/callback")
 	public String login(@RequestParam String code, @RequestParam String state
-			, HttpSession session, Model model) throws IOException, ParseException {
+			, HttpSession session) throws IOException, ParseException {
 		//네이버 로그인 사용자에 대한 접근 토큰을 반환하는 메소드 호출하여 사용자 접근 토큰 저장 
 		OAuth2AccessToken accessToken=naverLoginBean.getAccessToken(session, code, state);
 		
-		//로그인 사용자의 프로필을 반환하는 메소드를 호출하여 사용자 프로필(JSON)을 저장
+		//접근 토큰을 이용하여 로그인 사용자의 프로필을 반환하는 메소드를 호출하여 사용자 프로필(JSON)을 저장
 		String apiResult=naverLoginBean.getUserProfile(accessToken);
 		//{"resultcode":"00","message":"success","response":{"id":"XAfMAwX_vELrzkOKnQPW2B5VSOs4kPM5P0Zl0ZuFY00","nickname":"ocj****","email":"ocj1778@hanmail.com","name":"\uc624\ucc3d\uc911"}}
 		//System.out.println(apiResult);
@@ -78,6 +77,7 @@ public class NaverLoginController {
 		String name=(String)responseObject.get("name");
 		String email=(String)responseObject.get("email");
 		
+		//반환받은 네이버 사용자 프로필의 값을 사용하여 Java 객체의 필드값으로 저장
 		SecurityAuth auth=new SecurityAuth();
 		auth.setUserid("naver_"+id);
 		auth.setAuth("ROLE_USER");
@@ -99,11 +99,17 @@ public class NaverLoginController {
 			securityUsersService.addSecurityAuth(auth);
 		}
 		
+		//네이버 로그인 사용자 정보를 사용하여 UserDetails 객체(로그인 사용자)를 생성하여 저장
 		CustomUserDetails customUserDetails=new CustomUserDetails(users);
 		
+		//UsernamePasswordAuthenticationToken 객체를 생성하여 Spring Security가 사용 가능한
+		//인증 사용자로 등록 처리
+		//UsernamePasswordAuthenticationToken 객체 : 인증 성공한 사용자를 Spring Security가
+		//사용 가능한 인증 사용자로 등록 처리하는 객체
 		Authentication authentication=new UsernamePasswordAuthenticationToken
 				(customUserDetails, null, customUserDetails.getAuthorities());
 		
+		//SecurityContextHolder 객체 : 인증 사용자의 권한 관련 정보를 저장하기 위한 객체
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		return "redirect:/";

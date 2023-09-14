@@ -7,7 +7,7 @@
 		</selectKey>
 		insert into security_board values(#{idx}, #{writer}, #{subject}, #{content}, sysdate)
 	</insert>
-
+ 
 	<update id="updateSecurityBoard">
 		update security_board set subject=#{subject}, content=#{content} where idx=#{idx}
 	</update>

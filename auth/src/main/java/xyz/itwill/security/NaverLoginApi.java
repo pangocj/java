@@ -17,13 +17,13 @@ public class NaverLoginApi extends DefaultApi20 {
 		return InstanceHolder.INSTANCE;
 	}
 	
-	//로그인 토큰을 사용하여 로그인 인증 처리하는 API의 URL 주소를 반환하는 메소드
+	//사용자 접근 토큰을 제공받기 위한 API의 URL 주소를 반환하는 메소드
 	@Override
 	public String getAccessTokenEndpoint() {
 		return "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code";
 	}
 
-	//로그인 토큰을 발급받기 위한 API의 URL 주소를 반환하는 메소드
+	//로그인 처리를 위한 API의 URL 주소를 반환하는 메소드
 	@Override
 	protected String getAuthorizationBaseUrl() {
 		return "https://nid.naver.com/oauth2.0/authorize";

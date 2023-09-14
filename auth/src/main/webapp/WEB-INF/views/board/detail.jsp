@@ -76,10 +76,10 @@ th, td {
 	<%-- 댓글을 입력받거나 댓글 목록을 출력하는 태그 --%>
 	<sec:authorize access="isAuthenticated()">
 		<input type="hidden" id="writer" value="<sec:authentication property="principal.userid"/>">
-	<div>
-		<textarea rows="3" cols="60" id="content"></textarea>
-		<button type="button" id="addBtn">댓글쓰기</button>
-	</div>
+		<div>
+			<textarea rows="3" cols="60" id="content"></textarea>
+			<button type="button" id="addBtn">댓글쓰기</button>
+		</div>
 	</sec:authorize>
 	<div id="replyList"></div>	
 		

@@ -1,7 +1,5 @@
 package xyz.itwill.dto;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 /*
