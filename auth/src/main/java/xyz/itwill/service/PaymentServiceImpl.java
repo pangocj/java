@@ -84,9 +84,10 @@ public class PaymentServiceImpl implements PaymentService {
 
 	//하나의 결재정보를 제공하는 API를 요청하여 결재정보를 반환하는 메소드 
 	@Override
-	public Payment getPayment(String accessToken) {
-		Payment payment=new Payment();//응답결과를 저장하기 위한 객체 생성
-		String apiUrl="https://api.iamport.kr/payments";
+	public Payment getPayment(String accessToken, Payment payment) {
+		Payment responsePayment=new Payment();//응답결과를 저장하기 위한 객체 생성
+		//결제번호를 전달하여 결재정보를 제공받기 위한 API의 URL 주소
+		String apiUrl="https://api.iamport.kr/payments/"+payment.getImpUid();
 		try {
 			URL url = new URL(apiUrl);
 			HttpURLConnection connection=(HttpURLConnection)url.openConnection();
@@ -117,10 +118,10 @@ public class PaymentServiceImpl implements PaymentService {
 	
 				JSONObject responseObject=(JSONObject)jsonObject.get("response");
 				
-				payment.setImpUid((String)responseObject.get("imp_uid"));
-				payment.setMerchantUid((String)responseObject.get("merchant_uid"));
-				payment.setAmount((Long)responseObject.get("amount"));
-				payment.setStatus((String)responseObject.get("status"));
+				responsePayment.setImpUid((String)responseObject.get("imp_uid"));
+				responsePayment.setMerchantUid((String)responseObject.get("merchant_uid"));
+				responsePayment.setAmount((Long)responseObject.get("amount"));
+				responsePayment.setStatus((String)responseObject.get("status"));
 			} else {
 				return null;
 			}

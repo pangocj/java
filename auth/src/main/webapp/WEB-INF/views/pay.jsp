@@ -37,11 +37,11 @@
 		//결제금액 - 주문테이블에서 제공된 값 사용
 		var amount=10;
 		
-		//결제 전 결제 고유값과 결제 금액을 세션에 저장하기 위한 페이지 요청
-		// => 결재 후 결제 정보와 비교하여 검증하기 위해 세션에 저장 
+		//결제 전 주문번호와 결제금액을 세션에 저장하기 위한 페이지 요청
+		// => 결제 후 결제정보와 비교하여 검증하기 위해 세션에 저장 
 		$.ajax({
 			type: "post",
-			url: "/auth/payment/pay",
+			url: "<c:url value="/payment/pay"/>",
 			contentType: "application/json",
 			data: JSON.stringify({"merchantUid":merchantUid, "amount":amount}),
 			dataType: "text",
@@ -67,10 +67,29 @@
 			            buyer_addr: "서울시 강남구 역삼동 내빌딩 5층 501호",//결제 사용자 주소
 						//m_redirect_url: "http://localhost:8000:auth/payment/pay",//모바일의 리다이렉트 URL 주소
 					}, function(response) {//결제 관련 응답 결과를 제공받아 처리하는 함수
-						alert(response);
-						
-						if (response.success) {//결제를 성공한 경우
-							
+						//response : 응답결과를 저장한 Object 객체
+						alert(reponse.toString());
+						if (response.success) {//결제한 경우
+							//결제금액을 검증하기 위한 페이지를 요청
+							$.ajax({
+								type: "post",
+								url: "<c:url value="/payment/complate"/>",
+								contentType: "application/json",
+								data: JSON.stringify({"imp_uid": response.imp_uid, "merchantUid": response.merchant_uid}),
+								dataType: "text",
+								success: function(result) {
+									if(result == "success") {
+										//결제 성공 페이지로 이동
+										alert("결제 성공");
+									} else {
+										//결제 실패 페이지로 이동
+										alert("결제 취소");
+									}
+								}, 
+								error: function(xhr) {
+									alert("에러 = "+xhr.status);
+								}
+							});
 						}
 					});
 				}
