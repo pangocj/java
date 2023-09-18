@@ -68,14 +68,13 @@
 						//m_redirect_url: "http://localhost:8000:auth/payment/pay",//모바일의 리다이렉트 URL 주소
 					}, function(response) {//결제 관련 응답 결과를 제공받아 처리하는 함수
 						//response : 응답결과를 저장한 Object 객체
-						alert(reponse.toString());
 						if (response.success) {//결제한 경우
 							//결제금액을 검증하기 위한 페이지를 요청
 							$.ajax({
 								type: "post",
 								url: "<c:url value="/payment/complate"/>",
 								contentType: "application/json",
-								data: JSON.stringify({"imp_uid": response.imp_uid, "merchantUid": response.merchant_uid}),
+								data: JSON.stringify({"impUid": response.imp_uid, "merchantUid": response.merchant_uid}),
 								dataType: "text",
 								success: function(result) {
 									if(result == "success") {

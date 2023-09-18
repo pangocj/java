@@ -84,10 +84,10 @@ public class PaymentServiceImpl implements PaymentService {
 
 	//하나의 결재정보를 제공하는 API를 요청하여 결재정보를 반환하는 메소드 
 	@Override
-	public Payment getPayment(String accessToken, Payment payment) {
-		Payment responsePayment=new Payment();//응답결과를 저장하기 위한 객체 생성
+	public Payment getPayment(String accessToken, String impUid) {
+		Payment payment=new Payment();//응답결과를 저장하기 위한 객체 생성
 		//결제번호를 전달하여 결재정보를 제공받기 위한 API의 URL 주소
-		String apiUrl="https://api.iamport.kr/payments/"+payment.getImpUid();
+		String apiUrl="https://api.iamport.kr/payments/"+impUid;
 		try {
 			URL url = new URL(apiUrl);
 			HttpURLConnection connection=(HttpURLConnection)url.openConnection();
@@ -118,10 +118,10 @@ public class PaymentServiceImpl implements PaymentService {
 	
 				JSONObject responseObject=(JSONObject)jsonObject.get("response");
 				
-				responsePayment.setImpUid((String)responseObject.get("imp_uid"));
-				responsePayment.setMerchantUid((String)responseObject.get("merchant_uid"));
-				responsePayment.setAmount((Long)responseObject.get("amount"));
-				responsePayment.setStatus((String)responseObject.get("status"));
+				payment.setImpUid((String)responseObject.get("imp_uid"));
+				payment.setMerchantUid((String)responseObject.get("merchant_uid"));
+				payment.setAmount((Long)responseObject.get("amount"));
+				payment.setStatus((String)responseObject.get("status"));
 			} else {
 				return null;
 			}
@@ -141,6 +141,8 @@ public class PaymentServiceImpl implements PaymentService {
 		// => {"imp_uid" : 결재고유값, "checksum" : 취소금액} 
 		String data="{\"imp_uid\":\""+payment.getImpUid()+"\", \"checksum\":\""+payment.getAmount()+"\"}";
 		
+		System.out.println(data);
+		
 		String returnValue="";
 		try {
 			URL url = new URL(apiUrl);
@@ -148,6 +150,7 @@ public class PaymentServiceImpl implements PaymentService {
 			connection.setDoOutput(true);//응답결과를 반환하기 위해 필드값 변경
 			connection.setRequestMethod("POST");//요청 방식을 변경하기 위해 필드값 변경
 			connection.setRequestProperty("Content-Type", "application/json");//전달값의 형식을 변경하기 위해 필드값 변경
+			connection.setRequestProperty("Authorization", accessToken);
 			
 			//API 요청에 필요한 값을 출력스트림을 제공받아 전달
 			try(OutputStream out=connection.getOutputStream()) {
@@ -160,7 +163,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 			//응답코드를 반환받아 저장
 			int responseCode=connection.getResponseCode();
-			
+
 			if(responseCode == 200) {//정상적은 응답 결과를 제공받은 경우
 				returnValue="success";	
 			} else {

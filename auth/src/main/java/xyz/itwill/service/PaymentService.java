@@ -7,6 +7,6 @@ public interface PaymentService {
 	void modifyPayment(Payment payment);
 
 	String getAccessToken(Payment payment);
-	Payment getPayment(String accessToken, Payment payment);
+	Payment getPayment(String accessToken, String impUid);
 	String canclePayment(String accessToken, Payment payment);
 }

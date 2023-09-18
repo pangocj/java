@@ -39,7 +39,7 @@ public class PaymentsController {
 		String accessToken=paymentService.getAccessToken(payment);
 		
 		//토큰과 결제고유값을 전달하여 API를 이용하여 결제정보를 반환받아 저장
-		Payment returnPayment=paymentService.getPayment(accessToken, payment);
+		Payment returnPayment=paymentService.getPayment(accessToken, payment.getImpUid());
 		
 		//세션에 저장된 결제 금액을 반환받아 저장
 		Long beforeAmount=(Long)session.getAttribute(payment.getMerchantUid());
