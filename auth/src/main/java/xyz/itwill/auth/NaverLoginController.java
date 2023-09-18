@@ -115,15 +115,3 @@ public class NaverLoginController {
 		return "redirect:/";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
