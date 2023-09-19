@@ -34,7 +34,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		//요청 API에게 전달될 값을 JSON 형식의 문자열로 표현하여 저장
 		// => {"imp_key" : REST API Key, "imp_secret" : REST API Secret} 
-		String data="{\"imp_key\":\"7145387726131117\", \"imp_secret\":\"p6hCDrAyOWsAd4wn5e6kN6L2Si3yT1wI8cUivJDq0YasIVqxucrW9BWy4DTE9Yng8iEkrFMnDohOTEe3\"}";
+		String data="{\"imp_key\":\"111\", \"imp_secret\":\"222\"}";
 		try {
 			URL url = new URL(apiUrl);
 			HttpURLConnection connection=(HttpURLConnection)url.openConnection();
