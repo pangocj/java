@@ -37,6 +37,8 @@
 	<!-- secured-annotations 속성 : [disable] 또는 [enabled] 중 하나를 속성값으로 설정 -->
 	<!-- => 속성값을 [enabled]로 설정항 경우 @Secured 어노테이션을 제공  -->
 	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>
+	
+	<context:property-placeholder location="classpath:data.properties"/>
 </beans:beans>
 
 

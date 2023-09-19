@@ -55,6 +55,8 @@
 		<%-- => User 객체의 grantedAuthorities 필드 : 사용자의 권한 정보를 요소로 가진 List 객체가 저장된 필드 --%> 
 		<h3>${loginUser}</h3>
 	</sec:authorize>
+	
+	<embed src="<c:url value="/resources/eclipse_cheatsheet.pdf"/>" width="1000" height="1500">
 </body>
 </html>
 

@@ -149,12 +149,14 @@ th, td {
 	
 	$("#addBtn").click(function() {
 		var writer=$("#writer").val();
-
+		var writer=null;
 		var content=$("#content").val();
+		/*
 		if(content == "") {
 			alert("댓글 내용을 입력해 주세요.");
 			return;
 		}
+		*/
 		$("#content").val("");
 		
 		$.ajax({
@@ -174,6 +176,8 @@ th, td {
 			success: function(result) {
 				if(result=="success") {
 					replyDisplay();
+				} else {
+					if(result.content) alert(result.content);
 				}
 			},
 			error: function(xhr) {

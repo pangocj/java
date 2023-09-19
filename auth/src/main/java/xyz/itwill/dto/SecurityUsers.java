@@ -2,6 +2,8 @@ package xyz.itwill.dto;
 
 import java.util.List;
 
+import javax.validation.constraints.NotEmpty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,10 +22,15 @@ create unique index auth_userid_index on security_auth(userid, auth);
 @NoArgsConstructor
 @AllArgsConstructor
 public class SecurityUsers {
+	@NotEmpty(groups = {SecurityUsersGroups.insertValid.class})
 	private String userid;
+	@NotEmpty(groups = {SecurityUsersGroups.insertValid.class})
 	private String passwd;
+	@NotEmpty(groups = {SecurityUsersGroups.insertValid.class, SecurityUsersGroups.modifyValid.class})
 	private String name;
+	@NotEmpty(groups = {SecurityUsersGroups.insertValid.class, SecurityUsersGroups.modifyValid.class})
 	private String email;
+	@NotEmpty(groups = {SecurityUsersGroups.modifyValid.class})
 	private String enabled;
 	private List<SecurityAuth> securityAuthList;
 }

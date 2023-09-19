@@ -21,6 +21,10 @@
 	<!-- => isAuthenticated() : 인증 처리된 사용자(Remember-me 기능의 사용자 포함)인 경우에만 접근 가능 -->
 	<!-- => isFullyAuthenticated() : 인증 처리된 사용자(Remember-me 기능의 사용자 제외)인 경우에만 접근 가능 -->
 	<http auto-config="true" use-expressions="true">
+		<headers>
+			<frame-options policy="SAMEORIGIN"/>
+		</headers>
+	
 		<!-- use-expressions 속성값을 [false]를 사용한 경우 access 속성값으로 SpEL 표현식 사용 불가능 -->
 		<!-- => intercept-url 엘리먼트를 사용하여 페이지에 접근 가능한 권한을 하나만 설정 가능 -->
 		<!--  
