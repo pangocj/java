@@ -52,7 +52,10 @@
 	</c:if>
 	
 	<img alt="네이버로그인" src="<c:url value="/resources/images/naverBtn.png"/>" width="200"
-		onclick="location.href='<c:url value="/naver/login"/>';">	
+		onclick="location.href='<c:url value="/naver/login"/>';">
+		
+	<img alt="네이버로그인" src="<c:url value="/resources/images/kakaoBtn.png"/>" width="200"
+		onclick="location.href='<c:url value="/kakao/login"/>';">		
 	<hr>
 	<h3><a href="<c:url value="/"/>">메인으로</a></h3>
 	
