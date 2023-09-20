@@ -4,6 +4,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -119,5 +121,18 @@ public class HomeController {
 	@RequestMapping(value = "/admin/page", method = RequestMethod.GET)
 	public String adminPage() {
 		return "admin_page";
+	}
+	
+	
+	@RequestMapping(value = "/csrf", method = RequestMethod.GET)
+	public String form() {
+		return "csrf";
+	}
+	
+	@RequestMapping(value = "/csrf", method = RequestMethod.POST)
+	@ResponseBody
+	public String form(@RequestParam String name) {
+		System.out.println(name);
+		return "ok";
 	}
 }

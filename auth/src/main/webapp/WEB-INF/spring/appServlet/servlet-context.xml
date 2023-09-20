@@ -24,10 +24,12 @@
 	<context:component-scan base-package="xyz.itwill.auth" />
 	<context:component-scan base-package="xyz.itwill.service" />
 	
+	<!--  
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 		<beans:property name="maxUploadSize" value="20971520"/>
 		<beans:property name="defaultEncoding" value="utf-8"/>
 	</beans:bean>	
+	-->
 	
 	<!-- global-method-security : Controller 클래스의 요청 처리 메소드에 권한 관련 어노테이션을 
 	제공하기 위한 엘리먼트 -->
